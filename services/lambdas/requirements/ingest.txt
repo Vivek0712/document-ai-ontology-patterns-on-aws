@@ -2,7 +2,7 @@
 # pip install --platform manylinux2014_x86_64 --only-binary=:all: --python-version 3.12.
 # boto3/botocore come from the Lambda runtime; evidence_core deps are in the "core" layer.
 pypdf==6.21.4
-pypdfium2==5.14.0
+pypdfium2==5.15.0
 pillow==13.0.0
 amazon-textract-textractor==1.10.0
 opensearch-py==3.2.0
