@@ -106,6 +106,14 @@ def test_entrypoint_rejects_bad_token_and_bad_payload(monkeypatch):
     monkeypatch.setattr(entry, "verifier", lambda: Verifier())
     monkeypatch.setattr(entry, "runner", lambda: Runner())
     monkeypatch.setattr(entry, "package_gate", lambda: PackageGate(load=packages.get))
+    logged: list[dict[str, Any]] = []
+
+    class AccessLog:
+        def put_item(self, Item: dict[str, Any]) -> None:  # noqa: N803 - boto3 keyword
+            logged.append(Item)
+
+    monkeypatch.setattr(entry, "access_log", lambda: AccessLog())
+    monkeypatch.setattr(entry, "golden", lambda: [])
 
     def collect(payload: dict[str, Any], auth: str | None) -> list[dict[str, Any]]:
         ctx = SimpleNamespace(request_headers={"Authorization": auth} if auth else {}, session_id="s" * 36)
@@ -128,3 +136,9 @@ def test_entrypoint_rejects_bad_token_and_bad_payload(monkeypatch):
         assert denied[0]["code"] == "forbidden" and "access to this package" in denied[0]["message"]
     assert collect(good | {"pipelineVersion": "9.9"}, "Bearer good")[0]["code"] == "bad_request"
     assert not seen  # the runner never ran: no run record, no model tokens
+    # every gate refusal is logged (rp-access-log ask-gate rows); bad tokens and bad payloads are not (no caller)
+    assert [(r["runId"], r["gate"]["path"], r["gate"]["code"], r["decision"]) for r in logged] == [
+        ("gate#pkg-other-01", "runtime", "forbidden", "deny"), ("gate#pkg-missing-01", "runtime", "forbidden", "deny"),
+        ("gate#pkg-lending-01", "runtime", "bad_request", "deny")]
+    assert all(r["callerSub6"] == "sub-a" and r["target"] == "rp-agent-runtime" and r["callId"] == "s" * 36
+               and r["sk"].endswith("#" + "s" * 36) for r in logged)

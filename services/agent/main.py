@@ -4,7 +4,9 @@ The Runtime's ``customJWTAuthorizer`` validated the Cognito access token and for
 ``Authorization`` header (``requestHeaderAllowlist``). The handler re-verifies it to get
 ``sub``/``groups`` for the run record and the fallback identity hook, checks the package ACL and the
 pipeline version (the streaming path reaches the Runtime without ``rp-api-ask``), then streams the ask
-as Server-Sent Events (each yielded dict becomes ``data: <json>\\n\\n``).
+as Server-Sent Events (each yielded dict becomes ``data: <json>\\n\\n``). A refusal at that check is written to
+``rp-access-log`` as an ask-gate row (``evidence_core.access_gate``, path ``runtime``) before the error event:
+no run starts, no model is called.
 """
 
 from __future__ import annotations
@@ -14,6 +16,7 @@ from functools import lru_cache
 from typing import Any
 
 from bedrock_agentcore.runtime import BedrockAgentCoreApp
+from evidence_core import access_gate
 from evidence_core.config import load_pipeline
 from evidence_core.models.answer import AskRequest, ErrorEvent
 from evidence_core.models.golden import load_golden
@@ -46,6 +49,25 @@ def package_gate() -> PackageGate:
     return PackageGate.from_settings(settings().common)
 
 
+@lru_cache(maxsize=1)
+def access_log() -> Any | None:
+    """The ``rp-access-log`` table for ask-gate rows; None without ``RP_TABLE_ACCESS_LOG`` (local runs)."""
+    import os
+
+    name = os.environ.get("RP_TABLE_ACCESS_LOG")
+    if not name:
+        return None
+    import boto3
+
+    return boto3.resource("dynamodb", region_name=settings().common.region).Table(name)
+
+
+@lru_cache(maxsize=1)
+def golden() -> list[Any]:
+    s = settings()
+    return load_golden(s.golden_path) if s.golden_path else []
+
+
 @lru_cache(maxsize=4)
 def pipeline(pv: str) -> Any:
     return load_pipeline(pv)
@@ -60,7 +82,7 @@ def runner() -> AskRunner:
         pipeline_loader=pipeline,
         driver_factory=StrandsDriver,
         run_store=AwsRunStore.from_settings(s.common),
-        golden=load_golden(s.golden_path) if s.golden_path else [],
+        golden=golden(),
         gateway_url=s.gateway_url,
         identity_mode=s.identity_mode,
         region=s.common.region,
@@ -88,6 +110,11 @@ async def invoke(payload: dict[str, Any], context: Any) -> AsyncIterator[dict[st
     try:
         package_gate().check(request.package_id, request.pipeline_version, caller.sub, list(caller.groups))
     except PackageDenied as denied:
+        session = getattr(context, "session_id", None) or getattr(context, "request_id", None) or ""
+        access_gate.write(access_log(), access_gate.refusal_row(
+            path="runtime", request_id=str(session), sub=caller.sub, groups=list(caller.groups),
+            package_id=request.package_id, pipeline_version=request.pipeline_version, question=request.question,
+            code=denied.code, reason=denied.message, golden=golden()))
         yield ErrorEvent(code=denied.code, message=denied.message).dump()
         return
     identity = CallerIdentity(sub=caller.sub, groups=caller.groups, authorization=str(auth))

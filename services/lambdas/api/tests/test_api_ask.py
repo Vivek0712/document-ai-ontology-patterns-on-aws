@@ -63,6 +63,35 @@ def test_ask_acl_and_validation(env, seeded, upstream) -> None:
     assert upstream == []
 
 
+def test_ask_gate_refusals_are_written_to_the_access_log(env, seeded, upstream) -> None:
+    """A refused ask starts no run, so the gate itself logs the refusal (SC-7's evidence for the other user)."""
+    from boto3.dynamodb.conditions import Key
+    from evidence_core.access_gate import gate_pk, question_sha
+    from evidence_core.ddb import from_ddb
+
+    env.deps.settings = type(env.deps.settings).from_env()
+    question = "What is the total income across this package?"
+    resp = _ask({"question": question, "packageId": seeded.package_id, "pipelineVersion": "2.3.1"}, sub=SUB_B,
+                groups=["markets-analyst"])
+    assert resp["statusCode"] == 403 and upstream == []
+    _ask({"question": question, "packageId": seeded.package_id, "pipelineVersion": "3.0"})  # owner, bad lane
+    _ask({"question": question, "packageId": seeded.package_id, "pipelineVersion": "2.3.1"})  # allowed: no row
+    items = [from_ddb(i) for i in env.deps.table("access_log").query(
+        KeyConditionExpression=Key("runId").eq(gate_pk(seeded.package_id)))["Items"]]
+    assert len(items) == 2
+    b = next(i for i in items if i["callerSub6"] == SUB_B[:6])
+    assert b["decision"] == "deny" and b["injectionPoint"] == "ask-gate" and b["tool"] == "ask"
+    assert b["target"] == "rp-api-ask" and b["groups"] == ["markets-analyst"] and b["callId"] == "req-1"
+    assert b["gate"] == {"path": "api", "requestId": "req-1", "code": "forbidden",
+                         "questionSha": question_sha(question)}
+    assert b["injected"] == {"pipelineVersion": "2.3.1", "packageId": seeded.package_id}
+    assert b["reason"] == "You don't have access to this package." and b["day"] == b["at"][:10] and b["ttl"] > 0
+    assert question not in json.dumps(items)  # the question text is never logged, only its hash
+    assert SUB_B not in json.dumps(items)  # nor the full sub
+    owner = next(i for i in items if i["callerSub6"] != SUB_B[:6])
+    assert owner["gate"]["code"] == "bad_request" and owner["injected"]["pipelineVersion"] == "3.0"
+
+
 def test_ask_not_ready_without_runtime(env, seeded) -> None:
     resp = _ask({"question": "q", "packageId": seeded.package_id, "pipelineVersion": "1.0"})
     assert resp["statusCode"] == 503 and '"not_ready"' in resp["body"]

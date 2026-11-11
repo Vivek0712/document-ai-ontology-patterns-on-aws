@@ -1,10 +1,14 @@
 """Showcase composers over logged runs (``GET /showcases/{id}/payload``), registered by ``routes/showcases.py``.
 
 ``sc-7`` Identity and scoping (``?packageId=&question=``): the same question asked by the package owner and by
-other users, each run with the identity the gateway injected, what ``search_units`` returned under it (unit count,
-the filter clause it ran with) and the answer; the access decisions of each run (``routes/access.py``); and the
-region the owner's answer cites, which the UI then requests as the other user (the 403 comes from the region
-service, never from this payload).
+another user. The owner's evidence is logged runs, each with the identity the gateway injected, what
+``search_units`` returned under it (unit count, the filter clause it ran with) and the answer; the access decisions
+of each run (``routes/access.py``); and the region the owner's answer cites, which the UI then requests as the other
+user (the 403 comes from the region service, never from this payload). The other user's evidence is their logged
+runs where they exist (the local harness calls the agent directly), else the ask gate's refusals of that question
+(``rp-access-log`` rows under ``gate#{packageId}``, ``evidence_core.access_gate``): on AWS ``rp-api-ask`` and
+the Runtime entrypoint refuse another user's ask before any run starts, so there is no run to show, and the
+payload says so (``evidence: gate-refusals``) instead of inventing one.
 
 ``sc-10`` A bigger model does not fix it (``?packageId=&question=&lane=1.0``): the lane's runs of the question by
 the package owner, grouped by generation profile (``default`` vs ``frontier``), with the config diff of the two
@@ -21,9 +25,11 @@ from collections import Counter
 from typing import Any
 
 from boto3.dynamodb.conditions import Key
+from evidence_core import access_gate
 from evidence_core.ids import short
 from evidence_core.models.answer import RunRecord, RunSummary
 from evidence_core.models.golden import normalise_amount, normalise_question
+from evidence_core.models.governance import AccessDecision
 from evidence_core.models.inspect import ShowcasePayload, SourceRef
 from evidence_core.s3keys import run_key
 
@@ -158,6 +164,35 @@ def search_calls(run: RunRecord) -> list[dict[str, Any]]:
     return out
 
 
+MAX_REFUSALS = 20
+GATE_LABEL = "refused at the gate, before any model call"
+
+
+def gate_refusals(deps: Deps, package_id: str, question: str, owner_sub: str) -> list[AccessDecision]:
+    """The ask gate's refusals of ``question`` (normalised, by sha256) on the package, by callers other than the
+    owner, oldest first (the newest ``MAX_REFUSALS``)."""
+    from .routes.access import _query, _table
+
+    table = _table(deps)
+    rows = _query(table, KeyConditionExpression=Key("runId").eq(access_gate.gate_pk(package_id))) \
+        if table is not None else None
+    want = access_gate.question_sha(question)
+    owner6 = short(owner_sub)
+    out = [d for d in (AccessDecision.load(r) for r in rows or [])
+           if d.gate is not None and d.gate.question_sha == want and d.caller_sub6 != owner6]
+    out.sort(key=lambda d: (d.at, d.call_id))
+    return out[-MAX_REFUSALS:]
+
+
+def refusal_dot(d: AccessDecision) -> dict[str, Any]:
+    g = d.gate
+    assert g is not None
+    return {"at": d.at, "requestId": g.request_id, "path": g.path, "target": d.target, "code": g.code,
+            "reason": d.reason, "decision": d.decision, "pipelineVersion": d.injected.pipeline_version,
+            "packageId": d.injected.package_id, "questionId": g.question_id, "questionSha": g.question_sha,
+            "label": GATE_LABEL, "provenance": "measured"}
+
+
 def compose_sc7(deps: Deps, caller: Caller, package_id: str, query: dict[str, str]) -> ShowcasePayload:
     from .routes.access import access_rows
 
@@ -170,26 +205,42 @@ def compose_sc7(deps: Deps, caller: Caller, package_id: str, query: dict[str, st
     runs = [r for r in logged if r.generation_profile == "default"]
     owner = [r for r in runs if r.caller_sub == pkg.owner_sub]
     others = [r for r in runs if r.caller_sub != pkg.owner_sub]
-    if not owner or not others:
-        raise not_found("SC-7 needs logged runs of the question by the package owner and by another user.")
+    refusals = gate_refusals(deps, package_id, question, pkg.owner_sub) if owner and not others else []
+    if not owner or not (others or refusals):
+        raise not_found("SC-7 needs logged runs of the question by the package owner, and runs of it by another "
+                        "user or the ask gate's refusals of another user's ask (rp-access-log).")
     picked: list[RunRecord] = []
     users = []
     for role, rs in (("owner", owner), ("other", others)):
+        if not rs:
+            continue
         by_lane: dict[str, RunRecord] = {}
         for pv in sorted({r.pipeline_version for r in rs}):  # the representative run per lane (else its first run)
             lane_runs = [r for r in rs if r.pipeline_version == pv]
             by_lane[pv] = representative(lane_runs) or lane_runs[0]
         picked += by_lane.values()
         users.append({
-            "role": role, "callerSub6": short(rs[0].caller_sub), "groups": rs[0].groups,
+            "role": role, "callerSub6": short(rs[0].caller_sub), "groups": rs[0].groups, "evidence": "runs",
             "runs": {pv: run_dot(r) | {"search": search_calls(r), "toolCalls": len(r.tool_calls),
                                        "injected": (r.tool_calls[0].injected if r.tool_calls else None)}
                      for pv, r in sorted(by_lane.items())},
             "n": {pv: sum(1 for r in rs if r.pipeline_version == pv) for pv in sorted(by_lane)}})
+    if not others:
+        # No run exists for the other user: the gate refused every ask. Their evidence is the refusal rows.
+        last = refusals[-1]
+        users.append({"role": "other", "callerSub6": last.caller_sub6, "groups": last.groups,
+                      "evidence": "gate-refusals", "runs": {}, "n": {},
+                      "refusals": [refusal_dot(d) for d in refusals],
+                      "refusedN": {pv: sum(1 for d in refusals if d.injected.pipeline_version == pv)
+                                   for pv in sorted({d.injected.pipeline_version for d in refusals})}})
     cited = next(((c.unit_id, c.field_id) for r in owner if r.answer for c in r.answer.claims if c.resolvable), None)
-    data = {"question": question, "packageId": package_id, "users": users,
-            "access": {r.run_id: [d.dump() for d in access_rows(deps, r)] for r in picked},
+    access = {r.run_id: [d.dump() for d in access_rows(deps, r)] for r in picked}
+    if refusals:
+        access[access_gate.gate_pk(package_id)] = [d.dump() for d in refusals]
+    data = {"question": question, "packageId": package_id, "users": users, "access": access,
             "regionProbe": {"unitId": cited[0], "fieldId": cited[1]} if cited else None}
-    return _wrap("sc-7", package_id, picked, data,
-                 {"$.data.users": "measured", "$.data.access": "measured", "$.data.regionProbe": "derived"},
-                 [SourceRef(kind="ddb", key=f"rp-access-log/{r.run_id}") for r in picked])
+    provenance = {"$.data.users": "measured", "$.data.access": "measured", "$.data.regionProbe": "derived"}
+    sources = [SourceRef(kind="ddb", key=f"rp-access-log/{r.run_id}") for r in picked]
+    if refusals:
+        sources.append(SourceRef(kind="ddb", key=f"rp-access-log/{access_gate.gate_pk(package_id)}"))
+    return _wrap("sc-7", package_id, picked, data, provenance, sources)

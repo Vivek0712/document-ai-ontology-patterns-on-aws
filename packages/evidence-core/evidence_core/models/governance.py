@@ -22,7 +22,8 @@ from pydantic import Field
 
 from ..base import RpModel
 
-InjectionPoint = Literal["interceptor", "agent_hook", "local-gateway", "coa-control"]
+# "ask-gate": a row the ask gate (rp-api-ask or the Runtime entrypoint) wrote when it refused an ask before any run
+InjectionPoint = Literal["interceptor", "agent_hook", "local-gateway", "coa-control", "ask-gate"]
 
 
 class AccessInjected(RpModel):
@@ -32,10 +33,26 @@ class AccessInjected(RpModel):
 
 
 Decision = Literal["allow", "deny", "unknown"]
+GatePath = Literal["api", "runtime"]
+
+
+class AskGateRefusal(RpModel):
+    """What the ask gate refused (``AccessDecision.gate``): an ask that never started a run, so no model was called
+    and no tool ran. The question is kept only as the sha256 of its normalised text (``golden.normalise_question``)
+    and, when the gate knows the golden set, its qid."""
+
+    path: GatePath  # api: rp-api-ask (POST /ask); runtime: the AgentCore Runtime entrypoint (streaming path)
+    request_id: str  # API Gateway request id (api) or the Runtime session id (runtime)
+    code: str  # the error code the caller got: forbidden | bad_request
+    question_sha: str
+    question_id: str | None = None
 
 
 class AccessDecision(RpModel):
-    """Table ``rp-access-log``: pk ``runId``, sk ``{at}#{callId}``; GSI ``bySince`` (``day``, ``at``); TTL 30 days."""
+    """Table ``rp-access-log``: pk ``runId``, sk ``{at}#{callId}``; GSI ``bySince`` (``day``, ``at``); TTL 30 days.
+
+    An ask-gate refusal has no run: its pk is ``gate#{packageId}`` (``access_gate.gate_pk``), ``callId`` is the
+    request id, ``tool`` is ``ask``, ``injectionPoint`` is ``ask-gate`` and ``gate`` says what was refused."""
 
     at: str
     run_id: str
@@ -52,6 +69,7 @@ class AccessDecision(RpModel):
     stripped_model_keys: list[str] = Field(default_factory=list)  # identity keys the model supplied and lost
     model_args: list[str] = Field(default_factory=list)  # argument names the model supplied (no values)
     source: Literal["access-log", "run-record"] = "access-log"
+    gate: AskGateRefusal | None = None  # ask-gate rows only
     day: str | None = None  # GSI bySince partition (YYYY-MM-DD)
     ttl: int | None = None
 

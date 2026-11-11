@@ -4,7 +4,9 @@ The preferred integration is an API Gateway HTTP proxy straight to the AgentCore
 with response streaming; the CDK app wires that when the Runtime ARN is known at synth time
 (context ``agentRuntimeArn``). Until then, this Lambda is the integration:
 
-1. validates ``AskRequest`` and the package ACL (the agent re-checks through the tools);
+1. validates ``AskRequest`` and the package ACL (the agent re-checks through the tools); a refusal here (no access
+   to the package, or a pipeline version the package does not enable) is written to ``rp-access-log`` as an
+   ask-gate row (``evidence_core.access_gate``) before the error is returned: no run starts, no model is called;
 2. forwards the caller's own ``Authorization: Bearer <access token>`` to the Runtime, whose
    ``customJWTAuthorizer`` validates it (SigV4 is not accepted by a JWT-configured Runtime);
 3. returns the Runtime's SSE text as ``text/event-stream``. The Python runtime cannot stream a Lambda
@@ -23,6 +25,7 @@ from typing import Any
 from urllib.parse import quote
 
 import urllib3
+from evidence_core import access_gate
 from evidence_core.logs import get_logger, log_kv
 from evidence_core.models.answer import AskRequest, ErrorEvent, sse
 
@@ -84,6 +87,21 @@ def read_timeout(context: Any, started: float) -> float:
     return max(1.0, budget)
 
 
+def log_refusal(deps: Deps, req: Request, body: AskRequest, refused: ApiException, request_id: str) -> None:
+    """One ask-gate row in ``rp-access-log`` for a refused ask (best effort: the refusal is returned either way)."""
+    try:
+        table = deps.table("access_log")
+    except KeyError:  # an older Settings without the table
+        table = None
+    row = access_gate.refusal_row(
+        path="api", request_id=request_id, sub=req.caller.sub, groups=list(req.caller.groups),
+        package_id=body.package_id, pipeline_version=body.pipeline_version, question=body.question,
+        code=refused.code, reason=refused.message)
+    written = access_gate.write(table, row)
+    log_kv(log, "ask refused", packageId=body.package_id, pv=body.pipeline_version,
+           code=refused.code, requestId=request_id, logged=written)
+
+
 def handler(event: dict[str, Any], context: Any = None) -> dict[str, Any]:
     entered = time.monotonic()
     headers = {k.lower(): v for k, v in (event.get("headers") or {}).items() if v is not None}
@@ -94,9 +112,13 @@ def handler(event: dict[str, Any], context: Any = None) -> dict[str, Any]:
             raise ApiException(401, "unauthorized", "Sign in first.")
         body: AskRequest = req.parse(AskRequest)
         deps = get_deps()
-        pkg = require_package(deps, req.caller, body.package_id)
-        if body.pipeline_version not in pkg.pipeline_versions:
-            raise bad_request(f"pipelineVersion {body.pipeline_version} is not enabled for this package")
+        try:
+            pkg = require_package(deps, req.caller, body.package_id)
+            if body.pipeline_version not in pkg.pipeline_versions:
+                raise bad_request(f"pipelineVersion {body.pipeline_version} is not enabled for this package")
+        except ApiException as refused:
+            log_refusal(deps, req, body, refused, request_id)
+            raise
         auth = headers.get("authorization")
         if not auth:
             raise ApiException(401, "unauthorized", "Missing access token.")

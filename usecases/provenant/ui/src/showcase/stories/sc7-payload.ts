@@ -1,7 +1,10 @@
 /**
  * SC-7 payload: the package owner (User A) and another analyst (User B) ask the same question.
  * `GET /showcases/sc-7/payload` composes both users' logged runs per lane (what `search_units` returned, the filter it
- * ran, the identity the gateway injected) and the access-log rows of every tool call. The region check is a real
+ * ran, the identity the gateway injected) and the access-log rows of every tool call. On AWS User B has no run: the
+ * ask gate (`rp-api-ask`, and the Runtime entrypoint on the streaming path) refuses the ask before any run starts and
+ * logs the refusal in `rp-access-log`; then B's evidence is those refusals (`evidence: "gate-refusals"`), each
+ * "refused at the gate, before any model call", with its request id and time. Nothing stands in for a run. The region check is a real
  * request sent with each identity's own session (`peer`), so the 403 comes from the API, never from client logic
  *; without a second session the step says so instead of simulating it.
  */
@@ -37,12 +40,36 @@ export interface Sc7Run {
   injected: { callerSub: string; groups: string[]; pipelineVersion: string; packageId: string; runId: string; via: string };
 }
 
+/** One ask the gate refused (an `rp-access-log` ask-gate row): no run, no model call, no tool call. */
+export interface Sc7Refusal {
+  at: string;
+  requestId: string;
+  /** api: rp-api-ask (POST /ask); runtime: the AgentCore Runtime entrypoint */
+  path: "api" | "runtime";
+  target: string;
+  code: string;
+  reason: string | null;
+  decision: "deny";
+  pipelineVersion: string;
+  packageId: string;
+  questionId: string | null;
+  questionSha: string;
+  /** "refused at the gate, before any model call" */
+  label: string;
+  provenance: "measured";
+}
+
 export interface Sc7User {
   role: "owner" | "other";
   callerSub6: string;
   groups: string[];
+  /** absent in payloads composed before gate refusals were evidence (read as "runs") */
+  evidence?: "runs" | "gate-refusals";
   runs: Partial<Record<Lane, Sc7Run>>;
   n: Partial<Record<Lane, number>>;
+  /** gate-refusals only: the refused asks, oldest first, and how many per lane */
+  refusals?: Sc7Refusal[];
+  refusedN?: Partial<Record<Lane, number>>;
 }
 
 export interface Sc7Data {
@@ -104,15 +131,19 @@ export async function loadSc7({ api, packageId, peer }: StoryContext): Promise<L
     probe(b && (() => b.getPackage(home.packageId)), () => ({ state: "ok", status: 200 })),
   ]);
   const owner = d.users.find((u) => u.role === "owner");
+  const refused = refusalsOf(d.users.find((u) => u.role === "other"));
   const recorded = owner?.runs["2.3.1"]?.createdAt;
   const local = res.mode !== "live";
+  const gate = refused.length ? ` + ${refused.length} gate ${refused.length === 1 ? "refusal" : "refusals"}` : "";
   return {
     source: {
       mode: local ? "local-run" : "replay",
-      label: `Replay of ${res.runIds.length} logged ${local ? "local " : ""}runs · two identities`,
+      label: `Replay of ${res.runIds.length} logged ${local ? "local " : ""}runs${gate} · two identities`,
       detail: local
         ? "Logged runs: the v1 agent on Amazon Bedrock from a dev machine, each identity injected by the local gateway stand-in (not AWS); the region and package checks are live requests to the mock API"
-        : "Logged runs on AWS; the region and package checks are live requests with each identity's token",
+        : refused.length
+          ? "User A: logged runs on AWS. User B: no run exists; the ask gate refused each ask before any model call, read from rp-access-log. The region and package checks are live requests with each identity's token"
+          : "Logged runs on AWS; the region and package checks are live requests with each identity's token",
       recordedAt: dayOf(recorded),
       runId: owner?.runs["2.3.1"]?.runId,
     },
@@ -131,6 +162,15 @@ export async function loadSc7({ api, packageId, peer }: StoryContext): Promise<L
 }
 
 export const userOf = (p: Sc7Payload, role: Sc7User["role"]) => p.data.users.find((u) => u.role === role);
+
+/** The asks the gate refused for this user (empty when their evidence is logged runs). */
+export const refusalsOf = (u: Sc7User | undefined): Sc7Refusal[] => (u?.evidence === "gate-refusals" ? u.refusals ?? [] : []);
+
+/** The label every refusal carries: what happened, and that it is measured, not inferred. */
+export const GATE_LABEL = "refused at the gate, before any model call";
+
+/** Where the gate stands: the API route or the Runtime entrypoint. */
+export const gatePathLabel = (r: Sc7Refusal) => (r.path === "api" ? "POST /ask · rp-api-ask" : "AgentCore Runtime entrypoint");
 export const USERS: { role: Sc7User["role"]; letter: "A" | "B"; key: "a" | "b" }[] = [
   { role: "owner", letter: "A", key: "a" },
   { role: "other", letter: "B", key: "b" },
@@ -143,7 +183,7 @@ export const FOCUS_LANE: Lane = LANES[1];
 
 /** Step 3: where the identity was injected, from the access rows. */
 export function injectionCaption(p: Sc7Payload): string {
-  const points = new Set(Object.values(p.data.access).flat().map((r) => r.injectionPoint));
+  const points = new Set(Object.values(p.data.access).flat().filter((r) => r.injectionPoint !== "ask-gate").map((r) => r.injectionPoint));
   if (points.has("agent_hook")) return "An agent hook injects who is asking. The model cannot widen it.";
   if (points.has("local-gateway") && !points.has("interceptor")) return "The local gateway injects who is asking. The model cannot widen it.";
   return "The gateway injects who is asking. The model cannot widen it.";
@@ -151,6 +191,7 @@ export function injectionCaption(p: Sc7Payload): string {
 
 /** Step 4: chosen from User B's search calls (spec variants, plus the package refusal the tool logged). */
 export function scopedCaption(p: Sc7Payload): string {
+  if (refusalsOf(userOf(p, "other")).length) return "User B never reaches search: the gate refuses the ask first.";
   const calls = Object.values(userOf(p, "other")?.runs ?? {}).flatMap((r) => r?.search ?? []);
   const units = calls.reduce((s, c) => s + c.units, 0);
   if (units > 0) return `User B retrieves ${units} units; see the access log.`;

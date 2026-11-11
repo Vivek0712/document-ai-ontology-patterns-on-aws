@@ -1,9 +1,11 @@
-"""seed.sh steps: Cognito users, PipelineVersions rows, ontology load, demo package (+ optional upload)."""
+"""seed.sh steps: Cognito users, PipelineVersions rows, ontology load, demo packages (+ optional upload)."""
 
 from __future__ import annotations
 
+import json
 import secrets
 import string
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
@@ -22,6 +24,49 @@ PIPELINE_VERSIONS: tuple[str, ...] = ("1.0", "2.3.1")
 DEMO_PACKAGE_ID = "pkg-lending-01"
 DEMO_PACKAGE_NAME = "Lending package · Fictus household"
 DEMO_PACKAGE_DESCRIPTION = "Constructed documents (NewAge Global Fintech, fictitious). W-2s, payslips, bank statement."
+
+
+@dataclass(frozen=True)
+class DemoPackage:
+    """One demo package as data/docgen/packages.py defines it: its sample directory (data/samples/<key>), the
+    package id, and the groups besides the owner (user-a) that may read it."""
+
+    key: str
+    package_id: str
+    groups: tuple[str, ...]
+    description: str
+
+
+# Mirrors data/docgen/packages.py (and the mock world): user-a owns all four; the lending packages are readable by
+# lending-analyst only, the quarterly reports and trade confirmations by both groups (so user-b reads them too).
+DEMO_PACKAGES: tuple[DemoPackage, ...] = (
+    DemoPackage("lending", DEMO_PACKAGE_ID, ("lending-analyst",), DEMO_PACKAGE_DESCRIPTION),
+    DemoPackage("lending-02", "pkg-lending-02", ("lending-analyst",),
+                "Constructed documents (fictitious). Second lending package: W-2s, payslips, bank statement."),
+    DemoPackage("quarterly", "pkg-quarterly-01", ("lending-analyst", "markets-analyst"),
+                "Constructed documents (fictitious). Quarterly reports, Q3 FY2023 to FY2025."),
+    DemoPackage("tradeconf", "pkg-tradeconf-01", ("lending-analyst", "markets-analyst"),
+                "Constructed documents (fictitious). Trade confirmations XS-2031 to XS-2033."),
+)
+
+
+def demo_spec(package_id: str) -> DemoPackage:
+    for spec in DEMO_PACKAGES:
+        if spec.package_id == package_id:
+            return spec
+    known = ", ".join(s.package_id for s in DEMO_PACKAGES)
+    raise SystemExit(f"unknown demo package {package_id} (known: {known})")
+
+
+def package_name(spec: DemoPackage, samples_root: Path) -> str:
+    """The name data/samples/index.json gives the package (written by `make data`), else a fallback."""
+    if spec.package_id == DEMO_PACKAGE_ID:
+        return DEMO_PACKAGE_NAME
+    try:
+        index = json.loads((samples_root / "index.json").read_text(encoding="utf-8"))
+        return next(p["name"] for p in index["packages"] if p.get("packageId") == spec.package_id)
+    except (OSError, ValueError, KeyError, StopIteration):
+        return spec.package_id
 
 
 # --- users -------------------------------------------------------------------------------------
@@ -131,25 +176,30 @@ def load_ontology(aws: Aws, ontology_version: str) -> dict[str, Any]:
 
 # --- demo package -------------------------------------------------------------------------------
 
-def demo_package(owner_sub: str, *, package_id: str = DEMO_PACKAGE_ID) -> Package:
+def demo_package(owner_sub: str, *, package_id: str = DEMO_PACKAGE_ID, samples_root: Path | None = None) -> Package:
+    """The package row. A demo package id gets its groups from DEMO_PACKAGES; any other id is a lending-analyst
+    package (the original single-package behaviour)."""
+    spec = next((s for s in DEMO_PACKAGES if s.package_id == package_id), None)
+    groups = list(spec.groups) if spec else [DEMO_GROUPS["user-a"]]
     return Package(
         package_id=package_id,
-        name=DEMO_PACKAGE_NAME,
-        description=DEMO_PACKAGE_DESCRIPTION,
+        name=package_name(spec, samples_root) if spec and samples_root else DEMO_PACKAGE_NAME,
+        description=spec.description if spec else DEMO_PACKAGE_DESCRIPTION,
         owner_sub=owner_sub,
         created_at=iso(),
-        allowed_principals=principals_for(owner_sub, [DEMO_GROUPS["user-a"]]),
+        allowed_principals=principals_for(owner_sub, groups),
         pipeline_versions=list(PIPELINE_VERSIONS),
     )
 
 
-def seed_package(aws: Aws, owner_sub: str, *, package_id: str = DEMO_PACKAGE_ID) -> Package:
+def seed_package(aws: Aws, owner_sub: str, *, package_id: str = DEMO_PACKAGE_ID,
+                 samples_root: Path | None = None) -> Package:
     """Create the package row if absent (never overwrites lanes/counters of a live package)."""
-    pkg = demo_package(owner_sub, package_id=package_id)
+    pkg = demo_package(owner_sub, package_id=package_id, samples_root=samples_root)
     table = aws.table("packages")
     try:
         table.put_item(Item=to_ddb(pkg.dump()), ConditionExpression="attribute_not_exists(packageId)")
-        log(f"package {package_id}: created (owner user-a)")
+        log(f"package {package_id}: created (owner user-a, {', '.join(pkg.allowed_principals[1:])})")
     except ClientError as exc:
         if exc.response["Error"]["Code"] != "ConditionalCheckFailedException":
             raise

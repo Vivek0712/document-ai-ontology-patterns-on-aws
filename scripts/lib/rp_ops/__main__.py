@@ -42,14 +42,30 @@ def cmd_seed(aws: Aws, a: argparse.Namespace) -> int:
     if not owner:
         log("package: skipped (no owner sub; rerun without --skip-users or pass --owner-sub)")
         return 0
-    pkg = seed.seed_package(aws, owner, package_id=a.package_id)
-    if a.upload:
-        files = seed.sample_files(Path(a.samples))
-        log(f"upload: {len(files)} PDF(s) to Bronze; each starts two rp-ingest executions (1.0 and 2.3.1)")
-        seed.upload_documents(aws, bucket, pkg, files)
-    else:
-        log("upload: skipped; sign in as user-a and upload from the UI (or rerun with --upload)")
+    for package_id, samples in seed_targets(a):
+        pkg = seed.seed_package(aws, owner, package_id=package_id, samples_root=samples.parent)
+        if a.upload:
+            files = seed.sample_files(samples)
+            log(f"upload {package_id}: {len(files)} PDF(s) to Bronze; each starts two rp-ingest executions "
+                "(1.0 and 2.3.1)")
+            seed.upload_documents(aws, bucket, pkg, files)
+        else:
+            log(f"upload {package_id}: skipped; sign in as user-a and upload from the UI (or rerun with --upload)")
     return 0
+
+
+def seed_targets(a: argparse.Namespace) -> list[tuple[str, Path]]:
+    """(package id, samples dir) to seed: every demo package with --all-packages, else --package-id (default
+    pkg-lending-01). The samples dir is --samples when given, else data/samples/<key> of the demo package."""
+    root = Path(a.samples_root)
+    if a.all_packages:
+        if a.samples:
+            raise SystemExit("--samples names one directory; it cannot be combined with --all-packages")
+        return [(s.package_id, root / s.key) for s in seed.DEMO_PACKAGES]
+    if a.samples:
+        return [(a.package_id, Path(a.samples))]
+    spec = next((s for s in seed.DEMO_PACKAGES if s.package_id == a.package_id), None)
+    return [(a.package_id, root / (spec.key if spec else "lending"))]
 
 
 def cmd_prewarm(aws: Aws, a: argparse.Namespace) -> int:
@@ -138,9 +154,13 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("--skip-users", action="store_true")
     s.add_argument("--skip-ontology", action="store_true")
     s.add_argument("--owner-sub", help="owner for the package when --skip-users")
-    s.add_argument("--package-id", default=seed.DEMO_PACKAGE_ID)
+    s.add_argument("--package-id", default=seed.DEMO_PACKAGE_ID,
+                   help="one package (a demo id gets its groups and samples from seed.DEMO_PACKAGES)")
+    s.add_argument("--all-packages", action="store_true",
+                   help="every demo package: " + ", ".join(p.package_id for p in seed.DEMO_PACKAGES))
     s.add_argument("--upload", action="store_true", help="also put the sample PDFs into Bronze (starts ingestion)")
-    s.add_argument("--samples", default=str(repo / "data" / "samples" / "lending"))
+    s.add_argument("--samples", help="PDF directory for --package-id (default data/samples/<the package's key>)")
+    s.add_argument("--samples-root", default=str(repo / "data" / "samples"))
     s.set_defaults(fn=cmd_seed)
 
     s = sub.add_parser("prewarm")

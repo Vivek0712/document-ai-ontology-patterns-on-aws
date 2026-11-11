@@ -19,6 +19,8 @@ when any measured rate regresses (regressions block promotion of a new pipelineV
 Examples:
   .venv/bin/python eval/run.py run --mode ask --versions 1.0,2.3.1
   .venv/bin/python eval/run.py run --mode ask --qid q-lend-01 --repeat 10      # gate runs
+  .venv/bin/python eval/run.py run --mode ask --qid q-lend-01 --versions 1.0 --repeat 10 --generation-profile frontier
+  .venv/bin/python eval/run.py run --mode ask --qid q-lend-01 --repeat 2 --user user-b --via runtime     # SC-7
   .venv/bin/python eval/run.py run --mode local --units-dir build/units
   .venv/bin/python eval/run.py run --mode logged --runs runs/local                 # SC-12 / W-16 over logged runs
   .venv/bin/python eval/run.py compare eval/results/e-aaa.json eval/results/e-bbb.json
@@ -143,7 +145,8 @@ def outcome_from_events(gold: GoldenEntry, pv: str, events: Sequence[Any], repea
 
 
 def run_ask(entries: Sequence[GoldenEntry], versions: Sequence[str], *, package_id: str, repeat: int,
-            user: str) -> tuple[list[QuestionOutcome], dict[str, dict[str, Any]], str | None]:
+            user: str, generation_profile: str = "default", via: str = "api"
+            ) -> tuple[list[QuestionOutcome], dict[str, dict[str, Any]], str | None]:
     from rp_ops.api import ApiClient, ApiHttpError
     from rp_ops.auth import bearer, sign_in
     from rp_ops.aws import Aws
@@ -151,14 +154,18 @@ def run_ask(entries: Sequence[GoldenEntry], versions: Sequence[str], *, package_
     aws = Aws()
     api_url = aws.ssm("api_url")
     assert api_url
-    api = ApiClient(api_url, bearer(sign_in(aws, user)))
+    runtime_url = aws.ssm("agent_runtime_url") if via == "runtime" else None
+    if via == "runtime" and not runtime_url:
+        raise SystemExit("--via runtime needs SSM /rp/agent/runtime-url (written by deploy_agentcore.sh)")
+    api = ApiClient(api_url, bearer(sign_in(aws, user)), runtime_url=runtime_url)
     outcomes: list[QuestionOutcome] = []
     lane_meta: dict[str, dict[str, Any]] = {}
     corpus: str | None = None
     for gold in entries:
         for pv in versions:
             for r in range(repeat):
-                req = AskRequest(question=gold.question, package_id=gold.package_id or package_id, pipeline_version=pv)
+                req = AskRequest(question=gold.question, package_id=gold.package_id or package_id, pipeline_version=pv,
+                                 generation_profile=generation_profile)
                 t0 = time.monotonic()
                 try:
                     events = list(api.ask(req))
@@ -431,7 +438,7 @@ def cmd_run(a: argparse.Namespace) -> int:
     corpus = local_corpus_hash(REPO / "data" / "samples" / "lending")
     if a.mode == "ask":
         outcomes, ask_meta, ask_corpus = run_ask(entries, versions, package_id=a.package_id, repeat=a.repeat,
-                                                 user=a.user)
+                                                 user=a.user, generation_profile=a.generation_profile, via=a.via)
         lane_meta |= ask_meta
         corpus = ask_corpus or corpus
     elif a.mode == "search":
@@ -441,7 +448,9 @@ def cmd_run(a: argparse.Namespace) -> int:
     result = build_result(mode=a.mode, golden_path=golden_path, entries=entries, versions=versions,
                           outcomes=outcomes, lane_meta=lane_meta, unit_chars=unit_chars, corpus=corpus,
                           repeats=a.repeat if a.mode == "ask" else 1,
-                          meta={"packageId": a.package_id, "argv": sys.argv[1:]})
+                          meta={"packageId": a.package_id, "argv": sys.argv[1:],
+                                **({"generationProfile": a.generation_profile, "via": a.via}
+                                   if a.mode == "ask" else {})})
     path = write_result(result, Path(a.out))
     print(render_table(result))
     print(f"\nwrote {path}")
@@ -493,6 +502,12 @@ def build_parser() -> argparse.ArgumentParser:
     r.add_argument("--limit", type=int)
     r.add_argument("--repeat", type=int, default=1, help="ask mode: runs per question and version (gate: 10)")
     r.add_argument("--user", default="user-a", help="ask mode: demo user to sign in as")
+    r.add_argument("--generation-profile", choices=("default", "frontier", "compact"), default="default",
+                   help="ask mode: AskRequest.generationProfile, swaps the answer model for these runs only "
+                        "(frontier = MODEL_FRONTIER, SC-10); the gate and the golden set use default")
+    r.add_argument("--via", choices=("api", "runtime"), default="api",
+                   help="ask mode: POST /ask on the API (default), or straight to the AgentCore Runtime, so a user "
+                        "outside the package ACL still runs the agent and its tools scope that identity (SC-7)")
     r.add_argument("--groups", default="lending-analyst", help="search mode: groups for the service principal")
     r.add_argument("--units-dir", default=str(REPO / "build" / "units"), help="local mode: `make units` output")
     r.add_argument("--out", default=str(RESULTS_DIR))

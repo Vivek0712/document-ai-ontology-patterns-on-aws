@@ -58,6 +58,8 @@ aws_() { aws ${AWS_PROFILE:+--profile "${AWS_PROFILE}"} --region "${AWS_REGION}"
 # (bash 3.2 safe: no mapfile).
 cdk_flags() {
   CDK_FLAGS=(-c "rp:region=${AWS_REGION}")
+  # RP_COA_CONTROL=1 keeps the opt-in COA environment control (rp-coa-control and rp-agent's grant) on every deploy.
+  if [[ "${RP_COA_CONTROL:-0}" == 1 ]]; then CDK_FLAGS+=(-c "rp:coaControl=true"); fi
   if [[ -n "${AWS_PROFILE:-}" ]]; then CDK_FLAGS+=(--profile "${AWS_PROFILE}"); fi
 }
 

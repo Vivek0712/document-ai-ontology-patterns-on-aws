@@ -276,7 +276,8 @@ export const FUNCTIONS: FunctionSpec[] = [
     dir: 'api/ask', stack: 'agent', layers: API, timeoutS: 60, memoryMb: 512, name: 'rp-api-ask',
     env: ['cors', 'askTimeout'],
     description: 'POST /ask: proxy to the AgentCore Runtime with the caller access token',
-    access: { ddbRead: ['packages'], ssmRead: ['/rp/agent/*'] },
+    // ddbPut access_log: one ask-gate row per refused ask (SC-7: the other user's evidence is the gate's refusal)
+    access: { ddbRead: ['packages'], ddbPut: ['access_log'], ssmRead: ['/rp/agent/*'] },
   },
 
   // ---------------- COA environment lifecycle (rp-coa-control, opt-in: context rp:coaControl) ----------------

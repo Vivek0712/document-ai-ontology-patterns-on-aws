@@ -178,6 +178,7 @@ class QuestionOutcome(RpModel):
     type: QuestionType
     pipeline_version: str
     repeat: int = 0
+    expected: str | None = None  # the golden answer (GoldenEntry.answer, display form), so a score can show it
     top1_unit_id: str | None = None
     top1_pages: list[int] = Field(default_factory=list)
     top1_chars: int | None = None
@@ -200,6 +201,7 @@ def score_retrieval(gold: GoldenEntry, pipeline_version: str, top1: RetrievedIte
         qid=gold.qid,
         type=gold.type,
         pipeline_version=pipeline_version,
+        expected=gold.answer,
         top1_unit_id=top1.unit_id if top1 else None,
         top1_pages=list(top1.pages) if top1 else [],
         top1_chars=top1.chars if top1 else None,

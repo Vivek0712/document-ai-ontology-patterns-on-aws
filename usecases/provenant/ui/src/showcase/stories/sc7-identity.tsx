@@ -2,24 +2,26 @@
  * SC-7 · Identity and scoping. Two analysts ask the same question. The gateway injects who is asking
  * into every tool call (the model never supplies it), `search_units` filters by those principals inside the query,
  * and the region service checks access again: User B's request for User A's cited region is refused by the API.
+ * On AWS User B's ask never becomes a run: the ask gate refuses it before any model call, and B's column shows those
+ * logged refusals (request id, time, path) instead of answers, injected identities and searches.
  *
  * Two columns, one per identity, stay put across the steps; each step changes what they show. Frames are pure
  * functions of (payload, step, progress); every value comes from the payload; captions follow the data.
  */
 import { easeCubicInOut, easeCubicOut } from "d3-ease";
-import { ArrowRight, Lock, ShieldCheck } from "lucide-react";
+import { ArrowRight, Lock, ShieldBan, ShieldCheck } from "lucide-react";
 import type { AccessDecision } from "@contracts/api";
 import { Badge, CodeBlock, DecisionBadge, LaneBadge, Num, ProvenanceScope, ProvenanceTag, ScopeTag, cn, decisionLabel } from "../../design";
-import { subLabel } from "../../lib/format";
+import { dateTime, subLabel } from "../../lib/format";
 import { type Rect, pad, seg, toRect, union } from "../../viz/geom";
 import { Boundary, BoxOutline, PageCanvas } from "../../viz/PageCanvas";
 import { showcaseMeta } from "../catalog";
 import { StoryStage } from "../engine/StoryStage";
-import type { Frame, StoryStep, Storyboard } from "../engine/types";
+import type { Frame, Receipt, StoryStep, Storyboard } from "../engine/types";
 import { LANES } from "./lending";
 import { Typed } from "./parts";
 import { compactJson } from "./sc4-filters";
-import { FOCUS_LANE, type Probe, type Sc7Payload, type Sc7User, USERS, injectionCaption, loadSc7, regionCaption, scopedCaption, userOf } from "./sc7-payload";
+import { FOCUS_LANE, GATE_LABEL, type Probe, type Sc7Payload, type Sc7Refusal, type Sc7User, USERS, gatePathLabel, injectionCaption, loadSc7, refusalsOf, regionCaption, scopedCaption, userOf } from "./sc7-payload";
 import { SC7_STEPS } from "./steps";
 
 const STEP = Object.fromEntries(SC7_STEPS.map((s, i) => [s.id, i])) as Record<(typeof SC7_STEPS)[number]["id"], number>;
@@ -28,8 +30,22 @@ const ease = easeCubicInOut;
 /** The identities' full subs as their sessions report them: what a 6-character `callerSub6` is shown against. */
 const knownSubs = (p: Sc7Payload) => [p.me.a?.sub, p.me.b?.sub];
 
+const gateSource = (p: Sc7Payload) => `rp-access-log/gate#${p.data.packageId}`;
+
+const refusalReceipt = (p: Sc7Payload, r: Sc7Refusal, letter: string) => ({
+  label: `User ${letter} · ${r.pipelineVersion} · ${GATE_LABEL}`,
+  value: `request ${r.requestId} · ${r.at} · ${gatePathLabel(r)} · ${r.code}`,
+  source: gateSource(p),
+  provenance: r.provenance,
+});
+
 const runReceipts = (p: Sc7Payload) =>
-  p.data.users.flatMap((u) => LANES.map((pv) => ({ label: `${u.role === "owner" ? "User A" : "User B"} · ${pv}`, value: u.runs[pv]?.runId ?? "no run", source: u.runs[pv] ? `runs/${u.runs[pv]!.runId}.json` : undefined, provenance: p.provenance })));
+  p.data.users.flatMap((u) => {
+    const letter = u.role === "owner" ? "A" : "B";
+    const refused = refusalsOf(u);
+    if (refused.length) return refused.map((r) => refusalReceipt(p, r, letter));
+    return LANES.map((pv) => ({ label: `User ${letter} · ${pv}`, value: u.runs[pv]?.runId ?? "no run", source: u.runs[pv] ? `runs/${u.runs[pv]!.runId}.json` : undefined, provenance: p.provenance }));
+  });
 
 const steps: StoryStep<Sc7Payload>[] = [
   {
@@ -56,7 +72,10 @@ const steps: StoryStep<Sc7Payload>[] = [
     services: ["AgentCore Gateway · interceptor"],
     receipts: (p) =>
       USERS.flatMap((u) => {
-        const r = userOf(p, u.role)?.runs[FOCUS_LANE];
+        const user = userOf(p, u.role);
+        const refused = refusalsOf(user);
+        if (refused.length) return refused.map((r) => refusalReceipt(p, r, u.letter));
+        const r = user?.runs[FOCUS_LANE];
         return (r ? p.data.access[r.runId] ?? [] : []).map((a) => ({ label: `User ${u.letter} · ${a.tool} · ${decisionLabel(a)}`, value: `injected ${subLabel(a.callerSub6, knownSubs(p))} · ${a.groups.join(",")} · ${a.injected.packageId} · ${a.injected.pipelineVersion} · via ${a.injectionPoint}`, source: `GET /access/decisions?runId=${a.runId} (${a.source})`, provenance: p.provenance }));
       }),
   },
@@ -66,8 +85,10 @@ const steps: StoryStep<Sc7Payload>[] = [
     caption: scopedCaption,
     services: ["AWS Lambda · search_units", "Amazon OpenSearch Serverless"],
     receipts: (p) =>
-      USERS.flatMap((u) =>
-        (userOf(p, u.role)?.runs[FOCUS_LANE]?.search ?? []).map((c) => ({ label: `User ${u.letter} · search_units ${c.status}`, value: c.error ?? `${c.units} units`, path: `$.data.users[?role=='${u.role}'].runs['${FOCUS_LANE}'].search`, provenance: p.provenance })),
+      USERS.flatMap((u): Receipt[] =>
+        refusalsOf(userOf(p, u.role)).length
+          ? [{ label: `User ${u.letter} · search_units`, value: `not called: ${GATE_LABEL}`, source: gateSource(p), provenance: "measured" as const }]
+          : (userOf(p, u.role)?.runs[FOCUS_LANE]?.search ?? []).map((c) => ({ label: `User ${u.letter} · search_units ${c.status}`, value: c.error ?? `${c.units} units`, path: `$.data.users[?role=='${u.role}'].runs['${FOCUS_LANE}'].search`, provenance: p.provenance })),
       ),
   },
   {
@@ -116,9 +137,9 @@ function Sc7Stage({ payload: p, step, progress: t }: Frame<Sc7Payload>) {
                   <IdentityHead p={p} letter={u.letter} keyName={u.key} user={user} />
                   <div className="flex flex-col gap-3 p-4">
                     {step === STEP.users && <Principals p={p} user={user} t={seg(t, i * 0.3, 0.6 + i * 0.3)} />}
-                    {step === STEP["same-question"] && user && <Answers user={user} t={seg(t, i * 0.15, 0.85 + i * 0.15)} />}
-                    {step === STEP.injection && user && <Injection p={p} user={user} t={t} />}
-                    {step === STEP.scoped && user && <Scoped user={user} t={seg(t, i * 0.2, 0.8 + i * 0.2)} />}
+                    {step === STEP["same-question"] && user && (refusalsOf(user).length ? <GateRefusals p={p} user={user} t={seg(t, i * 0.15, 0.85 + i * 0.15)} /> : <Answers user={user} t={seg(t, i * 0.15, 0.85 + i * 0.15)} />)}
+                    {step === STEP.injection && user && (refusalsOf(user).length ? <GateRefusals p={p} user={user} t={t} detail="no tool call: the ask never became a run, so nothing was injected" /> : <Injection p={p} user={user} t={t} />)}
+                    {step === STEP.scoped && user && (refusalsOf(user).length ? <NotSearched p={p} user={user} t={seg(t, i * 0.2, 0.8 + i * 0.2)} /> : <Scoped user={user} t={seg(t, i * 0.2, 0.8 + i * 0.2)} />)}
                   </div>
                 </section>
               );
@@ -197,6 +218,69 @@ function Answers({ user, t }: { user: Sc7User; t: number }) {
         <Num value={user.n[FOCUS_LANE] ?? 0} kind="int" size="xs" bare /> logged runs of this user on {FOCUS_LANE}
       </li>
     </ul>
+  );
+}
+
+/**
+ * Steps 2–3 for a user the ask gate refused: the logged refusals (rp-access-log ask-gate rows), one per ask, each with
+ * the lane, the request id and time, where the gate stands and what the caller was told. There is no answer to show.
+ */
+function GateRefusals({ p, user, t, detail }: { p: Sc7Payload; user: Sc7User; t: number; detail?: string }) {
+  const refused = refusalsOf(user);
+  return (
+    <div className="flex flex-col gap-2" data-evidence="gate-refusals">
+      <span className="flex flex-wrap items-center gap-2 text-xs text-text-2">
+        <ShieldBan className="size-3.5 text-loss" aria-hidden />
+        <span className="text-text">{GATE_LABEL}</span>
+        <ProvenanceTag provenance="measured" source={`${gateSource(p)} · ${refused.length} ${refused.length === 1 ? "row" : "rows"}`} />
+      </span>
+      {detail && <span className="text-xs text-text-2">{detail}</span>}
+      <ol className="flex flex-col gap-2">
+        {refused.map((r, i) => (
+          <li key={r.requestId + r.at} className="flex flex-col gap-1 rounded-sm border border-dashed border-loss p-2.5" style={{ opacity: 0.15 + 0.85 * easeCubicOut(seg(t, i * 0.2, i * 0.2 + 0.4)) }} data-refusal={r.requestId}>
+            <span className="flex items-center gap-2">
+              <LaneBadge pv={r.pipelineVersion} />
+              <span className="truncate font-mono text-mono-sm text-text-2">{gatePathLabel(r)}</span>
+              <Badge tone="loss" className="ml-auto">
+                {r.code}
+              </Badge>
+            </span>
+            <span className="flex items-start gap-2 text-sm text-text">
+              <Lock className="mt-0.5 size-3.5 shrink-0 text-loss" aria-hidden />
+              {r.reason ?? "refused"}
+            </span>
+            <span className="font-mono text-mono-sm text-text-2">
+              request {r.requestId} · {dateTime(r.at)}
+            </span>
+          </li>
+        ))}
+      </ol>
+      <span className="text-xs text-text-2">
+        <Num value={refused.length} kind="int" size="xs" bare /> refused {refused.length === 1 ? "ask" : "asks"} of this user · no run, no model call, no tool call
+      </span>
+    </div>
+  );
+}
+
+/** Step 4 for a user the ask gate refused: no search ran, so there is no filter to show. */
+function NotSearched({ p, user, t }: { p: Sc7Payload; user: Sc7User; t: number }) {
+  const n = refusalsOf(user).length;
+  return (
+    <div className="flex flex-col gap-3" style={{ opacity: 0.2 + 0.8 * easeCubicOut(seg(t, 0, 0.5)) }}>
+      <div className="flex items-baseline gap-2">
+        <Num value={0} kind="int" size="lg" />
+        <span className="text-sm text-text-2">search_units calls: the ask never reached the agent</span>
+      </div>
+      <p className="flex items-start gap-2 rounded-sm border border-dashed border-loss px-3 py-2 text-sm text-text">
+        <Lock className="mt-0.5 size-3.5 shrink-0 text-loss" aria-hidden />
+        <span>
+          <span className="font-mono text-mono-sm">{GATE_LABEL}</span>
+          <span className="block text-text-2">
+            {n} logged {n === 1 ? "refusal" : "refusals"} in {gateSource(p)}
+          </span>
+        </span>
+      </p>
+    </div>
   );
 }
 

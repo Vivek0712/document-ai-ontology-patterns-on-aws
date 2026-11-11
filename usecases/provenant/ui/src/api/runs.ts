@@ -41,6 +41,14 @@ export async function goldRegionOf(api: RpApi, gold: NonNullable<RunScore["gold"
   return undefined;
 }
 
+/**
+ * Whether an eval run measured the deployed stack: `eval/run.py` modes `ask` (POST /ask, AgentCore) and `search`
+ * (the production rp-search-units Lambda) run on AWS; `local` and `logged` re-score dev-machine runs.
+ */
+export function evalRunOnAws(mode: string): boolean {
+  return mode === "ask" || mode === "search" || mode === "aws";
+}
+
 /** Model id of the mock ask's keyword stand-in (mock mode only): no model ran; screens tag it "mock". */
 export const MOCK_MODEL_ID = "mock-keyword-retriever";
 

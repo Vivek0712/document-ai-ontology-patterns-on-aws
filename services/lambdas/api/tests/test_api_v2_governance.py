@@ -5,6 +5,7 @@ composers over logged runs."""
 from __future__ import annotations
 
 import json
+from datetime import UTC, datetime, timedelta
 from typing import Any
 
 import pytest
@@ -242,6 +243,27 @@ def test_eval_withholds_rates_unless_published(call, seeded, env, monkeypatch) -
     assert call("GET", EVAL_RUN, path_params={"evalRunId": "../x"})[0] == 400
 
 
+def test_eval_outcomes_carry_the_expected_answer(call, seeded, env) -> None:
+    """A result stored before the harness recorded ``expected`` gets it joined by qid from config/golden.jsonl."""
+    _put_json(env, "eval/results/e-logged-abc123.json", _eval_result(seeded.package_id))
+    status, v = call("GET", EVAL_RUN, path_params={"evalRunId": "e-logged-abc123"})
+    assert status == 200 and all(o.get("expected") is None for o in v["outcomes"]) and "expectedSource" not in v
+    gold = {"qid": "q-lend-01", "type": "table", "question": QUESTION, "answer": "169,650.00", "answerPattern": "169",
+            "packageId": seeded.package_id, "docId": "w2-2025", "page": 1,
+            "goldBbox": {"page": 1, "x0": 1.0, "y0": 2.0, "x1": 3.0, "y1": 4.0}}
+    env.s3.put_object(Bucket=BUCKET, Key="config/golden.jsonl", Body=(json.dumps(gold) + "\n").encode())
+    status, v = call("GET", EVAL_RUN, path_params={"evalRunId": "e-logged-abc123"})
+    assert [o["expected"] for o in v["outcomes"]] == ["169,650.00", "169,650.00"]
+    assert v["outcomes"][0]["gold"] == {"docId": "w2-2025", "page": 1, "bbox": gold["goldBbox"]}
+    assert v["expectedSource"] == "config/golden.jsonl (joined by qid)"
+    recorded = _eval_result(seeded.package_id)
+    for o in recorded["outcomes"]:
+        o["expected"] = "169,650"
+    _put_json(env, "eval/results/e-logged-abc123.json", recorded)
+    status, v = call("GET", EVAL_RUN, path_params={"evalRunId": "e-logged-abc123"})
+    assert [o["expected"] for o in v["outcomes"]] == ["169,650", "169,650"] and v["expectedSource"] == "eval result"
+
+
 # --- GET /cost -----------------------------------------------------------------------------------------------
 
 def test_cost_prices_measured_usage_and_hides_dollars_by_default(call, seeded, env, monkeypatch) -> None:
@@ -445,3 +467,48 @@ def test_sc7_pairs_the_owners_run_with_another_users_and_their_access_rows(call,
     status, _ = call("GET", SHOWCASE_PAYLOAD, path_params={"showcaseId": "sc-7"},
                      query={"packageId": seeded.package_id, "question": "Something else?"})
     assert status == 404
+
+
+def _gate_refusal(env: Any, package_id: str, *, sub: str, question: str, pv: str, request_id: str,
+                  path: str = "api", at: datetime | None = None) -> None:
+    from evidence_core import access_gate
+
+    access_gate.write(env.deps.table("access_log"), access_gate.refusal_row(
+        path=path, request_id=request_id, sub=sub, groups=B_GROUPS, package_id=package_id, pipeline_version=pv,
+        question=question, code="forbidden", reason="You don't have access to this package.", now=at))
+
+
+def test_sc7_takes_the_other_users_gate_refusals_when_they_have_no_run(call, seeded, env) -> None:
+    """On AWS the ask gate refuses User B before any run starts: SC-7 shows those refusals, never a made-up run."""
+    put_run(env, seeded.package_id, "r-000000000050", pv="2.3.1", resolvable=True, total="169,650.00")
+    status, p = call("GET", SHOWCASE_PAYLOAD, path_params={"showcaseId": "sc-7"},
+                     query={"packageId": seeded.package_id, "question": QUESTION})
+    assert status == 404, p  # the owner's runs alone are not SC-7
+    t = datetime(2026, 11, 11, 12, 0, tzinfo=UTC)
+    _gate_refusal(env, seeded.package_id, sub=SUB_B, question=QUESTION.upper(), pv="1.0", request_id="req-b1", at=t)
+    _gate_refusal(env, seeded.package_id, sub=SUB_B, question=QUESTION, pv="2.3.1", request_id="sess-b2",
+                  path="runtime", at=t + timedelta(minutes=1))
+    _gate_refusal(env, seeded.package_id, sub=SUB_B, question="Something else?", pv="2.3.1", request_id="req-x", at=t)
+    _gate_refusal(env, seeded.package_id, sub=SUB_A, question=QUESTION, pv="3.0", request_id="req-a", at=t)
+    status, p = call("GET", SHOWCASE_PAYLOAD, path_params={"showcaseId": "sc-7"},
+                     query={"packageId": seeded.package_id, "question": QUESTION})
+    assert status == 200, p
+    owner, other = p["data"]["users"]
+    assert owner["evidence"] == "runs" and owner["runs"]["2.3.1"]["runId"] == "r-000000000050"
+    assert other["role"] == "other" and other["evidence"] == "gate-refusals" and other["runs"] == {}
+    assert other["callerSub6"] == SUB_B[:6] and other["groups"] == B_GROUPS
+    assert [(r["requestId"], r["path"], r["pipelineVersion"]) for r in other["refusals"]] == [
+        ("req-b1", "api", "1.0"), ("sess-b2", "runtime", "2.3.1")]  # same question only, owner's rows left out
+    assert all(r["label"] == "refused at the gate, before any model call" and r["provenance"] == "measured"
+               and r["decision"] == "deny" and r["code"] == "forbidden" for r in other["refusals"])
+    assert other["refusedN"] == {"1.0": 1, "2.3.1": 1}
+    assert p["runIds"] == ["r-000000000050"]  # no run is invented for User B
+    gate_rows = p["data"]["access"][f"gate#{seeded.package_id}"]
+    assert [r["callId"] for r in gate_rows] == ["req-b1", "sess-b2"] and gate_rows[0]["injectionPoint"] == "ask-gate"
+    assert {"kind": "ddb", "key": f"rp-access-log/gate#{seeded.package_id}"} in p["sources"]
+    # where the other user has logged runs (the local harness), those stay the evidence
+    put_run(env, seeded.package_id, "r-000000000051", pv="2.3.1", sub=SUB_B, groups=B_GROUPS, units=0, total=None,
+            created="2026-11-11T12:00:00.000Z")
+    status, p = call("GET", SHOWCASE_PAYLOAD, path_params={"showcaseId": "sc-7"},
+                     query={"packageId": seeded.package_id, "question": QUESTION})
+    assert status == 200 and p["data"]["users"][1]["evidence"] == "runs" and "refusals" not in p["data"]["users"][1]

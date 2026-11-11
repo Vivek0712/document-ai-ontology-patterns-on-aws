@@ -9,7 +9,7 @@
  * last step says so.
  */
 import type { EvalOutcome, EvalRunView } from "@contracts/api";
-import { dayOf } from "../../api/runs";
+import { dayOf, evalRunOnAws } from "../../api/runs";
 import type { Provenance } from "../../design";
 import type { Loaded, StoryContext } from "../engine/types";
 import { LANES, type Lane } from "./lending";
@@ -89,7 +89,7 @@ export async function loadSc12({ api }: StoryContext): Promise<Loaded<Sc12Payloa
   const { outcomes, ...run } = await api.getEvalRun(latest.evalRunId);
   const multiUnit = Array.isArray(run.meta.multiUnit) ? (run.meta.multiUnit as string[]) : [];
   const rows = typeRows(run.goldenTypes, outcomes, multiUnit);
-  const local = run.mode !== "aws";
+  const local = !evalRunOnAws(run.mode);
   return {
     source: {
       mode: local ? "local-run" : "replay",

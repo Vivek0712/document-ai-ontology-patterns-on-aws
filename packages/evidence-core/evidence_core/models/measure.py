@@ -16,12 +16,21 @@ from typing import Any, Literal
 from pydantic import Field
 
 from ..base import RpModel
+from ..bbox import BBox
 
 COST_LABEL = "estimate · measured usage × list price"
 EVAL_CAPTION = "Measured on our constructed corpus. Your documents will differ."
 
 
 # --- Evaluate -----------------------------------------------------------------------------------------------
+
+class EvalGold(RpModel):
+    """Where the golden answer is printed (``GoldenEntry`` doc, page and gold box)."""
+
+    doc_id: str
+    page: int | None = None
+    bbox: BBox | None = None
+
 
 class EvalOutcome(RpModel):
     """One golden question asked once on one lane, scored by eval/run.py (``outcome_from_events``)."""
@@ -38,6 +47,11 @@ class EvalOutcome(RpModel):
     top1_unit_id: str | None = None
     top1_chars: int | None = None
     error: str | None = None
+    # The golden answer (display form) and where it is printed. From the outcome when the result recorded it
+    # (eval/run.py since it writes ``expected``), else joined by qid from the deployed golden set
+    # (``config/golden.jsonl``); ``EvalRunView.expected_source`` says which.
+    expected: str | None = None
+    gold: EvalGold | None = None
 
 
 class EvalRate(RpModel):
@@ -100,6 +114,9 @@ class EvalRunView(RpModel):
     published: bool
     withheld: list[str] = Field(default_factory=list)
     meta: dict[str, Any] = Field(default_factory=dict)
+    # where the outcomes' ``expected`` came from: "eval result" (recorded by the harness), "config/golden.jsonl"
+    # (joined by qid: a result written before the harness recorded it), or None when neither had it
+    expected_source: str | None = None
 
 
 # --- Cost ---------------------------------------------------------------------------------------------------

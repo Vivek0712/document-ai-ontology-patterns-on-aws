@@ -11,7 +11,7 @@ import { tally } from "./showcase/stories/compare";
 import { showcaseMeta } from "./showcase/catalog";
 import { type Storyboard, captionOf } from "./showcase/engine/types";
 import { sc7Identity } from "./showcase/stories/sc7-identity";
-import { type Sc7Payload, regionCaption, scopedCaption } from "./showcase/stories/sc7-payload";
+import { GATE_LABEL, type Sc7Payload, refusalsOf, regionCaption, scopedCaption } from "./showcase/stories/sc7-payload";
 import { sc8GovernedMeaning } from "./showcase/stories/sc8-governed-meaning";
 import { sc10BiggerModel } from "./showcase/stories/sc10-bigger-model";
 import { oneChangeCaption, resultsCaption } from "./showcase/stories/sc10-payload";
@@ -84,6 +84,30 @@ describe.skipIf(!hasWorld)("SC-7 Identity and scoping", () => {
     const html = render(sc7Identity, p, stepOf(sc7Identity, "users"), 1);
     expect(html).toContain(`sub <!-- -->${p.me.a!.sub}`);
     expect(html).not.toMatch(/sub (<!-- -->)?local-</);
+  });
+  it("on AWS User B has no run: the gate's logged refusals are B's evidence, labelled, never a made-up run", async () => {
+    const p = await load.sc7();
+    const gate = structuredClone(p) as Sc7Payload;
+    const b = gate.data.users.find((u) => u.role === "other")!;
+    const refusal = (pv: string, requestId: string, path: "api" | "runtime") => ({ at: "2026-11-11T12:00:00.000Z", requestId, path, target: path === "api" ? "rp-api-ask" : "rp-agent-runtime", code: "forbidden", reason: "You don't have access to this package.", decision: "deny" as const, pipelineVersion: pv, packageId: gate.data.packageId, questionId: null, questionSha: "s", label: GATE_LABEL, provenance: "measured" as const });
+    Object.assign(b, { evidence: "gate-refusals", runs: {}, n: {}, refusals: [refusal("1.0", "req-b1", "api"), refusal("2.3.1", "sess-b2", "runtime")], refusedN: { "1.0": 1, "2.3.1": 1 } });
+    expect(refusalsOf(b)).toHaveLength(2);
+    expect(refusalsOf(gate.data.users.find((u) => u.role === "owner"))).toEqual([]);
+    expect(scopedCaption(gate)).toBe("User B never reaches search: the gate refuses the ask first.");
+    for (const step of ["same-question", "injection"] as const) {
+      const html = render(sc7Identity, gate, stepOf(sc7Identity, step), 1);
+      expect(html).toContain("refused at the gate, before any model call");
+      expect(html).toContain("req-b1");
+      expect(html).toContain("sess-b2");
+      expect(html).toContain('data-provenance="measured"');
+    }
+    expect(render(sc7Identity, gate, stepOf(sc7Identity, "scoped"), 1)).toContain("the ask never reached the agent");
+    const receipts = sc7Identity.steps[stepOf(sc7Identity, "same-question")].receipts!(gate);
+    expect(receipts.filter((r) => r.label.startsWith("User B"))).toEqual([
+      expect.objectContaining({ label: "User B · 1.0 · refused at the gate, before any model call", value: expect.stringContaining("request req-b1"), provenance: "measured" }),
+      expect.objectContaining({ label: "User B · 2.3.1 · refused at the gate, before any model call", value: expect.stringContaining("AgentCore Runtime entrypoint") }),
+    ]);
+    expect(receipts.some((r) => r.label.startsWith("User B") && r.value === "no run")).toBe(false);
   });
   it("injected identity comes from the access rows, one per tool call of the run", async () => {
     const p = await load.sc7();

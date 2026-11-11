@@ -12,6 +12,7 @@ import { Check, X } from "lucide-react";
 import type { EvalOutcome, EvalRunView } from "@contracts/api";
 import { useApi, useMe } from "../../api/context";
 import { type GoldenQuestion, goldPageKey, goldenSet } from "../../api/golden";
+import { evalRunOnAws } from "../../api/runs";
 import { RpApiError } from "../../api/types";
 import { Page, PageHeader, PlayExplainer } from "../../app/Page";
 import { Badge, Card, CardHeader, EmptyState, ErrorState, LaneBadge, Num, ProvenanceScope, ProvenanceTag, ScopeTag, SegmentedControl, Sheet, Skeleton, TBody, TD, TH, THead, TR, Table, Tabs, TabsContent, TabsList, TabsTrigger, Tooltip, cn } from "../../design";
@@ -159,7 +160,7 @@ function ResultsTab({ run, golden }: { run: EvalRunView; golden: GoldenQuestion[
   const qids = [...new Set(run.outcomes.map((o) => o.qid))].sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
   const multiUnit = Array.isArray(run.meta.multiUnit) ? (run.meta.multiUnit as string[]) : [];
   const question = (qid: string) => golden.find((g) => g.qid === qid)?.question;
-  const provenance = run.mode === "aws" ? "measured" : "local-run";
+  const provenance = evalRunOnAws(run.mode) ? "measured" : "local-run";
   return (
     <ProvenanceScope provenance={provenance} source={`GET /eval/runs/${run.evalRunId}`}>
       <div className="flex flex-col gap-3" data-testid="eval-results">

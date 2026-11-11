@@ -5,10 +5,11 @@
 #      (password: $RP_DEMO_PASSWORD, else the SecureString /rp/demo/password, generated on first run)
 #   3. rp-pipeline-versions rows for 1.0 and 2.3.1, pinned to the S3 versionId of the deployed configs
 #   4. Neptune TBox (FIBO subset, DoCO, rp:) via Lambda rp-neptune-load, vocab re-export via rp-vocab-export
-#   5. package pkg-lending-01 owned by user-a (allowedPrincipals user:<sub>, group:lending-analyst)
-#   6. with --upload: put data/samples/lending/*.pdf into Bronze (starts both pipeline lanes per file)
+#   5. package pkg-lending-01 owned by user-a (allowedPrincipals user:<sub>, group:lending-analyst); with
+#      --all-packages also pkg-lending-02 (lending-analyst), pkg-quarterly-01 and pkg-tradeconf-01 (both groups)
+#   6. with --upload: put data/samples/<key>/*.pdf into Bronze (starts both pipeline lanes per file)
 #
-# Usage: scripts/seed.sh [--upload] [--skip-ontology] [--skip-users] [--package-id ID]
+# Usage: scripts/seed.sh [--upload] [--skip-ontology] [--skip-users] [--package-id ID | --all-packages]
 set -euo pipefail
 # shellcheck source=lib/common.sh
 source "$(dirname "$0")/lib/common.sh"
@@ -16,9 +17,9 @@ source "$(dirname "$0")/lib/common.sh"
 ARGS=()
 while [[ $# -gt 0 ]]; do
   case "$1" in
-    --upload|--skip-ontology|--skip-users) ARGS+=("$1") ;;
+    --upload|--skip-ontology|--skip-users|--all-packages) ARGS+=("$1") ;;
     --package-id) ARGS+=("$1" "${2:?--package-id needs a value}"); shift ;;
-    -h|--help) sed -n '2,13p' "$0"; exit 0 ;;
+    -h|--help) sed -n '2,14p' "$0"; exit 0 ;;
     *) die "unknown argument: $1" ;;
   esac
   shift

@@ -387,6 +387,16 @@ describe('v2 routes, access log and the publication flag', () => {
     const of = (prefix: string) => JSON.stringify(Object.entries(policies).filter(([id]) => id.startsWith(prefix)).map(([, v]) => v));
     expect(of('FnInterceptorServiceRole')).toContain('dynamodb:PutItem');
     expect(of('FnInterceptorServiceRole')).not.toContain('dynamodb:Query');  // write only
+    // the ask gate logs its refusals (SC-7): rp-api-ask and the Runtime entrypoint may put rows, never read them
+    expect(of('FnApiAskServiceRole')).toContain('dynamodb:PutItem');
+    expect(fn('rp-api-ask').Properties.Environment.Variables.RP_TABLE_ACCESS_LOG).toBeDefined();
+    const runtime = of('RuntimeRole');
+    expect(runtime).toContain('dynamodb:PutItem');
+    const accessLogStatements = (Object.entries(policies).filter(([id]) => id.startsWith('FnApiAskServiceRole') || id.startsWith('RuntimeRole'))
+      .flatMap(([, v]) => (v as any).Properties.PolicyDocument.Statement) as any[])
+      .filter((st) => JSON.stringify(st.Resource).includes('AccessLog'));
+    expect(accessLogStatements.length).toBeGreaterThanOrEqual(2);
+    for (const st of accessLogStatements) expect(st.Action).toBe('dynamodb:PutItem');
   });
 
   test('rp-api serves the new routes and withholds rates and dollars unless rp:publicMetrics=on', () => {

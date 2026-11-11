@@ -1,4 +1,4 @@
-import { LAMBDA_RETRY, allStateNames, buildIngestAsl, placeholderAsl } from '../lib/ingest-asl';
+import { BEDROCK_RETRY, LAMBDA_RETRY, allStateNames, buildIngestAsl, placeholderAsl } from '../lib/ingest-asl';
 
 type State = Record<string, any>;
 
@@ -71,8 +71,10 @@ describe('rp-ingest ASL', () => {
       expect(st.Parameters['stateName.$']).toBe('$$.State.Name');
       expect(st.Parameters['attempt.$']).toBe('$$.State.RetryCount');
       expect(st.Catch).toEqual([{ ErrorEquals: ['States.ALL'], ResultPath: '$.error', Next: 'LaneFailed' }]);
-      expect(st.Retry).toEqual([LAMBDA_RETRY]);
+      // the model-calling stages also back off on Bedrock throttling instead of failing the lane
+      expect(st.Retry).toEqual(name === 'Classify' || name === 'BuildUnits' ? [LAMBDA_RETRY, BEDROCK_RETRY] : [LAMBDA_RETRY]);
     }
+    expect(BEDROCK_RETRY.ErrorEquals).toContain('ThrottlingException');
     expect(states.NaiveChunk.Next).toBe('PiiGate');
     expect(states.BuildUnits.Next).toBe('PiiGate');
   });

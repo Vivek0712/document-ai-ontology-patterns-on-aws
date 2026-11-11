@@ -103,7 +103,7 @@ def runtime_env(*, bucket: str, region: str, pool: str, client: str, gateway_url
     return {"RP_ENV": "demo", "RP_CONFIG_SOURCE": "s3", "RP_DATA_BUCKET": bucket, "AWS_REGION": region,
             "RP_USER_POOL_ID": pool, "RP_USER_POOL_CLIENT_ID": client, "RP_GATEWAY_URL": gateway_url,
             "RP_IDENTITY_INJECTION": identity_mode, "RP_GOLDEN_PATH": "golden.jsonl", "RP_CODE_SHA": code_sha,
-            "RP_LOG_LEVEL": "INFO"}
+            "RP_LOG_LEVEL": "INFO", "RP_TABLE_ACCESS_LOG": "rp-access-log"}
 
 
 def trust_policy() -> dict[str, Any]:

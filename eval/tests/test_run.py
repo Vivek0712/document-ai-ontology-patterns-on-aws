@@ -139,3 +139,37 @@ def test_local_mode_end_to_end_and_compare(tmp_path: Path, capsys: pytest.Captur
 def test_main_defaults_to_run_subcommand(tmp_path: Path) -> None:
     with pytest.raises(SystemExit, match="not found"):
         harness.main(["--golden", str(tmp_path / "missing.jsonl")])
+
+
+def test_run_ask_passes_generation_profile_and_runtime_url(monkeypatch: pytest.MonkeyPatch) -> None:
+    """--generation-profile reaches AskRequest; --via runtime aims the client at SSM /rp/agent/runtime-url."""
+    import rp_ops.api
+    import rp_ops.auth
+    import rp_ops.aws
+
+    seen: dict[str, object] = {}
+
+    class FakeAws:
+        def ssm(self, name: str, required: bool = True) -> str:
+            return {"api_url": "https://api.example/v1/", "agent_runtime_url": "https://runtime.example/inv"}[name]
+
+    class FakeClient:
+        def __init__(self, base_url: str, authorization: str, runtime_url: str | None = None) -> None:
+            seen["runtime_url"] = runtime_url
+
+        def ask(self, req):  # noqa: ANN001, ANN202
+            seen.setdefault("profiles", []).append(req.generation_profile)  # type: ignore[union-attr]
+            return iter(())
+
+    monkeypatch.setattr(rp_ops.aws, "Aws", FakeAws)
+    monkeypatch.setattr(rp_ops.api, "ApiClient", FakeClient)
+    monkeypatch.setattr(rp_ops.auth, "sign_in", lambda aws, user: object())
+    monkeypatch.setattr(rp_ops.auth, "bearer", lambda tokens: "Bearer x")
+    outcomes, _meta, _corpus = harness.run_ask([HEADLINE], ["1.0"], package_id="pkg-lending-01", repeat=2,
+                                               user="user-b", generation_profile="frontier", via="runtime")
+    assert seen == {"runtime_url": "https://runtime.example/inv", "profiles": ["frontier", "frontier"]}
+    assert len(outcomes) == 2 and all(o.error for o in outcomes)  # no answer event -> scored as an error
+    harness.run_ask([HEADLINE], ["1.0"], package_id="pkg-lending-01", repeat=1, user="user-a")
+    assert seen["runtime_url"] is None and seen["profiles"][-1] == "default"  # type: ignore[index]
+    args = harness.build_parser().parse_args(["run", "--generation-profile", "frontier", "--via", "runtime"])
+    assert (args.generation_profile, args.via) == ("frontier", "runtime")

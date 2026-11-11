@@ -57,7 +57,8 @@ COMPOSERS: dict[str, ShowcaseComposer] = {
         reads=["Gold units (2.3.1)", "classify stage record", "graph_hop coupon_terms_v1 via rp-graph-hop"]),
     "sc-7": ShowcaseComposer(
         showcase_id="sc-7", title="Identity and scoping", params=["packageId", "question"],
-        reads=["rp-runs + run records (owner and other users)", "rp-access-log (or the run records' injected values)"]),
+        reads=["rp-runs + run records (owner and other users)", "rp-access-log (or the run records' injected values)",
+               "rp-access-log gate#{packageId}: the ask gate's refusals of another user's ask (no run of theirs)"]),
     "sc-10": ShowcaseComposer(
         showcase_id="sc-10", title="A bigger model does not fix it", params=["packageId", "question", "lane"],
         reads=["rp-runs + run records of the lane, by generation profile"]),

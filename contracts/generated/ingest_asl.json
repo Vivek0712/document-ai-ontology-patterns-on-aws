@@ -395,6 +395,17 @@
           "IntervalSeconds": 2,
           "MaxAttempts": 3,
           "BackoffRate": 2
+        },
+        {
+          "ErrorEquals": [
+            "ThrottlingException",
+            "ServiceUnavailableException",
+            "ModelNotReadyException"
+          ],
+          "IntervalSeconds": 10,
+          "MaxAttempts": 4,
+          "BackoffRate": 2,
+          "JitterStrategy": "FULL"
         }
       ]
     },
@@ -430,6 +441,17 @@
           "IntervalSeconds": 2,
           "MaxAttempts": 3,
           "BackoffRate": 2
+        },
+        {
+          "ErrorEquals": [
+            "ThrottlingException",
+            "ServiceUnavailableException",
+            "ModelNotReadyException"
+          ],
+          "IntervalSeconds": 10,
+          "MaxAttempts": 4,
+          "BackoffRate": 2,
+          "JitterStrategy": "FULL"
         }
       ]
     },

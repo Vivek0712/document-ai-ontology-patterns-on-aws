@@ -236,6 +236,9 @@ export class AgentStack extends Stack {
     base.bucket.grantPut(runtimeRole, 'runs/*');
     base.tables.runs.grantReadWriteData(runtimeRole);
     for (const t of ['packages', 'documents', 'doc_acl'] as const) base.tables[t].grantReadData(runtimeRole);
+    // The entrypoint's package gate writes one ask-gate row per refused ask (put-only, as the interceptor's grant)
+    base.tables.access_log.grant(runtimeRole, 'dynamodb:PutItem');
+    base.key.grantEncryptDecrypt(runtimeRole);
 
     // --- outputs ------------------------------------------------------------------------------------------------
     const param = (pid: string, name: string, value: string): void => {

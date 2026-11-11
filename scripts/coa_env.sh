@@ -35,9 +35,12 @@ invoke() {  # invoke <op> [json body]: the same entry point rp-api uses, as call
   out="$(mktemp)"
   # audit text only (the function cannot verify it): the role or user name and session, never the account id
   operator="$(aws_ sts get-caller-identity --query Arn --output text 2>/dev/null | cut -d: -f6- || echo unknown)"
+  local payload
+  # json.dumps builds the payload: a bash default like ${2:-{\}} keeps the backslash and breaks the JSON
+  payload="$(python3 -c 'import json,sys; print(json.dumps({"source": "cli", "op": sys.argv[1], "operator": sys.argv[2],
+    "body": json.loads(sys.argv[3] or "{}")}))' "$1" "${operator}" "${2:-}")"
   aws_ lambda invoke --function-name "${FN}" --cli-binary-format raw-in-base64-out \
-    --payload "{\"source\":\"cli\",\"op\":\"$1\",\"operator\":\"${operator//\"/}\",\"body\":${2:-{\}}}" \
-    "${out}" >/dev/null
+    --payload "${payload}" "${out}" >/dev/null
   python3 - "${out}" <<'PY'
 import json, sys
 r = json.load(open(sys.argv[1]))

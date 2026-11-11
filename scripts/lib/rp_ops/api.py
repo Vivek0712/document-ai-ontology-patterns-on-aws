@@ -6,6 +6,7 @@ import json
 import urllib.error
 import urllib.parse
 import urllib.request
+import uuid
 from collections.abc import Iterable, Iterator
 from dataclasses import dataclass
 from typing import Any
@@ -14,6 +15,7 @@ from evidence_core.models.answer import AskEvent, AskRequest
 from pydantic import TypeAdapter
 
 _ASK_EVENT: TypeAdapter[Any] = TypeAdapter(AskEvent)
+RUNTIME_SESSION_HEADER = "X-Amzn-Bedrock-AgentCore-Runtime-Session-Id"
 
 
 class ApiHttpError(RuntimeError):
@@ -54,6 +56,10 @@ class ApiClient:
     authorization: str
     timeout: float = 60.0
     ask_timeout: float = 300.0
+    # POST the ask here instead of {base_url}/ask: the AgentCore Runtime invocations URL (SSM /rp/agent/runtime-url).
+    # The API's /ask refuses a caller outside the package ACL before the agent runs; straight at the Runtime the
+    # agent runs and its tools apply the caller's identity (SC-7: another user's runs are logged, scoped to nothing).
+    runtime_url: str | None = None
 
     def _url(self, path: str, query: dict[str, Any] | None = None) -> str:
         url = self.base_url.rstrip("/") + "/" + path.lstrip("/")
@@ -94,10 +100,12 @@ class ApiClient:
 
     def ask(self, req: AskRequest) -> Iterator[Any]:
         """POST /ask and yield typed AskEvents as they stream."""
+        headers = {"Authorization": self.authorization, "Content-Type": "application/json",
+                   "Accept": "text/event-stream"}
+        if self.runtime_url:
+            headers[RUNTIME_SESSION_HEADER] = f"rp-ask-{uuid.uuid4().hex}"  # the Runtime requires >= 33 chars
         http_req = urllib.request.Request(  # noqa: S310 (https from SSM)
-            self._url("ask"), data=req.dump_json().encode(), method="POST",
-            headers={"Authorization": self.authorization, "Content-Type": "application/json",
-                     "Accept": "text/event-stream"},
+            self.runtime_url or self._url("ask"), data=req.dump_json().encode(), method="POST", headers=headers,
         )
         try:
             with urllib.request.urlopen(http_req, timeout=self.ask_timeout) as resp:  # noqa: S310

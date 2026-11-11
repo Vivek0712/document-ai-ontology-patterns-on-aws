@@ -132,6 +132,39 @@ def test_seed_package_and_upload(aws_env: Aws, tmp_path: Path) -> None:
     assert aws_env.table("packages").get_item(Key={"packageId": PKG})["Item"]["docCount"] == 1
 
 
+def test_demo_packages_mirror_docgen_acl(aws_env: Aws) -> None:
+    """The four demo packages, owned by user-a: lending packages for lending-analyst only, the quarterly reports and
+    trade confirmations for both groups (as data/docgen/packages.py and the mock world define them)."""
+    root = Path(__file__).resolve().parents[4] / "data" / "samples"
+    want = {"pkg-lending-01": ["group:lending-analyst"], "pkg-lending-02": ["group:lending-analyst"],
+            "pkg-quarterly-01": ["group:lending-analyst", "group:markets-analyst"],
+            "pkg-tradeconf-01": ["group:lending-analyst", "group:markets-analyst"]}
+    assert [s.package_id for s in seed.DEMO_PACKAGES] == list(want)
+    for spec in seed.DEMO_PACKAGES:
+        pkg = seed.seed_package(aws_env, OWNER, package_id=spec.package_id, samples_root=root)
+        assert pkg.allowed_principals == [f"user:{OWNER}", *want[spec.package_id]]
+        assert pkg.pipeline_versions == list(seed.PIPELINE_VERSIONS) and pkg.name
+    assert seed.demo_package(OWNER, package_id="pkg-quarterly-01", samples_root=root).name.startswith("Quarterly")
+    assert seed.demo_package(OWNER, package_id="pkg-custom").allowed_principals == \
+        [f"user:{OWNER}", "group:lending-analyst"]  # a non-demo id keeps the single-package default
+    with pytest.raises(SystemExit, match="unknown demo package"):
+        seed.demo_spec("pkg-nope")
+
+
+def test_seed_targets_resolve_sample_dirs(tmp_path: Path) -> None:
+    from rp_ops.__main__ import build_parser, seed_targets
+
+    def targets(*argv: str) -> list[tuple[str, Path]]:
+        return seed_targets(build_parser().parse_args(["seed", "--samples-root", str(tmp_path), *argv]))
+
+    assert targets() == [("pkg-lending-01", tmp_path / "lending")]
+    assert targets("--package-id", "pkg-tradeconf-01") == [("pkg-tradeconf-01", tmp_path / "tradeconf")]
+    assert targets("--package-id", "pkg-x", "--samples", "/s") == [("pkg-x", Path("/s"))]
+    assert [t[1].name for t in targets("--all-packages")] == ["lending", "lending-02", "quarterly", "tradeconf"]
+    with pytest.raises(SystemExit, match="all-packages"):
+        targets("--all-packages", "--samples", "/s")
+
+
 def test_sample_files_requires_pdfs(tmp_path: Path) -> None:
     with pytest.raises(SystemExit, match="make data"):
         seed.sample_files(tmp_path)
@@ -244,3 +277,32 @@ def test_empty_bucket_removes_versions(aws_env: Aws) -> None:
     assert agentcore.empty_bucket(aws_env, BUCKET) == before
     assert not s3.list_object_versions(Bucket=BUCKET).get("Versions")
     assert agentcore.empty_bucket(aws_env, "rp-no-such-bucket") == 0
+
+
+def test_api_client_ask_can_target_the_runtime(monkeypatch: pytest.MonkeyPatch) -> None:
+    import urllib.request
+
+    from evidence_core.models.answer import AskRequest
+    from rp_ops.api import RUNTIME_SESSION_HEADER, ApiClient
+
+    sent: list[urllib.request.Request] = []
+
+    class Resp:
+        def __enter__(self) -> Resp:
+            return self
+
+        def __exit__(self, *exc: object) -> None:
+            return None
+
+        def __iter__(self):  # noqa: ANN204
+            return iter([b'data: {"type":"error","code":"x","message":"m"}\n', b"\n"])
+
+    monkeypatch.setattr(urllib.request, "urlopen", lambda req, timeout: sent.append(req) or Resp())
+    req = AskRequest(question="q", package_id="pkg-lending-01", pipeline_version="1.0")
+    events = list(ApiClient("https://api.example/v1/", "Bearer t").ask(req))
+    assert sent[-1].full_url == "https://api.example/v1/ask" and len(events) == 1
+    assert not any(k.lower() == RUNTIME_SESSION_HEADER.lower() for k in sent[-1].headers)
+    list(ApiClient("https://api.example/v1/", "Bearer t", runtime_url="https://rt.example/inv?qualifier=DEFAULT").ask(req))
+    assert sent[-1].full_url == "https://rt.example/inv?qualifier=DEFAULT"
+    session = sent[-1].get_header(RUNTIME_SESSION_HEADER.capitalize())
+    assert session and len(session) >= 33

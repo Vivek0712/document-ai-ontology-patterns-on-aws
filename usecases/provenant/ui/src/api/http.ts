@@ -54,6 +54,8 @@ import { type AskHandlers, type RpApi, RpApiError, type UploadHandle, type Uploa
 
 const enc = encodeURIComponent;
 const XRAY_LANE = "1.0";
+// stored eval runs are read for run scores at most once a minute
+const EVAL_SCORES_TTL_MS = 60_000;
 
 /** Returns a fresh Cognito access token (refreshing when needed). */
 export type TokenProvider = () => Promise<string>;
@@ -181,8 +183,39 @@ export class HttpApi implements RpApi {
   listReview = (packageId: string) => this.request<ReviewList>("GET", `/review${qs({ packageId })}`);
   getGovernedDefinition = (name: string) => this.request<GitGovernedDefinition>("GET", `/governance/definitions/${enc(name)}`);
 
-  /** Without the Evaluate route nothing is scored by the eval harness on this stack yet. */
-  getRunScores = async (_packageId: string): Promise<Record<string, RunScore>> => ({});
+  /**
+   * The eval harness's score of each logged run, from the stored eval runs (`GET /eval/runs`, then each run's
+   * outcomes): an outcome that names its `runId` is that run's score (`eval/run.py outcome_from_events`), the newest
+   * eval run winning. Only eval runs that cover the package count. Each outcome carries the golden answer
+   * (`expected`) and where it is printed (`gold`): recorded by the harness, or joined by qid from the deployed golden
+   * set by the API (`EvalRunView.expectedSource`); an outcome with neither keeps `expected` empty.
+   */
+  getRunScores = async (packageId: string): Promise<Record<string, RunScore>> => {
+    const now = Date.now();
+    if (!this.evalScores || now - this.evalScores.at > EVAL_SCORES_TTL_MS) {
+      this.evalScores = { at: now, scores: this.loadEvalScores() };
+      this.evalScores.scores.catch(() => (this.evalScores = undefined));
+    }
+    return (await this.evalScores.scores)[packageId] ?? {};
+  };
+
+  private evalScores?: { at: number; scores: Promise<Record<string, Record<string, RunScore>>> };
+
+  private async loadEvalScores(): Promise<Record<string, Record<string, RunScore>>> {
+    const list = await this.listEvalRuns();
+    const oldestFirst = [...list.items].sort((a, b) => a.createdAt.localeCompare(b.createdAt));
+    const views = await Promise.all(oldestFirst.map((e) => this.getEvalRun(e.evalRunId)));
+    const out: Record<string, Record<string, RunScore>> = {};
+    for (const v of views) {
+      for (const o of v.outcomes) {
+        if (!o.runId || o.answerCorrect === undefined || o.answerCorrect === null) continue;
+        const gold = o.gold ? { docId: o.gold.docId, page: o.gold.page ?? null, bbox: o.gold.bbox ?? null } : null;
+        const score: RunScore = { qid: o.qid, expected: o.expected ?? "", answerCorrect: o.answerCorrect, citationValid: Boolean(o.citationValid), by: `eval/run.py outcome_from_events · ${v.evalRunId}`, gold };
+        for (const pid of v.packageIds) (out[pid] ??= {})[o.runId] = score;
+      }
+    }
+    return out;
+  }
 
   /** An errored ask writes a run record with status `error` here; `laneRunStats` counts those. */
   getAskErrors = async (_packageId: string): Promise<Record<string, number>> => ({});

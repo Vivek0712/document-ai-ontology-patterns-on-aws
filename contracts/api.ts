@@ -1388,7 +1388,8 @@ export interface AccessDecision {
   callerSub6: string;
   groups: string[];
   injected: AccessInjected;
-  injectionPoint: "interceptor" | "agent_hook" | "local-gateway" | "coa-control";
+  /** ask-gate: the ask gate (rp-api-ask or the Runtime entrypoint) refused the ask before any run started */
+  injectionPoint: "interceptor" | "agent_hook" | "local-gateway" | "coa-control" | "ask-gate";
   /** run-record rows: the tool's decision from the call's logged result ("unknown": another error) */
   decision: "allow" | "deny" | "unknown";
   reason?: string;
@@ -1398,8 +1399,23 @@ export interface AccessDecision {
   modelArgs: string[];
   /** access-log: written by the interceptor; run-record: rebuilt from the RunRecord's injected values */
   source: "access-log" | "run-record";
+  /** ask-gate rows only (runId `gate#{packageId}`, callId = request id, tool `ask`) */
+  gate?: AskGateRefusal;
   day?: string;
   ttl?: number;
+}
+
+/** What the ask gate refused: an ask that never started a run (no model call, no tool call). */
+export interface AskGateRefusal {
+  /** api: rp-api-ask (POST /ask); runtime: the AgentCore Runtime entrypoint (streaming path) */
+  path: "api" | "runtime";
+  /** API Gateway request id (api) or the Runtime session id (runtime) */
+  requestId: string;
+  /** the error code the caller got: forbidden | bad_request */
+  code: string;
+  /** sha256 of the normalised question (the text is never logged) */
+  questionSha: string;
+  questionId?: string;
 }
 
 export interface AccessDecisionPage {
@@ -1612,6 +1628,16 @@ export interface EvalOutcome {
   top1UnitId?: string;
   top1Chars?: number;
   error?: string;
+  /** the golden answer (display form): recorded by the harness, else joined by qid from config/golden.jsonl */
+  expected?: string;
+  /** where the golden answer is printed */
+  gold?: EvalGold;
+}
+
+export interface EvalGold {
+  docId: string;
+  page?: number;
+  bbox?: BBox;
 }
 
 export interface EvalRate {
@@ -1675,6 +1701,8 @@ export interface EvalRunView {
   published: boolean;
   withheld: string[];
   meta: Record<string, unknown>;
+  /** where the outcomes' `expected` came from ("eval result", "config/golden.jsonl (joined by qid)", or both) */
+  expectedSource?: string;
 }
 
 // GET /cost?packageId=&groupBy=&lane=  (SC-13, W-17). Amounts are `estimate · measured usage × list price`;

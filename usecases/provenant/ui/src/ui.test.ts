@@ -6,7 +6,7 @@ import { HttpApi } from "./api/http";
 import { RpApiError } from "./api/types";
 import { ms, projectLane, shiftTimes } from "./mocks/clock";
 import { MockApi } from "./mocks/server";
-import { MOCK_MODEL_ID, laneRunStats } from "./api/runs";
+import { MOCK_MODEL_ID, evalRunOnAws, laneRunStats } from "./api/runs";
 import type { World } from "./mocks/world";
 import { fullWorld } from "./testing/worldFiles";
 import { duration, maskLongDigits, mmss, money } from "./lib/format";
@@ -84,6 +84,44 @@ describe("SSE", () => {
     vi.stubGlobal("fetch", vi.fn(async () => new Response(JSON.stringify({ error: { code: "forbidden", message: "no", requestId: "r1" } }), { status: 403 })));
     const api = new HttpApi("https://api.example/v1", async () => "tok");
     await expect(api.getRegion("a:2.3.1:eu-01")).rejects.toMatchObject({ status: 403, code: "forbidden", requestId: "r1" });
+  });
+
+  it("eval runs from the ask and search modes measured AWS; local and logged did not", () => {
+    expect(["ask", "search", "aws"].map(evalRunOnAws)).toEqual([true, true, true]);
+    expect(["local", "logged"].map(evalRunOnAws)).toEqual([false, false]);
+  });
+
+  it("HttpApi.getRunScores reads the stored eval runs: newest eval run wins, per covered package", async () => {
+    const outcome = (runId: string | undefined, answerCorrect: boolean | undefined, citationValid?: boolean) => ({ qid: "q-qr25-01", type: "table", pipelineVersion: "1.0", repeat: 0, runId, recallAt1: true, answerCorrect, citationValid });
+    const runs: Record<string, unknown> = {
+      "e-old": { evalRunId: "e-old", createdAt: "2026-11-11T01:00:00Z", packageIds: ["pkg-quarterly-01"], outcomes: [outcome("r-1", false), outcome("r-2", true, true)] },
+      "e-new": { evalRunId: "e-new", createdAt: "2026-11-11T02:00:00Z", packageIds: ["pkg-quarterly-01", "pkg-tradeconf-01"], outcomes: [outcome("r-1", true, false), outcome(undefined, true), outcome("r-3", undefined)] },
+    };
+    const fetchMock = vi.fn(async (url: string) => {
+      const id = url.split("/eval/runs/")[1];
+      const body = id ? runs[id] : { items: Object.values(runs).map((r) => ({ ...(r as object), outcomes: 2 })) };
+      return new Response(JSON.stringify(body), { status: 200 });
+    });
+    vi.stubGlobal("fetch", fetchMock);
+    const api = new HttpApi("https://api.example/v1", async () => "tok");
+    const q = await api.getRunScores("pkg-quarterly-01");
+    expect(Object.keys(q).sort()).toEqual(["r-1", "r-2"]);
+    expect(q["r-1"]).toMatchObject({ qid: "q-qr25-01", answerCorrect: true, citationValid: false, by: expect.stringContaining("e-new") });
+    expect(q["r-2"]).toMatchObject({ answerCorrect: true, citationValid: true });
+    expect(Object.keys(await api.getRunScores("pkg-tradeconf-01"))).toEqual(["r-1"]);
+    expect(await api.getRunScores("pkg-lending-01")).toEqual({});
+    expect(fetchMock).toHaveBeenCalledTimes(3); // the list and two eval runs, read once
+  });
+
+  it("HttpApi.getRunScores carries the golden answer and its region from the eval view", async () => {
+    const bbox = { page: 1, x0: 1, y0: 2, x1: 3, y1: 4 };
+    const run = { evalRunId: "e-1", createdAt: "2026-11-11T01:00:00Z", packageIds: ["pkg-lending-01"], expectedSource: "config/golden.jsonl (joined by qid)",
+      outcomes: [{ qid: "q-lend-01", type: "table", pipelineVersion: "1.0", repeat: 0, runId: "r-1", recallAt1: true, answerCorrect: false, expected: "169,650.00", gold: { docId: "w2", page: 1, bbox } },
+        { qid: "q-x", type: "table", pipelineVersion: "1.0", repeat: 0, runId: "r-2", recallAt1: true, answerCorrect: true }] };
+    vi.stubGlobal("fetch", vi.fn(async (url: string) => new Response(JSON.stringify(url.includes("/eval/runs/") ? run : { items: [run] }), { status: 200 })));
+    const q = await new HttpApi("https://api.example/v1", async () => "tok").getRunScores("pkg-lending-01");
+    expect(q["r-1"]).toMatchObject({ expected: "169,650.00", gold: { docId: "w2", page: 1, bbox } });
+    expect(q["r-2"]).toMatchObject({ expected: "", gold: null });
   });
 });
 

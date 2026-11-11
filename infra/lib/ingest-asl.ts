@@ -51,6 +51,19 @@ export const TEXTRACT_RETRY: Json = {
   JitterStrategy: 'FULL',
 };
 
+/**
+ * Bedrock throttling raised by a stage Lambda (classify tie-break, the unit builder's embeddings) after its own SDK
+ * retries: back off and rerun the stage instead of failing the lane. Both stages write deterministic outputs keyed by
+ * doc and lane, so a rerun overwrites rather than duplicates (unlike EmbedIndex, which keeps no Retry).
+ */
+export const BEDROCK_RETRY: Json = {
+  ErrorEquals: ['ThrottlingException', 'ServiceUnavailableException', 'ModelNotReadyException'],
+  IntervalSeconds: 10,
+  MaxAttempts: 4,
+  BackoffRate: 2,
+  JitterStrategy: 'FULL',
+};
+
 const CATCH_TO_LANE_FAILED = [{ ErrorEquals: ['States.ALL'], ResultPath: '$.error', Next: 'LaneFailed' }];
 
 /** StageEnvelope Parameters block shared by every stage task. */
@@ -187,8 +200,8 @@ export function buildIngestAsl(i: IngestAslInputs): Json {
     ExtractClose: stageTask(f.stageStatus, '$.stages.extract', 'Classify', {
       parameters: envelope({ op: 'close_extract', 'extractParts.$': '$.extractParts' }),
     }),
-    Classify: stageTask(f.classify, '$.stages.classify', 'BuildUnits'),
-    BuildUnits: stageTask(f.euBuilder, '$.stages.units', 'PiiGate'),
+    Classify: stageTask(f.classify, '$.stages.classify', 'BuildUnits', { retry: [LAMBDA_RETRY, BEDROCK_RETRY] }),
+    BuildUnits: stageTask(f.euBuilder, '$.stages.units', 'PiiGate', { retry: [LAMBDA_RETRY, BEDROCK_RETRY] }),
 
     // ---- shared tail -------------------------------------------------------------------------------
     PiiGate: stageTask(f.piiGate, '$.stages.pii_gate', 'Promote'),
