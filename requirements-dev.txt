@@ -4,4 +4,4 @@ boto3>=1.35
 moto[dynamodb,s3,stepfunctions,sqs]>=5.0
 pytest>=8
 ruff==0.17.4
-shellcheck-py>=0.10  # make lint: shellcheck for scripts/*.sh
+shellcheck-py>=0.11.0.1  # make lint: shellcheck for scripts/*.sh
