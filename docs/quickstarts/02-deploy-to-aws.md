@@ -30,6 +30,10 @@ pipeline step produces, without cost.
 | AgentCore (script) | Amazon Bedrock AgentCore Gateway `rp-gateway` (MCP, with the tools as Lambda targets and a REQUEST interceptor) and AgentCore Runtime `rp_agent` (a Strands agent). `scripts/deploy_agentcore.sh` creates these, not AWS CDK |
 | `rp-web` | S3 bucket for the UI behind Amazon CloudFront (origin access control), with `/api/*` routed to the REST API |
 
+Two more stacks, `rp-coa-guard` and `rp-coa-control`, are opt-in (CDK context `rp:coaControl=true`) and are not
+deployed by default. They control an optional live COA environment: see
+[Quickstart 11](11-coa-environment.md).
+
 Models, from `config/models.yaml`, all through Amazon Bedrock:
 
 | Key | Model | Used for |

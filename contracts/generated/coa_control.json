@@ -1,0 +1,159 @@
+{
+  "coa": {
+    "repo": "https://github.com/aws/context-ontology-accelerator.git",
+    "tag": "v0.3.9",
+    "commit": "bc185642fb996e6e4a4be52344c04f8061b27a29",
+    "prefix": "coa",
+    "env": "dev",
+    "region": "us-east-1",
+    "deployContext": {
+      "SCL_VPC_CIDR": "10.40.0.0/16",
+      "SCL_AOSS_MIN_OCU": "0",
+      "SCL_AOSS_MAX_OCU": "4",
+      "SCL_LAMBDA_RESERVED_CONCURRENCY": "0",
+      "SCL_PROJECT_TAG": "provenant-coa"
+    },
+    "smusAdminArnsParameter": "/rp/coa-control/smus-admin-arns",
+    "configParameter": "/coa/config"
+  },
+  "bootstrap": {
+    "qualifier": "rpcoa",
+    "toolkitStackName": "CDKToolkit-rpcoa",
+    "boundaryPolicy": "rp-coa-boundary",
+    "deployGuardPolicy": "rp-coa-deploy-guard"
+  },
+  "executor": {
+    "project": "rp-coa-lifecycle",
+    "image": "aws/codebuild/standard:7.0",
+    "computeType": "BUILD_GENERAL1_LARGE",
+    "timeoutMinutes": 150,
+    "concurrency": 1,
+    "binfmtImage": "tonistiigi/binfmt@sha256:2d2918e86e5327d0661f7083d67a95280b0f7be8f77ed79a8418f81d7d90ce6f",
+    "toolchain": {
+      "java": "corretto21",
+      "node": "22.23.4",
+      "pnpm": "10.34.5",
+      "maven": "3.9.16",
+      "uv": "0.13.4",
+      "python": "3.12"
+    },
+    "checksums": {
+      "node": "sha256:1805bcd35e6815559bd2eb97db438d3fdb0eb3a5e6a977b7c1badca76337e9ce",
+      "maven": "sha512:831a8591fe20c8243b1dbe7d71e3244f31d1665b0804b2e825e38cbbe5ce0cafb8338851f90780735568773e0a6cd07bbec107cda0b896b008b861075358b6f6",
+      "uv": "sha256:2b428396f12572d4429cf210ca234dd599a33b3af0958a4d5ed569d63e3f344f",
+      "pnpm": "sha512-pO4F8vc2WCVb1qiYWcBlpFwopX2u+uLIk6Fo7itzFow3uR6D5X6mdlStA/AwMXRkMOi84442LgQmBfuKvIAZLg=="
+    }
+  },
+  "lifecycle": {
+    "upMinutes": [
+      40,
+      60
+    ],
+    "downMinutes": [
+      20,
+      30
+    ],
+    "eniRetryMinutes": 30,
+    "eniMaxRetries": 16,
+    "eniWindowHours": 8,
+    "failedDownRetryMinutes": 30,
+    "failedDownAutoRetries": 1,
+    "settleMinutes": 60
+  },
+  "idle": {
+    "defaultAutoTeardown": true,
+    "defaultMinutes": 60,
+    "minMinutes": 15,
+    "maxMinutes": 480,
+    "tickMinutes": 5,
+    "keepAliveMinutes": 60,
+    "cooldownMinutes": 15,
+    "maxSessionHours": 10,
+    "probeMinutes": 15,
+    "activity": {
+      "apiGateway": {
+        "namespace": "AWS/ApiGateway",
+        "metric": "Count",
+        "errorMetric": "4XXError",
+        "apiName": "coa-dev-api",
+        "minRequestsPerPeriod": 1
+      },
+      "agentcore": {
+        "namespace": "AWS/Bedrock-AgentCore",
+        "metric": "Invocations",
+        "namePrefix": "coa_dev_",
+        "recentlyActive": "PT3H"
+      }
+    }
+  },
+  "outputs": {
+    "consoleUrl": {
+      "stack": "coa-dev-web",
+      "outputPrefix": "PublicUIWebsiteURL"
+    },
+    "restEndpoint": {
+      "stack": "coa-dev-api",
+      "outputPrefix": "ApiEndpoint"
+    },
+    "probeStack": "coa-dev-network"
+  },
+  "seed": {
+    "namespace": {
+      "name": "com305-lending",
+      "displayName": "Lending (Provenant demo)",
+      "description": "Provenant demo: governed fin: vocabulary and qualifying_income metric over fictitious W-2 data"
+    },
+    "seedUser": "provenant-seed@example.com",
+    "bucketPrefix": "coa-dev-provenant",
+    "glueDatabase": "com305_coa_spike_lending",
+    "glueTable": "w2_box1",
+    "csv": "data/coa/w2_box1.csv",
+    "ontology": "ontology/src/rp/fin.ttl",
+    "ontologyId": "urn:rp:ont:fin",
+    "metric": "scripts/coa/metric_qualifying_income.json",
+    "check": {
+      "packageId": "pkg-lending-01",
+      "expected": "169650.00"
+    }
+  },
+  "prices": {
+    "asOf": "2026-11-11",
+    "components": [
+      {
+        "id": "fargate-ontology-engine",
+        "label": "Fargate ontology engine, 8 vCPU / 32 GB",
+        "usdPerHour": 0.466,
+        "source": "https://aws.amazon.com/fargate/pricing/ (Linux/x86, us-east-1) [verify]"
+      },
+      {
+        "id": "neptune",
+        "label": "Neptune db.r8g.large",
+        "usdPerHour": 0.35,
+        "source": "https://aws.amazon.com/neptune/pricing/ (on-demand, us-east-1) [verify]"
+      },
+      {
+        "id": "opensearch-serverless",
+        "label": "OpenSearch Serverless collection",
+        "usdPerHour": 0.24,
+        "source": "https://aws.amazon.com/opensearch-service/pricing/ (OCU-hours at COA's capacity settings) [verify]"
+      },
+      {
+        "id": "network",
+        "label": "~10 interface VPC endpoints + NAT gateway",
+        "usdPerHour": 0.25,
+        "source": "https://aws.amazon.com/privatelink/pricing/ and https://aws.amazon.com/vpc/pricing/ [verify]"
+      }
+    ]
+  },
+  "adminGroup": "rp-admin",
+  "function": "rp-coa-control",
+  "table": {
+    "name": "rp-coa-env",
+    "pk": "env",
+    "sk": null,
+    "gsis": [],
+    "ttl": null,
+    "stream": false
+  },
+  "tableEnv": "RP_TABLE_COA_ENV"
+}

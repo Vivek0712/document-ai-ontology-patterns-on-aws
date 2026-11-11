@@ -1,4 +1,4 @@
-import { ChevronRight, Home, PanelLeftClose, PanelLeftOpen, Palette, SlidersHorizontal } from "lucide-react";
+import { ChevronRight, CloudCog, Home, PanelLeftClose, PanelLeftOpen, Palette, SlidersHorizontal } from "lucide-react";
 import { type ReactNode, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { IconButton, Tooltip, cn } from "../design";
@@ -33,7 +33,8 @@ export function Sidebar() {
       return next;
     });
   const extra: NavItem[] = [
-    { label: "Pipelines diff", to: "/settings/pipelines", activePrefixes: ["/settings"] },
+    { label: "Pipelines diff", to: "/settings/pipelines", activePrefixes: ["/settings/pipelines"] },
+    { label: "COA environment", to: "/settings/environment" },
     ...(import.meta.env.DEV ? [{ label: "Design system", to: "/dev/ui" }] : []),
   ];
   const all = [{ label: "Home", to: "/" }, ...sections.flatMap((s) => s.items), ...extra];
@@ -107,10 +108,11 @@ export function Sidebar() {
         {collapsed ? (
           <>
             <RailLink to="/settings/pipelines" label="Pipelines diff" icon={<SlidersHorizontal />} active={active === extra[0]} />
+            <RailLink to="/settings/environment" label="COA environment" icon={<CloudCog />} active={active === extra[1]} />
             <IconButton size="sm" label="Expand sidebar" shortcut="[" icon={<PanelLeftOpen />} onClick={() => setSidebarCollapsed(false)} />
           </>
         ) : (
-          extra.map((it) => <SideLink key={it.to} item={it} active={it === active} icon={it.to === "/dev/ui" ? <Palette /> : <SlidersHorizontal />} />)
+          extra.map((it) => <SideLink key={it.to} item={it} active={it === active} icon={it.to === "/dev/ui" ? <Palette /> : it.to === "/settings/environment" ? <CloudCog /> : <SlidersHorizontal />} />)
         )}
       </div>
     </aside>

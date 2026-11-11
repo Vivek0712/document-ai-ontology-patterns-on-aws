@@ -1,8 +1,10 @@
-/** Wires the five stacks (deploy order rp-base, rp-knowledge, rp-ingest, rp-agent, rp-web). */
+/** Wires the five stacks (deploy order rp-base, rp-knowledge, rp-ingest, rp-agent, rp-web), plus the opt-in
+ * rp-coa-control (context `rp:coaControl=true`, after rp-agent). */
 import { App, Environment, Tags } from 'aws-cdk-lib';
 import { AgentStack } from './agent-stack';
 import { BaseStack } from './base-stack';
 import { BuildAssets, loadBuildAssets } from './build-assets';
+import { CoaControlStack, CoaGuardStack } from './coa-control-stack';
 import { IngestStack } from './ingest-stack';
 import { KnowledgeStack } from './knowledge-stack';
 import { STACKS } from './names';
@@ -14,6 +16,14 @@ export interface ReferencePipelineStacks {
   ingest: IngestStack;
   agent: AgentStack;
   web: WebStack;
+  /** only with context rp:coaControl=true */
+  coaControl?: CoaControlStack;
+  coaGuard?: CoaGuardStack;
+}
+
+/** Context booleans arrive as true/false from cdk.json and as strings from `-c`. */
+function flag(value: unknown): boolean {
+  return value === true || value === 'true' || value === 'on' || value === '1';
 }
 
 function ctx<T>(app: App, key: string, fallback: T): T {
@@ -37,6 +47,7 @@ ReferencePipelineStacks {
   const assets = opts.assets ?? loadBuildAssets(ctx<string | undefined>(app, 'rp:buildDir', undefined));
   const devOrigins = list(ctx<unknown>(app, 'rp:devOrigins', []));
   const runtimeArn = ctx<string | undefined>(app, 'rp:agentRuntimeArn', undefined);
+  const coaControl = flag(ctx<unknown>(app, 'rp:coaControl', false));
 
   const base = new BaseStack(app, STACKS.base, { env, assets, repoRoot: opts.repoRoot,
     availabilityZones: list(ctx<unknown>(app, 'rp:availabilityZones', [`${region}a`, `${region}b`])),
@@ -67,6 +78,7 @@ ReferencePipelineStacks {
     agentRuntimeArn: runtimeArn,
     askTimeoutMs: Number(ctx(app, 'rp:askTimeoutMs', 29000)),
     publicMetrics: ctx<string>(app, 'rp:publicMetrics', 'off') === 'on' ? 'on' : 'off',
+    coaControl,
     description: 'Regionproof agent plane: Cognito, REST API rp-api, MCP tool Lambdas, AgentCore roles',
   });
   const web = new WebStack(app, STACKS.web, {
@@ -83,10 +95,25 @@ ReferencePipelineStacks {
   ingest.addDependency(knowledge);
   agent.addDependency(ingest);
   web.addDependency(agent);
+  const guard = coaControl
+    ? new CoaGuardStack(app, STACKS.coaGuard, {
+        env, base, userPoolId: agent.userPool.userPoolId, repoRoot: opts.repoRoot,
+        description: 'Regionproof COA guard: permissions boundary of COA\'s own CDK bootstrap (deploy before scripts/coa/bootstrap.sh)',
+      })
+    : undefined;
+  guard?.addDependency(agent);
+  const coa = coaControl
+    ? new CoaControlStack(app, STACKS.coaControl, {
+        env, base, userPoolId: agent.userPool.userPoolId, repoRoot: opts.repoRoot,
+        description: 'Regionproof COA environment: rp-coa-control, rp-coa-lifecycle (CodeBuild), idle watcher',
+      })
+    : undefined;
+  coa?.addDependency(agent);
+  if (coa && guard) coa.addDependency(guard);
 
-  for (const stack of [base, knowledge, ingest, agent, web]) {
+  for (const stack of [base, knowledge, ingest, agent, web, ...(guard ? [guard] : []), ...(coa ? [coa] : [])]) {
     Tags.of(stack).add('project', 'regionproof');
     Tags.of(stack).add('env', 'demo');
   }
-  return { base, knowledge, ingest, agent, web };
+  return { base, knowledge, ingest, agent, web, ...(coa ? { coaControl: coa } : {}), ...(guard ? { coaGuard: guard } : {}) };
 }

@@ -15,6 +15,7 @@ prerequisites at the top, and every command in it runs from the repository root.
 | 8 | [The PII gate](08-pii-gate.md) | No | Per-unit holds before promotion, held regions filled on page images |
 | 9 | [The evaluation harness](09-evaluation-harness.md) | Optional | Golden questions tied to regions, metrics per question type, N-of-N runs, regression gate |
 | 10 | [Build your own use case](10-build-your-own-use-case.md) | Optional | Your documents, document types, field concepts, PII rule and golden questions, end to end, with an invoice example |
+| 11 | [Spin COA up and down](11-coa-environment.md) | Optional (mock mode needs none) | A live AWS Context Ontology Accelerator environment controlled from Settings, torn down automatically after 60 idle minutes |
 
 Suggested paths:
 
@@ -23,6 +24,7 @@ Suggested paths:
   [methodology page](../methodology/README.md).
 - **"I want this running on AWS."** Quickstarts 1 and 2, then 7 and 9.
 - **"I have my own documents."** Quickstart 1, then 10.
+- **"I want to check the governed metric in a live COA."** Quickstarts 2 and 5, then 11.
 
 ## Conventions
 

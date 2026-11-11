@@ -1388,7 +1388,7 @@ export interface AccessDecision {
   callerSub6: string;
   groups: string[];
   injected: AccessInjected;
-  injectionPoint: "interceptor" | "agent_hook" | "local-gateway";
+  injectionPoint: "interceptor" | "agent_hook" | "local-gateway" | "coa-control";
   /** run-record rows: the tool's decision from the call's logged result ("unknown": another error) */
   decision: "allow" | "deny" | "unknown";
   reason?: string;
@@ -1804,4 +1804,187 @@ export interface OntologyTermList {
   items: OntologyTerm[];
   source: string;
   sha256?: string;
+}
+
+// ---------- COA environment lifecycle (models/coa_env.py; Settings → COA environment, decision 0006) ----------
+
+export type CoaEnvState = "off" | "starting" | "running" | "stopping" | "failed" | "partially_down";
+export type CoaOperation = "up" | "down";
+export type CoaPhaseId = "queued" | "provisioning" | "install" | "pre_build" | "build" | "post_build" | "done";
+export type CoaPhaseStatus = "pending" | "running" | "succeeded" | "failed" | "skipped";
+export type CoaActivitySourceId = "api_gateway" | "agentcore" | "provenant" | "keep_alive" | "became_running";
+
+/** One step of the executor (CodeBuild rp-coa-lifecycle phases folded into seven). */
+export interface CoaPhase {
+  id: CoaPhaseId;
+  label: string;
+  status?: CoaPhaseStatus;
+  startedAt?: IsoTime;
+  endedAt?: IsoTime;
+}
+
+export interface CoaBuild {
+  id: string; // CodeBuild build id, or "pending:<opId>" until StartBuild answered
+  operation: CoaOperation;
+  status?: string; // CodeBuild buildStatus
+  startedAt: IsoTime;
+  endedAt?: IsoTime;
+  reason: string;
+  requestedBy: string; // caller sub (6) | "idle-watcher" | "cli"
+  attempt?: number;
+  phases?: CoaPhase[];
+  logUrl?: string;
+  /** leftovers: the destroy finished but COA stacks remain (the state is failed) */
+  result?: "ok" | "eni_pending" | "leftovers" | "failed";
+}
+
+export interface CoaSettings {
+  autoTeardown: boolean;
+  idleMinutes: number;
+  minMinutes: number;
+  maxMinutes: number;
+  keepAliveMinutes: number;
+  /** with auto tear-down on, the hard cap on a session (unless kept alive) */
+  maxSessionHours?: number;
+}
+
+export interface CoaActivity {
+  source: CoaActivitySourceId;
+  at?: IsoTime;
+  /** what was counted, e.g. "3 successful requests in its last active 5-minute period" */
+  detail?: string;
+}
+
+export interface CoaError {
+  message: string;
+  at: IsoTime;
+  phase?: string;
+  logUrl?: string;
+}
+
+/** Read from COA's stack outputs: both change on every redeploy. */
+export interface CoaEndpoints {
+  consoleUrl?: string;
+  restEndpoint?: string;
+  readAt?: IsoTime;
+}
+
+export interface CoaEniRetry {
+  retries: number;
+  maxRetries: number;
+  nextRetryAt?: IsoTime;
+  windowEndsAt?: IsoTime;
+}
+
+export interface CoaHistoryEntry {
+  at: IsoTime;
+  fromState: CoaEnvState;
+  toState: CoaEnvState;
+  reason: string;
+  by: string;
+}
+
+export interface CoaIdleView {
+  lastActivityAt?: IsoTime;
+  lastActivitySource?: CoaActivitySourceId;
+  sources?: CoaActivity[];
+  keepAliveUntil?: IsoTime;
+  /** when the automatic tear-down starts if nothing happens (auto tear-down on) */
+  teardownAt?: IsoTime;
+  cooldownUntil?: IsoTime;
+  checkedAt?: IsoTime;
+  /** the hard cap (idle.maxSessionHours after it became running), pushed out by Keep alive */
+  maxSessionUntil?: IsoTime;
+  /** CloudWatch could not be read; past the idle threshold the watcher decides on the activity it last saw */
+  activityError?: string;
+  activityErrorSince?: IsoTime;
+}
+
+export interface CoaCostComponent {
+  id: string;
+  label: string;
+  usdPerHour: number;
+  source: string;
+}
+
+/** List-price estimate (config/prices.yaml coaEnvironment), never a billed amount; admins only. */
+export interface CoaCostEstimate {
+  provenance?: "estimate";
+  usdPerHour: number;
+  sessionHours?: number;
+  sessionUsd?: number;
+  components: CoaCostComponent[];
+  asOf: string;
+  source?: string;
+  note?: string;
+  /** what may still bill after the session clock stopped (partially down, failed tear-down) */
+  residual?: string;
+}
+
+export interface CoaViewer {
+  canOperate: boolean;
+  adminGroup?: string;
+}
+
+export interface CoaLifecycleInfo {
+  upMinutes: [number, number];
+  downMinutes: [number, number];
+  eniWindowHours: number;
+  coaTag: string;
+  stackPrefix: string;
+  project: string;
+}
+
+/** GET /coa/environment (and the action routes, with `outcome`). */
+export interface CoaEnvironmentView {
+  deployed: boolean;
+  /** "simulated": the mock world's state machine (no AWS) */
+  mode?: "live" | "simulated";
+  /** the clock the deadlines were computed against (simulated time in mock mode) */
+  serverTime?: IsoTime;
+  state?: CoaEnvState;
+  /** in failed: which operation failed (after a failed tear-down, spin-up is refused) */
+  failedOperation?: CoaOperation;
+  version?: number;
+  stateSince?: IsoTime;
+  runningSince?: IsoTime;
+  sessionStartedAt?: IsoTime;
+  stoppedAt?: IsoTime;
+  reason?: string;
+  build?: CoaBuild;
+  settings?: CoaSettings;
+  idle?: CoaIdleView;
+  cost?: CoaCostEstimate;
+  endpoints?: CoaEndpoints;
+  error?: CoaError;
+  eni?: CoaEniRetry;
+  history?: CoaHistoryEntry[];
+  viewer: CoaViewer;
+  lifecycle?: CoaLifecycleInfo;
+  cli?: string[];
+  detected?: boolean;
+  outcome?: "started" | "noop" | "updated" | "stopped_and_started";
+  note?: string;
+  /** shown until an admin acts, e.g. COA adopted with auto tear-down off */
+  notice?: string;
+}
+
+export interface CoaUpRequest {
+  expectedVersion?: number;
+  idempotencyKey?: string;
+}
+
+export interface CoaDownRequest extends CoaUpRequest {
+  /** admin only: stop a running spin-up and tear down */
+  force?: boolean;
+}
+
+export interface CoaSettingsRequest {
+  autoTeardown: boolean;
+  idleMinutes: number;
+  expectedVersion?: number;
+}
+
+export interface CoaKeepAliveRequest {
+  expectedVersion?: number;
 }

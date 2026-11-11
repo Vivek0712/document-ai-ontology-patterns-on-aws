@@ -36,6 +36,8 @@ export interface AgentStackProps extends StackProps {
   askTimeoutMs: number;
   /** RP_PUBLIC_METRICS for rp-api (context `rp:publicMetrics`, default off) */
   publicMetrics?: 'on' | 'off';
+  /** context `rp:coaControl`: rp-api forwards /coa/environment to rp-coa-control (and may invoke it) */
+  coaControl?: boolean;
 }
 
 export const TOOL_FUNCTIONS = ['rp-search-units', 'rp-graph-hop', 'rp-get-region', 'rp-doc-status'];
@@ -96,7 +98,15 @@ export class AgentStack extends Stack {
       // cold start and the SSM/DynamoDB reads), so the Ask screen gets an SSE `timeout` frame, not a 504.
       askTimeoutSeconds: Math.max(5, Math.min(props.askTimeoutMs, 29000) / 1000 - 4),
       publicMetrics: props.publicMetrics,
+      coaControl: props.coaControl,
     });
+    if (props.coaControl) {
+      // rp-api -> rp-coa-control: by name, so rp-agent never depends on the opt-in stack (deployed after it)
+      fns.get('rp-api').addToRolePolicy(new iam.PolicyStatement({
+        actions: ['lambda:InvokeFunction'],
+        resources: [`arn:${this.partition}:lambda:${this.region}:${this.account}:function:rp-coa-control`],
+      }));
+    }
     addAossDataPolicy(this, 'rp-units-agent', fns.aossPrincipals);
 
     // --- REST API ---------------------------------------------------------------------------------------
@@ -126,7 +136,7 @@ export class AgentStack extends Stack {
       defaultCorsPreflightOptions: props.corsOrigins.length
         ? {
             allowOrigins: props.corsOrigins,
-            allowMethods: ['GET', 'POST', 'DELETE', 'OPTIONS'],
+            allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
             allowHeaders: ['Authorization', 'Content-Type', 'X-Amzn-Bedrock-AgentCore-Runtime-Session-Id'],
             maxAge: Duration.hours(1),
           }

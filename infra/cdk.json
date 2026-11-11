@@ -8,6 +8,7 @@
     "rp:neptuneEngineVersion": "1.4.8.1",
     "rp:devOrigins": ["http://localhost:5188", "http://localhost:5173"],
     "rp:askTimeoutMs": 29000,
+    "rp:coaControl": false,
     "@aws-cdk/aws-lambda:recognizeLayerVersion": true,
     "@aws-cdk/core:checkSecretUsage": true,
     "@aws-cdk/core:target-partitions": ["aws"],

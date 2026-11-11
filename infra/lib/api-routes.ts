@@ -5,7 +5,7 @@
 export type RouteTarget = 'rp-api' | 'rp-upload-url' | 'rp-get-region-http' | 'rp-xray' | 'ask';
 
 export interface Route {
-  method: 'GET' | 'POST' | 'DELETE';
+  method: 'GET' | 'POST' | 'PUT' | 'DELETE';
   path: string;
   target: RouteTarget;
 }
@@ -54,4 +54,10 @@ export const ROUTES: Route[] = [
   { method: 'GET', path: '/ontology/classes', target: 'rp-api' },
   { method: 'GET', path: '/ontology/terms/{iri}', target: 'rp-api' },
   { method: 'GET', path: '/graph/neighbourhood', target: 'rp-api' },
+  // COA environment lifecycle (rp-api forwards to rp-coa-control; without it GET says "not deployed")
+  { method: 'GET', path: '/coa/environment', target: 'rp-api' },
+  { method: 'POST', path: '/coa/environment/up', target: 'rp-api' },
+  { method: 'POST', path: '/coa/environment/down', target: 'rp-api' },
+  { method: 'PUT', path: '/coa/environment/settings', target: 'rp-api' },
+  { method: 'POST', path: '/coa/environment/keep-alive', target: 'rp-api' },
 ];

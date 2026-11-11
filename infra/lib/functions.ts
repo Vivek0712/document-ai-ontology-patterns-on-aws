@@ -6,7 +6,7 @@
 import { LayerName } from './build-assets';
 import { TableLogical } from './names';
 
-export type StackKey = 'knowledge' | 'ingest' | 'agent';
+export type StackKey = 'knowledge' | 'ingest' | 'agent' | 'coaControl';
 export type AossMode = 'read' | 'delete' | 'write';
 
 export type EnvKey =
@@ -20,6 +20,8 @@ export type EnvKey =
   | 'graphHop'
   | 'askTimeout'
   | 'publicMetrics'
+  | 'coaControl'
+  | 'coaEnv'
   | 'cors';
 
 export interface Access {
@@ -244,9 +246,9 @@ export const FUNCTIONS: FunctionSpec[] = [
   // ---------------- D: REST API (rp-agent) ----------------
   {
     dir: 'api', stack: 'agent', layers: API, timeoutS: 60, memoryMb: 1024,
-    env: ['aoss', 'stateMachine', 'graphAdmin', 'graphHop', 'publicMetrics', 'cors'],
+    env: ['aoss', 'stateMachine', 'graphAdmin', 'graphHop', 'publicMetrics', 'coaControl', 'cors'],
     description: 'REST routes: packages, status, documents, stages, units, lineage, artifacts, pipelines, runs, '
-      + 'v2 inspection, access log, governance, review decisions, eval, cost, ontology, graph',
+      + 'v2 inspection, access log, governance, review decisions, eval, cost, ontology, graph, COA environment',
     access: {
       // Only the tiers the routes serve (artifacts, overlays, runs, pipelines); never deploy/* (Runtime code).
       s3Read: ['bronze/*', 'silver/*', 'gold/*', 'quarantine/*', 'config/*', 'runs/*', 'eval/*'],
@@ -275,6 +277,16 @@ export const FUNCTIONS: FunctionSpec[] = [
     env: ['cors', 'askTimeout'],
     description: 'POST /ask: proxy to the AgentCore Runtime with the caller access token',
     access: { ddbRead: ['packages'], ssmRead: ['/rp/agent/*'] },
+  },
+
+  // ---------------- COA environment lifecycle (rp-coa-control, opt-in: context rp:coaControl) ----------------
+  {
+    // The state row, CodeBuild, CloudWatch and CloudFormation grants are added in coa-control-stack.ts (they name
+    // resources of that stack and of COA, not of rp-base).
+    dir: 'coa_control', stack: 'coaControl', layers: ['core'], timeoutS: 60, memoryMb: 512,
+    env: ['coaEnv'],
+    description: 'COA environment: /coa/environment routes (via rp-api), rp-coa-lifecycle events, idle watcher',
+    access: { s3Read: ['config/*'], ddbPut: ['access_log'] },
   },
 ];
 

@@ -96,7 +96,6 @@
           "dimension": 1024,
           "method": {
             "name": "hnsw",
-            "engine": "faiss",
             "space_type": "innerproduct",
             "parameters": {
               "m": 16,

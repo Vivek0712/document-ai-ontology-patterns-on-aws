@@ -56,6 +56,7 @@ export function CommandPalette({ open, onOpenChange }: { open: boolean; onOpenCh
               )),
             )}
             <Item icon={ROUTE_ICONS.diff} onSelect={go("/settings/pipelines")} keywords={["config", "diff"]}>Pipelines diff</Item>
+            <Item icon={ROUTE_ICONS.environment} onSelect={go("/settings/environment")} detail="Settings" keywords={["coa", "spin up", "tear down", "idle", "settings"]}>COA environment</Item>
             {import.meta.env.DEV && <Item icon={ROUTE_ICONS.design} onSelect={go("/dev/ui")} keywords={["kitchen", "components"]}>Design system</Item>}
           </Command.Group>
 

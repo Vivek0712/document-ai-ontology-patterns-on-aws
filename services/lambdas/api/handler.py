@@ -11,6 +11,7 @@ from .routes import (  # noqa: F401 - registers the routes
     access,
     artifacts,
     build,
+    coa_env,
     cost,
     documents,
     evaluate,

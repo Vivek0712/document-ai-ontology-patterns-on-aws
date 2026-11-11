@@ -1,0 +1,132 @@
+# COA environment lifecycle (Settings → COA environment, `make coa-status|coa-up|coa-down`).
+# Read by services/lambdas/coa_control (from config/ in the data bucket), scripts/coa_env.sh and scripts/coa/*,
+# and exported to contracts/generated/coa_control.json for infra/ (`make contracts`). Decision record:
+# docs/decisions/0006-coa-environment-lifecycle.md. No account id, e-mail or profile belongs here: the COA admin
+# e-mail is COA's own SSM parameter /<prefix>/config (initialAdminEmail), read by COA's CDK app.
+coa:
+  repo: "https://github.com/aws/context-ontology-accelerator.git"
+  tag: "v0.3.9"  # the release the recorded snapshot (runs/local/coa/2026-11-11) was taken against
+  # The build fetches this exact commit (a tag can be moved) and refuses any other: the executor deploys with
+  # account-wide CloudFormation rights, so it runs only code pinned here (decision 0006, supply chain).
+  commit: "bc185642fb996e6e4a4be52344c04f8061b27a29"  # v0.3.9
+  prefix: "coa"  # SCL_PREFIX: stacks coa-dev-*
+  env: "dev"
+  region: "us-east-1"
+  # CDK context the earlier deploy used (COA scripts/deploy.sh SCL_* variables). Not persisted by COA: a deploy
+  # without them would change the VPC CIDR and the OpenSearch Serverless capacity.
+  deployContext:
+    SCL_VPC_CIDR: "10.40.0.0/16"
+    SCL_AOSS_MIN_OCU: "0"
+    SCL_AOSS_MAX_OCU: "4"
+    SCL_LAMBDA_RESERVED_CONCURRENCY: "0"
+    # COA tags every resource Project=<this>; the executor's DataZone and Cognito admin rights are conditioned on it
+    SCL_PROJECT_TAG: "provenant-coa"
+  # SCL_SMUS_ADMIN_ARNS holds an account-specific ARN, so it lives in SSM (optional). When the parameter is
+  # missing COA falls back to the account's IAM role named Admin (scripts/check-smus-admin-principal.sh).
+  smusAdminArnsParameter: "/rp/coa-control/smus-admin-arns"
+  configParameter: "/coa/config"  # COA's own deploy config; holds initialAdminEmail (never copied here)
+
+# COA deploys through its own CDK bootstrap (qualifier below), not the one Provenant's stacks use, so the executor
+# can never reach Provenant's bootstrap roles or asset bucket. The CloudFormation execution role of that bootstrap
+# and every role COA creates carry the permissions boundary `boundaryPolicy` (stack rp-coa-guard), which denies
+# Provenant's resources; `deployGuardPolicy` (stack rp-coa-control) keeps the deploy role off rp-* stacks.
+# One-time setup: scripts/coa/bootstrap.sh (docs/quickstarts/11-coa-environment.md).
+bootstrap:
+  qualifier: "rpcoa"
+  toolkitStackName: "CDKToolkit-rpcoa"
+  boundaryPolicy: "rp-coa-boundary"
+  deployGuardPolicy: "rp-coa-deploy-guard"
+
+executor:
+  project: "rp-coa-lifecycle"
+  image: "aws/codebuild/standard:7.0"  # Ubuntu, amd64; privileged for COA's Docker image assets
+  computeType: "BUILD_GENERAL1_LARGE"   # 8 vCPU / 15 GB: COA builds ~10 container images
+  timeoutMinutes: 150
+  concurrency: 1
+  # COA builds linux/arm64 images (AgentCore runtimes, VKG) and linux/amd64 ones; on the amd64 host the arm64
+  # builds run under QEMU, registered once per build with this image (privileged).
+  # Pinned by digest: it runs privileged (tonistiigi/binfmt:qemu-v8.1.5, multi-arch index).
+  binfmtImage: "tonistiigi/binfmt@sha256:2d2918e86e5327d0661f7083d67a95280b0f7be8f77ed79a8418f81d7d90ce6f"
+  toolchain:
+    java: "corretto21"      # COA supports JDK 17-24 (scripts/check-java-version.sh); from the CodeBuild image
+    node: "22.23.4"         # COA package.json engines.node
+    pnpm: "10.34.5"         # COA .mise.toml
+    maven: "3.9.16"         # COA .mise.toml
+    uv: "0.13.4"            # COA pyproject [tool.uv] required-version (minimum)
+    python: "3.12"
+  # Every download is checked against these before it is unpacked or run (values from the publishers' own
+  # checksum files: nodejs.org SHASUMS256.txt, the Apache .sha512, the uv release .sha256, the npm registry).
+  checksums:
+    node: "sha256:1805bcd35e6815559bd2eb97db438d3fdb0eb3a5e6a977b7c1badca76337e9ce"  # node-v22.23.4-linux-x64.tar.xz
+    maven: "sha512:831a8591fe20c8243b1dbe7d71e3244f31d1665b0804b2e825e38cbbe5ce0cafb8338851f90780735568773e0a6cd07bbec107cda0b896b008b861075358b6f6"  # apache-maven-3.9.16-bin.tar.gz
+    uv: "sha256:2b428396f12572d4429cf210ca234dd599a33b3af0958a4d5ed569d63e3f344f"  # uv-x86_64-unknown-linux-gnu.tar.gz
+    pnpm: "sha512-pO4F8vc2WCVb1qiYWcBlpFwopX2u+uLIk6Fo7itzFow3uR6D5X6mdlStA/AwMXRkMOi84442LgQmBfuKvIAZLg=="  # npm integrity of pnpm-10.34.5.tgz
+
+lifecycle:
+  # Shown in the confirm dialogs; measured from the 2026-11-11 deploy (2,711 s) and COA's own docs.
+  upMinutes: [40, 60]
+  downMinutes: [20, 30]
+  # AgentCore keeps runtime ENIs up to 8 h after the runtimes are deleted; destroy.sh exits 3 until then.
+  eniRetryMinutes: 30
+  eniMaxRetries: 16
+  eniWindowHours: 8
+  # A failed tear-down (and a destroy that left stacks behind) is retried automatically once, this long after it
+  # failed; after that it stays Failed and raises the rp-coa-env-needs-attention alarm.
+  failedDownRetryMinutes: 30
+  failedDownAutoRetries: 1
+  # How long a tear-down first waits for COA stacks still being created or updated (a spin-up stopped mid-way
+  # leaves CloudFormation running) before it starts the destroy.
+  settleMinutes: 60
+
+idle:
+  defaultAutoTeardown: true
+  defaultMinutes: 60
+  minMinutes: 15
+  maxMinutes: 480
+  tickMinutes: 5        # EventBridge schedule rate of the idle watcher
+  keepAliveMinutes: 60  # the "Keep alive" button
+  cooldownMinutes: 15   # no automatic tear-down within this long of any state change
+  # Hard cap: with auto tear-down on, a session is torn down this long after it became running whatever the
+  # activity, unless Keep alive was pressed within the last keepAliveMinutes (an open COA console tab polls the API).
+  maxSessionHours: 10
+  # When CloudWatch cannot be read for longer than the idle threshold, the watcher stops waiting for it and decides
+  # on the activity it last saw (the error is shown in the panel meanwhile).
+  # The watcher re-checks CloudFormation while the state is Off (COA deployed by hand is found and watched).
+  probeMinutes: 15
+  # Activity = the latest of these (viewing the settings page is not activity).
+  activity:
+    apiGateway:
+      namespace: "AWS/ApiGateway"
+      metric: "Count"
+      errorMetric: "4XXError"  # Count - 4XXError: unauthenticated and rejected calls (scanners) are not activity
+      apiName: "coa-dev-api"
+      minRequestsPerPeriod: 1  # per 5-minute period, after subtracting 4XX
+    agentcore:
+      namespace: "AWS/Bedrock-AgentCore"
+      metric: "Invocations"
+      namePrefix: "coa_dev_"  # dimension Name = "<runtime>::DEFAULT" (coa_dev_context_manager, coa_dev_mcp_server)
+      recentlyActive: "PT3H"  # ListMetrics: only runtimes with data in the last 3 h (not earlier deploys')
+
+outputs:
+  # Both change on every redeploy, so they are read from the stacks, never stored in the repo.
+  consoleUrl: {stack: "coa-dev-web", outputPrefix: "PublicUIWebsiteURL"}
+  restEndpoint: {stack: "coa-dev-api", outputPrefix: "ApiEndpoint"}
+  probeStack: "coa-dev-network"  # exists ⇔ some of COA is deployed
+
+seed:
+  # Reproduces the recorded session (runs/local/coa/2026-11-11): namespace, fin: Turtle, Glue source, metric.
+  namespace:
+    name: "com305-lending"
+    displayName: "Lending (Provenant demo)"
+    description: "Provenant demo: governed fin: vocabulary and qualifying_income metric over fictitious W-2 data"
+  seedUser: "provenant-seed@example.com"  # COA platform-admin used by the seed only (group Admin)
+  bucketPrefix: "coa-dev-provenant"       # + account + region; coa-* so COA's serve role can read it
+  glueDatabase: "com305_coa_spike_lending"  # kept: the metric SQL names it, as the recording does
+  glueTable: "w2_box1"
+  csv: "data/coa/w2_box1.csv"
+  ontology: "ontology/src/rp/fin.ttl"
+  ontologyId: "urn:rp:ont:fin"
+  metric: "scripts/coa/metric_qualifying_income.json"
+  check:
+    packageId: "pkg-lending-01"
+    expected: "169650.00"

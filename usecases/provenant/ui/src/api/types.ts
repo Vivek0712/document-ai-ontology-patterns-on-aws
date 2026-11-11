@@ -5,6 +5,11 @@ import type {
   AskEvent,
   AskRequest,
   BuildReplay,
+  CoaDownRequest,
+  CoaEnvironmentView,
+  CoaKeepAliveRequest,
+  CoaSettingsRequest,
+  CoaUpRequest,
   ConfigDiff,
   CostView,
   DeletePackageResponse,
@@ -158,4 +163,15 @@ export interface RpApi {
   getOntologyTerm(iri: string): Promise<OntologyTerm>;
   /** An IRI's neighbourhood in the TBox and the package's ABox (W-11; `neighbourhood_v1` via rp-graph-hop). */
   getGraphNeighbourhood(iri: string, packageId: string, depth?: 1 | 2, pv?: string): Promise<GraphNeighbourhood>;
+  // ---- COA environment lifecycle (Settings → COA environment; rp-api forwards to rp-coa-control)
+  /** State, build progress, idle deadline. Reading it is never activity. `deployed: false` without the opt-in stack. */
+  getCoaEnvironment(): Promise<CoaEnvironmentView>;
+  coaUp(body: CoaUpRequest): Promise<CoaEnvironmentView>;
+  coaDown(body: CoaDownRequest): Promise<CoaEnvironmentView>;
+  coaSettings(body: CoaSettingsRequest): Promise<CoaEnvironmentView>;
+  coaKeepAlive(body: CoaKeepAliveRequest): Promise<CoaEnvironmentView>;
+  /** mock mode only: what the next simulated build does (`?coa=` sets the starting state) */
+  coaSimulate?(next: CoaSimulatedOutcome): void;
 }
+
+export type CoaSimulatedOutcome = "ok" | "fail" | "eni_pending";

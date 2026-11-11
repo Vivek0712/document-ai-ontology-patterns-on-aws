@@ -26,7 +26,8 @@ REQ_FILES := $(wildcard data/requirements.txt ontology/requirements.txt services
                services/local_pipeline/requirements.txt services/agent/requirements.txt eval/requirements.txt)
 
 .PHONY: help venv contracts test test-common lint data units ontology-check build-lambdas synth ui-build ui-dev \
-        e2e-local e2e-packages xray-fixtures local-ask local-ask-summary eval-logged mock-world replay deploy deploy-agent seed prewarm reset pause resume teardown verify smoke export-runs eval clean
+        e2e-local e2e-packages xray-fixtures local-ask local-ask-summary eval-logged mock-world replay deploy deploy-agent seed prewarm reset pause resume teardown verify smoke export-runs eval clean \
+        coa-status coa-up coa-down coa-seed
 
 help: ## List targets
 	@grep -E '^[a-zA-Z_-]+:.*?## ' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "  %-16s %s\n", $$1, $$2}'
@@ -52,7 +53,7 @@ test-common: ## Shared contracts package only
 
 lint: ## ruff (Python) + shellcheck (scripts) + tsc (ui, infra)
 	$(VENV)/bin/ruff check .
-	@if [ -x $(VENV)/bin/shellcheck ]; then $(VENV)/bin/shellcheck -x -P SCRIPTDIR scripts/*.sh scripts/lib/*.sh; fi
+	@if [ -x $(VENV)/bin/shellcheck ]; then $(VENV)/bin/shellcheck -x -P SCRIPTDIR scripts/*.sh scripts/lib/*.sh scripts/coa/*.sh; fi
 	@if [ -d $(UI)/node_modules ]; then (cd $(UI) && npm run lint --silent); fi
 	@if [ -d infra/node_modules ]; then (cd infra && npm run lint --silent); fi
 
@@ -137,6 +138,20 @@ eval: ## Golden-set harness
 
 teardown: ## Export runs, then destroy all stacks
 	scripts/teardown.sh
+
+# ---------- COA environment (Settings → COA environment; docs/decisions/0006) ----------
+
+coa-status: ## COA environment: state, build, idle deadline (rp-coa-control), else COA's stacks
+	scripts/coa_env.sh status
+
+coa-up: ## Spin COA up (~40-60 min) and re-seed the governed-metric demo (asks first)
+	scripts/coa_env.sh up
+
+coa-down: ## Tear COA down (~20-30 min; deletes everything inside COA) (asks first)
+	scripts/coa_env.sh down
+
+coa-seed: ## Re-run only the governed-metric seed against the running COA
+	scripts/coa_env.sh seed
 
 clean: ## Remove local build outputs
 	rm -rf build infra/cdk.out $(UI)/dist .pytest_cache .ruff_cache

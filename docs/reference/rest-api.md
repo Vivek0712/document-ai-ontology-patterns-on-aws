@@ -67,6 +67,17 @@ and the UI client disagree.
 | GET | `/ontology/classes?module=` | `OntologyTermList` | Signed in |
 | GET | `/ontology/terms/{iri}` | `OntologyTerm` (labels with their triples, hierarchy, usage counts) | Signed in; usage counts over the caller's packages only |
 | GET | `/graph/neighbourhood?iri=&depth=1\|2&packageId=&pv=` | `GraphNeighbourhood` from Amazon Neptune (an API-only template, at most 150 nodes) | Package ACL |
+| GET | `/coa/environment` | `CoaEnvironmentView`: state, current build and phases, idle deadline, endpoints; `deployed: false` without the opt-in control stack. Viewing is never activity | Signed in; cost figures only for `rp-admin` |
+| POST | `/coa/environment/up` | `CoaEnvironmentView` (spin up; a repeat is a no-op, 409 while stopping, partially down or after a failed tear-down) | `rp-admin` (audited) |
+| POST | `/coa/environment/down` | `CoaEnvironmentView` (tear down; `force` while starting) | `rp-admin` (audited) |
+| PUT | `/coa/environment/settings` | `CoaEnvironmentView` (auto tear-down on or off, idle minutes 15–480) | `rp-admin` (audited) |
+| POST | `/coa/environment/keep-alive` | `CoaEnvironmentView` (counts as activity for 60 minutes) | `rp-admin` (audited) |
+
+The `/coa/environment` routes belong to the optional COA environment control
+([Quickstart 11](../quickstarts/11-coa-environment.md)). `rp-api` forwards them, with the caller's sub and groups
+from the authorizer, to the `rp-coa-control` function, which checks the group and writes an `rp-access-log` row for
+every allowed, refused and denied action. The four actions answer 503 (`not_ready`) when the opt-in control stack
+is not deployed, and 409 when an `expectedVersion` in the body no longer matches.
 
 ## The ask stream
 

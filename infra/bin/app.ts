@@ -14,6 +14,8 @@
  *   rp:agentRuntimeArn          when set, POST /ask is an HTTP proxy (streaming) to the Runtime
  *   rp:askTimeoutMs             /ask integration timeout (> 29000 needs the API Gateway quota raise)
  *   rp:aossAdminArns            operator role ARNs with write access to the AOSS indexes
+ *   rp:coaControl               true: add the opt-in stack rp-coa-control (spin COA up and down from Settings,
+ *                               idle tear-down; docs/decisions/0006). Default false
  */
 import { App } from 'aws-cdk-lib';
 import { buildApp } from '../lib/app';

@@ -5,6 +5,7 @@
 import {
   BookOpenCheck,
   Boxes,
+  CloudCog,
   Coins,
   FileStack,
   FlaskConical,
@@ -116,4 +117,5 @@ export const ROUTE_ICONS: Record<string, LucideIcon> = {
   packages: FileStack,
   trace: Waypoints,
   docs: BookOpenCheck,
+  environment: CloudCog,
 };

@@ -97,3 +97,78 @@ test("W-13: Try as B sends the request with User B's session and shows the API's
   await page.getByRole("button", { name: "Try as B" }).click();
   await expect(page.getByTestId("try-as-b")).toContainText("403");
 });
+
+test("COA environment: spin up through a confirm dialog, simulated and labelled, viewing is not activity", async ({ page }) => {
+  await page.goto(url("/settings/environment"));
+  const panel = page.getByTestId("coa-environment");
+  await expect(panel).toHaveAttribute("data-state", "off");
+  await expect(page.getByTestId("coa-simulated")).toHaveText("Simulated · mock mode");
+  await page.getByRole("button", { name: "Spin up" }).click();
+  const dialog = page.getByTestId("coa-confirm-up");
+  await expect(dialog).toContainText("40–60 minutes");
+  await expect(dialog).toContainText("new temporary-password e-mail");
+  await expect(dialog).toContainText("seeded automatically");
+  await page.getByTestId("coa-confirm-up-go").click();
+  await expect(panel).toHaveAttribute("data-state", "starting");
+  await expect(page.getByTestId("coa-progress")).toBeVisible();
+  await expect(page.locator("[data-phase=queued]")).toBeVisible();
+  // a second spin-up is not offered while starting; tearing down needs the force checkbox
+  await expect(page.getByRole("button", { name: "Spin up" })).toBeDisabled();
+  await page.getByRole("button", { name: "Tear down" }).click();
+  const down = page.getByTestId("coa-confirm-down");
+  await expect(down).toContainText("Deletes everything inside COA");
+  await expect(page.getByTestId("coa-confirm-down-go")).toBeDisabled();
+  await down.getByLabel(/Force/).check();
+  await page.getByTestId("coa-confirm-down-go").click();
+  await expect(panel).toHaveAttribute("data-state", "stopping");
+});
+
+test("COA environment: closing a confirm dialog returns focus to the button that opened it", async ({ page }) => {
+  await page.goto(url("/settings/environment", { coa: "running" }));
+  await expect(page.getByTestId("coa-environment")).toHaveAttribute("data-state", "running");
+  const down = page.getByRole("button", { name: "Tear down" });
+  await down.focus();
+  await page.keyboard.press("Enter");
+  const dialog = page.getByTestId("coa-confirm-down");
+  await expect(dialog).toContainText("Stops about $");
+  await expect(dialog.getByRole("button", { name: "Cancel" })).toBeFocused(); // the dialog has taken focus
+  await page.keyboard.press("Escape");
+  await expect(dialog).toHaveCount(0);
+  await expect(down).toBeFocused();
+  await down.click();
+  await page.getByTestId("coa-confirm-down").getByRole("button", { name: "Cancel" }).click();
+  await expect(down).toBeFocused();
+  // a tear-down this user started reads "by you"
+  await down.click();
+  await page.getByTestId("coa-confirm-down-go").click();
+  await expect(page.getByTestId("coa-progress")).toContainText("by you");
+});
+
+test("COA environment: after a failed tear-down only Tear down again is offered", async ({ page }) => {
+  await page.goto(url("/settings/environment", { coa: "failed" }));
+  await expect(page.getByTestId("coa-environment")).toHaveAttribute("data-state", "failed");
+  await expect(page.getByRole("button", { name: "Spin up" })).toBeDisabled();
+  await expect(page.getByRole("button", { name: "Tear down again" })).toBeEnabled();
+  await expect(page.getByTestId("coa-hint")).toContainText("tear down again");
+  await expect(page.getByTestId("coa-cost-residual")).toContainText("may still be running and billing");
+  await expect(page.getByText("COA console")).toHaveCount(0);
+});
+
+test("COA environment: User B reads only, without cost", async ({ page }) => {
+  await page.addInitScript(() => window.localStorage.setItem("rp.mockUser", "b"));
+  await page.goto(url("/settings/environment", { coa: "running" }));
+  await expect(page.getByTestId("coa-environment")).toHaveAttribute("data-state", "running");
+  await expect(page.getByTestId("coa-read-only")).toContainText("rp-admin");
+  await expect(page.getByRole("button", { name: "Tear down" })).toHaveCount(0);
+  await expect(page.getByTestId("coa-cost")).toHaveCount(0);
+});
+
+test("COA environment is in the sidebar and the command palette", async ({ page }) => {
+  await page.goto(url("/"));
+  await page.getByRole("link", { name: "COA environment" }).first().click();
+  await expect(page).toHaveURL(/\/settings\/environment/);
+  await expect(page.locator("main h1")).toHaveText("COA environment");
+  await page.keyboard.press("Meta+k");
+  await page.keyboard.type("COA environment");
+  await expect(page.getByRole("option", { name: /COA environment/ })).toBeVisible();
+});

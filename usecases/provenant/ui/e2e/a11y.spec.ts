@@ -29,3 +29,18 @@ for (const theme of ["dark", "light"] as const) {
     });
   }
 }
+
+for (const theme of ["dark", "light"] as const) {
+  for (const kind of ["up", "down"] as const) {
+    test(`axe ${theme} coa-environment confirm ${kind}`, async ({ page }) => {
+      await page.emulateMedia({ colorScheme: theme, reducedMotion: "reduce" });
+      await page.goto(url("/settings/environment", { theme, coa: kind === "up" ? "off" : "running" }));
+      await page.getByRole("button", { name: kind === "up" ? "Spin up" : "Tear down" }).click();
+      await expect(page.getByTestId(`coa-confirm-${kind}`)).toBeVisible();
+      await page.waitForTimeout(300);
+      const result = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"]).analyze();
+      const serious = result.violations.filter((v) => v.impact === "serious" || v.impact === "critical");
+      expect(serious.map((v) => `${v.id}: ${v.help}`)).toEqual([]);
+    });
+  }
+}

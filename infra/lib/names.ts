@@ -17,6 +17,8 @@ export const STACKS = {
   ingest: 'rp-ingest',
   agent: 'rp-agent',
   web: 'rp-web',
+  coaControl: 'rp-coa-control',
+  coaGuard: 'rp-coa-guard',
 } as const;
 
 export const SSM = {
@@ -90,4 +92,29 @@ export function functionName(dir: string): string {
 /** `services/lambdas/<dir>/handler.py` -> `lambdas.<dir>.handler.handler`. */
 export function handlerString(dir: string): string {
   return `lambdas.${dir.replace(/\//g, '.')}.handler.handler`;
+}
+
+/** contracts/generated/coa_control.json: config/coa.yaml resolved by `make contracts` (decision record 0006). */
+export interface CoaControlConfig {
+  coa: { repo: string; tag: string; commit: string; prefix: string; env: string; region: string;
+    deployContext: Record<string, string>; smusAdminArnsParameter: string; configParameter: string };
+  bootstrap: { qualifier: string; toolkitStackName: string; boundaryPolicy: string; deployGuardPolicy: string };
+  executor: { project: string; image: string; computeType: string; timeoutMinutes: number; concurrency: number;
+    binfmtImage: string; toolchain: { java: string; node: string; pnpm: string; maven: string; uv: string; python: string };
+    checksums: { node: string; maven: string; uv: string; pnpm: string } };
+  lifecycle: { upMinutes: [number, number]; downMinutes: [number, number]; eniRetryMinutes: number;
+    eniMaxRetries: number; eniWindowHours: number; failedDownRetryMinutes: number; failedDownAutoRetries: number;
+    settleMinutes: number };
+  idle: { tickMinutes: number; defaultMinutes: number; minMinutes: number; maxMinutes: number; maxSessionHours: number };
+  outputs: { consoleUrl: { stack: string }; restEndpoint: { stack: string }; probeStack: string };
+  seed: { bucketPrefix: string; glueDatabase: string; glueTable: string; csv: string; ontology: string; metric: string };
+  adminGroup: string;
+  function: string;
+  table: { name: string; pk: string };
+  tableEnv: string;
+}
+
+export function loadCoaControlConfig(repoRoot: string = REPO_ROOT): CoaControlConfig {
+  const file = path.join(repoRoot, 'contracts', 'generated', 'coa_control.json');
+  return JSON.parse(fs.readFileSync(file, 'utf-8')) as CoaControlConfig;
 }

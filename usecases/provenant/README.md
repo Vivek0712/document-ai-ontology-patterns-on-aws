@@ -176,7 +176,10 @@ The record can also carry a **recorded session** with the
 manages ontologies and governed metrics. The session was captured once against a COA deployment (COA v0.3.9,
 us-east-1) on 2026-11-11 and is stored in [`runs/local/coa/2026-11-11/`](../../runs/local/coa/2026-11-11/): each
 file is a captured request and response, with the principal's e-mail, COA object ids and presigned links
-redacted (the placeholders are listed in `manifest.json`). This repository never calls COA.
+redacted (the placeholders are listed in `manifest.json`). The app's screens never call COA. To run a live COA
+next to Provenant, the optional COA environment control spins one up from Settings → COA environment, seeds the
+same metric and tears it down after 60 idle minutes: see
+[Quickstart 11](../../docs/quickstarts/11-coa-environment.md).
 
 What the snapshot shows, and what it does not:
 

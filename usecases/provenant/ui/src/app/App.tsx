@@ -22,6 +22,7 @@ const GovernedScreen = lazy(() => import("../features/knowledge/GovernedScreen")
 const GraphScreen = lazy(() => import("../features/knowledge/GraphScreen"));
 const EvaluateScreen = lazy(() => import("../features/evaluate/EvaluateScreen"));
 const CostScreen = lazy(() => import("../features/cost/CostScreen"));
+const EnvironmentScreen = lazy(() => import("../features/settings/EnvironmentScreen"));
 const W = {
   Packages: lazy(() => import("../features/workbench/screens/PackagesScreen").then((m) => ({ default: m.PackagesScreen }))),
   Package: lazy(() => import("../features/workbench/screens/PackageScreen").then((m) => ({ default: m.PackageScreen }))),
@@ -61,6 +62,7 @@ export function App() {
         <Route path="settings" element={<Navigate to="/settings/pipelines" replace />} />
         <Route path="settings/pipelines" element={<LegacyPage><W.Pipelines /></LegacyPage>} />
         <Route path="settings/pipelines/:view" element={<LegacyPage><W.Pipelines /></LegacyPage>} />
+        <Route path="settings/environment" element={<EnvironmentScreen />} />
 
         <Route path="knowledge" element={<Navigate to="/knowledge/ontology" replace />} />
         <Route path="knowledge/ontology" element={<OntologyScreen />} />

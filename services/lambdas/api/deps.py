@@ -50,6 +50,7 @@ class Deps:
     config_source: ConfigSource | None = None
     aoss: Any = None  # aoss.AossClient | None
     graph_hop: Any = None  # callable(event) -> GraphHopResult JSON; default invokes rp-graph-hop:live (VPC)
+    coa_control: Any = None  # callable(event) -> {"status", "body"}; default invokes rp-coa-control
     clock: Any = time.monotonic
     _pipelines: dict[str, tuple[float, LoadedPipeline]] = field(default_factory=dict, init=False)
 

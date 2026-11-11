@@ -152,6 +152,7 @@ regexes = [
   '''^(.+\.)?example\.(com|org|net)$''',
   '''^w3\.org$''',
   '''^users\.noreply\.github\.com$''',
+  '''^(.+\.)?invalid$''',  # RFC 2606 reserved TLD: never deliverable (test fixtures)
   '''^anthropic\.com$''',
   '''^2x\.png$''',
   '''^3x\.png$''',

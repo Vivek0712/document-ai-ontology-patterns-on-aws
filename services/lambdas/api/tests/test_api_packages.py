@@ -23,6 +23,9 @@ def test_every_contract_route_is_registered() -> None:
         ("POST", "/review/{packageId}/items/{reviewKey}/decision"), ("GET", "/eval/runs"),
         ("GET", "/eval/runs/{evalRunId}"), ("GET", "/cost"), ("GET", "/ontology/classes"),
         ("GET", "/ontology/terms/{iri}"), ("GET", "/graph/neighbourhood"),
+        # COA environment lifecycle (forwarded to rp-coa-control)
+        ("GET", "/coa/environment"), ("POST", "/coa/environment/up"), ("POST", "/coa/environment/down"),
+        ("PUT", "/coa/environment/settings"), ("POST", "/coa/environment/keep-alive"),
     }
     assert set(router.routes) == expected
 

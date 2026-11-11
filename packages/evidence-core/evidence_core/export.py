@@ -5,6 +5,8 @@ Generated files (do not edit by hand; tests fail when they drift):
   mcp_tools.json     Gateway tool specs (scripts/deploy_agentcore.sh)
   aoss_mapping.json  index body for units-v1-0 and units-v2-3-1 (embed_index creates indexes)
   tables.json        DynamoDB key schema (infra/ mirrors it)
+  coa_control.json   config/coa.yaml resolved (+ the COA price block, admin group, rp-coa-env table): infra/ and the
+                     rp-coa-lifecycle build bundle read it
   json_schema/*.json JSON Schema of key models (cross-checks for api.ts)
 """
 
@@ -19,7 +21,7 @@ from . import PIPELINE_VERSIONS
 from .config import LocalConfigSource, load_pipeline
 from .ddb import TABLE_SCHEMA
 from .ids import index_name
-from .models import answer, api, stage_outputs, status, tools, units
+from .models import answer, api, coa_env, stage_outputs, status, tools, units
 from .retrieval import index_mapping
 from .stages import resolve_stages
 
@@ -41,7 +43,19 @@ SCHEMA_MODELS = {
     "TextractPageInput": stage_outputs.TextractPageInput,
     "RegisterResult": stage_outputs.RegisterResult,
     "ExtractPart": status.ExtractPart,
+    "CoaEnvironmentView": coa_env.CoaEnvironmentView,
 }
+
+
+def coa_control(repo_root: Path) -> dict[str, Any]:
+    cfg = coa_env.parse_config((repo_root / "config" / "coa.yaml").read_text(encoding="utf-8"),
+                               (repo_root / "config" / "prices.yaml").read_text(encoding="utf-8"))
+    out = cfg.dump()
+    out["adminGroup"] = coa_env.ADMIN_GROUP
+    out["function"] = coa_env.COA_CONTROL_FUNCTION
+    out["table"] = coa_env.COA_ENV_TABLE
+    out["tableEnv"] = coa_env.COA_ENV_TABLE_ENV
+    return out
 
 
 def _dump(path: Path, value: Any) -> None:
@@ -65,6 +79,7 @@ def build(repo_root: Path) -> dict[str, Any]:
         "mcp_tools.json": {"version": 1, "tools": tools.tool_specs(), "injectedFields": list(tools.INJECTED_FIELDS)},
         "aoss_mapping.json": {"indexes": [index_name(pv) for pv in PIPELINE_VERSIONS], "body": index_mapping()},
         "tables.json": TABLE_SCHEMA,
+        "coa_control.json": coa_control(repo_root),
     }
     for name, model in SCHEMA_MODELS.items():
         files[f"json_schema/{name}.json"] = model.model_json_schema(by_alias=True)

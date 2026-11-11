@@ -8,6 +8,11 @@ import type {
   AskEvent,
   AskRequest,
   BuildReplay,
+  CoaDownRequest,
+  CoaEnvironmentView,
+  CoaKeepAliveRequest,
+  CoaSettingsRequest,
+  CoaUpRequest,
   CostView,
   DocumentDetail,
   DocumentItem,
@@ -36,7 +41,8 @@ import type {
   UploadUrlResponse,
 } from "@contracts/api";
 import { STAGE_ORDER } from "@contracts/api";
-import { type ApiErrorCode, type AskHandlers, type RpApi, RpApiError, type UploadHandle, type UploadProgress } from "../api/types";
+import { type ApiErrorCode, type AskHandlers, type CoaSimulatedOutcome, type RpApi, RpApiError, type UploadHandle, type UploadProgress } from "../api/types";
+import { coaSimulation } from "./coaEnv";
 import { docStatusView, iso, laneView, ms, projectLane, rollup, shiftTimes } from "./clock";
 import { overlayFromArtifacts } from "../lib/overlay";
 import { type KnowledgeExport, loadKnowledge, loadShard, mergeShard, type World, type WorldLane } from "./world";
@@ -810,6 +816,41 @@ export class MockApi implements RpApi {
   }
 
   /** `GET /graph/neighbourhood?iri=&depth=&packageId=&pv=` (2.3.1; 1.0 binds no ontology). */
+  // ---- COA environment: a simulated state machine (mocks/coaEnv.ts), labelled "Simulated · mock mode" ----
+  /** User A is the simulated environment admin (rp-admin); User B reads only. */
+  private get coaAdmin(): boolean {
+    return this.user.username === "user-a" || Boolean(this.user.email?.startsWith("user-a@"));
+  }
+
+  async getCoaEnvironment(): Promise<CoaEnvironmentView> {
+    await latency();
+    return coaSimulation().view(this.coaAdmin);
+  }
+
+  async coaUp(body: CoaUpRequest): Promise<CoaEnvironmentView> {
+    await latency();
+    return coaSimulation().up(this.coaAdmin, body, this.user.sub.slice(0, 6));
+  }
+
+  async coaDown(body: CoaDownRequest): Promise<CoaEnvironmentView> {
+    await latency();
+    return coaSimulation().down(this.coaAdmin, body, this.user.sub.slice(0, 6));
+  }
+
+  async coaSettings(body: CoaSettingsRequest): Promise<CoaEnvironmentView> {
+    await latency();
+    return coaSimulation().settings(this.coaAdmin, body);
+  }
+
+  async coaKeepAlive(body: CoaKeepAliveRequest): Promise<CoaEnvironmentView> {
+    await latency();
+    return coaSimulation().keepAlive(this.coaAdmin, body.expectedVersion);
+  }
+
+  coaSimulate(next: CoaSimulatedOutcome): void {
+    coaSimulation().simulate(next);
+  }
+
   async getGraphNeighbourhood(iri: string, packageId: string, depth: 1 | 2 = 1, pv = "2.3.1"): Promise<GraphNeighbourhood> {
     await latency();
     this.pkgOr404(packageId);

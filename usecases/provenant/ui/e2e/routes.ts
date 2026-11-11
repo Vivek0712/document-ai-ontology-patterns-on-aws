@@ -56,6 +56,11 @@ export const ROUTES: RouteCase[] = [
   { name: "unit", path: `/workbench/units/${encodeURIComponent(unit.unitId)}`, ready: "main h1" },
   { name: "trace", path: `/workbench/trace/${encodeURIComponent(unit.unitId)}${field ? `?field=${field}` : ""}`, ready: "main svg[role=img]" },
   { name: "pipelines", path: "/settings/pipelines", ready: "main h1" },
+  // COA environment: the mock world's simulated state machine, one route per starting state (`?coa=`)
+  { name: "coa-environment", path: "/settings/environment", ready: "[data-testid=coa-environment]" },
+  ...(["starting", "running", "stopping", "failed", "partially_down"] as const).map((st) => ({
+    name: `coa-environment-${st}`, path: `/settings/environment?coa=${st}`, ready: `[data-testid=coa-environment][data-state=${st}]` })),
+  { name: "coa-environment-undeployed", path: "/settings/environment?coa=undeployed", ready: "[data-testid=coa-not-deployed]" },
   { name: "pii", path: "/governance/pii", ready: "figure[data-body-height]" },
   { name: "ontology", path: "/knowledge/ontology?iri=fin:W2WagesBox1", ready: "[data-testid=term-page]" },
   { name: "ontology-schema", path: "/knowledge/ontology?tab=schema", ready: "main table" },

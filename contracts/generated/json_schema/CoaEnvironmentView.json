@@ -1,0 +1,1024 @@
+{
+  "$defs": {
+    "CoaActivity": {
+      "properties": {
+        "source": {
+          "enum": [
+            "api_gateway",
+            "agentcore",
+            "provenant",
+            "keep_alive",
+            "became_running"
+          ],
+          "title": "Source",
+          "type": "string"
+        },
+        "at": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "At"
+        },
+        "detail": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Detail"
+        }
+      },
+      "required": [
+        "source"
+      ],
+      "title": "CoaActivity",
+      "type": "object"
+    },
+    "CoaBuild": {
+      "description": "One CodeBuild run of ``rp-coa-lifecycle`` (the executor).",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "operation": {
+          "enum": [
+            "up",
+            "down"
+          ],
+          "title": "Operation",
+          "type": "string"
+        },
+        "status": {
+          "default": "IN_PROGRESS",
+          "title": "Status",
+          "type": "string"
+        },
+        "startedAt": {
+          "title": "Startedat",
+          "type": "string"
+        },
+        "endedAt": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Endedat"
+        },
+        "reason": {
+          "title": "Reason",
+          "type": "string"
+        },
+        "requestedBy": {
+          "title": "Requestedby",
+          "type": "string"
+        },
+        "attempt": {
+          "default": 1,
+          "title": "Attempt",
+          "type": "integer"
+        },
+        "phases": {
+          "items": {
+            "$ref": "#/$defs/CoaPhase"
+          },
+          "title": "Phases",
+          "type": "array"
+        },
+        "logUrl": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Logurl"
+        },
+        "result": {
+          "anyOf": [
+            {
+              "enum": [
+                "ok",
+                "eni_pending",
+                "leftovers",
+                "failed"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Result"
+        }
+      },
+      "required": [
+        "id",
+        "operation",
+        "startedAt",
+        "reason",
+        "requestedBy"
+      ],
+      "title": "CoaBuild",
+      "type": "object"
+    },
+    "CoaCostComponent": {
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "label": {
+          "title": "Label",
+          "type": "string"
+        },
+        "usdPerHour": {
+          "title": "Usdperhour",
+          "type": "number"
+        },
+        "source": {
+          "title": "Source",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "usdPerHour",
+        "source"
+      ],
+      "title": "CoaCostComponent",
+      "type": "object"
+    },
+    "CoaCostEstimate": {
+      "properties": {
+        "provenance": {
+          "const": "estimate",
+          "default": "estimate",
+          "title": "Provenance",
+          "type": "string"
+        },
+        "usdPerHour": {
+          "title": "Usdperhour",
+          "type": "number"
+        },
+        "sessionHours": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Sessionhours"
+        },
+        "sessionUsd": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Sessionusd"
+        },
+        "components": {
+          "items": {
+            "$ref": "#/$defs/CoaCostComponent"
+          },
+          "title": "Components",
+          "type": "array"
+        },
+        "asOf": {
+          "title": "Asof",
+          "type": "string"
+        },
+        "source": {
+          "default": "config/prices.yaml coaEnvironment",
+          "title": "Source",
+          "type": "string"
+        },
+        "note": {
+          "default": "List-price estimate while COA is up; not a billed amount.",
+          "title": "Note",
+          "type": "string"
+        },
+        "residual": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Residual"
+        }
+      },
+      "required": [
+        "usdPerHour",
+        "components",
+        "asOf"
+      ],
+      "title": "CoaCostEstimate",
+      "type": "object"
+    },
+    "CoaEndpoints": {
+      "properties": {
+        "consoleUrl": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Consoleurl"
+        },
+        "restEndpoint": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Restendpoint"
+        },
+        "readAt": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Readat"
+        }
+      },
+      "title": "CoaEndpoints",
+      "type": "object"
+    },
+    "CoaEniRetry": {
+      "properties": {
+        "retries": {
+          "title": "Retries",
+          "type": "integer"
+        },
+        "maxRetries": {
+          "title": "Maxretries",
+          "type": "integer"
+        },
+        "nextRetryAt": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Nextretryat"
+        },
+        "windowEndsAt": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Windowendsat"
+        }
+      },
+      "required": [
+        "retries",
+        "maxRetries"
+      ],
+      "title": "CoaEniRetry",
+      "type": "object"
+    },
+    "CoaError": {
+      "properties": {
+        "message": {
+          "title": "Message",
+          "type": "string"
+        },
+        "at": {
+          "title": "At",
+          "type": "string"
+        },
+        "phase": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Phase"
+        },
+        "logUrl": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Logurl"
+        }
+      },
+      "required": [
+        "message",
+        "at"
+      ],
+      "title": "CoaError",
+      "type": "object"
+    },
+    "CoaHistoryEntry": {
+      "properties": {
+        "at": {
+          "title": "At",
+          "type": "string"
+        },
+        "fromState": {
+          "enum": [
+            "off",
+            "starting",
+            "running",
+            "stopping",
+            "failed",
+            "partially_down"
+          ],
+          "title": "Fromstate",
+          "type": "string"
+        },
+        "toState": {
+          "enum": [
+            "off",
+            "starting",
+            "running",
+            "stopping",
+            "failed",
+            "partially_down"
+          ],
+          "title": "Tostate",
+          "type": "string"
+        },
+        "reason": {
+          "title": "Reason",
+          "type": "string"
+        },
+        "by": {
+          "title": "By",
+          "type": "string"
+        }
+      },
+      "required": [
+        "at",
+        "fromState",
+        "toState",
+        "reason",
+        "by"
+      ],
+      "title": "CoaHistoryEntry",
+      "type": "object"
+    },
+    "CoaIdleView": {
+      "properties": {
+        "lastActivityAt": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Lastactivityat"
+        },
+        "lastActivitySource": {
+          "anyOf": [
+            {
+              "enum": [
+                "api_gateway",
+                "agentcore",
+                "provenant",
+                "keep_alive",
+                "became_running"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Lastactivitysource"
+        },
+        "sources": {
+          "items": {
+            "$ref": "#/$defs/CoaActivity"
+          },
+          "title": "Sources",
+          "type": "array"
+        },
+        "keepAliveUntil": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Keepaliveuntil"
+        },
+        "teardownAt": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Teardownat"
+        },
+        "cooldownUntil": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Cooldownuntil"
+        },
+        "checkedAt": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Checkedat"
+        },
+        "maxSessionUntil": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Maxsessionuntil"
+        },
+        "activityError": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Activityerror"
+        },
+        "activityErrorSince": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Activityerrorsince"
+        }
+      },
+      "title": "CoaIdleView",
+      "type": "object"
+    },
+    "CoaLifecycleInfo": {
+      "properties": {
+        "upMinutes": {
+          "maxItems": 2,
+          "minItems": 2,
+          "prefixItems": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Upminutes",
+          "type": "array"
+        },
+        "downMinutes": {
+          "maxItems": 2,
+          "minItems": 2,
+          "prefixItems": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Downminutes",
+          "type": "array"
+        },
+        "eniWindowHours": {
+          "title": "Eniwindowhours",
+          "type": "integer"
+        },
+        "coaTag": {
+          "title": "Coatag",
+          "type": "string"
+        },
+        "stackPrefix": {
+          "title": "Stackprefix",
+          "type": "string"
+        },
+        "project": {
+          "title": "Project",
+          "type": "string"
+        }
+      },
+      "required": [
+        "upMinutes",
+        "downMinutes",
+        "eniWindowHours",
+        "coaTag",
+        "stackPrefix",
+        "project"
+      ],
+      "title": "CoaLifecycleInfo",
+      "type": "object"
+    },
+    "CoaPhase": {
+      "properties": {
+        "id": {
+          "enum": [
+            "queued",
+            "provisioning",
+            "install",
+            "pre_build",
+            "build",
+            "post_build",
+            "done"
+          ],
+          "title": "Id",
+          "type": "string"
+        },
+        "label": {
+          "title": "Label",
+          "type": "string"
+        },
+        "status": {
+          "default": "pending",
+          "enum": [
+            "pending",
+            "running",
+            "succeeded",
+            "failed",
+            "skipped"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "startedAt": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Startedat"
+        },
+        "endedAt": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Endedat"
+        }
+      },
+      "required": [
+        "id",
+        "label"
+      ],
+      "title": "CoaPhase",
+      "type": "object"
+    },
+    "CoaSettings": {
+      "properties": {
+        "autoTeardown": {
+          "title": "Autoteardown",
+          "type": "boolean"
+        },
+        "idleMinutes": {
+          "title": "Idleminutes",
+          "type": "integer"
+        },
+        "minMinutes": {
+          "title": "Minminutes",
+          "type": "integer"
+        },
+        "maxMinutes": {
+          "title": "Maxminutes",
+          "type": "integer"
+        },
+        "keepAliveMinutes": {
+          "title": "Keepaliveminutes",
+          "type": "integer"
+        },
+        "maxSessionHours": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Maxsessionhours"
+        }
+      },
+      "required": [
+        "autoTeardown",
+        "idleMinutes",
+        "minMinutes",
+        "maxMinutes",
+        "keepAliveMinutes"
+      ],
+      "title": "CoaSettings",
+      "type": "object"
+    },
+    "CoaViewer": {
+      "properties": {
+        "canOperate": {
+          "title": "Canoperate",
+          "type": "boolean"
+        },
+        "adminGroup": {
+          "default": "rp-admin",
+          "title": "Admingroup",
+          "type": "string"
+        }
+      },
+      "required": [
+        "canOperate"
+      ],
+      "title": "CoaViewer",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "deployed": {
+      "title": "Deployed",
+      "type": "boolean"
+    },
+    "mode": {
+      "default": "live",
+      "enum": [
+        "live",
+        "simulated"
+      ],
+      "title": "Mode",
+      "type": "string"
+    },
+    "serverTime": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Servertime"
+    },
+    "state": {
+      "anyOf": [
+        {
+          "enum": [
+            "off",
+            "starting",
+            "running",
+            "stopping",
+            "failed",
+            "partially_down"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "State"
+    },
+    "failedOperation": {
+      "anyOf": [
+        {
+          "enum": [
+            "up",
+            "down"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Failedoperation"
+    },
+    "version": {
+      "default": 0,
+      "title": "Version",
+      "type": "integer"
+    },
+    "stateSince": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Statesince"
+    },
+    "runningSince": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Runningsince"
+    },
+    "sessionStartedAt": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Sessionstartedat"
+    },
+    "stoppedAt": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Stoppedat"
+    },
+    "reason": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Reason"
+    },
+    "build": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/CoaBuild"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "settings": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/CoaSettings"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "idle": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/CoaIdleView"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "cost": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/CoaCostEstimate"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "endpoints": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/CoaEndpoints"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "error": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/CoaError"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "eni": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/CoaEniRetry"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "history": {
+      "items": {
+        "$ref": "#/$defs/CoaHistoryEntry"
+      },
+      "title": "History",
+      "type": "array"
+    },
+    "viewer": {
+      "$ref": "#/$defs/CoaViewer"
+    },
+    "lifecycle": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/CoaLifecycleInfo"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "cli": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Cli",
+      "type": "array"
+    },
+    "detected": {
+      "default": false,
+      "title": "Detected",
+      "type": "boolean"
+    },
+    "outcome": {
+      "anyOf": [
+        {
+          "enum": [
+            "started",
+            "noop",
+            "updated",
+            "stopped_and_started"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Outcome"
+    },
+    "note": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Note"
+    },
+    "notice": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Notice"
+    }
+  },
+  "required": [
+    "deployed",
+    "viewer"
+  ],
+  "title": "CoaEnvironmentView",
+  "type": "object"
+}

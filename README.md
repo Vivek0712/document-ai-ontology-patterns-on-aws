@@ -27,6 +27,7 @@ them to your own documents.
 - [The five patterns](#the-five-patterns)
 - [Architecture](#architecture)
 - [Choose your path](#choose-your-path)
+- [Spin COA up and down](#spin-coa-up-and-down)
 - [Prerequisites](#prerequisites)
 - [Costs](#costs)
 - [Repository map](#repository-map)
@@ -311,6 +312,35 @@ each piece of domain knowledge lives.
 
 ---
 
+## Spin COA up and down
+
+The recorded COA cross-check above needs no COA deployment. When you want it live, the optional COA environment
+control spins up an [AWS Context Ontology Accelerator](https://github.com/aws/context-ontology-accelerator)
+environment from **Settings → COA environment** in the UI (or `make coa-up`), and tears it down again
+(`make coa-down`). COA costs about **USD 1.3 an hour** while it is up (a list-price estimate), so the control
+tears it down by itself after **60 idle minutes** by default.
+
+- **Spin up** (40–60 minutes): an AWS CodeBuild project fetches COA at the commit pinned in
+  [`config/coa.yaml`](config/coa.yaml), with every tool download checked against a pinned checksum, deploys it
+  through COA's own CDK bootstrap behind a permissions boundary that keeps it away from this repository's stacks,
+  roles and data, and then seeds the governed `qualifying_income` metric over the fictitious W-2 rows. A Tier 1
+  check confirms it returns 169,650.00.
+- **Tear down** (20–30 minutes) deletes everything inside COA. A failed tear-down is retried once, then raises the
+  CloudWatch alarm `rp-coa-env-needs-attention`.
+- **Auto tear-down** after 60 idle minutes (15–480), and 10 hours after it came up unless someone pressed *Keep
+  alive*. Activity is successful calls to COA's own API and AgentCore runtimes, or the *Keep alive 60 min* button.
+  Looking at the settings page is not activity.
+- Only members of the Amazon Cognito group `rp-admin` can act; every action is audited in `rp-access-log`.
+
+The control is two opt-in stacks (`rp-coa-guard`, `rp-coa-control`; CDK context `rp:coaControl=true`), off by
+default. In mock mode the panel runs a labeled simulation, so you can try it without an AWS account.
+[Quickstart 11](docs/quickstarts/11-coa-environment.md) has the one-time setup, the states and the costs;
+[decision record 0006](docs/decisions/0006-coa-environment-lifecycle.md) has the design and every permission.
+This release has not yet run a full spin-up and tear-down through the control against AWS: treat it as a preview
+and use a sandbox account.
+
+---
+
 ## Prerequisites
 
 | For | You need |
@@ -335,6 +365,7 @@ pages, or build your own estimate with the [AWS Pricing Calculator](https://calc
 | Local quickstart (`make e2e-local PII=local`) | **USD 0** | No AWS calls |
 | Local questions on Amazon Bedrock (`make local-ask`) | Cents per question | About USD 0.04 per question with Claude Sonnet 4.6: measured token usage × the list prices in [`config/prices.yaml`](config/prices.yaml) (`make local-ask-summary` prints the totals). A `BUDGET=` guard stops a batch before it passes your limit |
 | AWS deployment, an active 8-hour day | **About USD 10–18** | The largest items are Amazon Bedrock, Amazon Neptune Serverless, Amazon OpenSearch Serverless and the docling-serve task on AWS Fargate (4 vCPU, 16 GB: about USD 0.23 per hour) |
+| Optional live COA environment ([Quickstart 11](docs/quickstarts/11-coa-environment.md)) | **About USD 1.3 per hour while up** | AWS Fargate ontology engine (8 vCPU, 32 GB), Amazon Neptune `db.r8g.large`, an Amazon OpenSearch Serverless collection, interface VPC endpoints and a NAT gateway (`coaEnvironment` in [`config/prices.yaml`](config/prices.yaml)). Torn down automatically after 60 idle minutes |
 | AWS deployment, a paused day (`scripts/pause.sh`) | **About USD 0.10–1** | Storage, plus any OpenSearch Serverless capacity that has not scaled to zero |
 | After `scripts/teardown.sh` | **Near zero** | The stacks, buckets and AgentCore resources are deleted. A few items stay on purpose and cost cents to about USD 1 a month: the AWS KMS key (retained, about USD 1 a month until you schedule its deletion), the `/aws/lambda/rp-*` log groups, the retained Lambda layer versions and the AWS CDK bootstrap stack. [Quickstart 2](docs/quickstarts/02-deploy-to-aws.md#remove-everything) shows how to remove them and check that nothing is left |
 
@@ -379,8 +410,8 @@ Set an [AWS Budgets](https://aws.amazon.com/aws-cost-management/aws-budgets/) al
 ├── eval/                   Golden-set harness and metrics
 ├── data/                   Deterministic generator for the fictitious PDFs, with gold regions
 ├── contracts/              Generated JSON schemas and the UI's TypeScript types
-├── infra/                  AWS CDK app (TypeScript): five stacks
-├── scripts/                Operator scripts: verify, deploy, seed, smoke, pause, resume, reset, teardown
+├── infra/                  AWS CDK app (TypeScript): five stacks, plus two opt-in stacks for the COA environment
+├── scripts/                Operator scripts: verify, deploy, seed, smoke, pause, resume, reset, teardown, COA
 ├── runs/local/             Logged local runs and recorded AWS responses, for offline replay
 └── usecases/
     └── provenant/          The Provenant use case and its React UI

@@ -60,3 +60,23 @@ sizes:  # configured sizes the estimates allocate by (not prices)
     vcpu: 4
     memoryGb: 16
     source: "infra/lib/ingest-stack.ts (Docling Fargate task: cpu 4096, memoryLimitMiB 16384)"
+coaEnvironment:  # Settings → COA environment: what COA costs per hour while it is up. An estimate from list prices,
+  # never a billed figure; the panel shows it to environment admins only (docs/decisions/0006).
+  asOf: "2026-11-11"
+  components:
+    - id: fargate-ontology-engine
+      label: "Fargate ontology engine, 8 vCPU / 32 GB"
+      usdPerHour: 0.466  # 8 × $0.04048 + 32 × $0.004445 (services.fargate.* above)
+      source: "https://aws.amazon.com/fargate/pricing/ (Linux/x86, us-east-1) [verify]"
+    - id: neptune
+      label: "Neptune db.r8g.large"
+      usdPerHour: 0.35
+      source: "https://aws.amazon.com/neptune/pricing/ (on-demand, us-east-1) [verify]"
+    - id: opensearch-serverless
+      label: "OpenSearch Serverless collection"
+      usdPerHour: 0.24
+      source: "https://aws.amazon.com/opensearch-service/pricing/ (OCU-hours at COA's capacity settings) [verify]"
+    - id: network
+      label: "~10 interface VPC endpoints + NAT gateway"
+      usdPerHour: 0.25
+      source: "https://aws.amazon.com/privatelink/pricing/ and https://aws.amazon.com/vpc/pricing/ [verify]"

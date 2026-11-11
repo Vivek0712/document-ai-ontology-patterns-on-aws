@@ -72,7 +72,7 @@ def _norm(path: str) -> str:
 def test_rest_routes_agree() -> None:
     cdk = {(m, _norm(p)) for m, p in re.findall(r"method: '(\w+)', path: '([^']+)'",
                                                   (ROOT / "infra/lib/api-routes.ts").read_text())}
-    contract = {(m, _norm(p)) for m, p in re.findall(r"^\| (GET|POST|DELETE) \| `([^`]+)`",
+    contract = {(m, _norm(p)) for m, p in re.findall(r"^\| (GET|POST|PUT|DELETE) \| `([^`]+)`",
                                                       (ROOT / "docs/reference/rest-api.md").read_text(), re.M)}
     ui_src = (ROOT / "usecases/provenant/ui/src/api/http.ts").read_text()
     ui = {(m, _norm(p)) for m, p in re.findall(r'request<\w+>\("(\w+)", [`"]([^`"]+)[`"]', ui_src)}

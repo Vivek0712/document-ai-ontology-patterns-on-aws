@@ -22,7 +22,7 @@ from pydantic import Field
 
 from ..base import RpModel
 
-InjectionPoint = Literal["interceptor", "agent_hook", "local-gateway"]
+InjectionPoint = Literal["interceptor", "agent_hook", "local-gateway", "coa-control"]
 
 
 class AccessInjected(RpModel):

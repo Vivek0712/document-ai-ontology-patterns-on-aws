@@ -35,9 +35,17 @@ class AossClient:
 
     def ensure_index(self, index: str, dimensions: int) -> bool:
         """Create the index with the contract mapping if missing. Returns True when created."""
+        from opensearchpy.exceptions import RequestError  # lazy: Lambdas with only the core layer import this module
+
         if self.client.indices.exists(index=index):
             return False
-        self.client.indices.create(index=index, body=index_mapping(dimensions))
+        try:
+            self.client.indices.create(index=index, body=index_mapping(dimensions))
+        except RequestError as e:
+            # Documents ingest in parallel: another lane may create the index between exists() and create().
+            if e.error == "resource_already_exists_exception":
+                return False
+            raise
         return True
 
     def bulk_index(self, index: str, docs: list[dict[str, Any]]) -> list[str]:

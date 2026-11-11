@@ -5,6 +5,11 @@ import type {
   ArtifactView,
   AskRequest,
   BuildReplay,
+  CoaDownRequest,
+  CoaEnvironmentView,
+  CoaKeepAliveRequest,
+  CoaSettingsRequest,
+  CoaUpRequest,
   ConfigDiff,
   CostView,
   DeletePackageResponse,
@@ -204,6 +209,13 @@ export class HttpApi implements RpApi {
   getOntologyTerm = (iri: string) => this.request<OntologyTerm>("GET", `/ontology/terms/${enc(iri)}`);
   getGraphNeighbourhood = (iri: string, packageId: string, depth?: 1 | 2, pv?: string) =>
     this.request<GraphNeighbourhood>("GET", `/graph/neighbourhood${qs({ iri, packageId, depth, pv })}`);
+
+  // COA environment lifecycle (rp-api -> rp-coa-control)
+  getCoaEnvironment = () => this.request<CoaEnvironmentView>("GET", "/coa/environment");
+  coaUp = (body: CoaUpRequest) => this.request<CoaEnvironmentView>("POST", "/coa/environment/up", body);
+  coaDown = (body: CoaDownRequest) => this.request<CoaEnvironmentView>("POST", "/coa/environment/down", body);
+  coaSettings = (body: CoaSettingsRequest) => this.request<CoaEnvironmentView>("PUT", "/coa/environment/settings", body);
+  coaKeepAlive = (body: CoaKeepAliveRequest) => this.request<CoaEnvironmentView>("POST", "/coa/environment/keep-alive", body);
 
   /** POST /ask and read the text/event-stream incrementally (AgentCore Runtime response streaming). */
   async ask(body: AskRequest, { onEvent, signal }: AskHandlers): Promise<void> {

@@ -62,7 +62,8 @@ export class KnowledgeStack extends Stack {
       properties: {
         Name: AOSS_COLLECTION_GROUP,
         Generation: 'NEXTGEN',
-        StandbyReplicas: 'DISABLED',
+        // NextGen groups require standby replicas (DISABLED is rejected); idle cost is still 0 OCU.
+        StandbyReplicas: 'ENABLED',
         Description: 'Regionproof units (NextGen, scale to zero)',
         CapacityLimits: {
           MinIndexingCapacityInOcu: 0,
@@ -75,7 +76,7 @@ export class KnowledgeStack extends Stack {
     const collection = new aoss.CfnCollection(this, 'Collection', {
       name: AOSS_COLLECTION,
       type: 'VECTORSEARCH',
-      standbyReplicas: 'DISABLED',
+      standbyReplicas: 'ENABLED',
       description: 'Regionproof units: units-v1-0, units-v2-3-1',
     });
     collection.addPropertyOverride('CollectionGroupName', AOSS_COLLECTION_GROUP);

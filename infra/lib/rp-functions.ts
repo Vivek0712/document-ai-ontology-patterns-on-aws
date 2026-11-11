@@ -29,6 +29,11 @@ export interface FunctionEnvValues {
   askTimeoutSeconds?: number;
   /** RP_PUBLIC_METRICS: 'off' until the decision says otherwise; the API withholds rates and dollars */
   publicMetrics?: 'on' | 'off';
+  /** RP_COA_CONTROL for rp-api: 'on' when the rp-coa-control stack is part of the app (context rp:coaControl) */
+  coaControl?: boolean;
+  /** rp-coa-control: its state table and executor project */
+  coaEnvTable?: string;
+  coaProject?: string;
 }
 
 export interface BuiltFunctions {
@@ -162,6 +167,13 @@ function environmentFor(spec: FunctionSpec, base: BaseResources, v: FunctionEnvV
         break;
       case 'publicMetrics':
         env.RP_PUBLIC_METRICS = v.publicMetrics ?? 'off';
+        break;
+      case 'coaControl':
+        env.RP_COA_CONTROL = v.coaControl ? 'on' : 'off';
+        break;
+      case 'coaEnv':
+        env.RP_TABLE_COA_ENV = need(key, v.coaEnvTable);
+        env.RP_COA_PROJECT = need(key, v.coaProject);
         break;
       case 'cors': {
         const origins = v.corsOrigins ?? [];

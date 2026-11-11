@@ -38,6 +38,10 @@ First public release.
 - A governed definition of "total income" (`fin:QualifyingIncome`) recorded by `make ontology-check`, with an
   optional, recorded cross-check against the AWS Context Ontology Accelerator (COA): a dated snapshot in
   `runs/local/coa/`, replayed and never called. `COA_MODE=off` builds the record without it.
+- An optional, opt-in COA environment control (stacks `rp-coa-guard` and `rp-coa-control`, CDK context
+  `rp:coaControl=true`): spin a live COA up and down from Settings → COA environment or `make coa-up` /
+  `make coa-down`, re-seed the governed metric, and tear it down automatically after 60 idle minutes. Admins only
+  (Cognito group `rp-admin`), audited, simulated in mock mode (Quickstart 11, decision record 0006).
 - Decision records (`docs/decisions/`) for the rules the code relies on, and a REST API reference
   (`docs/reference/rest-api.md`).
 - Quickstarts, pattern guides and operations docs.
@@ -53,6 +57,8 @@ First public release.
   `config/prices.yaml` are marked `[verify]`. Check current pricing for your Region.
 - Provenant's domain files (ontology, templates, prompt, golden set, sample generator) share the
   repository root with the building blocks. A domain-pack layout is planned.
+- The COA environment control has passed its unit, infrastructure and UI tests and synthesizes, but has not yet
+  run a full spin-up and tear-down against AWS. Treat it as a preview.
 - The COA cross-check is one recorded session (2026-11-11). The vocabulary was uploaded to COA, not
   steward-reviewed there; the COA metric is SQL run by Amazon Athena; latencies were measured from a laptop.
 - The `rp` resource and namespace prefix, and an earlier working name in hashed or recorded text, remain

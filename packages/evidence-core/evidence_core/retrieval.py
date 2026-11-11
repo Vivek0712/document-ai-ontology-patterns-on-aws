@@ -50,8 +50,8 @@ def index_mapping(dimensions: int = 1024) -> dict[str, Any]:
                     "type": "knn_vector",
                     "dimension": dimensions,
                     "method": {
+                        # No "engine": NextGen OpenSearch Serverless chooses it and rejects the parameter.
                         "name": "hnsw",
-                        "engine": "faiss",
                         "space_type": "innerproduct",
                         "parameters": {"m": 16, "ef_construction": 128},
                     },

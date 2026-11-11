@@ -314,7 +314,10 @@ ontology term in Git with a SPARQL template that computes it. `make ontology-che
 for it (`ontology/dist/<version>/governance/<name>.json`, served by `GET /governance/definitions/{name}`): the
 term as built, the sha256 of its Turtle source and template, and the check results. The record can also carry a
 recorded cross-check against the AWS Context Ontology Accelerator (`runs/local/coa/<date>/`, read by
-`ontology/rpont/coa_snapshot.py`; `COA_MODE=off` leaves it out). Nothing in the deployed stack calls COA.
+`ontology/rpont/coa_snapshot.py`; `COA_MODE=off` leaves it out). Nothing in the five stacks calls COA. Two opt-in
+stacks (`rp-coa-guard`, `rp-coa-control`) can spin a live COA environment up and down from the UI and tear it down
+when idle; see [Quickstart 11](quickstarts/11-coa-environment.md) and
+[decision record 0006](decisions/0006-coa-environment-lifecycle.md).
 
 DynamoDB tables (on-demand capacity, point-in-time recovery on):
 

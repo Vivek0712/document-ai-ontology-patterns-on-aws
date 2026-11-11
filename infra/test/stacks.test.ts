@@ -29,7 +29,7 @@ function synth(context: Record<string, unknown> = {}): { stacks: ReferencePipeli
       ...context },
   });
   const stacks = buildApp(app, { assets: loadBuildAssets(stubBuild()), uiDistDir: path.join(os.tmpdir(), 'no-ui') });
-  const t = Object.fromEntries(Object.entries(stacks).map(([k, s]) => [k, Template.fromStack(s)]));
+  const t = Object.fromEntries(Object.entries(stacks).filter(([, s]) => s).map(([k, s]) => [k, Template.fromStack(s)]));
   return { stacks, t };
 }
 
@@ -89,7 +89,7 @@ describe('rp-base', () => {
 describe('functions', () => {
   test('every spec is deployed with the contract name and handler', () => {
     const all = [t.knowledge, t.ingest, t.agent];
-    for (const spec of FUNCTIONS) {
+    for (const spec of FUNCTIONS.filter((f) => f.stack !== 'coaControl')) { // opt-in stack: coa-control.test.ts
       const found = all.some((tpl) => Object.keys(tpl.findResources('AWS::Lambda::Function', {
         Properties: { FunctionName: specName(spec), Handler: specHandler(spec), Runtime: 'python3.12' },
       })).length === 1);
@@ -211,7 +211,7 @@ describe('rp-knowledge and rp-web', () => {
       Type: 'VECTORSEARCH', CollectionGroupName: 'rp-units-group' });
     // NextGen (scale to zero) is chosen only through a collection group; without one it is Classic.
     t.knowledge.hasResourceProperties('AWS::OpenSearchServerless::CollectionGroup', {
-      Name: 'rp-units-group', Generation: 'NEXTGEN', StandbyReplicas: 'DISABLED',
+      Name: 'rp-units-group', Generation: 'NEXTGEN', StandbyReplicas: 'ENABLED',
       CapacityLimits: Match.objectLike({ MinIndexingCapacityInOcu: 0, MinSearchCapacityInOcu: 0 }),
     });
     t.knowledge.hasResourceProperties('AWS::Neptune::DBCluster', {

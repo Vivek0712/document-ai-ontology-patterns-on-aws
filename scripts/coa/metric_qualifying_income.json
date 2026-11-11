@@ -1,0 +1,30 @@
+{
+  "name": "qualifying_income",
+  "label": "Qualifying income",
+  "description": "Qualifying income for a lending package: the sum of W-2 Box 1 (Wages, tips, other compensation) for the latest tax year, per borrower, summed across the package's borrowers. Payslips and bank deposits corroborate and are never added. Governs fin:QualifyingIncome (operand concept fin:W2WagesBox1). Owner: COM305 lending data steward. Effective from 2026-11-11. Demo data is fictitious.",
+  "expression": {
+    "dialects": [
+      {
+        "dialect": "TRINO",
+        "expression": "SELECT CAST(SUM(w.amount_box1) AS DECIMAL(12,2)) AS qualifying_income FROM com305_coa_spike_lending.w2_box1 w WHERE w.package_id = :package_id AND w.tax_year = (SELECT MAX(x.tax_year) FROM com305_coa_spike_lending.w2_box1 x WHERE x.package_id = w.package_id AND x.borrower = w.borrower)"
+      }
+    ]
+  },
+  "sourceTable": "com305_coa_spike_lending.w2_box1",
+  "unit": "USD",
+  "returnType": "decimal",
+  "defaultTimeGrain": "YEAR",
+  "aiContext": {
+    "synonyms": [
+      "qualifying income",
+      "total income for a lending package"
+    ],
+    "instructions": "Bind package_id via options.dimensions and call with tierOverride 1. Latest tax year is chosen per borrower inside the SQL.",
+    "examples": [
+      "qualifying income"
+    ]
+  },
+  "ontologyConcepts": [
+    "urn:rp:ont:fin:QualifyingIncome"
+  ]
+}
