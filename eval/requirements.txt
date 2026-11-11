@@ -1,4 +1,4 @@
 # eval harness + operator scripts. Cognito SRP sign-in, same flow as the UI.
 pycognito==2024.5.1
 # moto's Cognito backend (scripts/lib/rp_ops/tests: seed users); requirements-dev pins moto without it
-joserfc>=1.0
+joserfc>=1.8.0
