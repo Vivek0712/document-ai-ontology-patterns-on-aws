@@ -1,0 +1,86 @@
+name: Bug report
+description: Something in this repository does not work as documented.
+title: "[bug] "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug.
+
+        **Before you submit:** remove AWS account ids, ARNs, access keys, endpoint URLs, Amazon Cognito ids,
+        profile names, e-mail addresses and any real document content from logs and screenshots.
+        Replace account ids with `000000000000`. Security issues go through SECURITY.md, not here.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Local pipeline / quickstart (no AWS)
+        - Pattern 1 - layout-aware extraction
+        - Pattern 2 - evidence units
+        - Pattern 3 - ontology-driven classification
+        - Pattern 4 - metadata at ingestion, filters inside the query
+        - Pattern 5 - resolve, retrieve, hop, assemble, cite (agent and tools)
+        - AWS CDK deploy / infrastructure
+        - Operator scripts (deploy, seed, pause, teardown)
+        - Web UI
+        - Evaluation
+        - Provenant use case
+        - Documentation
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: What did you see, and what did you expect to see?
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      description: The exact commands, starting from a fresh clone if you can. Use the fictitious sample data.
+      placeholder: |
+        make venv
+        make e2e-local PII=local
+        ...
+      render: shell
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Output or logs (redacted)
+      render: text
+  - type: input
+    id: version
+    attributes:
+      label: Version or commit
+      placeholder: v0.1.0 or a commit SHA
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: OS, Python, Node.js, AWS CDK CLI and AWS CLI versions. For AWS issues, the Region (no account id).
+      placeholder: |
+        OS: macOS 15 / Ubuntu 24.04
+        Python: 3.12.x
+        Node.js: 22.x
+        AWS CDK CLI: 2.x
+        Region: us-east-1
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: I removed account ids, credentials, endpoint ids and personal data from this report.
+          required: true
+        - label: I searched existing issues.
+          required: true

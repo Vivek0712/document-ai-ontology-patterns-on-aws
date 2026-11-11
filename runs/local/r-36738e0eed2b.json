@@ -1,0 +1,1009 @@
+{
+ "runId": "r-36738e0eed2b",
+ "createdAt": "2026-11-11T00:41:44.741Z",
+ "packageId": "pkg-quarterly-01",
+ "pipelineVersion": "2.3.1",
+ "question": "How many customer accounts did NewAge Global Fintech have at the end of Q3 FY2025?",
+ "callerSub": "local-dev-owner-0000",
+ "groups": [
+  "lending-analyst"
+ ],
+ "modelId": "us.anthropic.claude-sonnet-4-6",
+ "promptSha": "59984da199bb287de4b76a1d91bc0a5c27fde51028c39ffd04a33c3950a7d302",
+ "configSha": "a42731845bd93c07fb4e21644d86495b8349e4aa6e75014b90f547815ec35447",
+ "blockShas": {
+  "preprocessing": "40e8c03f17781382dcbcc29f7a0a84a8b1e9642cf92500d3980254a0cbd69a07",
+  "retrieval": "3587393d6f0d8c38adfaf6853c1463b54cc1ee872646ff354b3408da63dd586c",
+  "generation": "4731dca541739b7b91e53099ae45acb0f255c753e313bec48702fa79ecad436e",
+  "agent": "5ce789906365b6a0f9d139eba009f17b61d3113720a21c755e3f5be4459551f0"
+ },
+ "corpusHash": "4f9790b4a360d9ef57a232bb5ffd829704e5e2d07486c54522a00f9f83fd82b9",
+ "memoryRecordsInjected": 0,
+ "toolsEnabled": [
+  "search_units",
+  "graph_hop",
+  "get_region",
+  "doc_status"
+ ],
+ "toolCalls": [
+  {
+   "callId": "tooluse_aZuAEFmUZq2d87Y0jCNK5E",
+   "tool": "search_units",
+   "input": {
+    "query": "NewAge Global Fintech customer accounts end of Q3 FY2025"
+   },
+   "injected": {
+    "callerSub": "local-",
+    "groups": [
+     "lending-analyst"
+    ],
+    "pipelineVersion": "2.3.1",
+    "packageId": "pkg-quarterly-01",
+    "runId": "r-36738e0eed2b",
+    "via": "local-gateway"
+   },
+   "startedAt": "2026-11-11T00:41:48.625Z",
+   "ms": 324,
+   "status": "ok",
+   "output": {
+    "units": [
+     {
+      "rank": 1,
+      "unitId": "quarterly-report-q3-fy2025-ab5fea:2.3.1:eu-01",
+      "docId": "quarterly-report-q3-fy2025-ab5fea",
+      "fileName": "quarterly_report_q3_fy2025.pdf",
+      "unitType": "section_text",
+      "label": "Quarterly report · Quarterly Report · Q3 FY2025",
+      "docType": "doc:QuarterlyReport",
+      "breadcrumb": "Quarterly report Q3 FY2025",
+      "text": "NewAge Global Fintech\nQuarterly Report · Q3 FY2025\nFor the third quarter of fiscal year 2025",
+      "pages": [
+       1
+      ],
+      "pageWidth": 612.0,
+      "pageHeight": 792.0,
+      "bboxes": [
+       {
+        "page": 1,
+        "x0": 60.0,
+        "y0": 181.33,
+        "x1": 350.39,
+        "y1": 264.28
+       }
+      ],
+      "fields": [],
+      "period": "FY2025-Q3",
+      "piiFlag": "none",
+      "resolvable": true,
+      "scores": {
+       "denseRaw": 1.742479,
+       "bm25Raw": 6.576859,
+       "denseNorm": 1.0,
+       "bm25Norm": 1.0,
+       "fused": 1.0
+      }
+     },
+     {
+      "rank": 2,
+      "unitId": "quarterly-report-q3-fy2024-ab0f27:2.3.1:eu-01",
+      "docId": "quarterly-report-q3-fy2024-ab0f27",
+      "fileName": "quarterly_report_q3_fy2024.pdf",
+      "unitType": "section_text",
+      "label": "Quarterly report · Quarterly Report · Q3 FY2024",
+      "docType": "doc:QuarterlyReport",
+      "breadcrumb": "Quarterly report Q3 FY2024",
+      "text": "NewAge Global Fintech\nQuarterly Report · Q3 FY2024\nFor the third quarter of fiscal year 2024",
+      "pages": [
+       1
+      ],
+      "pageWidth": 612.0,
+      "pageHeight": 792.0,
+      "bboxes": [
+       {
+        "page": 1,
+        "x0": 60.0,
+        "y0": 181.33,
+        "x1": 350.39,
+        "y1": 264.28
+       }
+      ],
+      "fields": [],
+      "period": "FY2024-Q3",
+      "piiFlag": "none",
+      "resolvable": true,
+      "scores": {
+       "denseRaw": 1.702025,
+       "bm25Raw": 5.700132,
+       "denseNorm": 0.9068,
+       "bm25Norm": 0.8491,
+       "fused": 0.8895
+      }
+     },
+     {
+      "rank": 3,
+      "unitId": "quarterly-report-q3-fy2023-f6e6a3:2.3.1:eu-01",
+      "docId": "quarterly-report-q3-fy2023-f6e6a3",
+      "fileName": "quarterly_report_q3_fy2023.pdf",
+      "unitType": "section_text",
+      "label": "Quarterly report · Quarterly Report · Q3 FY2023",
+      "docType": "doc:QuarterlyReport",
+      "breadcrumb": "Quarterly report Q3 FY2023",
+      "text": "NewAge Global Fintech\nQuarterly Report · Q3 FY2023\nFor the third quarter of fiscal year 2023",
+      "pages": [
+       1
+      ],
+      "pageWidth": 612.0,
+      "pageHeight": 792.0,
+      "bboxes": [
+       {
+        "page": 1,
+        "x0": 60.0,
+        "y0": 181.33,
+        "x1": 350.39,
+        "y1": 264.28
+       }
+      ],
+      "fields": [],
+      "period": "FY2023-Q3",
+      "piiFlag": "none",
+      "resolvable": true,
+      "scores": {
+       "denseRaw": 1.686467,
+       "bm25Raw": 5.700132,
+       "denseNorm": 0.8709,
+       "bm25Norm": 0.8491,
+       "fused": 0.8644
+      }
+     },
+     {
+      "rank": 4,
+      "unitId": "quarterly-report-q3-fy2025-ab5fea:2.3.1:eu-04",
+      "docId": "quarterly-report-q3-fy2025-ab5fea",
+      "fileName": "quarterly_report_q3_fy2025.pdf",
+      "unitType": "section_text",
+      "label": "Quarterly report · 1.2 Customers",
+      "docType": "doc:QuarterlyReport",
+      "breadcrumb": "Quarterly report Q3 FY2025 › 1.2 Customers",
+      "text": "1.2 Customers\nCustomer accounts reached 2.4 million at the end of Q3 FY2025, with most new accounts opened through the mobile application.\nRisk management reviewed concentration limits across the lending book and found no breaches. The markets desk continued to serve corporate clients with hedging and short-term funding products.\nTreasury extended the maturity profile of wholesale funding during the period. Customer complaints fell compared with the prior quarter after changes to dispute handling.\nCost discipline remained a priority, and discretionary spending was held flat. The markets desk continued to serve corporate clients with hedging and short-term funding products.\nThe group continued to simplify its legal entity structure where this reduces operating cost. Investment in fraud analytics focused on earlier detection of account takeover patterns.\nTreasury extended the maturity profile of wholesale funding during the period. Technology spending shifted from new builds towards reliability work on existing services.\nRisk management reviewed concentration limits across the lending book and found no breaches. The group kept its funding mix stable, with customer deposits remaining the primary source of liquidity.",
+      "pages": [
+       3,
+       4
+      ],
+      "pageWidth": 612.0,
+      "pageHeight": 792.0,
+      "bboxes": [
+       {
+        "page": 3,
+        "x0": 60.0,
+        "y0": 75.38,
+        "x1": 546.36,
+        "y1": 192.37
+       },
+       {
+        "page": 4,
+        "x0": 60.0,
+        "y0": 76.82,
+        "x1": 546.88,
+        "y1": 204.57
+       }
+      ],
+      "fields": [],
+      "period": "FY2025-Q3",
+      "piiFlag": "none",
+      "resolvable": true,
+      "scores": {
+       "denseRaw": 1.563512,
+       "bm25Raw": 3.452013,
+       "denseNorm": 0.5876,
+       "bm25Norm": 0.4623,
+       "fused": 0.55
+      }
+     },
+     {
+      "rank": 5,
+      "unitId": "quarterly-report-q3-fy2023-f6e6a3:2.3.1:eu-04",
+      "docId": "quarterly-report-q3-fy2023-f6e6a3",
+      "fileName": "quarterly_report_q3_fy2023.pdf",
+      "unitType": "section_text",
+      "label": "Quarterly report · 1.2 Customers",
+      "docType": "doc:QuarterlyReport",
+      "breadcrumb": "Quarterly report Q3 FY2023 › 1.2 Customers",
+      "text": "1.2 Customers\nCustomer accounts reached 1.5 million at the end of Q3 FY2023, with most new accounts opened through the mobile application.\nStaff training covered the revised conduct framework and the new incident reporting procedure. Treasury extended the maturity profile of wholesale funding during the period.\nRisk management reviewed concentration limits across the lending book and found no breaches. Investment in fraud analytics focused on earlier detection of account takeover patterns.\nRisk management reviewed concentration limits across the lending book and found no breaches. Data platform work concentrated on lineage, so that every reported figure can be traced to its source.\nThe group kept its funding mix stable, with customer deposits remaining the primary source of liquidity. The group continued to simplify its legal entity structure where this reduces operating cost.\nRegional teams harmonised product terms so that customers see one fee schedule in every market. Operating teams completed the migration of merchant onboarding to the shared identity service.\nStaff training covered the revised conduct framework and the new incident reporting procedure. Cost discipline remained a priority, and discretionary spending was held flat.",
+      "pages": [
+       3,
+       4
+      ],
+      "pageWidth": 612.0,
+      "pageHeight": 792.0,
+      "bboxes": [
+       {
+        "page": 3,
+        "x0": 60.0,
+        "y0": 75.38,
+        "x1": 550.22,
+        "y1": 192.37
+       },
+       {
+        "page": 4,
+        "x0": 60.0,
+        "y0": 76.82,
+        "x1": 550.77,
+        "y1": 204.57
+       }
+      ],
+      "fields": [],
+      "period": "FY2023-Q3",
+      "piiFlag": "none",
+      "resolvable": true,
+      "scores": {
+       "denseRaw": 1.527619,
+       "bm25Raw": 2.80376,
+       "denseNorm": 0.5049,
+       "bm25Norm": 0.3508,
+       "fused": 0.4587
+      }
+     }
+    ],
+    "query": {
+     "index": "units-v2-3-1",
+     "k": 5,
+     "subQueryK": 20,
+     "weights": {
+      "dense": 0.7,
+      "bm25": 0.3
+     },
+     "normalization": "min_max",
+     "filter": {
+      "bool": {
+       "filter": [
+        {
+         "terms": {
+          "allowedPrincipals": [
+           "user:local-dev-owner-0000",
+           "group:lending-analyst"
+          ]
+         }
+        },
+        {
+         "term": {
+          "packageId": "pkg-quarterly-01"
+         }
+        },
+        {
+         "term": {
+          "pipelineVersion": "2.3.1"
+         }
+        }
+       ],
+       "must_not": [
+        {
+         "term": {
+          "piiFlag": "held"
+         }
+        }
+       ]
+      }
+     },
+     "embedModel": "amazon.titan-embed-text-v2:0"
+    },
+    "latencyMs": 323
+   }
+  },
+  {
+   "callId": "tooluse_kuJENxProsZY5SHpSGAx1g",
+   "tool": "search_units",
+   "input": {
+    "query": "total customer accounts Q3 2025"
+   },
+   "injected": {
+    "callerSub": "local-",
+    "groups": [
+     "lending-analyst"
+    ],
+    "pipelineVersion": "2.3.1",
+    "packageId": "pkg-quarterly-01",
+    "runId": "r-36738e0eed2b",
+    "via": "local-gateway"
+   },
+   "startedAt": "2026-11-11T00:41:48.625Z",
+   "ms": 377,
+   "status": "ok",
+   "output": {
+    "units": [
+     {
+      "rank": 1,
+      "unitId": "quarterly-report-q3-fy2025-ab5fea:2.3.1:eu-04",
+      "docId": "quarterly-report-q3-fy2025-ab5fea",
+      "fileName": "quarterly_report_q3_fy2025.pdf",
+      "unitType": "section_text",
+      "label": "Quarterly report · 1.2 Customers",
+      "docType": "doc:QuarterlyReport",
+      "breadcrumb": "Quarterly report Q3 FY2025 › 1.2 Customers",
+      "text": "1.2 Customers\nCustomer accounts reached 2.4 million at the end of Q3 FY2025, with most new accounts opened through the mobile application.\nRisk management reviewed concentration limits across the lending book and found no breaches. The markets desk continued to serve corporate clients with hedging and short-term funding products.\nTreasury extended the maturity profile of wholesale funding during the period. Customer complaints fell compared with the prior quarter after changes to dispute handling.\nCost discipline remained a priority, and discretionary spending was held flat. The markets desk continued to serve corporate clients with hedging and short-term funding products.\nThe group continued to simplify its legal entity structure where this reduces operating cost. Investment in fraud analytics focused on earlier detection of account takeover patterns.\nTreasury extended the maturity profile of wholesale funding during the period. Technology spending shifted from new builds towards reliability work on existing services.\nRisk management reviewed concentration limits across the lending book and found no breaches. The group kept its funding mix stable, with customer deposits remaining the primary source of liquidity.",
+      "pages": [
+       3,
+       4
+      ],
+      "pageWidth": 612.0,
+      "pageHeight": 792.0,
+      "bboxes": [
+       {
+        "page": 3,
+        "x0": 60.0,
+        "y0": 75.38,
+        "x1": 546.36,
+        "y1": 192.37
+       },
+       {
+        "page": 4,
+        "x0": 60.0,
+        "y0": 76.82,
+        "x1": 546.88,
+        "y1": 204.57
+       }
+      ],
+      "fields": [],
+      "period": "FY2025-Q3",
+      "piiFlag": "none",
+      "resolvable": true,
+      "scores": {
+       "denseRaw": 1.69969,
+       "bm25Raw": 1.794409,
+       "denseNorm": 1.0,
+       "bm25Norm": 0.6939,
+       "fused": 0.9082
+      }
+     },
+     {
+      "rank": 2,
+      "unitId": "quarterly-report-q3-fy2023-f6e6a3:2.3.1:eu-04",
+      "docId": "quarterly-report-q3-fy2023-f6e6a3",
+      "fileName": "quarterly_report_q3_fy2023.pdf",
+      "unitType": "section_text",
+      "label": "Quarterly report · 1.2 Customers",
+      "docType": "doc:QuarterlyReport",
+      "breadcrumb": "Quarterly report Q3 FY2023 › 1.2 Customers",
+      "text": "1.2 Customers\nCustomer accounts reached 1.5 million at the end of Q3 FY2023, with most new accounts opened through the mobile application.\nStaff training covered the revised conduct framework and the new incident reporting procedure. Treasury extended the maturity profile of wholesale funding during the period.\nRisk management reviewed concentration limits across the lending book and found no breaches. Investment in fraud analytics focused on earlier detection of account takeover patterns.\nRisk management reviewed concentration limits across the lending book and found no breaches. Data platform work concentrated on lineage, so that every reported figure can be traced to its source.\nThe group kept its funding mix stable, with customer deposits remaining the primary source of liquidity. The group continued to simplify its legal entity structure where this reduces operating cost.\nRegional teams harmonised product terms so that customers see one fee schedule in every market. Operating teams completed the migration of merchant onboarding to the shared identity service.\nStaff training covered the revised conduct framework and the new incident reporting procedure. Cost discipline remained a priority, and discretionary spending was held flat.",
+      "pages": [
+       3,
+       4
+      ],
+      "pageWidth": 612.0,
+      "pageHeight": 792.0,
+      "bboxes": [
+       {
+        "page": 3,
+        "x0": 60.0,
+        "y0": 75.38,
+        "x1": 550.22,
+        "y1": 192.37
+       },
+       {
+        "page": 4,
+        "x0": 60.0,
+        "y0": 76.82,
+        "x1": 550.77,
+        "y1": 204.57
+       }
+      ],
+      "fields": [],
+      "period": "FY2023-Q3",
+      "piiFlag": "none",
+      "resolvable": true,
+      "scores": {
+       "denseRaw": 1.64198,
+       "bm25Raw": 1.694564,
+       "denseNorm": 0.8498,
+       "bm25Norm": 0.6431,
+       "fused": 0.7878
+      }
+     },
+     {
+      "rank": 3,
+      "unitId": "quarterly-report-q3-fy2024-ab0f27:2.3.1:eu-04",
+      "docId": "quarterly-report-q3-fy2024-ab0f27",
+      "fileName": "quarterly_report_q3_fy2024.pdf",
+      "unitType": "section_text",
+      "label": "Quarterly report · 1.2 Customers",
+      "docType": "doc:QuarterlyReport",
+      "breadcrumb": "Quarterly report Q3 FY2024 › 1.2 Customers",
+      "text": "1.2 Customers\nCustomer accounts reached 1.6 million at the end of Q3 FY2024, with most new accounts opened through the mobile application.\nRegional teams harmonised product terms so that customers see one fee schedule in every market. Customer complaints fell compared with the prior quarter after changes to dispute handling.\nCost discipline remained a priority, and discretionary spending was held flat. The compliance function completed its annual review of sanctions screening controls.\nInvestment in fraud analytics focused on earlier detection of account takeover patterns. Risk management reviewed concentration limits across the lending book and found no breaches.\nData platform work concentrated on lineage, so that every reported figure can be traced to its source. The group kept its funding mix stable, with customer deposits remaining the primary source of liquidity.\nStaff training covered the revised conduct framework and the new incident reporting procedure. Regional teams harmonised product terms so that customers see one fee schedule in every market.\nThe board approved the updated capital plan and the dividend policy remained unchanged. Customer research informed changes to the mobile application's statement and document views.",
+      "pages": [
+       3,
+       4
+      ],
+      "pageWidth": 612.0,
+      "pageHeight": 792.0,
+      "bboxes": [
+       {
+        "page": 3,
+        "x0": 60.0,
+        "y0": 75.38,
+        "x1": 547.97,
+        "y1": 192.37
+       },
+       {
+        "page": 4,
+        "x0": 60.0,
+        "y0": 76.82,
+        "x1": 550.81,
+        "y1": 204.57
+       }
+      ],
+      "fields": [],
+      "period": "FY2024-Q3",
+      "piiFlag": "none",
+      "resolvable": true,
+      "scores": {
+       "denseRaw": 1.60208,
+       "bm25Raw": 1.828241,
+       "denseNorm": 0.746,
+       "bm25Norm": 0.7111,
+       "fused": 0.7355
+      }
+     },
+     {
+      "rank": 4,
+      "unitId": "quarterly-report-q3-fy2025-ab5fea:2.3.1:eu-01",
+      "docId": "quarterly-report-q3-fy2025-ab5fea",
+      "fileName": "quarterly_report_q3_fy2025.pdf",
+      "unitType": "section_text",
+      "label": "Quarterly report · Quarterly Report · Q3 FY2025",
+      "docType": "doc:QuarterlyReport",
+      "breadcrumb": "Quarterly report Q3 FY2025",
+      "text": "NewAge Global Fintech\nQuarterly Report · Q3 FY2025\nFor the third quarter of fiscal year 2025",
+      "pages": [
+       1
+      ],
+      "pageWidth": 612.0,
+      "pageHeight": 792.0,
+      "bboxes": [
+       {
+        "page": 1,
+        "x0": 60.0,
+        "y0": 181.33,
+        "x1": 350.39,
+        "y1": 264.28
+       }
+      ],
+      "fields": [],
+      "period": "FY2025-Q3",
+      "piiFlag": "none",
+      "resolvable": true,
+      "scores": {
+       "denseRaw": 1.392455,
+       "bm25Raw": 2.396574,
+       "denseNorm": 0.2004,
+       "bm25Norm": 1.0,
+       "fused": 0.4403
+      }
+     },
+     {
+      "rank": 5,
+      "unitId": "quarterly-report-q3-fy2025-ab5fea:2.3.1:eu-13",
+      "docId": "quarterly-report-q3-fy2025-ab5fea",
+      "fileName": "quarterly_report_q3_fy2025.pdf",
+      "unitType": "table_panel",
+      "label": "Quarterly report · 3.4 Revenue by quarter",
+      "docType": "doc:QuarterlyReport",
+      "breadcrumb": "Quarterly report Q3 FY2025 › 3.4 Revenue by quarter",
+      "text": "The table below sets out total revenue for each quarter of the fiscal year.\nQuarter │ Total revenue\nQ1 FY2025 │ 4,120\nQ2 FY2025 │ 4,455\nQ3 FY2025 │ 4,890\nQ4 FY2025 │ 5,010 1\nTable 3 · Total revenue · USD millions\n1 Q4 figures are preliminary.",
+      "pages": [
+       14
+      ],
+      "pageWidth": 612.0,
+      "pageHeight": 792.0,
+      "bboxes": [
+       {
+        "page": 14,
+        "x0": 52.97,
+        "y0": 99.62,
+        "x1": 553.01,
+        "y1": 261.96
+       }
+      ],
+      "fields": [
+       {
+        "fieldId": "f-q1-fy2025-total-revenue",
+        "label": "Q1 FY2025 · Total revenue",
+        "value": "4,120",
+        "valueNumber": "4120.00",
+        "period": "FY2025-Q3",
+        "page": 14,
+        "bbox": {
+         "page": 14,
+         "x0": 60.0,
+         "y0": 169.47,
+         "x1": 299.54,
+         "y1": 178.27
+        }
+       },
+       {
+        "fieldId": "f-q2-fy2025-total-revenue",
+        "label": "Q2 FY2025 · Total revenue",
+        "value": "4,455",
+        "valueNumber": "4455.00",
+        "period": "FY2025-Q3",
+        "page": 14,
+        "bbox": {
+         "page": 14,
+         "x0": 60.0,
+         "y0": 189.48,
+         "x1": 299.62,
+         "y1": 198.27
+        }
+       },
+       {
+        "fieldId": "f-q3-fy2025-total-revenue",
+        "label": "Q3 FY2025 · Total revenue",
+        "value": "4,890",
+        "valueNumber": "4890.00",
+        "period": "FY2025-Q3",
+        "page": 14,
+        "bbox": {
+         "page": 14,
+         "x0": 60.0,
+         "y0": 209.47,
+         "x1": 299.54,
+         "y1": 218.27
+        }
+       },
+       {
+        "fieldId": "f-q4-fy2025-total-revenue",
+        "label": "Q4 FY2025 · Total revenue",
+        "value": "5,010",
+        "valueNumber": "5010.00",
+        "period": "FY2025-Q3",
+        "page": 14,
+        "bbox": {
+         "page": 14,
+         "x0": 60.0,
+         "y0": 229.47,
+         "x1": 299.54,
+         "y1": 238.27
+        }
+       }
+      ],
+      "period": "FY2025-Q3",
+      "piiFlag": "none",
+      "resolvable": true,
+      "scores": {
+       "denseRaw": 1.31716,
+       "bm25Raw": 1.659325,
+       "denseNorm": 0.0044,
+       "bm25Norm": 0.6252,
+       "fused": 0.1906
+      }
+     }
+    ],
+    "query": {
+     "index": "units-v2-3-1",
+     "k": 5,
+     "subQueryK": 20,
+     "weights": {
+      "dense": 0.7,
+      "bm25": 0.3
+     },
+     "normalization": "min_max",
+     "filter": {
+      "bool": {
+       "filter": [
+        {
+         "terms": {
+          "allowedPrincipals": [
+           "user:local-dev-owner-0000",
+           "group:lending-analyst"
+          ]
+         }
+        },
+        {
+         "term": {
+          "packageId": "pkg-quarterly-01"
+         }
+        },
+        {
+         "term": {
+          "pipelineVersion": "2.3.1"
+         }
+        }
+       ],
+       "must_not": [
+        {
+         "term": {
+          "piiFlag": "held"
+         }
+        }
+       ]
+      }
+     },
+     "embedModel": "amazon.titan-embed-text-v2:0"
+    },
+    "latencyMs": 376
+   }
+  }
+ ],
+ "retrieved": [
+  {
+   "rank": 1,
+   "unitId": "quarterly-report-q3-fy2025-ab5fea:2.3.1:eu-01",
+   "docId": "quarterly-report-q3-fy2025-ab5fea",
+   "fileName": "quarterly_report_q3_fy2025.pdf",
+   "unitType": "section_text",
+   "label": "Quarterly report · Quarterly Report · Q3 FY2025",
+   "docType": "doc:QuarterlyReport",
+   "breadcrumb": "Quarterly report Q3 FY2025",
+   "text": "NewAge Global Fintech\nQuarterly Report · Q3 FY2025\nFor the third quarter of fiscal year 2025",
+   "pages": [
+    1
+   ],
+   "pageWidth": 612.0,
+   "pageHeight": 792.0,
+   "bboxes": [
+    {
+     "page": 1,
+     "x0": 60.0,
+     "y0": 181.33,
+     "x1": 350.39,
+     "y1": 264.28
+    }
+   ],
+   "fields": [],
+   "period": "FY2025-Q3",
+   "piiFlag": "none",
+   "resolvable": true,
+   "scores": {
+    "denseRaw": 1.742479,
+    "bm25Raw": 6.576859,
+    "denseNorm": 1.0,
+    "bm25Norm": 1.0,
+    "fused": 1.0
+   }
+  },
+  {
+   "rank": 2,
+   "unitId": "quarterly-report-q3-fy2024-ab0f27:2.3.1:eu-01",
+   "docId": "quarterly-report-q3-fy2024-ab0f27",
+   "fileName": "quarterly_report_q3_fy2024.pdf",
+   "unitType": "section_text",
+   "label": "Quarterly report · Quarterly Report · Q3 FY2024",
+   "docType": "doc:QuarterlyReport",
+   "breadcrumb": "Quarterly report Q3 FY2024",
+   "text": "NewAge Global Fintech\nQuarterly Report · Q3 FY2024\nFor the third quarter of fiscal year 2024",
+   "pages": [
+    1
+   ],
+   "pageWidth": 612.0,
+   "pageHeight": 792.0,
+   "bboxes": [
+    {
+     "page": 1,
+     "x0": 60.0,
+     "y0": 181.33,
+     "x1": 350.39,
+     "y1": 264.28
+    }
+   ],
+   "fields": [],
+   "period": "FY2024-Q3",
+   "piiFlag": "none",
+   "resolvable": true,
+   "scores": {
+    "denseRaw": 1.702025,
+    "bm25Raw": 5.700132,
+    "denseNorm": 0.9068,
+    "bm25Norm": 0.8491,
+    "fused": 0.8895
+   }
+  },
+  {
+   "rank": 3,
+   "unitId": "quarterly-report-q3-fy2023-f6e6a3:2.3.1:eu-01",
+   "docId": "quarterly-report-q3-fy2023-f6e6a3",
+   "fileName": "quarterly_report_q3_fy2023.pdf",
+   "unitType": "section_text",
+   "label": "Quarterly report · Quarterly Report · Q3 FY2023",
+   "docType": "doc:QuarterlyReport",
+   "breadcrumb": "Quarterly report Q3 FY2023",
+   "text": "NewAge Global Fintech\nQuarterly Report · Q3 FY2023\nFor the third quarter of fiscal year 2023",
+   "pages": [
+    1
+   ],
+   "pageWidth": 612.0,
+   "pageHeight": 792.0,
+   "bboxes": [
+    {
+     "page": 1,
+     "x0": 60.0,
+     "y0": 181.33,
+     "x1": 350.39,
+     "y1": 264.28
+    }
+   ],
+   "fields": [],
+   "period": "FY2023-Q3",
+   "piiFlag": "none",
+   "resolvable": true,
+   "scores": {
+    "denseRaw": 1.686467,
+    "bm25Raw": 5.700132,
+    "denseNorm": 0.8709,
+    "bm25Norm": 0.8491,
+    "fused": 0.8644
+   }
+  },
+  {
+   "rank": 4,
+   "unitId": "quarterly-report-q3-fy2025-ab5fea:2.3.1:eu-04",
+   "docId": "quarterly-report-q3-fy2025-ab5fea",
+   "fileName": "quarterly_report_q3_fy2025.pdf",
+   "unitType": "section_text",
+   "label": "Quarterly report · 1.2 Customers",
+   "docType": "doc:QuarterlyReport",
+   "breadcrumb": "Quarterly report Q3 FY2025 › 1.2 Customers",
+   "text": "1.2 Customers\nCustomer accounts reached 2.4 million at the end of Q3 FY2025, with most new accounts opened through the mobile application.\nRisk management reviewed concentration limits across the lending book and found no breaches. The markets desk continued to serve corporate clients with hedging and short-term funding products.\nTreasury extended the maturity profile of wholesale funding during the period. Customer complaints fell compared with the prior quarter after changes to dispute handling.\nCost discipline remained a priority, and discretionary spending was held flat. The markets desk continued to serve corporate clients with hedging and short-term funding products.\nThe group continued to simplify its legal entity structure where this reduces operating cost. Investment in fraud analytics focused on earlier detection of account takeover patterns.\nTreasury extended the maturity profile of wholesale funding during the period. Technology spending shifted from new builds towards reliability work on existing services.\nRisk management reviewed concentration limits across the lending book and found no breaches. The group kept its funding mix stable, with customer deposits remaining the primary source of liquidity.",
+   "pages": [
+    3,
+    4
+   ],
+   "pageWidth": 612.0,
+   "pageHeight": 792.0,
+   "bboxes": [
+    {
+     "page": 3,
+     "x0": 60.0,
+     "y0": 75.38,
+     "x1": 546.36,
+     "y1": 192.37
+    },
+    {
+     "page": 4,
+     "x0": 60.0,
+     "y0": 76.82,
+     "x1": 546.88,
+     "y1": 204.57
+    }
+   ],
+   "fields": [],
+   "period": "FY2025-Q3",
+   "piiFlag": "none",
+   "resolvable": true,
+   "scores": {
+    "denseRaw": 1.563512,
+    "bm25Raw": 3.452013,
+    "denseNorm": 0.5876,
+    "bm25Norm": 0.4623,
+    "fused": 0.55
+   }
+  },
+  {
+   "rank": 5,
+   "unitId": "quarterly-report-q3-fy2023-f6e6a3:2.3.1:eu-04",
+   "docId": "quarterly-report-q3-fy2023-f6e6a3",
+   "fileName": "quarterly_report_q3_fy2023.pdf",
+   "unitType": "section_text",
+   "label": "Quarterly report · 1.2 Customers",
+   "docType": "doc:QuarterlyReport",
+   "breadcrumb": "Quarterly report Q3 FY2023 › 1.2 Customers",
+   "text": "1.2 Customers\nCustomer accounts reached 1.5 million at the end of Q3 FY2023, with most new accounts opened through the mobile application.\nStaff training covered the revised conduct framework and the new incident reporting procedure. Treasury extended the maturity profile of wholesale funding during the period.\nRisk management reviewed concentration limits across the lending book and found no breaches. Investment in fraud analytics focused on earlier detection of account takeover patterns.\nRisk management reviewed concentration limits across the lending book and found no breaches. Data platform work concentrated on lineage, so that every reported figure can be traced to its source.\nThe group kept its funding mix stable, with customer deposits remaining the primary source of liquidity. The group continued to simplify its legal entity structure where this reduces operating cost.\nRegional teams harmonised product terms so that customers see one fee schedule in every market. Operating teams completed the migration of merchant onboarding to the shared identity service.\nStaff training covered the revised conduct framework and the new incident reporting procedure. Cost discipline remained a priority, and discretionary spending was held flat.",
+   "pages": [
+    3,
+    4
+   ],
+   "pageWidth": 612.0,
+   "pageHeight": 792.0,
+   "bboxes": [
+    {
+     "page": 3,
+     "x0": 60.0,
+     "y0": 75.38,
+     "x1": 550.22,
+     "y1": 192.37
+    },
+    {
+     "page": 4,
+     "x0": 60.0,
+     "y0": 76.82,
+     "x1": 550.77,
+     "y1": 204.57
+    }
+   ],
+   "fields": [],
+   "period": "FY2023-Q3",
+   "piiFlag": "none",
+   "resolvable": true,
+   "scores": {
+    "denseRaw": 1.527619,
+    "bm25Raw": 2.80376,
+    "denseNorm": 0.5049,
+    "bm25Norm": 0.3508,
+    "fused": 0.4587
+   }
+  },
+  {
+   "rank": 3,
+   "unitId": "quarterly-report-q3-fy2024-ab0f27:2.3.1:eu-04",
+   "docId": "quarterly-report-q3-fy2024-ab0f27",
+   "fileName": "quarterly_report_q3_fy2024.pdf",
+   "unitType": "section_text",
+   "label": "Quarterly report · 1.2 Customers",
+   "docType": "doc:QuarterlyReport",
+   "breadcrumb": "Quarterly report Q3 FY2024 › 1.2 Customers",
+   "text": "1.2 Customers\nCustomer accounts reached 1.6 million at the end of Q3 FY2024, with most new accounts opened through the mobile application.\nRegional teams harmonised product terms so that customers see one fee schedule in every market. Customer complaints fell compared with the prior quarter after changes to dispute handling.\nCost discipline remained a priority, and discretionary spending was held flat. The compliance function completed its annual review of sanctions screening controls.\nInvestment in fraud analytics focused on earlier detection of account takeover patterns. Risk management reviewed concentration limits across the lending book and found no breaches.\nData platform work concentrated on lineage, so that every reported figure can be traced to its source. The group kept its funding mix stable, with customer deposits remaining the primary source of liquidity.\nStaff training covered the revised conduct framework and the new incident reporting procedure. Regional teams harmonised product terms so that customers see one fee schedule in every market.\nThe board approved the updated capital plan and the dividend policy remained unchanged. Customer research informed changes to the mobile application's statement and document views.",
+   "pages": [
+    3,
+    4
+   ],
+   "pageWidth": 612.0,
+   "pageHeight": 792.0,
+   "bboxes": [
+    {
+     "page": 3,
+     "x0": 60.0,
+     "y0": 75.38,
+     "x1": 547.97,
+     "y1": 192.37
+    },
+    {
+     "page": 4,
+     "x0": 60.0,
+     "y0": 76.82,
+     "x1": 550.81,
+     "y1": 204.57
+    }
+   ],
+   "fields": [],
+   "period": "FY2024-Q3",
+   "piiFlag": "none",
+   "resolvable": true,
+   "scores": {
+    "denseRaw": 1.60208,
+    "bm25Raw": 1.828241,
+    "denseNorm": 0.746,
+    "bm25Norm": 0.7111,
+    "fused": 0.7355
+   }
+  },
+  {
+   "rank": 5,
+   "unitId": "quarterly-report-q3-fy2025-ab5fea:2.3.1:eu-13",
+   "docId": "quarterly-report-q3-fy2025-ab5fea",
+   "fileName": "quarterly_report_q3_fy2025.pdf",
+   "unitType": "table_panel",
+   "label": "Quarterly report · 3.4 Revenue by quarter",
+   "docType": "doc:QuarterlyReport",
+   "breadcrumb": "Quarterly report Q3 FY2025 › 3.4 Revenue by quarter",
+   "text": "The table below sets out total revenue for each quarter of the fiscal year.\nQuarter │ Total revenue\nQ1 FY2025 │ 4,120\nQ2 FY2025 │ 4,455\nQ3 FY2025 │ 4,890\nQ4 FY2025 │ 5,010 1\nTable 3 · Total revenue · USD millions\n1 Q4 figures are preliminary.",
+   "pages": [
+    14
+   ],
+   "pageWidth": 612.0,
+   "pageHeight": 792.0,
+   "bboxes": [
+    {
+     "page": 14,
+     "x0": 52.97,
+     "y0": 99.62,
+     "x1": 553.01,
+     "y1": 261.96
+    }
+   ],
+   "fields": [
+    {
+     "fieldId": "f-q1-fy2025-total-revenue",
+     "label": "Q1 FY2025 · Total revenue",
+     "value": "4,120",
+     "valueNumber": "4120.00",
+     "period": "FY2025-Q3",
+     "page": 14,
+     "bbox": {
+      "page": 14,
+      "x0": 60.0,
+      "y0": 169.47,
+      "x1": 299.54,
+      "y1": 178.27
+     }
+    },
+    {
+     "fieldId": "f-q2-fy2025-total-revenue",
+     "label": "Q2 FY2025 · Total revenue",
+     "value": "4,455",
+     "valueNumber": "4455.00",
+     "period": "FY2025-Q3",
+     "page": 14,
+     "bbox": {
+      "page": 14,
+      "x0": 60.0,
+      "y0": 189.48,
+      "x1": 299.62,
+      "y1": 198.27
+     }
+    },
+    {
+     "fieldId": "f-q3-fy2025-total-revenue",
+     "label": "Q3 FY2025 · Total revenue",
+     "value": "4,890",
+     "valueNumber": "4890.00",
+     "period": "FY2025-Q3",
+     "page": 14,
+     "bbox": {
+      "page": 14,
+      "x0": 60.0,
+      "y0": 209.47,
+      "x1": 299.54,
+      "y1": 218.27
+     }
+    },
+    {
+     "fieldId": "f-q4-fy2025-total-revenue",
+     "label": "Q4 FY2025 · Total revenue",
+     "value": "5,010",
+     "valueNumber": "5010.00",
+     "period": "FY2025-Q3",
+     "page": 14,
+     "bbox": {
+      "page": 14,
+      "x0": 60.0,
+      "y0": 229.47,
+      "x1": 299.54,
+      "y1": 238.27
+     }
+    }
+   ],
+   "period": "FY2025-Q3",
+   "piiFlag": "none",
+   "resolvable": true,
+   "scores": {
+    "denseRaw": 1.31716,
+    "bm25Raw": 1.659325,
+    "denseNorm": 0.0044,
+    "bm25Norm": 0.6252,
+    "fused": 0.1906
+   }
+  }
+ ],
+ "retrievedText": [
+  "NewAge Global Fintech\nQuarterly Report · Q3 FY2025\nFor the third quarter of fiscal year 2025",
+  "NewAge Global Fintech\nQuarterly Report · Q3 FY2024\nFor the third quarter of fiscal year 2024",
+  "NewAge Global Fintech\nQuarterly Report · Q3 FY2023\nFor the third quarter of fiscal year 2023",
+  "1.2 Customers\nCustomer accounts reached 2.4 million at the end of Q3 FY2025, with most new accounts opened through the mobile application.\nRisk management reviewed concentration limits across the lending book and found no breaches. The markets desk continued to serve corporate clients with hedging and short-term funding products.\nTreasury extended the maturity profile of wholesale funding during the period. Customer complaints fell compared with the prior quarter after changes to dispute handling.\nCost discipline remained a priority, and discretionary spending was held flat. The markets desk continued to serve corporate clients with hedging and short-term funding products.\nThe group continued to simplify its legal entity structure where this reduces operating cost. Investment in fraud analytics focused on earlier detection of account takeover patterns.\nTreasury extended the maturity profile of wholesale funding during the period. Technology spending shifted from new builds towards reliability work on existing services.\nRisk management reviewed concentration limits across the lending book and found no breaches. The group kept its funding mix stable, with customer deposits remaining the primary source of liquidity.",
+  "1.2 Customers\nCustomer accounts reached 1.5 million at the end of Q3 FY2023, with most new accounts opened through the mobile application.\nStaff training covered the revised conduct framework and the new incident reporting procedure. Treasury extended the maturity profile of wholesale funding during the period.\nRisk management reviewed concentration limits across the lending book and found no breaches. Investment in fraud analytics focused on earlier detection of account takeover patterns.\nRisk management reviewed concentration limits across the lending book and found no breaches. Data platform work concentrated on lineage, so that every reported figure can be traced to its source.\nThe group kept its funding mix stable, with customer deposits remaining the primary source of liquidity. The group continued to simplify its legal entity structure where this reduces operating cost.\nRegional teams harmonised product terms so that customers see one fee schedule in every market. Operating teams completed the migration of merchant onboarding to the shared identity service.\nStaff training covered the revised conduct framework and the new incident reporting procedure. Cost discipline remained a priority, and discretionary spending was held flat.",
+  "1.2 Customers\nCustomer accounts reached 1.6 million at the end of Q3 FY2024, with most new accounts opened through the mobile application.\nRegional teams harmonised product terms so that customers see one fee schedule in every market. Customer complaints fell compared with the prior quarter after changes to dispute handling.\nCost discipline remained a priority, and discretionary spending was held flat. The compliance function completed its annual review of sanctions screening controls.\nInvestment in fraud analytics focused on earlier detection of account takeover patterns. Risk management reviewed concentration limits across the lending book and found no breaches.\nData platform work concentrated on lineage, so that every reported figure can be traced to its source. The group kept its funding mix stable, with customer deposits remaining the primary source of liquidity.\nStaff training covered the revised conduct framework and the new incident reporting procedure. Regional teams harmonised product terms so that customers see one fee schedule in every market.\nThe board approved the updated capital plan and the dividend policy remained unchanged. Customer research informed changes to the mobile application's statement and document views.",
+  "The table below sets out total revenue for each quarter of the fiscal year.\nQuarter │ Total revenue\nQ1 FY2025 │ 4,120\nQ2 FY2025 │ 4,455\nQ3 FY2025 │ 4,890\nQ4 FY2025 │ 5,010 1\nTable 3 · Total revenue · USD millions\n1 Q4 figures are preliminary."
+ ],
+ "answer": {
+  "answer": "According to section 1.2 Customers of the Q3 FY2025 Quarterly Report, NewAge Global Fintech had 2.4 million customer accounts at the end of Q3 FY2025, with most new accounts opened through the mobile application.",
+  "claims": [],
+  "caveats": [
+   "The figure '2.4 million' appears only as prose text in unit quarterly-report-q3-fy2025-ab5fea:2.3.1:eu-04, which has no structured fields. The citation system requires a fieldId-level citation for numeric values, and no such field was returned by the tools for this figure. The figure cannot be formally cited under the required citation rules."
+  ],
+  "citationRetries": 1,
+  "uncitedNumbers": [
+   "1.2",
+   "2.4"
+  ]
+ },
+ "usage": {
+  "inputTokens": 17300,
+  "outputTokens": 629,
+  "totalTokens": 17929
+ },
+ "latencyMs": 16440,
+ "status": "ok",
+ "s3Key": "runs/r-36738e0eed2b.json",
+ "provenance": {
+  "mode": "local-run",
+  "label": "local run · Bedrock",
+  "note": "Asked on a developer machine against the local pipeline's outputs; not the deployed AWS stack.",
+  "build": "build/e2e-quarterly",
+  "model": "Amazon Bedrock Converse (real)",
+  "embeddings": "amazon.titan-embed-text-v2:0 (real Bedrock; responses recorded)",
+  "index": "in-memory k-NN (exact inner product) + BM25 (Lucene formula) over the run's units; NOT OpenSearch",
+  "graph": "pyoxigraph in-process (NOT Amazon Neptune)",
+  "stores": "moto (S3, DynamoDB) loaded from the run's world snapshot",
+  "piiGate": "Amazon Comprehend DetectPiiEntities (real; responses recorded) (runs/local/recorded/comprehend.json)",
+  "extraction": "docling 2.145.0 (local, dev mode)",
+  "scanPages": "local Docling OCR shaped as a Textract response (NOT Amazon Textract)",
+  "phaseBEmbeddings": "amazon.titan-embed-text-v2:0 (real Bedrock; responses recorded)",
+  "toolTransport": "tool Lambda handlers in-process (local gateway; identity injected like the interceptor)"
+ }
+}

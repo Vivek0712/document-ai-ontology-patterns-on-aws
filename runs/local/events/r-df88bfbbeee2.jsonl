@@ -1,0 +1,112 @@
+{"type": "run_start", "runId": "r-df88bfbbeee2", "packageId": "pkg-quarterly-01", "pipelineVersion": "2.3.1", "question": "What was Lending revenue in Q3 FY2025 according to Figure 2?", "modelId": "us.anthropic.claude-sonnet-4-6", "configSha": "a42731845bd93c07fb4e21644d86495b8349e4aa6e75014b90f547815ec35447", "promptSha": "59984da199bb287de4b76a1d91bc0a5c27fde51028c39ffd04a33c3950a7d302", "tools": ["search_units", "graph_hop", "get_region", "doc_status"], "t": 0.0}
+{"type": "tool_start", "callId": "tooluse_9rTXri4q4zwxA2nBzB6Iiv", "tool": "search_units", "input": {"query": "Lending revenue Q3 FY2025 Figure 2"}, "t": 3.895}
+{"type": "tool_end", "callId": "tooluse_9rTXri4q4zwxA2nBzB6Iiv", "tool": "search_units", "ms": 11, "status": "ok", "summary": "5 units", "units": ["quarterly-report-q3-fy2025-ab5fea:2.3.1:eu-09", "quarterly-report-q3-fy2025-ab5fea:2.3.1:eu-10", "quarterly-report-q3-fy2025-ab5fea:2.3.1:eu-13", "quarterly-report-q3-fy2024-ab0f27:2.3.1:eu-09", "quarterly-report-q3-fy2025-ab5fea:2.3.1:eu-11"], "scores": [{"unitId": "quarterly-report-q3-fy2025-ab5fea:2.3.1:eu-09", "denseNorm": 1.0, "bm25Norm": 0.3867, "fused": 0.816}, {"unitId": "quarterly-report-q3-fy2025-ab5fea:2.3.1:eu-10", "denseNorm": 0.7057, "bm25Norm": 1.0, "fused": 0.794}, {"unitId": "quarterly-report-q3-fy2025-ab5fea:2.3.1:eu-13", "denseNorm": 0.6862, "bm25Norm": 0.3782, "fused": 0.5938}, {"unitId": "quarterly-report-q3-fy2024-ab0f27:2.3.1:eu-09", "denseNorm": 0.769, "bm25Norm": 0.1439, "fused": 0.5815}, {"unitId": "quarterly-report-q3-fy2025-ab5fea:2.3.1:eu-11", "denseNorm": 0.6268, "bm25Norm": 0.3905, "fused": 0.5559}], "retrieved": [{"rank": 1, "unitId": "quarterly-report-q3-fy2025-ab5fea:2.3.1:eu-09", "docId": "quarterly-report-q3-fy2025-ab5fea", "fileName": "quarterly_report_q3_fy2025.pdf", "unitType": "section_text", "label": "Quarterly report · 3.2 Revenue by segment", "docType": "doc:QuarterlyReport", "breadcrumb": "Quarterly report Q3 FY2025 › 3.2 Revenue by segment", "text": "3.2 Revenue by segment\n2,140\nPayments\n1,610\nLending\n1,140\nMarkets\nThe group continued to simplify its legal entity structure where this reduces operating cost. Customer research informed changes to the mobile application's statement and document views.\nThe lending business tightened underwriting criteria for unsecured products in selected segments. Treasury extended the maturity profile of wholesale funding during the period.", "pages": [12], "pageWidth": 612.0, "pageHeight": 792.0, "bboxes": [{"page": 12, "x0": 60.0, "y0": 75.38, "x1": 546.86, "y1": 364.23}], "fields": [], "period": "FY2025-Q3", "piiFlag": "none", "resolvable": true, "scores": {"denseRaw": 1.554891, "bm25Raw": 1.9828, "denseNorm": 1.0, "bm25Norm": 0.3867, "fused": 0.816}}, {"rank": 2, "unitId": "quarterly-report-q3-fy2025-ab5fea:2.3.1:eu-10", "docId": "quarterly-report-q3-fy2025-ab5fea", "fileName": "quarterly_report_q3_fy2025.pdf", "unitType": "figure_panel", "label": "Quarterly report · 3.2 Revenue by segment", "docType": "doc:QuarterlyReport", "breadcrumb": "Quarterly report Q3 FY2025 › 3.2 Revenue by segment", "text": "Figure 2 · Revenue by segment · Q3 FY2025 · USD millions", "pages": [12], "pageWidth": 612.0, "pageHeight": 792.0, "bboxes": [{"page": 12, "x0": 60.0, "y0": 99.62, "x1": 509.54, "y1": 284.82}], "fields": [], "period": "FY2025-Q3", "piiFlag": "none", "resolvable": true, "scores": {"denseRaw": 1.501004, "bm25Raw": 3.369357, "denseNorm": 0.7057, "bm25Norm": 1.0, "fused": 0.794}}, {"rank": 3, "unitId": "quarterly-report-q3-fy2025-ab5fea:2.3.1:eu-13", "docId": "quarterly-report-q3-fy2025-ab5fea", "fileName": "quarterly_report_q3_fy2025.pdf", "unitType": "table_panel", "label": "Quarterly report · 3.4 Revenue by quarter", "docType": "doc:QuarterlyReport", "breadcrumb": "Quarterly report Q3 FY2025 › 3.4 Revenue by quarter", "text": "The table below sets out total revenue for each quarter of the fiscal year.\nQuarter │ Total revenue\nQ1 FY2025 │ 4,120\nQ2 FY2025 │ 4,455\nQ3 FY2025 │ 4,890\nQ4 FY2025 │ 5,010 1\nTable 3 · Total revenue · USD millions\n1 Q4 figures are preliminary.", "pages": [14], "pageWidth": 612.0, "pageHeight": 792.0, "bboxes": [{"page": 14, "x0": 52.97, "y0": 99.62, "x1": 553.01, "y1": 261.96}], "fields": [{"fieldId": "f-q1-fy2025-total-revenue", "label": "Q1 FY2025 · Total revenue", "value": "4,120", "valueNumber": "4120.00", "period": "FY2025-Q3", "page": 14, "bbox": {"page": 14, "x0": 60.0, "y0": 169.47, "x1": 299.54, "y1": 178.27}}, {"fieldId": "f-q2-fy2025-total-revenue", "label": "Q2 FY2025 · Total revenue", "value": "4,455", "valueNumber": "4455.00", "period": "FY2025-Q3", "page": 14, "bbox": {"page": 14, "x0": 60.0, "y0": 189.48, "x1": 299.62, "y1": 198.27}}, {"fieldId": "f-q3-fy2025-total-revenue", "label": "Q3 FY2025 · Total revenue", "value": "4,890", "valueNumber": "4890.00", "period": "FY2025-Q3", "page": 14, "bbox": {"page": 14, "x0": 60.0, "y0": 209.47, "x1": 299.54, "y1": 218.27}}, {"fieldId": "f-q4-fy2025-total-revenue", "label": "Q4 FY2025 · Total revenue", "value": "5,010", "valueNumber": "5010.00", "period": "FY2025-Q3", "page": 14, "bbox": {"page": 14, "x0": 60.0, "y0": 229.47, "x1": 299.54, "y1": 238.27}}], "period": "FY2025-Q3", "piiFlag": "none", "resolvable": true, "scores": {"denseRaw": 1.497433, "bm25Raw": 1.963659, "denseNorm": 0.6862, "bm25Norm": 0.3782, "fused": 0.5938}}, {"rank": 4, "unitId": "quarterly-report-q3-fy2024-ab0f27:2.3.1:eu-09", "docId": "quarterly-report-q3-fy2024-ab0f27", "fileName": "quarterly_report_q3_fy2024.pdf", "unitType": "section_text", "label": "Quarterly report · 3.2 Revenue by segment", "docType": "doc:QuarterlyReport", "breadcrumb": "Quarterly report Q3 FY2024 › 3.2 Revenue by segment", "text": "3.2 Revenue by segment\n1,797\nPayments\n1,279\nLending\n894\nMarkets\nCard issuing volumes followed the usual seasonal pattern for the period. The lending business tightened underwriting criteria for unsecured products in selected segments.\nThe compliance function completed its annual review of sanctions screening controls. The board approved the updated capital plan and the dividend policy remained unchanged.", "pages": [12], "pageWidth": 612.0, "pageHeight": 792.0, "bboxes": [{"page": 12, "x0": 60.0, "y0": 75.38, "x1": 546.89, "y1": 364.23}], "fields": [], "period": "FY2024-Q3", "piiFlag": "none", "resolvable": true, "scores": {"denseRaw": 1.51259, "bm25Raw": 1.433773, "denseNorm": 0.769, "bm25Norm": 0.1439, "fused": 0.5815}}, {"rank": 5, "unitId": "quarterly-report-q3-fy2025-ab5fea:2.3.1:eu-11", "docId": "quarterly-report-q3-fy2025-ab5fea", "fileName": "quarterly_report_q3_fy2025.pdf", "unitType": "section_text", "label": "Quarterly report · 3.3 Revenue commentary", "docType": "doc:QuarterlyReport", "breadcrumb": "Quarterly report Q3 FY2025 › 3.3 Revenue commentary", "text": "3.3 Revenue commentary\nRevenue rose in each quarter of FY2025. Management expects modest growth in H2, as pricing changes in the payments business annualise and lending volumes stay selective.\nCustomer complaints fell compared with the prior quarter after changes to dispute handling. Card issuing volumes followed the usual seasonal pattern for the period.\nThe compliance function completed its annual review of sanctions screening controls. The group continued to simplify its legal entity structure where this reduces operating cost.\nThe lending business tightened underwriting criteria for unsecured products in selected segments. The group kept its funding mix stable, with customer deposits remaining the primary source of liquidity.", "pages": [13], "pageWidth": 612.0, "pageHeight": 792.0, "bboxes": [{"page": 13, "x0": 60.0, "y0": 75.38, "x1": 543.0, "y1": 227.37}], "fields": [], "period": "FY2025-Q3", "piiFlag": "none", "resolvable": true, "scores": {"denseRaw": 1.48654, "bm25Raw": 1.991391, "denseNorm": 0.6268, "bm25Norm": 0.3905, "fused": 0.5559}}], "rows": [], "t": 3.895}
+{"type": "text", "delta": "Based"}
+{"type": "text", "delta": " on the"}
+{"type": "text", "delta": " results"}
+{"type": "text", "delta": ", Figure"}
+{"type": "text", "delta": " 2"}
+{"type": "text", "delta": " ("}
+{"type": "text", "delta": "unit"}
+{"type": "text", "delta": " `"}
+{"type": "text", "delta": "eu"}
+{"type": "text", "delta": "-10"}
+{"type": "text", "delta": "`)"}
+{"type": "text", "delta": " is"}
+{"type": "text", "delta": " the"}
+{"type": "text", "delta": " \""}
+{"type": "text", "delta": "Revenue"}
+{"type": "text", "delta": " by segment"}
+{"type": "text", "delta": " ·"}
+{"type": "text", "delta": " Q"}
+{"type": "text", "delta": "3 FY2025 "}
+{"type": "text", "delta": "· USD"}
+{"type": "text", "delta": " millions\" figure"}
+{"type": "text", "delta": " panel"}
+{"type": "text", "delta": ","}
+{"type": "text", "delta": " and"}
+{"type": "text", "delta": " the"}
+{"type": "text", "delta": " associated"}
+{"type": "text", "delta": " section"}
+{"type": "text", "delta": " text ("}
+{"type": "text", "delta": "unit"}
+{"type": "text", "delta": " `eu-09"}
+{"type": "text", "delta": "`) lists"}
+{"type": "text", "delta": " the segment"}
+{"type": "text", "delta": " values"}
+{"type": "text", "delta": " directly"}
+{"type": "text", "delta": ","}
+{"type": "text", "delta": " including"}
+{"type": "text", "delta": " **"}
+{"type": "text", "delta": "Lending at"}
+{"type": "text", "delta": " 1"}
+{"type": "text", "delta": ",610"}
+{"type": "text", "delta": " "}
+{"type": "text", "delta": "USD"}
+{"type": "text", "delta": " millions"}
+{"type": "text", "delta": "**."}
+{"type": "text", "delta": "\n\n```"}
+{"type": "text", "delta": "json\n{\n  \"answer"}
+{"type": "text", "delta": "\": \""}
+{"type": "text", "delta": "According"}
+{"type": "text", "delta": " to Figure"}
+{"type": "text", "delta": " 2 ('"}
+{"type": "text", "delta": "Revenue by segment · Q3 F"}
+{"type": "text", "delta": "Y2025 · USD millions'),"}
+{"type": "text", "delta": " Lending revenue"}
+{"type": "text", "delta": " in Q3 FY2025"}
+{"type": "text", "delta": " was USD"}
+{"type": "text", "delta": " 1,610 million.\","}
+{"type": "text", "delta": "\n  \"total"}
+{"type": "text", "delta": "\": \"1"}
+{"type": "text", "delta": ",610."}
+{"type": "text", "delta": "00\",\n  \"currency"}
+{"type": "text", "delta": "\": \"USD\",\n  \"arithmetic"}
+{"type": "text", "delta": "\":"}
+{"type": "text", "delta": " null"}
+{"type": "text", "delta": ",\n  \"claims"}
+{"type": "text", "delta": "\": [\n    {\n      \""}
+{"type": "text", "delta": "text"}
+{"type": "text", "delta": "\": \"USD"}
+{"type": "text", "delta": " 1,610 million\","}
+{"type": "text", "delta": "\n      \"value"}
+{"type": "text", "delta": "\": \"1610"}
+{"type": "text", "delta": "\","}
+{"type": "text", "delta": "\n      \"unit"}
+{"type": "text", "delta": "Id\": \"quarterly"}
+{"type": "text", "delta": "-report-q3-fy"}
+{"type": "text", "delta": "2025-ab5fea:"}
+{"type": "text", "delta": "2.3.1:eu-"}
+{"type": "text", "delta": "09\",\n      \"field"}
+{"type": "text", "delta": "Id\": null"}
+{"type": "text", "delta": "\n    }\n  ],\n  \""}
+{"type": "text", "delta": "c"}
+{"type": "text", "delta": "ave"}
+{"type": "text", "delta": "ats\": [\n    \""}
+{"type": "text", "delta": "The"}
+{"type": "text", "delta": " figure"}
+{"type": "text", "delta": " is"}
+{"type": "text", "delta": " sour"}
+{"type": "text", "delta": "ced from the section"}
+{"type": "text", "delta": " text accompanying"}
+{"type": "text", "delta": " Figure"}
+{"type": "text", "delta": " 2 ("}
+{"type": "text", "delta": "unit eu-09"}
+{"type": "text", "delta": ");"}
+{"type": "text", "delta": " the figure"}
+{"type": "text", "delta": " panel"}
+{"type": "text", "delta": " itself ("}
+{"type": "text", "delta": "eu"}
+{"type": "text", "delta": "-10) contains"}
+{"type": "text", "delta": " no"}
+{"type": "text", "delta": " structured"}
+{"type": "text", "delta": " fields"}
+{"type": "text", "delta": ".\","}
+{"type": "text", "delta": "\n    \"All"}
+{"type": "text", "delta": " figures"}
+{"type": "text", "delta": " are in"}
+{"type": "text", "delta": " USD millions.\""}
+{"type": "text", "delta": "\n  ]"}
+{"type": "text", "delta": "\n}\n```"}
+{"answer": "According to Figure 2 ('Revenue by segment · Q3 FY2025 · USD millions'), Lending revenue in Q3 FY2025 was USD 1,610 million.", "total": "1,610.00", "currency": "USD", "claims": [{"text": "USD 1,610 million", "value": "1610.00", "unitId": "quarterly-report-q3-fy2025-ab5fea:2.3.1:eu-09", "docId": "quarterly-report-q3-fy2025-ab5fea", "fileName": "quarterly_report_q3_fy2025.pdf", "label": "Quarterly report · 3.2 Revenue by segment · p.12", "page": 12, "bbox": {"page": 12, "x0": 60.0, "y0": 75.38, "x1": 546.86, "y1": 364.23}, "unitBbox": {"page": 12, "x0": 60.0, "y0": 75.38, "x1": 546.86, "y1": 364.23}, "resolvable": true}], "caveats": ["The figure is sourced from the section text accompanying Figure 2 (unit eu-09); the figure panel itself (eu-10) contains no structured fields.", "All figures are in USD millions."], "citationRetries": 0, "uncitedNumbers": [], "type": "answer"}
+{"runId": "r-df88bfbbeee2", "packageId": "pkg-quarterly-01", "pipelineVersion": "2.3.1", "configSha": "a42731845bd93c07fb4e21644d86495b8349e4aa6e75014b90f547815ec35447", "blockShas": {"preprocessing": "40e8c03f17781382dcbcc29f7a0a84a8b1e9642cf92500d3980254a0cbd69a07", "retrieval": "3587393d6f0d8c38adfaf6853c1463b54cc1ee872646ff354b3408da63dd586c", "generation": "4731dca541739b7b91e53099ae45acb0f255c753e313bec48702fa79ecad436e", "agent": "5ce789906365b6a0f9d139eba009f17b61d3113720a21c755e3f5be4459551f0"}, "promptSha": "59984da199bb287de4b76a1d91bc0a5c27fde51028c39ffd04a33c3950a7d302", "modelId": "us.anthropic.claude-sonnet-4-6", "corpusHash": "4f9790b4a360d9ef57a232bb5ffd829704e5e2d07486c54522a00f9f83fd82b9", "memoryRecordsInjected": 0, "latencyMs": 12832, "usage": {"inputTokens": 6162, "outputTokens": 362, "totalTokens": 6524}, "startedAt": "2026-11-11T00:42:38.093Z", "type": "run", "question": "What was Lending revenue in Q3 FY2025 according to Figure 2?"}

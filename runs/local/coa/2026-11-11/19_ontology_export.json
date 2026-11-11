@@ -1,0 +1,58 @@
+{
+  "download_api": {
+    "request": {
+      "method": "GET",
+      "path": "/namespaces/<NAMESPACE_ID>/ontologies/urn%3Arp%3Aont%3Afin/download",
+      "body": null
+    },
+    "status": 200,
+    "latency_ms": 1445.5,
+    "response": {
+      "downloadUrl": "<PRESIGNED_S3_URL>",
+      "expiresInSeconds": 3600
+    }
+  },
+  "export_sha256": "40255bac10754013c99b32994aca1e0d5539ac7eaff022967fb8250a71443cd2",
+  "export_bytes": 17854,
+  "downloads_identical": true,
+  "roundtrip": {
+    "source_triples": 359,
+    "export_triples": 403,
+    "export_triples_minus_coa_metadata": 374,
+    "common": 359,
+    "missing_in_export": 0,
+    "added_in_export": 15,
+    "isomorphic_after_filter": false,
+    "missing_sample": [],
+    "added_sample": [
+      "<urn:rp:ont:fin:amount> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>",
+      "<urn:rp:ont:fin:borrower> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>",
+      "<urn:rp:ont:fin:concept> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>",
+      "<urn:rp:ont:fin:currency> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>",
+      "<urn:rp:ont:fin:effectiveFromYear> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>",
+      "<urn:rp:ont:fin:employer> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>",
+      "<urn:rp:ont:fin:hasStepEvent> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>",
+      "<urn:rp:ont:fin:newRate> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>",
+      "<urn:rp:ont:fin:operandConcept> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>",
+      "<urn:rp:ont:fin:period> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>",
+      "<urn:rp:ont:fin:periodEnd> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>",
+      "<urn:rp:ont:fin:periodStart> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>",
+      "<urn:rp:ont:fin:taxYear> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>",
+      "<urn:rp:ont:fin:text> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>",
+      "<urn:rp:ont:fin:triggerRating> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>"
+    ],
+    "coa_metadata_predicates": [
+      "http://purl.org/dc/terms/created",
+      "http://purl.org/dc/terms/description",
+      "http://purl.org/dc/terms/modified",
+      "http://purl.org/dc/terms/title",
+      "https://ontology-workbench.local/vocab#axiom_count",
+      "https://ontology-workbench.local/vocab#class_count",
+      "https://ontology-workbench.local/vocab#definedBy",
+      "https://ontology-workbench.local/vocab#format",
+      "https://ontology-workbench.local/vocab#ontology_type",
+      "https://ontology-workbench.local/vocab#parse_status",
+      "https://ontology-workbench.local/vocab#property_count"
+    ]
+  }
+}

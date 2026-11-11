@@ -1,0 +1,1266 @@
+{
+ "runId": "r-fc8d5d2765f2",
+ "createdAt": "2026-11-11T00:44:01.446Z",
+ "packageId": "pkg-quarterly-01",
+ "pipelineVersion": "2.3.1",
+ "question": "What does the Corporate line of Table 4 in the Q3 FY2025 report exclude?",
+ "callerSub": "local-dev-owner-0000",
+ "groups": [
+  "lending-analyst"
+ ],
+ "modelId": "us.anthropic.claude-sonnet-4-6",
+ "promptSha": "59984da199bb287de4b76a1d91bc0a5c27fde51028c39ffd04a33c3950a7d302",
+ "configSha": "a42731845bd93c07fb4e21644d86495b8349e4aa6e75014b90f547815ec35447",
+ "blockShas": {
+  "preprocessing": "40e8c03f17781382dcbcc29f7a0a84a8b1e9642cf92500d3980254a0cbd69a07",
+  "retrieval": "3587393d6f0d8c38adfaf6853c1463b54cc1ee872646ff354b3408da63dd586c",
+  "generation": "4731dca541739b7b91e53099ae45acb0f255c753e313bec48702fa79ecad436e",
+  "agent": "5ce789906365b6a0f9d139eba009f17b61d3113720a21c755e3f5be4459551f0"
+ },
+ "corpusHash": "4f9790b4a360d9ef57a232bb5ffd829704e5e2d07486c54522a00f9f83fd82b9",
+ "memoryRecordsInjected": 0,
+ "toolsEnabled": [
+  "search_units",
+  "graph_hop",
+  "get_region",
+  "doc_status"
+ ],
+ "toolCalls": [
+  {
+   "callId": "tooluse_6MmvAUI6LPvQzvh7NjyEwX",
+   "tool": "search_units",
+   "input": {
+    "query": "Table 4 Corporate line exclude Q3 FY2025"
+   },
+   "injected": {
+    "callerSub": "local-",
+    "groups": [
+     "lending-analyst"
+    ],
+    "pipelineVersion": "2.3.1",
+    "packageId": "pkg-quarterly-01",
+    "runId": "r-fc8d5d2765f2",
+    "via": "local-gateway"
+   },
+   "startedAt": "2026-11-11T00:44:07.111Z",
+   "ms": 4,
+   "status": "ok",
+   "output": {
+    "units": [
+     {
+      "rank": 1,
+      "unitId": "quarterly-report-q3-fy2025-ab5fea:2.3.1:eu-16",
+      "docId": "quarterly-report-q3-fy2025-ab5fea",
+      "fileName": "quarterly_report_q3_fy2025.pdf",
+      "unitType": "table_panel",
+      "label": "Quarterly report · 3.5 Operating expenses",
+      "docType": "doc:QuarterlyReport",
+      "breadcrumb": "Quarterly report Q3 FY2025 › 3.5 Operating expenses",
+      "text": "Region │ Q3 FY2025\nAPAC │ 610\nCorporate 2 │ 340\nTotal │ 3,090\nTable 4 (continued) · Operating expenses by region · USD millions\n2 Excludes discontinued operations.",
+      "pages": [
+       16
+      ],
+      "pageWidth": 612.0,
+      "pageHeight": 792.0,
+      "bboxes": [
+       {
+        "page": 16,
+        "x0": 53.04,
+        "y0": 76.82,
+        "x1": 552.82,
+        "y1": 193.66
+       }
+      ],
+      "fields": [
+       {
+        "fieldId": "f-apac",
+        "label": "APAC",
+        "value": "610",
+        "period": "FY2025-Q3",
+        "page": 16,
+        "bbox": {
+         "page": 16,
+         "x0": 60.0,
+         "y0": 121.08,
+         "x1": 299.54,
+         "y1": 128.1
+        }
+       },
+       {
+        "fieldId": "f-corporate",
+        "label": "Corporate",
+        "value": "340",
+        "period": "FY2025-Q3",
+        "page": 16,
+        "bbox": {
+         "page": 16,
+         "x0": 60.47,
+         "y0": 141.08,
+         "x1": 299.54,
+         "y1": 149.88
+        }
+       },
+       {
+        "fieldId": "f-total",
+        "label": "Total",
+        "value": "3,090",
+        "valueNumber": "3090.00",
+        "period": "FY2025-Q3",
+        "page": 16,
+        "bbox": {
+         "page": 16,
+         "x0": 60.22,
+         "y0": 161.17,
+         "x1": 299.54,
+         "y1": 169.34
+        }
+       }
+      ],
+      "period": "FY2025-Q3",
+      "piiFlag": "none",
+      "resolvable": true,
+      "scores": {
+       "denseRaw": 1.2686,
+       "bm25Raw": 3.535935,
+       "denseNorm": 1.0,
+       "bm25Norm": 1.0,
+       "fused": 1.0
+      }
+     },
+     {
+      "rank": 2,
+      "unitId": "quarterly-report-q3-fy2024-ab0f27:2.3.1:eu-16",
+      "docId": "quarterly-report-q3-fy2024-ab0f27",
+      "fileName": "quarterly_report_q3_fy2024.pdf",
+      "unitType": "table_panel",
+      "label": "Quarterly report · 3.5 Operating expenses",
+      "docType": "doc:QuarterlyReport",
+      "breadcrumb": "Quarterly report Q3 FY2024 › 3.5 Operating expenses",
+      "text": "Region │ Q3 FY2024\nAPAC │ 557\nCorporate 2 │ 268\nTotal │ 2,378\nTable 4 (continued) · Operating expenses by region · USD millions\n2 Excludes discontinued operations.",
+      "pages": [
+       16
+      ],
+      "pageWidth": 612.0,
+      "pageHeight": 792.0,
+      "bboxes": [
+       {
+        "page": 16,
+        "x0": 53.0,
+        "y0": 76.82,
+        "x1": 552.86,
+        "y1": 193.66
+       }
+      ],
+      "fields": [
+       {
+        "fieldId": "f-apac",
+        "label": "APAC",
+        "value": "557",
+        "period": "FY2024-Q3",
+        "page": 16,
+        "bbox": {
+         "page": 16,
+         "x0": 60.0,
+         "y0": 121.08,
+         "x1": 299.57,
+         "y1": 128.1
+        }
+       },
+       {
+        "fieldId": "f-corporate",
+        "label": "Corporate",
+        "value": "268",
+        "period": "FY2024-Q3",
+        "page": 16,
+        "bbox": {
+         "page": 16,
+         "x0": 60.47,
+         "y0": 141.08,
+         "x1": 299.58,
+         "y1": 149.88
+        }
+       },
+       {
+        "fieldId": "f-total",
+        "label": "Total",
+        "value": "2,378",
+        "valueNumber": "2378.00",
+        "period": "FY2024-Q3",
+        "page": 16,
+        "bbox": {
+         "page": 16,
+         "x0": 60.22,
+         "y0": 161.17,
+         "x1": 299.58,
+         "y1": 169.34
+        }
+       }
+      ],
+      "period": "FY2024-Q3",
+      "piiFlag": "none",
+      "resolvable": true,
+      "scores": {
+       "denseRaw": 1.268506,
+       "bm25Raw": 2.695319,
+       "denseNorm": 0.9985,
+       "bm25Norm": 0.683,
+       "fused": 0.9038
+      }
+     },
+     {
+      "rank": 3,
+      "unitId": "quarterly-report-q3-fy2023-f6e6a3:2.3.1:eu-16",
+      "docId": "quarterly-report-q3-fy2023-f6e6a3",
+      "fileName": "quarterly_report_q3_fy2023.pdf",
+      "unitType": "table_panel",
+      "label": "Quarterly report · 3.5 Operating expenses",
+      "docType": "doc:QuarterlyReport",
+      "breadcrumb": "Quarterly report Q3 FY2023 › 3.5 Operating expenses",
+      "text": "Region │ Q3 FY2023\nAPAC │ 394\nCorporate 2 │ 256\nTotal │ 2,356\nTable 4 (continued) · Operating expenses by region · USD millions\n2 Excludes discontinued operations.",
+      "pages": [
+       16
+      ],
+      "pageWidth": 612.0,
+      "pageHeight": 792.0,
+      "bboxes": [
+       {
+        "page": 16,
+        "x0": 53.01,
+        "y0": 76.82,
+        "x1": 552.87,
+        "y1": 193.66
+       }
+      ],
+      "fields": [
+       {
+        "fieldId": "f-apac",
+        "label": "APAC",
+        "value": "394",
+        "period": "FY2023-Q3",
+        "page": 16,
+        "bbox": {
+         "page": 16,
+         "x0": 60.0,
+         "y0": 121.08,
+         "x1": 299.54,
+         "y1": 128.11
+        }
+       },
+       {
+        "fieldId": "f-corporate",
+        "label": "Corporate",
+        "value": "256",
+        "period": "FY2023-Q3",
+        "page": 16,
+        "bbox": {
+         "page": 16,
+         "x0": 60.47,
+         "y0": 141.08,
+         "x1": 299.56,
+         "y1": 149.88
+        }
+       },
+       {
+        "fieldId": "f-total",
+        "label": "Total",
+        "value": "2,356",
+        "valueNumber": "2356.00",
+        "period": "FY2023-Q3",
+        "page": 16,
+        "bbox": {
+         "page": 16,
+         "x0": 60.22,
+         "y0": 161.17,
+         "x1": 299.56,
+         "y1": 169.34
+        }
+       }
+      ],
+      "period": "FY2023-Q3",
+      "piiFlag": "none",
+      "resolvable": true,
+      "scores": {
+       "denseRaw": 1.24661,
+       "bm25Raw": 2.695319,
+       "denseNorm": 0.6423,
+       "bm25Norm": 0.683,
+       "fused": 0.6545
+      }
+     },
+     {
+      "rank": 4,
+      "unitId": "quarterly-report-q3-fy2024-ab0f27:2.3.1:eu-17",
+      "docId": "quarterly-report-q3-fy2024-ab0f27",
+      "fileName": "quarterly_report_q3_fy2024.pdf",
+      "unitType": "section_text",
+      "label": "Quarterly report · 4. Outlook",
+      "docType": "doc:QuarterlyReport",
+      "breadcrumb": "Quarterly report Q3 FY2024 › 4. Outlook",
+      "text": "4. Outlook\nCustomer research informed changes to the mobile application's statement and document views. Partnership agreements with two payroll providers moved from pilot into general availability.\nThe compliance function completed its annual review of sanctions screening controls. The lending business tightened underwriting criteria for unsecured products in selected segments.",
+      "pages": [
+       16
+      ],
+      "pageWidth": 612.0,
+      "pageHeight": 792.0,
+      "bboxes": [
+       {
+        "page": 16,
+        "x0": 60.0,
+        "y0": 215.23,
+        "x1": 542.42,
+        "y1": 305.07
+       }
+      ],
+      "fields": [],
+      "period": "FY2024-Q3",
+      "piiFlag": "none",
+      "resolvable": true,
+      "scores": {
+       "denseRaw": 1.255931,
+       "bm25Raw": 1.011418,
+       "denseNorm": 0.7939,
+       "bm25Norm": 0.0479,
+       "fused": 0.5701
+      }
+     },
+     {
+      "rank": 5,
+      "unitId": "quarterly-report-q3-fy2025-ab5fea:2.3.1:eu-15",
+      "docId": "quarterly-report-q3-fy2025-ab5fea",
+      "fileName": "quarterly_report_q3_fy2025.pdf",
+      "unitType": "table_panel",
+      "label": "Quarterly report · 3.5 Operating expenses",
+      "docType": "doc:QuarterlyReport",
+      "breadcrumb": "Quarterly report Q3 FY2025 › 3.5 Operating expenses",
+      "text": "Region │ Q3 FY2025\nAmericas │ 1,180\nEMEA │ 960\nTable 4 · Operating expenses by region · USD millions",
+      "pages": [
+       15
+      ],
+      "pageWidth": 612.0,
+      "pageHeight": 792.0,
+      "bboxes": [
+       {
+        "page": 15,
+        "x0": 52.67,
+        "y0": 208.62,
+        "x1": 553.15,
+        "y1": 286.46
+       }
+      ],
+      "fields": [
+       {
+        "fieldId": "f-americas-q3-fy2025",
+        "label": "Americas · Q3 FY2025",
+        "value": "1,180",
+        "valueNumber": "1180.00",
+        "period": "FY2025-Q3",
+        "page": 15,
+        "bbox": {
+         "page": 15,
+         "x0": 60.0,
+         "y0": 252.97,
+         "x1": 299.54,
+         "y1": 261.77
+        }
+       }
+      ],
+      "period": "FY2025-Q3",
+      "piiFlag": "none",
+      "resolvable": true,
+      "scores": {
+       "denseRaw": 1.234405,
+       "bm25Raw": 2.758066,
+       "denseNorm": 0.4438,
+       "bm25Norm": 0.7066,
+       "fused": 0.5226
+      }
+     }
+    ],
+    "query": {
+     "index": "units-v2-3-1",
+     "k": 5,
+     "subQueryK": 20,
+     "weights": {
+      "dense": 0.7,
+      "bm25": 0.3
+     },
+     "normalization": "min_max",
+     "filter": {
+      "bool": {
+       "filter": [
+        {
+         "terms": {
+          "allowedPrincipals": [
+           "user:local-dev-owner-0000",
+           "group:lending-analyst"
+          ]
+         }
+        },
+        {
+         "term": {
+          "packageId": "pkg-quarterly-01"
+         }
+        },
+        {
+         "term": {
+          "pipelineVersion": "2.3.1"
+         }
+        }
+       ],
+       "must_not": [
+        {
+         "term": {
+          "piiFlag": "held"
+         }
+        }
+       ]
+      }
+     },
+     "embedModel": "amazon.titan-embed-text-v2:0"
+    },
+    "latencyMs": 3
+   }
+  },
+  {
+   "callId": "tooluse_crJbcNY86IVvMoMyO9BNkj",
+   "tool": "search_units",
+   "input": {
+    "query": "Corporate segment exclusions Table 4 quarterly report 2025"
+   },
+   "injected": {
+    "callerSub": "local-",
+    "groups": [
+     "lending-analyst"
+    ],
+    "pipelineVersion": "2.3.1",
+    "packageId": "pkg-quarterly-01",
+    "runId": "r-fc8d5d2765f2",
+    "via": "local-gateway"
+   },
+   "startedAt": "2026-11-11T00:44:07.112Z",
+   "ms": 3,
+   "status": "ok",
+   "output": {
+    "units": [
+     {
+      "rank": 1,
+      "unitId": "quarterly-report-q3-fy2025-ab5fea:2.3.1:eu-16",
+      "docId": "quarterly-report-q3-fy2025-ab5fea",
+      "fileName": "quarterly_report_q3_fy2025.pdf",
+      "unitType": "table_panel",
+      "label": "Quarterly report · 3.5 Operating expenses",
+      "docType": "doc:QuarterlyReport",
+      "breadcrumb": "Quarterly report Q3 FY2025 › 3.5 Operating expenses",
+      "text": "Region │ Q3 FY2025\nAPAC │ 610\nCorporate 2 │ 340\nTotal │ 3,090\nTable 4 (continued) · Operating expenses by region · USD millions\n2 Excludes discontinued operations.",
+      "pages": [
+       16
+      ],
+      "pageWidth": 612.0,
+      "pageHeight": 792.0,
+      "bboxes": [
+       {
+        "page": 16,
+        "x0": 53.04,
+        "y0": 76.82,
+        "x1": 552.82,
+        "y1": 193.66
+       }
+      ],
+      "fields": [
+       {
+        "fieldId": "f-apac",
+        "label": "APAC",
+        "value": "610",
+        "period": "FY2025-Q3",
+        "page": 16,
+        "bbox": {
+         "page": 16,
+         "x0": 60.0,
+         "y0": 121.08,
+         "x1": 299.54,
+         "y1": 128.1
+        }
+       },
+       {
+        "fieldId": "f-corporate",
+        "label": "Corporate",
+        "value": "340",
+        "period": "FY2025-Q3",
+        "page": 16,
+        "bbox": {
+         "page": 16,
+         "x0": 60.47,
+         "y0": 141.08,
+         "x1": 299.54,
+         "y1": 149.88
+        }
+       },
+       {
+        "fieldId": "f-total",
+        "label": "Total",
+        "value": "3,090",
+        "valueNumber": "3090.00",
+        "period": "FY2025-Q3",
+        "page": 16,
+        "bbox": {
+         "page": 16,
+         "x0": 60.22,
+         "y0": 161.17,
+         "x1": 299.54,
+         "y1": 169.34
+        }
+       }
+      ],
+      "period": "FY2025-Q3",
+      "piiFlag": "none",
+      "resolvable": true,
+      "scores": {
+       "denseRaw": 1.347506,
+       "bm25Raw": 2.700006,
+       "denseNorm": 0.9055,
+       "bm25Norm": 1.0,
+       "fused": 0.9339
+      }
+     },
+     {
+      "rank": 2,
+      "unitId": "quarterly-report-q3-fy2024-ab0f27:2.3.1:eu-16",
+      "docId": "quarterly-report-q3-fy2024-ab0f27",
+      "fileName": "quarterly_report_q3_fy2024.pdf",
+      "unitType": "table_panel",
+      "label": "Quarterly report · 3.5 Operating expenses",
+      "docType": "doc:QuarterlyReport",
+      "breadcrumb": "Quarterly report Q3 FY2024 › 3.5 Operating expenses",
+      "text": "Region │ Q3 FY2024\nAPAC │ 557\nCorporate 2 │ 268\nTotal │ 2,378\nTable 4 (continued) · Operating expenses by region · USD millions\n2 Excludes discontinued operations.",
+      "pages": [
+       16
+      ],
+      "pageWidth": 612.0,
+      "pageHeight": 792.0,
+      "bboxes": [
+       {
+        "page": 16,
+        "x0": 53.0,
+        "y0": 76.82,
+        "x1": 552.86,
+        "y1": 193.66
+       }
+      ],
+      "fields": [
+       {
+        "fieldId": "f-apac",
+        "label": "APAC",
+        "value": "557",
+        "period": "FY2024-Q3",
+        "page": 16,
+        "bbox": {
+         "page": 16,
+         "x0": 60.0,
+         "y0": 121.08,
+         "x1": 299.57,
+         "y1": 128.1
+        }
+       },
+       {
+        "fieldId": "f-corporate",
+        "label": "Corporate",
+        "value": "268",
+        "period": "FY2024-Q3",
+        "page": 16,
+        "bbox": {
+         "page": 16,
+         "x0": 60.47,
+         "y0": 141.08,
+         "x1": 299.58,
+         "y1": 149.88
+        }
+       },
+       {
+        "fieldId": "f-total",
+        "label": "Total",
+        "value": "2,378",
+        "valueNumber": "2378.00",
+        "period": "FY2024-Q3",
+        "page": 16,
+        "bbox": {
+         "page": 16,
+         "x0": 60.22,
+         "y0": 161.17,
+         "x1": 299.58,
+         "y1": 169.34
+        }
+       }
+      ],
+      "period": "FY2024-Q3",
+      "piiFlag": "none",
+      "resolvable": true,
+      "scores": {
+       "denseRaw": 1.3302,
+       "bm25Raw": 2.700006,
+       "denseNorm": 0.7037,
+       "bm25Norm": 1.0,
+       "fused": 0.7926
+      }
+     },
+     {
+      "rank": 3,
+      "unitId": "quarterly-report-q3-fy2025-ab5fea:2.3.1:eu-10",
+      "docId": "quarterly-report-q3-fy2025-ab5fea",
+      "fileName": "quarterly_report_q3_fy2025.pdf",
+      "unitType": "figure_panel",
+      "label": "Quarterly report · 3.2 Revenue by segment",
+      "docType": "doc:QuarterlyReport",
+      "breadcrumb": "Quarterly report Q3 FY2025 › 3.2 Revenue by segment",
+      "text": "Figure 2 · Revenue by segment · Q3 FY2025 · USD millions",
+      "pages": [
+       12
+      ],
+      "pageWidth": 612.0,
+      "pageHeight": 792.0,
+      "bboxes": [
+       {
+        "page": 12,
+        "x0": 60.0,
+        "y0": 99.62,
+        "x1": 509.54,
+        "y1": 284.82
+       }
+      ],
+      "fields": [],
+      "period": "FY2025-Q3",
+      "piiFlag": "none",
+      "resolvable": true,
+      "scores": {
+       "denseRaw": 1.342732,
+       "bm25Raw": 1.70041,
+       "denseNorm": 0.8499,
+       "bm25Norm": 0.4062,
+       "fused": 0.7168
+      }
+     },
+     {
+      "rank": 4,
+      "unitId": "quarterly-report-q3-fy2025-ab5fea:2.3.1:eu-02",
+      "docId": "quarterly-report-q3-fy2025-ab5fea",
+      "fileName": "quarterly_report_q3_fy2025.pdf",
+      "unitType": "section_text",
+      "label": "Quarterly report · Contents",
+      "docType": "doc:QuarterlyReport",
+      "breadcrumb": "Quarterly report Q3 FY2025 › Contents",
+      "text": "Contents\nOverview\nStrategy and operations\nResults\nOutlook",
+      "pages": [
+       1
+      ],
+      "pageWidth": 612.0,
+      "pageHeight": 792.0,
+      "bboxes": [
+       {
+        "page": 1,
+        "x0": 60.0,
+        "y0": 321.38,
+        "x1": 187.29,
+        "y1": 402.87
+       }
+      ],
+      "fields": [],
+      "period": "FY2025-Q3",
+      "piiFlag": "none",
+      "resolvable": true,
+      "scores": {
+       "denseRaw": 1.355605,
+       "denseNorm": 1.0,
+       "bm25Norm": 0.0,
+       "fused": 0.7
+      }
+     },
+     {
+      "rank": 5,
+      "unitId": "quarterly-report-q3-fy2024-ab0f27:2.3.1:eu-10",
+      "docId": "quarterly-report-q3-fy2024-ab0f27",
+      "fileName": "quarterly_report_q3_fy2024.pdf",
+      "unitType": "figure_panel",
+      "label": "Quarterly report · 3.2 Revenue by segment",
+      "docType": "doc:QuarterlyReport",
+      "breadcrumb": "Quarterly report Q3 FY2024 › 3.2 Revenue by segment",
+      "text": "Figure 2 · Revenue by segment · Q3 FY2024 · USD millions",
+      "pages": [
+       12
+      ],
+      "pageWidth": 612.0,
+      "pageHeight": 792.0,
+      "bboxes": [
+       {
+        "page": 12,
+        "x0": 60.0,
+        "y0": 99.62,
+        "x1": 509.32,
+        "y1": 284.67
+       }
+      ],
+      "fields": [],
+      "period": "FY2024-Q3",
+      "piiFlag": "none",
+      "resolvable": true,
+      "scores": {
+       "denseRaw": 1.321286,
+       "bm25Raw": 1.70041,
+       "denseNorm": 0.5997,
+       "bm25Norm": 0.4062,
+       "fused": 0.5417
+      }
+     }
+    ],
+    "query": {
+     "index": "units-v2-3-1",
+     "k": 5,
+     "subQueryK": 20,
+     "weights": {
+      "dense": 0.7,
+      "bm25": 0.3
+     },
+     "normalization": "min_max",
+     "filter": {
+      "bool": {
+       "filter": [
+        {
+         "terms": {
+          "allowedPrincipals": [
+           "user:local-dev-owner-0000",
+           "group:lending-analyst"
+          ]
+         }
+        },
+        {
+         "term": {
+          "packageId": "pkg-quarterly-01"
+         }
+        },
+        {
+         "term": {
+          "pipelineVersion": "2.3.1"
+         }
+        }
+       ],
+       "must_not": [
+        {
+         "term": {
+          "piiFlag": "held"
+         }
+        }
+       ]
+      }
+     },
+     "embedModel": "amazon.titan-embed-text-v2:0"
+    },
+    "latencyMs": 3
+   }
+  }
+ ],
+ "retrieved": [
+  {
+   "rank": 1,
+   "unitId": "quarterly-report-q3-fy2025-ab5fea:2.3.1:eu-16",
+   "docId": "quarterly-report-q3-fy2025-ab5fea",
+   "fileName": "quarterly_report_q3_fy2025.pdf",
+   "unitType": "table_panel",
+   "label": "Quarterly report · 3.5 Operating expenses",
+   "docType": "doc:QuarterlyReport",
+   "breadcrumb": "Quarterly report Q3 FY2025 › 3.5 Operating expenses",
+   "text": "Region │ Q3 FY2025\nAPAC │ 610\nCorporate 2 │ 340\nTotal │ 3,090\nTable 4 (continued) · Operating expenses by region · USD millions\n2 Excludes discontinued operations.",
+   "pages": [
+    16
+   ],
+   "pageWidth": 612.0,
+   "pageHeight": 792.0,
+   "bboxes": [
+    {
+     "page": 16,
+     "x0": 53.04,
+     "y0": 76.82,
+     "x1": 552.82,
+     "y1": 193.66
+    }
+   ],
+   "fields": [
+    {
+     "fieldId": "f-apac",
+     "label": "APAC",
+     "value": "610",
+     "period": "FY2025-Q3",
+     "page": 16,
+     "bbox": {
+      "page": 16,
+      "x0": 60.0,
+      "y0": 121.08,
+      "x1": 299.54,
+      "y1": 128.1
+     }
+    },
+    {
+     "fieldId": "f-corporate",
+     "label": "Corporate",
+     "value": "340",
+     "period": "FY2025-Q3",
+     "page": 16,
+     "bbox": {
+      "page": 16,
+      "x0": 60.47,
+      "y0": 141.08,
+      "x1": 299.54,
+      "y1": 149.88
+     }
+    },
+    {
+     "fieldId": "f-total",
+     "label": "Total",
+     "value": "3,090",
+     "valueNumber": "3090.00",
+     "period": "FY2025-Q3",
+     "page": 16,
+     "bbox": {
+      "page": 16,
+      "x0": 60.22,
+      "y0": 161.17,
+      "x1": 299.54,
+      "y1": 169.34
+     }
+    }
+   ],
+   "period": "FY2025-Q3",
+   "piiFlag": "none",
+   "resolvable": true,
+   "scores": {
+    "denseRaw": 1.2686,
+    "bm25Raw": 3.535935,
+    "denseNorm": 1.0,
+    "bm25Norm": 1.0,
+    "fused": 1.0
+   }
+  },
+  {
+   "rank": 2,
+   "unitId": "quarterly-report-q3-fy2024-ab0f27:2.3.1:eu-16",
+   "docId": "quarterly-report-q3-fy2024-ab0f27",
+   "fileName": "quarterly_report_q3_fy2024.pdf",
+   "unitType": "table_panel",
+   "label": "Quarterly report · 3.5 Operating expenses",
+   "docType": "doc:QuarterlyReport",
+   "breadcrumb": "Quarterly report Q3 FY2024 › 3.5 Operating expenses",
+   "text": "Region │ Q3 FY2024\nAPAC │ 557\nCorporate 2 │ 268\nTotal │ 2,378\nTable 4 (continued) · Operating expenses by region · USD millions\n2 Excludes discontinued operations.",
+   "pages": [
+    16
+   ],
+   "pageWidth": 612.0,
+   "pageHeight": 792.0,
+   "bboxes": [
+    {
+     "page": 16,
+     "x0": 53.0,
+     "y0": 76.82,
+     "x1": 552.86,
+     "y1": 193.66
+    }
+   ],
+   "fields": [
+    {
+     "fieldId": "f-apac",
+     "label": "APAC",
+     "value": "557",
+     "period": "FY2024-Q3",
+     "page": 16,
+     "bbox": {
+      "page": 16,
+      "x0": 60.0,
+      "y0": 121.08,
+      "x1": 299.57,
+      "y1": 128.1
+     }
+    },
+    {
+     "fieldId": "f-corporate",
+     "label": "Corporate",
+     "value": "268",
+     "period": "FY2024-Q3",
+     "page": 16,
+     "bbox": {
+      "page": 16,
+      "x0": 60.47,
+      "y0": 141.08,
+      "x1": 299.58,
+      "y1": 149.88
+     }
+    },
+    {
+     "fieldId": "f-total",
+     "label": "Total",
+     "value": "2,378",
+     "valueNumber": "2378.00",
+     "period": "FY2024-Q3",
+     "page": 16,
+     "bbox": {
+      "page": 16,
+      "x0": 60.22,
+      "y0": 161.17,
+      "x1": 299.58,
+      "y1": 169.34
+     }
+    }
+   ],
+   "period": "FY2024-Q3",
+   "piiFlag": "none",
+   "resolvable": true,
+   "scores": {
+    "denseRaw": 1.268506,
+    "bm25Raw": 2.695319,
+    "denseNorm": 0.9985,
+    "bm25Norm": 0.683,
+    "fused": 0.9038
+   }
+  },
+  {
+   "rank": 3,
+   "unitId": "quarterly-report-q3-fy2023-f6e6a3:2.3.1:eu-16",
+   "docId": "quarterly-report-q3-fy2023-f6e6a3",
+   "fileName": "quarterly_report_q3_fy2023.pdf",
+   "unitType": "table_panel",
+   "label": "Quarterly report · 3.5 Operating expenses",
+   "docType": "doc:QuarterlyReport",
+   "breadcrumb": "Quarterly report Q3 FY2023 › 3.5 Operating expenses",
+   "text": "Region │ Q3 FY2023\nAPAC │ 394\nCorporate 2 │ 256\nTotal │ 2,356\nTable 4 (continued) · Operating expenses by region · USD millions\n2 Excludes discontinued operations.",
+   "pages": [
+    16
+   ],
+   "pageWidth": 612.0,
+   "pageHeight": 792.0,
+   "bboxes": [
+    {
+     "page": 16,
+     "x0": 53.01,
+     "y0": 76.82,
+     "x1": 552.87,
+     "y1": 193.66
+    }
+   ],
+   "fields": [
+    {
+     "fieldId": "f-apac",
+     "label": "APAC",
+     "value": "394",
+     "period": "FY2023-Q3",
+     "page": 16,
+     "bbox": {
+      "page": 16,
+      "x0": 60.0,
+      "y0": 121.08,
+      "x1": 299.54,
+      "y1": 128.11
+     }
+    },
+    {
+     "fieldId": "f-corporate",
+     "label": "Corporate",
+     "value": "256",
+     "period": "FY2023-Q3",
+     "page": 16,
+     "bbox": {
+      "page": 16,
+      "x0": 60.47,
+      "y0": 141.08,
+      "x1": 299.56,
+      "y1": 149.88
+     }
+    },
+    {
+     "fieldId": "f-total",
+     "label": "Total",
+     "value": "2,356",
+     "valueNumber": "2356.00",
+     "period": "FY2023-Q3",
+     "page": 16,
+     "bbox": {
+      "page": 16,
+      "x0": 60.22,
+      "y0": 161.17,
+      "x1": 299.56,
+      "y1": 169.34
+     }
+    }
+   ],
+   "period": "FY2023-Q3",
+   "piiFlag": "none",
+   "resolvable": true,
+   "scores": {
+    "denseRaw": 1.24661,
+    "bm25Raw": 2.695319,
+    "denseNorm": 0.6423,
+    "bm25Norm": 0.683,
+    "fused": 0.6545
+   }
+  },
+  {
+   "rank": 4,
+   "unitId": "quarterly-report-q3-fy2024-ab0f27:2.3.1:eu-17",
+   "docId": "quarterly-report-q3-fy2024-ab0f27",
+   "fileName": "quarterly_report_q3_fy2024.pdf",
+   "unitType": "section_text",
+   "label": "Quarterly report · 4. Outlook",
+   "docType": "doc:QuarterlyReport",
+   "breadcrumb": "Quarterly report Q3 FY2024 › 4. Outlook",
+   "text": "4. Outlook\nCustomer research informed changes to the mobile application's statement and document views. Partnership agreements with two payroll providers moved from pilot into general availability.\nThe compliance function completed its annual review of sanctions screening controls. The lending business tightened underwriting criteria for unsecured products in selected segments.",
+   "pages": [
+    16
+   ],
+   "pageWidth": 612.0,
+   "pageHeight": 792.0,
+   "bboxes": [
+    {
+     "page": 16,
+     "x0": 60.0,
+     "y0": 215.23,
+     "x1": 542.42,
+     "y1": 305.07
+    }
+   ],
+   "fields": [],
+   "period": "FY2024-Q3",
+   "piiFlag": "none",
+   "resolvable": true,
+   "scores": {
+    "denseRaw": 1.255931,
+    "bm25Raw": 1.011418,
+    "denseNorm": 0.7939,
+    "bm25Norm": 0.0479,
+    "fused": 0.5701
+   }
+  },
+  {
+   "rank": 5,
+   "unitId": "quarterly-report-q3-fy2025-ab5fea:2.3.1:eu-15",
+   "docId": "quarterly-report-q3-fy2025-ab5fea",
+   "fileName": "quarterly_report_q3_fy2025.pdf",
+   "unitType": "table_panel",
+   "label": "Quarterly report · 3.5 Operating expenses",
+   "docType": "doc:QuarterlyReport",
+   "breadcrumb": "Quarterly report Q3 FY2025 › 3.5 Operating expenses",
+   "text": "Region │ Q3 FY2025\nAmericas │ 1,180\nEMEA │ 960\nTable 4 · Operating expenses by region · USD millions",
+   "pages": [
+    15
+   ],
+   "pageWidth": 612.0,
+   "pageHeight": 792.0,
+   "bboxes": [
+    {
+     "page": 15,
+     "x0": 52.67,
+     "y0": 208.62,
+     "x1": 553.15,
+     "y1": 286.46
+    }
+   ],
+   "fields": [
+    {
+     "fieldId": "f-americas-q3-fy2025",
+     "label": "Americas · Q3 FY2025",
+     "value": "1,180",
+     "valueNumber": "1180.00",
+     "period": "FY2025-Q3",
+     "page": 15,
+     "bbox": {
+      "page": 15,
+      "x0": 60.0,
+      "y0": 252.97,
+      "x1": 299.54,
+      "y1": 261.77
+     }
+    }
+   ],
+   "period": "FY2025-Q3",
+   "piiFlag": "none",
+   "resolvable": true,
+   "scores": {
+    "denseRaw": 1.234405,
+    "bm25Raw": 2.758066,
+    "denseNorm": 0.4438,
+    "bm25Norm": 0.7066,
+    "fused": 0.5226
+   }
+  },
+  {
+   "rank": 3,
+   "unitId": "quarterly-report-q3-fy2025-ab5fea:2.3.1:eu-10",
+   "docId": "quarterly-report-q3-fy2025-ab5fea",
+   "fileName": "quarterly_report_q3_fy2025.pdf",
+   "unitType": "figure_panel",
+   "label": "Quarterly report · 3.2 Revenue by segment",
+   "docType": "doc:QuarterlyReport",
+   "breadcrumb": "Quarterly report Q3 FY2025 › 3.2 Revenue by segment",
+   "text": "Figure 2 · Revenue by segment · Q3 FY2025 · USD millions",
+   "pages": [
+    12
+   ],
+   "pageWidth": 612.0,
+   "pageHeight": 792.0,
+   "bboxes": [
+    {
+     "page": 12,
+     "x0": 60.0,
+     "y0": 99.62,
+     "x1": 509.54,
+     "y1": 284.82
+    }
+   ],
+   "fields": [],
+   "period": "FY2025-Q3",
+   "piiFlag": "none",
+   "resolvable": true,
+   "scores": {
+    "denseRaw": 1.342732,
+    "bm25Raw": 1.70041,
+    "denseNorm": 0.8499,
+    "bm25Norm": 0.4062,
+    "fused": 0.7168
+   }
+  },
+  {
+   "rank": 4,
+   "unitId": "quarterly-report-q3-fy2025-ab5fea:2.3.1:eu-02",
+   "docId": "quarterly-report-q3-fy2025-ab5fea",
+   "fileName": "quarterly_report_q3_fy2025.pdf",
+   "unitType": "section_text",
+   "label": "Quarterly report · Contents",
+   "docType": "doc:QuarterlyReport",
+   "breadcrumb": "Quarterly report Q3 FY2025 › Contents",
+   "text": "Contents\nOverview\nStrategy and operations\nResults\nOutlook",
+   "pages": [
+    1
+   ],
+   "pageWidth": 612.0,
+   "pageHeight": 792.0,
+   "bboxes": [
+    {
+     "page": 1,
+     "x0": 60.0,
+     "y0": 321.38,
+     "x1": 187.29,
+     "y1": 402.87
+    }
+   ],
+   "fields": [],
+   "period": "FY2025-Q3",
+   "piiFlag": "none",
+   "resolvable": true,
+   "scores": {
+    "denseRaw": 1.355605,
+    "denseNorm": 1.0,
+    "bm25Norm": 0.0,
+    "fused": 0.7
+   }
+  },
+  {
+   "rank": 5,
+   "unitId": "quarterly-report-q3-fy2024-ab0f27:2.3.1:eu-10",
+   "docId": "quarterly-report-q3-fy2024-ab0f27",
+   "fileName": "quarterly_report_q3_fy2024.pdf",
+   "unitType": "figure_panel",
+   "label": "Quarterly report · 3.2 Revenue by segment",
+   "docType": "doc:QuarterlyReport",
+   "breadcrumb": "Quarterly report Q3 FY2024 › 3.2 Revenue by segment",
+   "text": "Figure 2 · Revenue by segment · Q3 FY2024 · USD millions",
+   "pages": [
+    12
+   ],
+   "pageWidth": 612.0,
+   "pageHeight": 792.0,
+   "bboxes": [
+    {
+     "page": 12,
+     "x0": 60.0,
+     "y0": 99.62,
+     "x1": 509.32,
+     "y1": 284.67
+    }
+   ],
+   "fields": [],
+   "period": "FY2024-Q3",
+   "piiFlag": "none",
+   "resolvable": true,
+   "scores": {
+    "denseRaw": 1.321286,
+    "bm25Raw": 1.70041,
+    "denseNorm": 0.5997,
+    "bm25Norm": 0.4062,
+    "fused": 0.5417
+   }
+  }
+ ],
+ "retrievedText": [
+  "Region │ Q3 FY2025\nAPAC │ 610\nCorporate 2 │ 340\nTotal │ 3,090\nTable 4 (continued) · Operating expenses by region · USD millions\n2 Excludes discontinued operations.",
+  "Region │ Q3 FY2024\nAPAC │ 557\nCorporate 2 │ 268\nTotal │ 2,378\nTable 4 (continued) · Operating expenses by region · USD millions\n2 Excludes discontinued operations.",
+  "Region │ Q3 FY2023\nAPAC │ 394\nCorporate 2 │ 256\nTotal │ 2,356\nTable 4 (continued) · Operating expenses by region · USD millions\n2 Excludes discontinued operations.",
+  "4. Outlook\nCustomer research informed changes to the mobile application's statement and document views. Partnership agreements with two payroll providers moved from pilot into general availability.\nThe compliance function completed its annual review of sanctions screening controls. The lending business tightened underwriting criteria for unsecured products in selected segments.",
+  "Region │ Q3 FY2025\nAmericas │ 1,180\nEMEA │ 960\nTable 4 · Operating expenses by region · USD millions",
+  "Figure 2 · Revenue by segment · Q3 FY2025 · USD millions",
+  "Contents\nOverview\nStrategy and operations\nResults\nOutlook",
+  "Figure 2 · Revenue by segment · Q3 FY2024 · USD millions"
+ ],
+ "answer": {
+  "answer": "In Table 4 (Operating expenses by region) of the Q3 FY2025 report, the Corporate line carries footnote 2, which states that it excludes discontinued operations. The Corporate figure for Q3 FY2025 is USD 340 million.",
+  "currency": "USD",
+  "claims": [
+   {
+    "text": "USD 340 million",
+    "value": "340.00",
+    "unitId": "quarterly-report-q3-fy2025-ab5fea:2.3.1:eu-16",
+    "fieldId": "f-corporate",
+    "docId": "quarterly-report-q3-fy2025-ab5fea",
+    "fileName": "quarterly_report_q3_fy2025.pdf",
+    "label": "Quarterly report · 3.5 Operating expenses · Corporate · p.16",
+    "page": 16,
+    "bbox": {
+     "page": 16,
+     "x0": 60.47,
+     "y0": 141.08,
+     "x1": 299.54,
+     "y1": 149.88
+    },
+    "unitBbox": {
+     "page": 16,
+     "x0": 53.04,
+     "y0": 76.82,
+     "x1": 552.82,
+     "y1": 193.66
+    },
+    "resolvable": true
+   }
+  ],
+  "caveats": [
+   "The exclusion note (footnote 2) applies specifically to the Corporate line of Table 4 (continued) — Operating expenses by region — on page 16 of the Q3 FY2025 report."
+  ],
+  "citationRetries": 0,
+  "uncitedNumbers": []
+ },
+ "usage": {
+  "inputTokens": 9153,
+  "outputTokens": 350,
+  "totalTokens": 9503
+ },
+ "latencyMs": 11549,
+ "status": "ok",
+ "s3Key": "runs/r-fc8d5d2765f2.json",
+ "provenance": {
+  "mode": "local-run",
+  "label": "local run · Bedrock",
+  "note": "Asked on a developer machine against the local pipeline's outputs; not the deployed AWS stack.",
+  "build": "build/e2e-quarterly",
+  "model": "Amazon Bedrock Converse (real)",
+  "embeddings": "amazon.titan-embed-text-v2:0 (real Bedrock; responses recorded)",
+  "index": "in-memory k-NN (exact inner product) + BM25 (Lucene formula) over the run's units; NOT OpenSearch",
+  "graph": "pyoxigraph in-process (NOT Amazon Neptune)",
+  "stores": "moto (S3, DynamoDB) loaded from the run's world snapshot",
+  "piiGate": "Amazon Comprehend DetectPiiEntities (real; responses recorded) (runs/local/recorded/comprehend.json)",
+  "extraction": "docling 2.145.0 (local, dev mode)",
+  "scanPages": "local Docling OCR shaped as a Textract response (NOT Amazon Textract)",
+  "phaseBEmbeddings": "amazon.titan-embed-text-v2:0 (real Bedrock; responses recorded)",
+  "toolTransport": "tool Lambda handlers in-process (local gateway; identity injected like the interceptor)"
+ }
+}

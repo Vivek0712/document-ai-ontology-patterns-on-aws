@@ -1,0 +1,241 @@
+{
+  "$defs": {
+    "CanonicalRole": {
+      "description": "Canonical layout roles (aligned to DoCO). Engine labels map here via the vocab snapshot.",
+      "enum": [
+        "title",
+        "section_header",
+        "text",
+        "list_item",
+        "table",
+        "table_cell",
+        "key_value",
+        "caption",
+        "footnote",
+        "picture",
+        "formula",
+        "page_header",
+        "page_footer",
+        "unit_label",
+        "marker_link"
+      ],
+      "title": "CanonicalRole",
+      "type": "string"
+    },
+    "VocabDocType": {
+      "properties": {
+        "concept": {
+          "title": "Concept",
+          "type": "string"
+        },
+        "prefLabel": {
+          "title": "Preflabel",
+          "type": "string"
+        },
+        "shortLabel": {
+          "title": "Shortlabel",
+          "type": "string"
+        },
+        "altLabels": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Altlabels",
+          "type": "array"
+        },
+        "indicators": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Indicators",
+          "type": "array"
+        },
+        "periodKind": {
+          "default": "none",
+          "enum": [
+            "tax_year",
+            "pay_period",
+            "statement_period",
+            "quarter",
+            "none"
+          ],
+          "title": "Periodkind",
+          "type": "string"
+        }
+      },
+      "required": [
+        "concept",
+        "prefLabel",
+        "shortLabel",
+        "indicators"
+      ],
+      "title": "VocabDocType",
+      "type": "object"
+    },
+    "VocabFieldConcept": {
+      "properties": {
+        "concept": {
+          "title": "Concept",
+          "type": "string"
+        },
+        "prefLabel": {
+          "title": "Preflabel",
+          "type": "string"
+        },
+        "altLabels": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Altlabels",
+          "type": "array"
+        },
+        "notation": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Notation"
+        },
+        "docType": {
+          "title": "Doctype",
+          "type": "string"
+        },
+        "datatype": {
+          "default": "decimal",
+          "enum": [
+            "decimal",
+            "string",
+            "date"
+          ],
+          "title": "Datatype",
+          "type": "string"
+        },
+        "unitGroup": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Unitgroup"
+        }
+      },
+      "required": [
+        "concept",
+        "prefLabel",
+        "altLabels",
+        "docType"
+      ],
+      "title": "VocabFieldConcept",
+      "type": "object"
+    },
+    "VocabRole": {
+      "properties": {
+        "role": {
+          "$ref": "#/$defs/CanonicalRole"
+        },
+        "concept": {
+          "title": "Concept",
+          "type": "string"
+        },
+        "prefLabel": {
+          "title": "Preflabel",
+          "type": "string"
+        },
+        "doco": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Doco"
+        },
+        "engineLabels": {
+          "additionalProperties": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "title": "Enginelabels",
+          "type": "object"
+        },
+        "derived": {
+          "default": false,
+          "title": "Derived",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "role",
+        "concept",
+        "prefLabel",
+        "engineLabels"
+      ],
+      "title": "VocabRole",
+      "type": "object"
+    }
+  },
+  "description": "config/ontology/{ontologyVersion}/vocab.json. Built by ontology/build.py (A) and,\nin AWS, re-exported from Neptune by rp-vocab-export with the same shape.",
+  "properties": {
+    "ontologyVersion": {
+      "title": "Ontologyversion",
+      "type": "string"
+    },
+    "generatedAt": {
+      "title": "Generatedat",
+      "type": "string"
+    },
+    "source": {
+      "enum": [
+        "build",
+        "neptune"
+      ],
+      "title": "Source",
+      "type": "string"
+    },
+    "roles": {
+      "items": {
+        "$ref": "#/$defs/VocabRole"
+      },
+      "title": "Roles",
+      "type": "array"
+    },
+    "docTypes": {
+      "items": {
+        "$ref": "#/$defs/VocabDocType"
+      },
+      "title": "Doctypes",
+      "type": "array"
+    },
+    "fieldConcepts": {
+      "items": {
+        "$ref": "#/$defs/VocabFieldConcept"
+      },
+      "title": "Fieldconcepts",
+      "type": "array"
+    }
+  },
+  "required": [
+    "ontologyVersion",
+    "generatedAt",
+    "source",
+    "roles",
+    "docTypes",
+    "fieldConcepts"
+  ],
+  "title": "VocabSnapshot",
+  "type": "object"
+}

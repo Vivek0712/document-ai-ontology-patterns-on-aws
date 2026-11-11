@@ -1,0 +1,110 @@
+{
+  "indexes": [
+    "units-v1-0",
+    "units-v2-3-1"
+  ],
+  "body": {
+    "settings": {
+      "index": {
+        "knn": true
+      }
+    },
+    "mappings": {
+      "properties": {
+        "unitId": {
+          "type": "keyword"
+        },
+        "docId": {
+          "type": "keyword"
+        },
+        "packageId": {
+          "type": "keyword"
+        },
+        "pipelineVersion": {
+          "type": "keyword"
+        },
+        "unitType": {
+          "type": "keyword"
+        },
+        "label": {
+          "type": "keyword",
+          "index": false
+        },
+        "chunkLabel": {
+          "type": "keyword"
+        },
+        "fileName": {
+          "type": "keyword"
+        },
+        "docType": {
+          "type": "keyword"
+        },
+        "fieldConcepts": {
+          "type": "keyword"
+        },
+        "period": {
+          "type": "keyword"
+        },
+        "piiFlag": {
+          "type": "keyword"
+        },
+        "allowedPrincipals": {
+          "type": "keyword"
+        },
+        "configSha": {
+          "type": "keyword"
+        },
+        "breadcrumb": {
+          "type": "text",
+          "copy_to": "searchText"
+        },
+        "text": {
+          "type": "text",
+          "copy_to": "searchText"
+        },
+        "searchText": {
+          "type": "text"
+        },
+        "pages": {
+          "type": "integer"
+        },
+        "pageWidth": {
+          "type": "float"
+        },
+        "pageHeight": {
+          "type": "float"
+        },
+        "bboxes": {
+          "type": "object",
+          "enabled": false
+        },
+        "fieldIds": {
+          "type": "keyword"
+        },
+        "fields": {
+          "type": "object",
+          "enabled": false
+        },
+        "confidence": {
+          "type": "float"
+        },
+        "indexedAt": {
+          "type": "date"
+        },
+        "embedding": {
+          "type": "knn_vector",
+          "dimension": 1024,
+          "method": {
+            "name": "hnsw",
+            "engine": "faiss",
+            "space_type": "innerproduct",
+            "parameters": {
+              "m": 16,
+              "ef_construction": 128
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,213 @@
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix fibo-fnd-aap-ppl: <https://spec.edmcouncil.org/fibo/ontology/FND/AgentsAndPeople/People/> .
+@prefix fibo-be-le-lp: <https://spec.edmcouncil.org/fibo/ontology/BE/LegalEntities/LegalPersons/> .
+@prefix fibo-sec-dbt-bnd: <https://spec.edmcouncil.org/fibo/ontology/SEC/Debt/Bonds/> .
+@prefix fibo-sec-dbt-dbti: <https://spec.edmcouncil.org/fibo/ontology/SEC/Debt/DebtInstruments/> .
+@prefix fibo-fbc-dae-dbt: <https://spec.edmcouncil.org/fibo/ontology/FBC/DebtAndEquities/Debt/> .
+@prefix doc:  <urn:rp:ont:doc:> .
+@prefix fin:  <urn:rp:ont:fin:> .
+@prefix rp:   <urn:rp:ont:rp:> .
+
+# fin: Regionproof's financial domain extension. Real FIBO classes are used wherever FIBO has the
+# notion (FIBO master_2026Q3); fin: adds what FIBO does not model: printed form fields (W-2 boxes,
+# payslip lines), the lending definition of qualifying income, and a rating-triggered step event.
+
+<urn:rp:ont:fin> a owl:Ontology ;
+    rdfs:label "Regionproof financial extension (fin:)" ;
+    rdfs:comment "Field concepts and defined quantities for fictitious lending, reporting and trade documents." .
+
+# ================================================================ facts (ABox shape)
+
+fin:FieldValue a owl:Class ;
+    rdfs:label "Field value" ;
+    rdfs:subClassOf prov:Entity ;
+    rdfs:comment "A labelled value read from a document field, typed by fin:concept, with lineage to its unit and page region (prov:wasDerivedFrom)." .
+
+fin:concept a owl:ObjectProperty ; rdfs:label "field concept" ; rdfs:domain fin:FieldValue ; rdfs:range skos:Concept .
+fin:amount a owl:DatatypeProperty ; rdfs:label "amount" ; rdfs:domain fin:FieldValue ; rdfs:range xsd:decimal .
+fin:text a owl:DatatypeProperty ; rdfs:label "text value" ; rdfs:domain fin:FieldValue ; rdfs:range xsd:string .
+fin:currency a owl:DatatypeProperty ; rdfs:label "currency (ISO 4217)" ; rdfs:range xsd:string .
+fin:taxYear a owl:DatatypeProperty ; rdfs:label "tax year" ; rdfs:range xsd:gYear .
+fin:period a owl:DatatypeProperty ; rdfs:label "period code" ; rdfs:range xsd:string ;
+    rdfs:comment "TY2025 (tax year), 2026-09 (pay or statement month), YTD2026-09 (year to date), Q3 FY2025." .
+fin:periodStart a owl:DatatypeProperty ; rdfs:label "period start" ; rdfs:range xsd:date .
+fin:periodEnd a owl:DatatypeProperty ; rdfs:label "period end" ; rdfs:range xsd:date .
+fin:borrower a owl:ObjectProperty ; rdfs:label "borrower" ; rdfs:range fibo-fnd-aap-ppl:Person .
+fin:employer a owl:ObjectProperty ; rdfs:label "employer" ; rdfs:range fibo-be-le-lp:BusinessEntity .
+
+# ================================================================ defined quantities
+
+fin:DefinedQuantity a owl:Class ;
+    rdfs:label "Defined quantity" ;
+    rdfs:comment "A figure whose meaning is fixed by a definition and computed from typed field values." .
+
+fin:operandConcept a owl:ObjectProperty ; rdfs:label "operand concept" ; rdfs:domain fin:DefinedQuantity .
+
+fin:QualifyingIncome a owl:Class ;
+    rdfs:subClassOf fin:DefinedQuantity ;
+    rdfs:label "Qualifying income" ;
+    skos:prefLabel "Qualifying income" ;
+    skos:altLabel "Total income for a lending package" ;
+    rdfs:comment "Total income for a lending package means qualifying income: the sum of W-2 Box 1 wages for the latest tax year, per borrower. Payslips and bank deposits corroborate and are not added." ;
+    fin:operandConcept fin:W2WagesBox1 ;
+    rp:computedBy "qi_sum_w2_box1_v1" .
+
+# ================================================================ debt instruments (D2)
+
+fin:RatingTriggeredStepEvent a owl:Class ;
+    rdfs:subClassOf fibo-sec-dbt-dbti:StepEvent ;
+    rdfs:label "Rating-triggered step event" ;
+    rdfs:comment "A coupon step that takes effect from a stated coupon year when the issuer's rating falls below a trigger rating." .
+fin:triggerRating a owl:DatatypeProperty ; rdfs:label "trigger rating" ; rdfs:domain fin:RatingTriggeredStepEvent ; rdfs:range xsd:string .
+fin:newRate a owl:DatatypeProperty ; rdfs:label "new coupon rate (percent)" ; rdfs:domain fin:RatingTriggeredStepEvent ; rdfs:range xsd:decimal .
+fin:effectiveFromYear a owl:DatatypeProperty ; rdfs:label "effective from coupon year" ; rdfs:domain fin:RatingTriggeredStepEvent ; rdfs:range xsd:integer .
+fin:hasStepEvent a owl:ObjectProperty ; rdfs:label "has step event" ; rdfs:domain fibo-sec-dbt-bnd:SteppedCouponTerms ; rdfs:range fin:RatingTriggeredStepEvent .
+
+# ================================================================ field concepts
+
+fin:FieldConceptScheme a skos:ConceptScheme ;
+    skos:prefLabel "Regionproof field concepts" ;
+    skos:scopeNote "skos:altLabel values are labels as printed on the documents; eu_builder matches them after whitespace and case normalisation. Preferred and alternative labels are disjoint." .
+
+# ---- W-2
+
+fin:W2WagesBox1 a skos:Concept ; skos:inScheme fin:FieldConceptScheme ;
+    skos:prefLabel "W-2 Box 1 wages" ;
+    skos:altLabel "1 Wages, tips, other compensation", "Wages, tips, other compensation", "Box 1" ;
+    skos:notation "1" ; rp:docType doc:W2 ; rp:datatype "decimal" ; rp:unitGroup "Wages (Boxes 1–6)" ;
+    skos:definition "Taxable wages, tips and other compensation; excludes elective 401(k) deferrals." .
+fin:W2FederalIncomeTaxWithheldBox2 a skos:Concept ; skos:inScheme fin:FieldConceptScheme ;
+    skos:prefLabel "W-2 Box 2 federal income tax withheld" ;
+    skos:altLabel "2 Federal income tax withheld", "Federal income tax withheld", "Box 2" ;
+    skos:notation "2" ; rp:docType doc:W2 ; rp:datatype "decimal" ; rp:unitGroup "Wages (Boxes 1–6)" .
+fin:W2SocialSecurityWagesBox3 a skos:Concept ; skos:inScheme fin:FieldConceptScheme ;
+    skos:prefLabel "W-2 Box 3 social security wages" ;
+    skos:altLabel "3 Social security wages", "Social security wages", "Box 3" ;
+    skos:notation "3" ; rp:docType doc:W2 ; rp:datatype "decimal" ; rp:unitGroup "Wages (Boxes 1–6)" ;
+    skos:definition "Wages subject to social security tax; includes elective 401(k) deferrals, so it can exceed Box 1." .
+fin:W2SocialSecurityTaxWithheldBox4 a skos:Concept ; skos:inScheme fin:FieldConceptScheme ;
+    skos:prefLabel "W-2 Box 4 social security tax withheld" ;
+    skos:altLabel "4 Social security tax withheld", "Social security tax withheld", "Box 4" ;
+    skos:notation "4" ; rp:docType doc:W2 ; rp:datatype "decimal" ; rp:unitGroup "Wages (Boxes 1–6)" .
+fin:W2MedicareWagesBox5 a skos:Concept ; skos:inScheme fin:FieldConceptScheme ;
+    skos:prefLabel "W-2 Box 5 Medicare wages" ;
+    skos:altLabel "5 Medicare wages and tips", "Medicare wages and tips", "Box 5" ;
+    skos:notation "5" ; rp:docType doc:W2 ; rp:datatype "decimal" ; rp:unitGroup "Wages (Boxes 1–6)" .
+fin:W2MedicareTaxWithheldBox6 a skos:Concept ; skos:inScheme fin:FieldConceptScheme ;
+    skos:prefLabel "W-2 Box 6 Medicare tax withheld" ;
+    skos:altLabel "6 Medicare tax withheld", "Medicare tax withheld", "Box 6" ;
+    skos:notation "6" ; rp:docType doc:W2 ; rp:datatype "decimal" ; rp:unitGroup "Wages (Boxes 1–6)" .
+fin:W2Box12Amount a skos:Concept ; skos:inScheme fin:FieldConceptScheme ;
+    skos:prefLabel "W-2 Box 12 amount" ;
+    skos:altLabel "12a See instructions for box 12", "12a", "Box 12a" ;
+    skos:notation "12a" ; rp:docType doc:W2 ; rp:datatype "decimal" ; rp:unitGroup "Other boxes (7–14)" ;
+    skos:scopeNote "Code D: elective deferrals to a 401(k) plan." .
+fin:W2EmployerName a skos:Concept ; skos:inScheme fin:FieldConceptScheme ;
+    skos:prefLabel "W-2 employer name" ;
+    skos:altLabel "c Employer's name, address, and ZIP code", "Employer's name, address, and ZIP code" ;
+    skos:notation "c" ; rp:docType doc:W2 ; rp:datatype "string" ; rp:unitGroup "Employee and employer (boxes a–f)" .
+fin:W2EmployeeName a skos:Concept ; skos:inScheme fin:FieldConceptScheme ;
+    skos:prefLabel "W-2 employee name" ;
+    skos:altLabel "e Employee's first name and initial Last name", "Employee's first name and initial Last name" ;
+    skos:notation "e" ; rp:docType doc:W2 ; rp:datatype "string" ; rp:unitGroup "Employee and employer (boxes a–f)" .
+
+# ---- payslip
+
+fin:PayslipGrossPay a skos:Concept ; skos:inScheme fin:FieldConceptScheme ;
+    skos:prefLabel "Payslip gross pay for the period" ;
+    skos:altLabel "Gross pay", "Gross pay Current", "Gross pay · Current" ;
+    rp:docType doc:Payslip ; rp:datatype "decimal" ; rp:unitGroup "Earnings and deductions" .
+fin:PayslipGrossPayYtd a skos:Concept ; skos:inScheme fin:FieldConceptScheme ;
+    skos:prefLabel "Payslip gross pay year to date" ;
+    skos:altLabel "Gross pay Year to date", "Gross pay · Year to date", "YTD gross", "Gross pay YTD" ;
+    rp:docType doc:Payslip ; rp:datatype "decimal" ; rp:unitGroup "Earnings and deductions" .
+fin:Payslip401kDeferral a skos:Concept ; skos:inScheme fin:FieldConceptScheme ;
+    skos:prefLabel "Payslip 401(k) deferral for the period" ;
+    skos:altLabel "401(k) employee deferral", "401(k) employee deferral Current", "401(k) employee deferral · Current" ;
+    rp:docType doc:Payslip ; rp:datatype "decimal" ; rp:unitGroup "Earnings and deductions" .
+fin:PayslipNetPay a skos:Concept ; skos:inScheme fin:FieldConceptScheme ;
+    skos:prefLabel "Payslip net pay for the period" ;
+    skos:altLabel "Net pay", "Net pay Current", "Net pay · Current" ;
+    rp:docType doc:Payslip ; rp:datatype "decimal" ; rp:unitGroup "Earnings and deductions" .
+fin:PayslipEmployeeName a skos:Concept ; skos:inScheme fin:FieldConceptScheme ;
+    skos:prefLabel "Payslip employee name" ; skos:altLabel "Employee" ;
+    rp:docType doc:Payslip ; rp:datatype "string" ; rp:unitGroup "Employee and period" .
+fin:PayslipPayPeriod a skos:Concept ; skos:inScheme fin:FieldConceptScheme ;
+    skos:prefLabel "Payslip pay period" ; skos:altLabel "Pay period" ;
+    rp:docType doc:Payslip ; rp:datatype "string" ; rp:unitGroup "Employee and period" .
+fin:PayslipPayDate a skos:Concept ; skos:inScheme fin:FieldConceptScheme ;
+    skos:prefLabel "Payslip pay date" ; skos:altLabel "Pay date" ;
+    rp:docType doc:Payslip ; rp:datatype "date" ; rp:unitGroup "Employee and period" .
+
+# ---- bank statement
+
+fin:BankAccountNumber a skos:Concept ; skos:inScheme fin:FieldConceptScheme ;
+    skos:prefLabel "Bank account number" ; skos:altLabel "Account number" ;
+    rp:docType doc:BankStatement ; rp:datatype "string" ; rp:unitGroup "Account header" ;
+    skos:scopeNote "Identifier. An unmasked value holds its unit at the PII gate (rp-pii-v1)." .
+fin:StatementPeriod a skos:Concept ; skos:inScheme fin:FieldConceptScheme ;
+    skos:prefLabel "Statement period" ; skos:altLabel "Period of statement" ;
+    rp:docType doc:BankStatement ; rp:datatype "string" ; rp:unitGroup "Account header" .
+fin:OpeningBalance a skos:Concept ; skos:inScheme fin:FieldConceptScheme ;
+    skos:prefLabel "Opening balance" ; skos:altLabel "Balance at start of period" ;
+    rp:docType doc:BankStatement ; rp:datatype "decimal" ; rp:unitGroup "Account header" .
+fin:ClosingBalance a skos:Concept ; skos:inScheme fin:FieldConceptScheme ;
+    skos:prefLabel "Closing balance" ; skos:altLabel "Balance at end of period" ;
+    rp:docType doc:BankStatement ; rp:datatype "decimal" ; rp:unitGroup "Account header" .
+fin:BankDepositAmount a skos:Concept ; skos:inScheme fin:FieldConceptScheme ;
+    skos:prefLabel "Deposit amount" ; skos:altLabel "Deposits", "Payroll" ;
+    rp:docType doc:BankStatement ; rp:datatype "decimal" ; rp:unitGroup "Deposits" ;
+    skos:scopeNote "Corroborates income; never added to qualifying income." .
+fin:BankWithdrawalAmount a skos:Concept ; skos:inScheme fin:FieldConceptScheme ;
+    skos:prefLabel "Withdrawal amount" ; skos:altLabel "Other transactions" ;
+    rp:docType doc:BankStatement ; rp:datatype "decimal" ; rp:unitGroup "Other transactions" .
+fin:DailyBalance a skos:Concept ; skos:inScheme fin:FieldConceptScheme ;
+    skos:prefLabel "Daily balance" ; skos:altLabel "Daily balance · USD" ;
+    rp:docType doc:BankStatement ; rp:datatype "decimal" ; rp:unitGroup "Daily balance" .
+
+# ---- quarterly report
+
+fin:TotalRevenue a skos:Concept ; skos:inScheme fin:FieldConceptScheme ;
+    skos:prefLabel "Total revenue for the quarter" ; skos:altLabel "Total revenue" ;
+    rp:docType doc:QuarterlyReport ; rp:datatype "decimal" ; rp:unitGroup "Revenue by quarter" .
+fin:SegmentRevenue a skos:Concept ; skos:inScheme fin:FieldConceptScheme ;
+    skos:prefLabel "Segment revenue" ; skos:altLabel "Revenue by segment" ;
+    rp:docType doc:QuarterlyReport ; rp:datatype "decimal" ; rp:unitGroup "Revenue by segment" .
+fin:OperatingExpense a skos:Concept ; skos:inScheme fin:FieldConceptScheme ;
+    skos:prefLabel "Operating expense" ; skos:altLabel "Operating expenses by region" ;
+    rp:docType doc:QuarterlyReport ; rp:datatype "decimal" ; rp:unitGroup "Operating expenses" .
+fin:CustomerAccountsCount a skos:Concept ; skos:inScheme fin:FieldConceptScheme ;
+    skos:prefLabel "Customer accounts" ; skos:altLabel "Customer accounts reached" ;
+    rp:docType doc:QuarterlyReport ; rp:datatype "string" ; rp:unitGroup "Customers" .
+
+# ---- trade confirmation
+
+fin:SecurityIdentifier a skos:Concept ; skos:inScheme fin:FieldConceptScheme ;
+    skos:prefLabel "Security identifier" ; skos:altLabel "Security" ;
+    rp:docType doc:TradeConfirmation ; rp:datatype "string" ; rp:unitGroup "Security terms" .
+fin:IssuerRating a skos:Concept ; skos:inScheme fin:FieldConceptScheme ;
+    skos:prefLabel "Issuer credit rating" ; skos:altLabel "Issuer rating" ;
+    rp:docType doc:TradeConfirmation ; rp:datatype "string" ; rp:unitGroup "Security terms" .
+fin:NominalAmount a skos:Concept ; skos:inScheme fin:FieldConceptScheme ;
+    skos:prefLabel "Nominal amount" ; skos:altLabel "Nominal" ;
+    rp:docType doc:TradeConfirmation ; rp:datatype "decimal" ; rp:unitGroup "Security terms" .
+fin:CouponRate a skos:Concept ; skos:inScheme fin:FieldConceptScheme ;
+    skos:prefLabel "Coupon rate at issue" ; skos:altLabel "Coupon" ;
+    rp:docType doc:TradeConfirmation ; rp:datatype "decimal" ; rp:unitGroup "Security terms" ;
+    skos:closeMatch fibo-sec-dbt-bnd:BondCoupon .
+fin:StepUpCouponRate a skos:Concept ; skos:inScheme fin:FieldConceptScheme ;
+    skos:prefLabel "Step-up coupon rate" ; skos:altLabel "Notes to the security terms" ;
+    rp:docType doc:TradeConfirmation ; rp:datatype "decimal" ; rp:unitGroup "Security terms" ;
+    skos:related fin:RatingTriggeredStepEvent ;
+    skos:scopeNote "Read from the footnote linked to the coupon by its marker; the step is a fin:RatingTriggeredStepEvent." .
+fin:MaturityDate a skos:Concept ; skos:inScheme fin:FieldConceptScheme ;
+    skos:prefLabel "Maturity date" ; skos:altLabel "Maturity" ;
+    rp:docType doc:TradeConfirmation ; rp:datatype "date" ; rp:unitGroup "Security terms" .
+fin:SettlementDate a skos:Concept ; skos:inScheme fin:FieldConceptScheme ;
+    skos:prefLabel "Settlement date of the trade" ; skos:altLabel "Settlement date" ;
+    rp:docType doc:TradeConfirmation ; rp:datatype "date" ; rp:unitGroup "Trade details" .

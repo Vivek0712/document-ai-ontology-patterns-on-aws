@@ -1,0 +1,141 @@
+{
+  "first": {
+    "method": "tools/call",
+    "params": {
+      "name": "query",
+      "arguments": {
+        "namespaceId": "<NAMESPACE_ID>",
+        "query": "qualifying income",
+        "execute": true,
+        "tierOverride": 1,
+        "mode": "standard",
+        "dimensions": [
+          {
+            "name": "package_id",
+            "value": "pkg-lending-01"
+          }
+        ]
+      }
+    },
+    "http_status": 200,
+    "latency_ms": 10925.8,
+    "content_type": "text/event-stream",
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 5,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"result\": {\n    \"tier\": 1.0,\n    \"confidence\": {\n      \"score\": 1.0,\n      \"rationale\": \"Deterministic metric: qualifying_income\"\n    },\n    \"resultRows\": [\n      {\n        \"qualifying_income\": \"169650.00\"\n      }\n    ],\n    \"trace\": [\n      {\n        \"step\": \"t1.metric_match\",\n        \"status\": \"success\",\n        \"durationMs\": 0,\n        \"detail\": {\n          \"metricName\": \"qualifying_income\",\n          \"matchSource\": \"name\",\n          \"confidence\": 1.0\n        }\n      },\n      {\n        \"step\": \"t1.authorize\",\n        \"status\": \"allow\",\n        \"durationMs\": 2,\n        \"detail\": {\n          \"principal\": \"<EMAIL>\",\n          \"decision\": \"allow\"\n        },\n        \"toolUsed\": \"cedar\"\n      },\n      {\n        \"step\": \"t1.firewall\",\n        \"status\": \"success\",\n        \"durationMs\": 2,\n        \"detail\": {\n          \"decision\": \"authorized\"\n        },\n        \"toolUsed\": \"sql-firewall\"\n      },\n      {\n        \"step\": \"t1.execute\",\n        \"status\": \"success\",\n        \"durationMs\": 1916,\n        \"detail\": {\n          \"rowCount\": 1,\n          \"table\": \"<SOURCE_ID>\",\n          \"truncated\": false,\n          \"timeoutSeconds\": 35,\n          \"engine\": \"athena\"\n        },\n        \"toolUsed\": \"sql-engine\"\n      }\n    ],\n    \"guardrailBlocked\": false,\n    \"partial\": false,\n    \"metadata\": {\n      \"namespace\": \"<NAMESPACE_ID>\",\n      \"modelId\": \"us.anthropic.claude-sonnet-5\",\n      \"principal\": \"<EMAIL>\",\n      \"columns\": [],\n      \"totalMs\": 1920\n    }\n  },\n  \"requestId\": \"64c11755-5523-49bb-b730-98fe8452b3da\",\n  \"sessionId\": null\n}"
+          }
+        ],
+        "structuredContent": {
+          "result": "{\n  \"result\": {\n    \"tier\": 1.0,\n    \"confidence\": {\n      \"score\": 1.0,\n      \"rationale\": \"Deterministic metric: qualifying_income\"\n    },\n    \"resultRows\": [\n      {\n        \"qualifying_income\": \"169650.00\"\n      }\n    ],\n    \"trace\": [\n      {\n        \"step\": \"t1.metric_match\",\n        \"status\": \"success\",\n        \"durationMs\": 0,\n        \"detail\": {\n          \"metricName\": \"qualifying_income\",\n          \"matchSource\": \"name\",\n          \"confidence\": 1.0\n        }\n      },\n      {\n        \"step\": \"t1.authorize\",\n        \"status\": \"allow\",\n        \"durationMs\": 2,\n        \"detail\": {\n          \"principal\": \"<EMAIL>\",\n          \"decision\": \"allow\"\n        },\n        \"toolUsed\": \"cedar\"\n      },\n      {\n        \"step\": \"t1.firewall\",\n        \"status\": \"success\",\n        \"durationMs\": 2,\n        \"detail\": {\n          \"decision\": \"authorized\"\n        },\n        \"toolUsed\": \"sql-firewall\"\n      },\n      {\n        \"step\": \"t1.execute\",\n        \"status\": \"success\",\n        \"durationMs\": 1916,\n        \"detail\": {\n          \"rowCount\": 1,\n          \"table\": \"<SOURCE_ID>\",\n          \"truncated\": false,\n          \"timeoutSeconds\": 35,\n          \"engine\": \"athena\"\n        },\n        \"toolUsed\": \"sql-engine\"\n      }\n    ],\n    \"guardrailBlocked\": false,\n    \"partial\": false,\n    \"metadata\": {\n      \"namespace\": \"<NAMESPACE_ID>\",\n      \"modelId\": \"us.anthropic.claude-sonnet-5\",\n      \"principal\": \"<EMAIL>\",\n      \"columns\": [],\n      \"totalMs\": 1920\n    }\n  },\n  \"requestId\": \"64c11755-5523-49bb-b730-98fe8452b3da\",\n  \"sessionId\": null\n}"
+        },
+        "isError": false
+      }
+    },
+    "parsed_tool_result": {
+      "result": {
+        "tier": 1.0,
+        "confidence": {
+          "score": 1.0,
+          "rationale": "Deterministic metric: qualifying_income"
+        },
+        "resultRows": [
+          {
+            "qualifying_income": "169650.00"
+          }
+        ],
+        "trace": [
+          {
+            "step": "t1.metric_match",
+            "status": "success",
+            "durationMs": 0,
+            "detail": {
+              "metricName": "qualifying_income",
+              "matchSource": "name",
+              "confidence": 1.0
+            }
+          },
+          {
+            "step": "t1.authorize",
+            "status": "allow",
+            "durationMs": 2,
+            "detail": {
+              "principal": "<EMAIL>",
+              "decision": "allow"
+            },
+            "toolUsed": "cedar"
+          },
+          {
+            "step": "t1.firewall",
+            "status": "success",
+            "durationMs": 2,
+            "detail": {
+              "decision": "authorized"
+            },
+            "toolUsed": "sql-firewall"
+          },
+          {
+            "step": "t1.execute",
+            "status": "success",
+            "durationMs": 1916,
+            "detail": {
+              "rowCount": 1,
+              "table": "<SOURCE_ID>",
+              "truncated": false,
+              "timeoutSeconds": 35,
+              "engine": "athena"
+            },
+            "toolUsed": "sql-engine"
+          }
+        ],
+        "guardrailBlocked": false,
+        "partial": false,
+        "metadata": {
+          "namespace": "<NAMESPACE_ID>",
+          "modelId": "us.anthropic.claude-sonnet-5",
+          "principal": "<EMAIL>",
+          "columns": [],
+          "totalMs": 1920
+        }
+      },
+      "requestId": "64c11755-5523-49bb-b730-98fe8452b3da",
+      "sessionId": null
+    }
+  },
+  "repeat_runs": [
+    {
+      "run": 1,
+      "latency_ms": 10925.8,
+      "rows": [
+        {
+          "qualifying_income": "169650.00"
+        }
+      ],
+      "tier": 1.0
+    },
+    {
+      "run": 2,
+      "latency_ms": 11126.9,
+      "rows": [
+        {
+          "qualifying_income": "169650.00"
+        }
+      ],
+      "tier": 1.0
+    },
+    {
+      "run": 3,
+      "latency_ms": 10887.1,
+      "rows": [
+        {
+          "qualifying_income": "169650.00"
+        }
+      ],
+      "tier": 1.0
+    }
+  ]
+}

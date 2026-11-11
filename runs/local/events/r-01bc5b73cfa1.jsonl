@@ -1,0 +1,94 @@
+{"type": "run_start", "runId": "r-01bc5b73cfa1", "packageId": "pkg-tradeconf-01", "pipelineVersion": "2.3.1", "question": "What coupon can XS-2031 step up to?", "modelId": "us.amazon.nova-2-lite-v1:0", "configSha": "a42731845bd93c07fb4e21644d86495b8349e4aa6e75014b90f547815ec35447", "promptSha": "59984da199bb287de4b76a1d91bc0a5c27fde51028c39ffd04a33c3950a7d302", "tools": ["search_units", "graph_hop", "get_region", "doc_status"], "t": 0.0}
+{"type": "tool_start", "callId": "tooluse_T2CVYUsuk4g1xrQJUQOaPE", "tool": "graph_hop", "input": {"template": "coupon_terms_v1", "params": {"security": "XS-2031"}}, "t": 1.703}
+{"type": "tool_end", "callId": "tooluse_T2CVYUsuk4g1xrQJUQOaPE", "tool": "graph_hop", "ms": 14, "status": "ok", "summary": "1 rows", "units": [], "scores": [], "retrieved": [], "rows": [{"security": "XS-2031", "bond": "urn:rp:security:xs-2031", "terms": "urn:rp:terms:trade-confirmation-xs2031-9af5c5:2.3.1:eu-04/f-coupon-rate-at-issue", "field": "urn:rp:field:trade-confirmation-xs2031-9af5c5:2.3.1:eu-04/f-coupon-rate-at-issue", "concept": "urn:rp:ont:fin:CouponRate", "label": "Coupon", "value": "4.25%", "coupon": "4.25", "unit": "urn:rp:unit:trade-confirmation-xs2031-9af5c5:2.3.1:eu-04", "event": "urn:rp:step:trade-confirmation-xs2031-9af5c5:2.3.1:eu-04/f-coupon-rate-at-issue", "newRate": "6", "effectiveFromYear": "3", "triggerRating": "BBB-", "marker": "3", "footnote": "3 6.00% from year 3 if rating < BBB-", "region": "urn:rp:region:trade-confirmation-xs2031-9af5c5:2.3.1:eu-04/m-02/p2", "page": "2", "x0": "60", "y0": "109.77", "x1": "218.01", "y1": "120.87", "fileName": "trade_confirmation_xs2031.pdf"}], "template": "coupon_terms_v1", "t": 1.703}
+{"type": "tool_start", "callId": "tooluse_CLH7qHZWpHmuduflDRk9LQ", "tool": "get_region", "input": {"unitId": "trade-confirmation-xs2031-9af5c5:2.3.1:eu-04", "fieldId": "f-coupon-rate-at-issue"}, "t": 2.662}
+{"type": "tool_end", "callId": "tooluse_CLH7qHZWpHmuduflDRk9LQ", "tool": "get_region", "ms": 59, "status": "ok", "summary": "p.1 Coupon", "units": [], "scores": [], "retrieved": [], "rows": [], "t": 2.662}
+{"type": "text", "delta": "```"}
+{"type": "text", "delta": "json\n{\n  \"answer"}
+{"type": "text", "delta": "\": \"XS"}
+{"type": "text", "delta": "-2031 can"}
+{"type": "text", "delta": " step up to a"}
+{"type": "text", "delta": " 6.00% coupon"}
+{"type": "text", "delta": " from"}
+{"type": "text", "delta": " year 3 if"}
+{"type": "text", "delta": " the rating falls"}
+{"type": "text", "delta": " below BBB-."}
+{"type": "text", "delta": "\",\n  \"total"}
+{"type": "text", "delta": "\": null"}
+{"type": "text", "delta": ",\n  \"currency"}
+{"type": "text", "delta": "\": null"}
+{"type": "text", "delta": ",\n  \"arithmetic"}
+{"type": "text", "delta": "\": null"}
+{"type": "text", "delta": ",\n  \"claims"}
+{"type": "text", "delta": "\": [\n    {\n      \""}
+{"type": "text", "delta": "text\": \"XS"}
+{"type": "text", "delta": "-2031 can step up"}
+{"type": "text", "delta": " to a 6.00"}
+{"type": "text", "delta": "% coupon from"}
+{"type": "text", "delta": " year 3 if"}
+{"type": "text", "delta": " the rating falls"}
+{"type": "text", "delta": " below BBB-."}
+{"type": "text", "delta": "\",\n      \"value"}
+{"type": "text", "delta": "\": \"6"}
+{"type": "text", "delta": ".00\",\n      \"unit"}
+{"type": "text", "delta": "Id\": \"trade"}
+{"type": "text", "delta": "-confirmation-xs2031-"}
+{"type": "text", "delta": "9af5c5:"}
+{"type": "text", "delta": "2.3.1:e"}
+{"type": "text", "delta": "u-04"}
+{"type": "text", "delta": "\",\n"}
+{"type": "text", "delta": "      \"field"}
+{"type": "text", "delta": "Id\": \"f"}
+{"type": "text", "delta": "-coupon-rate-at-issue\"\n"}
+{"type": "text", "delta": "    }\n"}
+{"type": "text", "delta": "  ],\n  \"c"}
+{"type": "text", "delta": "aveats\": []\n}\n```"}
+{"type": "text", "delta": "```json\n{\n  \""}
+{"type": "text", "delta": "answer\": \"XS"}
+{"type": "text", "delta": "-2031 can"}
+{"type": "text", "delta": " step up to a 6"}
+{"type": "text", "delta": ".00% coupon from year"}
+{"type": "text", "delta": " 3 if the rating falls"}
+{"type": "text", "delta": " below BBB-, according"}
+{"type": "text", "delta": " to the footnote"}
+{"type": "text", "delta": " on"}
+{"type": "text", "delta": " page"}
+{"type": "text", "delta": " 2.\",\n"}
+{"type": "text", "delta": "  \"total"}
+{"type": "text", "delta": "\": null"}
+{"type": "text", "delta": ",\n  \"currency"}
+{"type": "text", "delta": "\": null"}
+{"type": "text", "delta": ",\n  \"arithmetic\":"}
+{"type": "text", "delta": " null,\n  \"claims"}
+{"type": "text", "delta": "\": [\n    {\n      \""}
+{"type": "text", "delta": "text\": \"6"}
+{"type": "text", "delta": ".00%\",\n"}
+{"type": "text", "delta": "      \"value\": \"6"}
+{"type": "text", "delta": ".00\",\n      \"unit"}
+{"type": "text", "delta": "Id\": \"trade"}
+{"type": "text", "delta": "-confirmation-xs2031-"}
+{"type": "text", "delta": "9af5c5:"}
+{"type": "text", "delta": "2.3.1"}
+{"type": "text", "delta": ":eu-04"}
+{"type": "text", "delta": "\",\n      \"field"}
+{"type": "text", "delta": "Id\": null"}
+{"type": "text", "delta": "\n    }\n"}
+{"type": "text", "delta": "  ],\n  \"cave"}
+{"type": "text", "delta": "ats\": [\n    \""}
+{"type": "text", "delta": "The step"}
+{"type": "text", "delta": "-up rate of"}
+{"type": "text", "delta": " 6.00%"}
+{"type": "text", "delta": " is taken"}
+{"type": "text", "delta": " from the"}
+{"type": "text", "delta": " footnote text, not a"}
+{"type": "text", "delta": " numeric"}
+{"type": "text", "delta": " field;"}
+{"type": "text", "delta": " it"}
+{"type": "text", "delta": " is"}
+{"type": "text", "delta": " not directly"}
+{"type": "text", "delta": " c"}
+{"type": "text", "delta": "itable as"}
+{"type": "text", "delta": " a field value.\"\n  ]\n"}
+{"type": "text", "delta": "}\n```"}
+{"answer": "XS-2031 can step up to a 6.00% coupon from year 3 if the rating falls below BBB-, according to the footnote on page 2.", "claims": [], "caveats": ["The step-up rate of 6.00% is taken from the footnote text, not a numeric field; it is not directly citable as a field value."], "citationRetries": 1, "uncitedNumbers": ["6.00"], "type": "answer"}
+{"runId": "r-01bc5b73cfa1", "packageId": "pkg-tradeconf-01", "pipelineVersion": "2.3.1", "configSha": "a42731845bd93c07fb4e21644d86495b8349e4aa6e75014b90f547815ec35447", "blockShas": {"preprocessing": "40e8c03f17781382dcbcc29f7a0a84a8b1e9642cf92500d3980254a0cbd69a07", "retrieval": "3587393d6f0d8c38adfaf6853c1463b54cc1ee872646ff354b3408da63dd586c", "generation": "4731dca541739b7b91e53099ae45acb0f255c753e313bec48702fa79ecad436e", "agent": "5ce789906365b6a0f9d139eba009f17b61d3113720a21c755e3f5be4459551f0"}, "promptSha": "59984da199bb287de4b76a1d91bc0a5c27fde51028c39ffd04a33c3950a7d302", "modelId": "us.amazon.nova-2-lite-v1:0", "corpusHash": "84436b1927bcd4fa33e13a59983a457c6a21bb799ddebff1deb7a3360f4adaa7", "memoryRecordsInjected": 0, "latencyMs": 5227, "usage": {"inputTokens": 13381, "outputTokens": 445, "totalTokens": 13826}, "startedAt": "2026-11-11T03:29:06.224Z", "type": "run", "question": "What coupon can XS-2031 step up to?"}

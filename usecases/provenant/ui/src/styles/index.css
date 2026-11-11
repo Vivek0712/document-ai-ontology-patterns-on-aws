@@ -1,0 +1,89 @@
+@import "../design/tokens.css";
+@import "./legacy.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+  body {
+    @apply bg-bg font-sans text-sm text-text antialiased;
+    font-feature-settings: "cv11", "ss01";
+    font-variant-numeric: tabular-nums;
+    text-rendering: optimizeLegibility;
+  }
+  code,
+  kbd,
+  pre,
+  samp {
+    @apply font-mono;
+  }
+  ::selection {
+    background: color-mix(in srgb, var(--focus) 30%, transparent);
+  }
+  :focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  /* quiet scrollbars */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-strong) transparent;
+  }
+  h1,
+  h2,
+  h3 {
+    @apply font-semibold text-text;
+  }
+}
+
+@layer components {
+  /* a 1px hairline divider that reads in both themes */
+  .hairline {
+    @apply border-border;
+  }
+  .caps {
+    @apply text-caps uppercase text-text-3;
+  }
+  .tnum {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@layer utilities {
+  /* GraphCanvas: SVG groups take no CSS outline, so a focusable node draws its own neutral ring */
+  .gc-node:focus-visible .gc-focus {
+    stroke: var(--focus);
+  }
+  .pattern-hatch {
+    background-image: repeating-linear-gradient(45deg, currentColor 0 1px, transparent 1px 5px);
+  }
+  /* a scroll region whose last 24 px fade out: says "more below" without a scrollbar */
+  .scroll-fade-b {
+    -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 24px), transparent);
+    mask-image: linear-gradient(to bottom, #000 calc(100% - 24px), transparent);
+  }
+}
+
+/* Reduced motion: chrome transitions become instant. Showcases handle their own (steps cut to end state). */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+  }
+}
+:root[data-motion="reduced"] *,
+:root[data-motion="reduced"] *::before,
+:root[data-motion="reduced"] *::after {
+  animation-duration: 1ms !important;
+  transition-duration: 1ms !important;
+}

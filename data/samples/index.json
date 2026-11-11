@@ -1,0 +1,165 @@
+{
+  "generatorVersion": "1.0.0",
+  "packages": [
+    {
+      "key": "lending",
+      "packageId": "pkg-lending-01",
+      "name": "Lending package \u00b7 Maya and Arjun Fictus",
+      "corpusHash": "34856e2c51fa71d6ddc21b4493efde7b9d6ccd1d87ed0f3287908d6612b687e2",
+      "documents": [
+        {
+          "fileName": "bank_statement_2026-09.pdf",
+          "docId": "bank-statement-2026-09-7c2e0d",
+          "docType": "doc:BankStatement",
+          "route": "digital",
+          "pages": 2,
+          "sha256": "8d7a841432f4f1a5ce42e961bb46cb33949509e66097b174a70bf48b42628c68"
+        },
+        {
+          "fileName": "payslip_2026-09_arjun_fictus_scan.pdf",
+          "docId": "payslip-2026-09-arjun-fictus-scan-8ff645",
+          "docType": "doc:Payslip",
+          "route": "scan",
+          "pages": 1,
+          "sha256": "1a799194b4fb6eb9979dc25ed792e1f5a52719791d51908f589b999863078252"
+        },
+        {
+          "fileName": "payslip_2026-09_maya_fictus.pdf",
+          "docId": "payslip-2026-09-maya-fictus-bd153b",
+          "docType": "doc:Payslip",
+          "route": "digital",
+          "pages": 1,
+          "sha256": "70072b4a1a54133ebf600306dc822b91bc2b0cc1748f8f7762ac842c7ce3ecde"
+        },
+        {
+          "fileName": "w2_2025_arjun_fictus.pdf",
+          "docId": "w2-2025-arjun-fictus-546450",
+          "docType": "doc:W2",
+          "route": "digital",
+          "pages": 1,
+          "sha256": "c754dec3c9f5832fad261d8ac71327db74041d88e158a9146327f31945821cf2"
+        },
+        {
+          "fileName": "w2_2025_maya_fictus.pdf",
+          "docId": "w2-2025-maya-fictus-827d37",
+          "docType": "doc:W2",
+          "route": "digital",
+          "pages": 1,
+          "sha256": "6b8b2cfaa3d5c1231e0218ec6cce6dc1946ceb348dc8c54c73378b5594e35ac3"
+        }
+      ]
+    },
+    {
+      "key": "lending-02",
+      "packageId": "pkg-lending-02",
+      "name": "Lending package \u00b7 Lena and Omar Fictus",
+      "corpusHash": "154f70ce2e0dd9db8441c719d2c23ed41a91403d0053125a8a6035ba54ac0c30",
+      "documents": [
+        {
+          "fileName": "bank_statement_2026-09.pdf",
+          "docId": "bank-statement-2026-09-17441c",
+          "docType": "doc:BankStatement",
+          "route": "digital",
+          "pages": 2,
+          "sha256": "ab89d84adc8ee2e9c2ecf52bb14d10b9e8c58a309d095fe5437f2e021b5eba8d"
+        },
+        {
+          "fileName": "payslip_2026-09_lena_fictus.pdf",
+          "docId": "payslip-2026-09-lena-fictus-245bbc",
+          "docType": "doc:Payslip",
+          "route": "digital",
+          "pages": 1,
+          "sha256": "b3b1fb014e8a2dad248b5a8d4938883177fb6d780bdc192d5b5d2abf5d5e7dab"
+        },
+        {
+          "fileName": "payslip_2026-09_omar_fictus_scan.pdf",
+          "docId": "payslip-2026-09-omar-fictus-scan-c4dafb",
+          "docType": "doc:Payslip",
+          "route": "scan",
+          "pages": 1,
+          "sha256": "2a7861b51414ee35cfc9475a832f6074a34b7e06162706efcac5ad6c64e07efc"
+        },
+        {
+          "fileName": "w2_2025_lena_fictus.pdf",
+          "docId": "w2-2025-lena-fictus-5bf98e",
+          "docType": "doc:W2",
+          "route": "digital",
+          "pages": 1,
+          "sha256": "9f44b28729c0b879a50638ecdeec442a353a9a40764f2b2fce9884f11f2e24a2"
+        },
+        {
+          "fileName": "w2_2025_omar_fictus.pdf",
+          "docId": "w2-2025-omar-fictus-5dc972",
+          "docType": "doc:W2",
+          "route": "digital",
+          "pages": 1,
+          "sha256": "4f5d9298cc85f27d4b18cf695e29b77054fc1dc5701399d225a732260bf16cec"
+        }
+      ]
+    },
+    {
+      "key": "quarterly",
+      "packageId": "pkg-quarterly-01",
+      "name": "Quarterly reports \u00b7 Q3 FY2023\u2013FY2025",
+      "corpusHash": "4f9790b4a360d9ef57a232bb5ffd829704e5e2d07486c54522a00f9f83fd82b9",
+      "documents": [
+        {
+          "fileName": "quarterly_report_q3_fy2023.pdf",
+          "docId": "quarterly-report-q3-fy2023-f6e6a3",
+          "docType": "doc:QuarterlyReport",
+          "route": "digital",
+          "pages": 16,
+          "sha256": "f8247cd9ef2427407af99537084de031b5655601a4ff1f9f3919944922bf21da"
+        },
+        {
+          "fileName": "quarterly_report_q3_fy2024.pdf",
+          "docId": "quarterly-report-q3-fy2024-ab0f27",
+          "docType": "doc:QuarterlyReport",
+          "route": "digital",
+          "pages": 16,
+          "sha256": "6092d6f30699285de3c74ff102bb2344fbb6dcb96c45b35d5afc15182ed69b08"
+        },
+        {
+          "fileName": "quarterly_report_q3_fy2025.pdf",
+          "docId": "quarterly-report-q3-fy2025-ab5fea",
+          "docType": "doc:QuarterlyReport",
+          "route": "digital",
+          "pages": 16,
+          "sha256": "72435b90c227a6404329dfcf2e2c404521bd7c990d4f79c356b151c89659798d"
+        }
+      ]
+    },
+    {
+      "key": "tradeconf",
+      "packageId": "pkg-tradeconf-01",
+      "name": "Trade confirmations \u00b7 XS-2031\u2013XS-2033",
+      "corpusHash": "84436b1927bcd4fa33e13a59983a457c6a21bb799ddebff1deb7a3360f4adaa7",
+      "documents": [
+        {
+          "fileName": "trade_confirmation_xs2031.pdf",
+          "docId": "trade-confirmation-xs2031-9af5c5",
+          "docType": "doc:TradeConfirmation",
+          "route": "digital",
+          "pages": 2,
+          "sha256": "870247c5f50b1f72c36aac977c5da73b411d512a6683f6f16fa2a5ed8118d59e"
+        },
+        {
+          "fileName": "trade_confirmation_xs2032.pdf",
+          "docId": "trade-confirmation-xs2032-5f0fa4",
+          "docType": "doc:TradeConfirmation",
+          "route": "digital",
+          "pages": 2,
+          "sha256": "9a20e07daa0a0a12d978a329e9a1e7aa6a154df5ef2853ec71419e5008146c6d"
+        },
+        {
+          "fileName": "trade_confirmation_xs2033.pdf",
+          "docId": "trade-confirmation-xs2033-cb595e",
+          "docType": "doc:TradeConfirmation",
+          "route": "digital",
+          "pages": 2,
+          "sha256": "f0096a57ea98e6ffe117815604c10e779e01b01d73e0a8f9f0e096620e9b2743"
+        }
+      ]
+    }
+  ]
+}

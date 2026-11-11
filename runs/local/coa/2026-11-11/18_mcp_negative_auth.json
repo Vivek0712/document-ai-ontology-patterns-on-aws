@@ -1,0 +1,14 @@
+{
+  "web_client_id_token": {
+    "token": "web_id_token",
+    "http_status": 401,
+    "latency_ms": 987.0,
+    "body": "{\"jsonrpc\":\"2.0\",\"error\":{\"code\":-32001,\"message\":\"Claim 'aud' value mismatch with configuration.\"}}"
+  },
+  "mcp_client_access_token": {
+    "token": "mcp_access_token",
+    "http_status": 401,
+    "latency_ms": 1001.2,
+    "body": "{\"jsonrpc\":\"2.0\",\"error\":{\"code\":-32001,\"message\":\"Claim 'aud' value mismatch with configuration.\"}}"
+  }
+}

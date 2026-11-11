@@ -1,0 +1,438 @@
+{
+  "$defs": {
+    "ArtifactKind": {
+      "description": "What an artifact is; the UI picks a viewer by kind.",
+      "enum": [
+        "source_pdf",
+        "manifest",
+        "route",
+        "text_layer",
+        "docling_json",
+        "textract_json",
+        "classification",
+        "units_jsonl",
+        "build_report",
+        "pii_decisions",
+        "gold_unit",
+        "gold_units_jsonl",
+        "page_image",
+        "index_receipt",
+        "abox_nquads",
+        "graph_receipt",
+        "ready_receipt",
+        "config",
+        "run"
+      ],
+      "title": "ArtifactKind",
+      "type": "string"
+    },
+    "ArtifactRef": {
+      "description": "A file a stage read or wrote. Always in the data bucket (RP_DATA_BUCKET).",
+      "properties": {
+        "key": {
+          "title": "Key",
+          "type": "string"
+        },
+        "kind": {
+          "$ref": "#/$defs/ArtifactKind"
+        },
+        "contentType": {
+          "default": "application/json",
+          "title": "Contenttype",
+          "type": "string"
+        },
+        "sizeBytes": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Sizebytes"
+        },
+        "sha256": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Sha256"
+        },
+        "versionId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Versionid"
+        },
+        "page": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Page"
+        },
+        "count": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Count"
+        },
+        "note": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Note"
+        }
+      },
+      "required": [
+        "key",
+        "kind"
+      ],
+      "title": "ArtifactRef",
+      "type": "object"
+    },
+    "DocCtx": {
+      "description": "Per-execution context built by `register`; passed unchanged to every later state.",
+      "properties": {
+        "packageId": {
+          "title": "Packageid",
+          "type": "string"
+        },
+        "docId": {
+          "title": "Docid",
+          "type": "string"
+        },
+        "pipelineVersion": {
+          "title": "Pipelineversion",
+          "type": "string"
+        },
+        "mode": {
+          "enum": [
+            "naive",
+            "evidence_units"
+          ],
+          "title": "Mode",
+          "type": "string"
+        },
+        "ownerSub": {
+          "title": "Ownersub",
+          "type": "string"
+        },
+        "fileName": {
+          "title": "Filename",
+          "type": "string"
+        },
+        "bucket": {
+          "title": "Bucket",
+          "type": "string"
+        },
+        "bronzeKey": {
+          "title": "Bronzekey",
+          "type": "string"
+        },
+        "sourceVersionId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Sourceversionid"
+        },
+        "sourceSha256": {
+          "title": "Sourcesha256",
+          "type": "string"
+        },
+        "sizeBytes": {
+          "title": "Sizebytes",
+          "type": "integer"
+        },
+        "contentType": {
+          "default": "application/pdf",
+          "title": "Contenttype",
+          "type": "string"
+        },
+        "pageCount": {
+          "title": "Pagecount",
+          "type": "integer"
+        },
+        "configKey": {
+          "title": "Configkey",
+          "type": "string"
+        },
+        "configVersionId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Configversionid"
+        },
+        "configSha": {
+          "title": "Configsha",
+          "type": "string"
+        },
+        "promptSha": {
+          "title": "Promptsha",
+          "type": "string"
+        },
+        "ontologyVersion": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Ontologyversion"
+        },
+        "routeEnabled": {
+          "title": "Routeenabled",
+          "type": "boolean"
+        },
+        "classifyEnabled": {
+          "title": "Classifyenabled",
+          "type": "boolean"
+        },
+        "graphEnabled": {
+          "title": "Graphenabled",
+          "type": "boolean"
+        },
+        "allowedPrincipals": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Allowedprincipals",
+          "type": "array"
+        },
+        "executionArn": {
+          "title": "Executionarn",
+          "type": "string"
+        },
+        "laneStartedAt": {
+          "title": "Lanestartedat",
+          "type": "string"
+        },
+        "trigger": {
+          "default": "s3",
+          "enum": [
+            "s3",
+            "reprocess"
+          ],
+          "title": "Trigger",
+          "type": "string"
+        }
+      },
+      "required": [
+        "packageId",
+        "docId",
+        "pipelineVersion",
+        "mode",
+        "ownerSub",
+        "fileName",
+        "bucket",
+        "bronzeKey",
+        "sourceSha256",
+        "sizeBytes",
+        "pageCount",
+        "configKey",
+        "configSha",
+        "promptSha",
+        "routeEnabled",
+        "classifyEnabled",
+        "graphEnabled",
+        "allowedPrincipals",
+        "executionArn",
+        "laneStartedAt"
+      ],
+      "title": "DocCtx",
+      "type": "object"
+    },
+    "Engine": {
+      "description": "Engines that can produce a stage's output. Shown in the stage inspector.",
+      "enum": [
+        "text-layer",
+        "docling",
+        "textract",
+        "pypdf",
+        "skos-indicators",
+        "nova",
+        "eu-builder",
+        "fixed-chunker",
+        "comprehend",
+        "pdfium",
+        "titan-v2+aoss",
+        "neptune",
+        "lambda"
+      ],
+      "title": "Engine",
+      "type": "string"
+    },
+    "StageId": {
+      "description": "Ordered ingestion stages. Order and metadata live in stages.REGISTRY.",
+      "enum": [
+        "register",
+        "route",
+        "extract",
+        "classify",
+        "units",
+        "pii_gate",
+        "promote",
+        "index",
+        "graph",
+        "ready"
+      ],
+      "title": "StageId",
+      "type": "string"
+    },
+    "StageResult": {
+      "description": "What every stage Lambda returns to Step Functions (stored at ``$.stages.<stageId>``).\n\nKeep it small (< 8 KB): large outputs go to S3 and appear as artifacts.",
+      "properties": {
+        "stageId": {
+          "$ref": "#/$defs/StageId"
+        },
+        "state": {
+          "$ref": "#/$defs/StageState"
+        },
+        "engine": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Engine"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "headline": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Headline"
+        },
+        "artifacts": {
+          "items": {
+            "$ref": "#/$defs/ArtifactRef"
+          },
+          "title": "Artifacts",
+          "type": "array"
+        },
+        "metrics": {
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "integer"
+              }
+            ]
+          },
+          "title": "Metrics",
+          "type": "object"
+        },
+        "output": {
+          "additionalProperties": true,
+          "title": "Output",
+          "type": "object"
+        },
+        "durationMs": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Durationms"
+        }
+      },
+      "required": [
+        "stageId",
+        "state"
+      ],
+      "title": "StageResult",
+      "type": "object"
+    },
+    "StageState": {
+      "description": "Current state of one stage record.",
+      "enum": [
+        "PENDING",
+        "QUEUED",
+        "RUNNING",
+        "SUCCEEDED",
+        "FAILED",
+        "SKIPPED"
+      ],
+      "title": "StageState",
+      "type": "string"
+    }
+  },
+  "description": "What rp-register returns: the whole new execution state (ASL ResultPath ``$``).",
+  "properties": {
+    "ctx": {
+      "$ref": "#/$defs/DocCtx"
+    },
+    "stages": {
+      "additionalProperties": {
+        "$ref": "#/$defs/StageResult"
+      },
+      "title": "Stages",
+      "type": "object"
+    }
+  },
+  "required": [
+    "ctx",
+    "stages"
+  ],
+  "title": "RegisterResult",
+  "type": "object"
+}

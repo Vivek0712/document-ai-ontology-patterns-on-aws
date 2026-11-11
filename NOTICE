@@ -1,0 +1,50 @@
+Document AI and Ontology Patterns on AWS
+Copyright 2026 The Document AI and Ontology Patterns on AWS contributors
+
+This product is licensed under the Apache License, Version 2.0 (see LICENSE).
+
+This repository includes unmodified copies of the following third-party files.
+Their own licenses apply to them. Full details, and the list of dependencies
+that are installed at build time but not included here, are in
+THIRD_PARTY_LICENSES.md.
+
+1. FIBO (Financial Industry Business Ontology), a subset of six modules
+   Path: ontology/src/fibo/
+   Copyright (c) 2013-2026 EDM Association dba EDM Council, Inc.
+   Copyright (c) 2013-2025 Object Management Group, Inc.
+   (as stated in the headers of the individual files)
+   Licensed under the MIT License (ontology/src/fibo/LICENSE,
+   "Copyright (c) 2020 Enterprise Data Management Council")
+   Source: https://github.com/edmcouncil/fibo
+   (commit 2d73435a4419b66b7c9f44cb9763e35fe8ac7890)
+
+2. DoCO, the Document Components Ontology, version 1.4.0
+   Path: ontology/src/doco/doco.ttl
+   Authors: David Shotton and Silvio Peroni, SPAR Ontologies
+   Licensed under Creative Commons Attribution 4.0 International (CC BY 4.0)
+   https://creativecommons.org/licenses/by/4.0/
+   Source: http://purl.org/spar/doco
+
+3. W3C SKOS Simple Knowledge Organization System RDF schema (2009-08-18)
+   Path: ontology/src/w3c/skos.rdf
+   Copyright World Wide Web Consortium (W3C)
+   Licensed under the W3C Software and Document License
+   https://www.w3.org/copyright/software-license-2023/
+
+4. W3C PROV-O: The PROV Ontology (Recommendation, 2013-04-30)
+   Path: ontology/src/w3c/prov-o.ttl
+   Copyright World Wide Web Consortium (W3C)
+   Licensed under the W3C Software and Document License
+   https://www.w3.org/copyright/software-license-2023/
+
+The web UI build bundles the Inter and JetBrains Mono typefaces from npm
+packages (@fontsource-variable/inter, @fontsource-variable/jetbrains-mono).
+They are licensed under the SIL Open Font License, Version 1.1.
+
+All people, companies, accounts and figures in the sample documents, gold
+regions, recorded runs and UI fixtures are fictitious ("NewAge Global Fintech").
+Any resemblance to real persons or organizations is coincidental.
+
+Amazon Web Services, AWS, Amazon Bedrock, Amazon Textract and the other AWS
+service names used in this repository are trademarks of Amazon.com, Inc. or its
+affiliates. Other names are trademarks of their respective owners.

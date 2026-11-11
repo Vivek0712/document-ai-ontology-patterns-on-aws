@@ -1,0 +1,83 @@
+{
+  "request": {
+    "method": "GET",
+    "path": "/namespaces/<NAMESPACE_ID>/graph/class?uri=urn%3Arp%3Aont%3Afin%3AQualifyingIncome",
+    "body": null
+  },
+  "status": 200,
+  "latency_ms": 1234.8,
+  "response": {
+    "uri": "urn:rp:ont:fin:QualifyingIncome",
+    "kind": "class",
+    "namespace": "<NAMESPACE_ID>",
+    "types": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "labels": [
+      "Qualifying income"
+    ],
+    "comments": [
+      "Total income for a lending package means qualifying income: the sum of W-2 Box 1 wages for the latest tax year, per borrower. Payslips and bank deposits corroborate and are not added."
+    ],
+    "alt_labels": [
+      "Total income for a lending package"
+    ],
+    "superseded": {},
+    "graph_uris": [
+      "https://ontology-workbench.local/<NAMESPACE_ID>/urn%3Arp%3Aont%3Afin"
+    ],
+    "is_mapped": false,
+    "edges": [
+      {
+        "predicate": "https://ontology-workbench.local/vocab#definedBy",
+        "predicate_label": "definedBy",
+        "direction": "outgoing",
+        "neighbor": {
+          "uri": "urn:rp:ont:fin",
+          "label": "Regionproof financial extension (fin:)",
+          "kind": "ontology"
+        }
+      },
+      {
+        "predicate": "http://www.w3.org/2000/01/rdf-schema#subClassOf",
+        "predicate_label": "subClassOf",
+        "direction": "outgoing",
+        "neighbor": {
+          "uri": "urn:rp:ont:fin:DefinedQuantity",
+          "label": "Defined quantity",
+          "kind": "class"
+        }
+      },
+      {
+        "predicate": "urn:rp:ont:fin:operandConcept",
+        "predicate_label": "urn:rp:ont:fin:operandConcept",
+        "direction": "outgoing",
+        "neighbor": {
+          "uri": "urn:rp:ont:fin:W2WagesBox1",
+          "label": null,
+          "kind": "unknown"
+        }
+      },
+      {
+        "predicate": "http://www.w3.org/2004/02/skos/core#prefLabel",
+        "predicate_label": "prefLabel",
+        "direction": "outgoing",
+        "neighbor": {
+          "uri": "Qualifying income",
+          "label": "Qualifying income",
+          "kind": "literal"
+        }
+      },
+      {
+        "predicate": "urn:rp:ont:rp:computedBy",
+        "predicate_label": "urn:rp:ont:rp:computedBy",
+        "direction": "outgoing",
+        "neighbor": {
+          "uri": "qi_sum_w2_box1_v1",
+          "label": "qi_sum_w2_box1_v1",
+          "kind": "literal"
+        }
+      }
+    ]
+  }
+}

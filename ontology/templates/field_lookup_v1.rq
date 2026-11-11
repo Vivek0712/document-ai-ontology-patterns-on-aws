@@ -1,0 +1,40 @@
+# template: field_lookup_v1
+# purpose:  every fact typed with one field concept (optionally one borrower), with its period and
+#           the page region it was read from.
+# params:   concept   required  "fin:W2WagesBox1" or the full IRI "urn:rp:ont:fin:W2WagesBox1"
+#           borrower  optional  "" = any; otherwise the borrower's name, matched case-insensitively
+# columns:  concept, label, amount, text, currency, period, taxYear, borrower, docType, fileName, unit,
+#           field, page, x0, y0, x1, y1
+# graphs:   FROM clause = TBox graphs + the caller-readable ABox graph
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX fin: <urn:rp:ont:fin:>
+PREFIX doc: <urn:rp:ont:doc:>
+PREFIX rp: <urn:rp:ont:rp:>
+SELECT ?concept ?label ?amount ?text ?currency ?period ?taxYear ?borrower ?docType ?fileName ?unit ?field
+       ?page ?x0 ?y0 ?x1 ?y1
+{{FROM}}
+WHERE {
+  BIND(IF(STRSTARTS({{concept}}, "fin:"), IRI(CONCAT("urn:rp:ont:fin:", STRAFTER({{concept}}, "fin:"))),
+          IRI({{concept}})) AS ?concept)
+  ?field a fin:FieldValue ;
+         fin:concept ?concept ;
+         prov:wasDerivedFrom ?unit, ?region .
+  ?unit a doc:EvidenceUnit ; rp:inDocument ?doc .
+  ?region a doc:PageRegion ; rp:page ?page ; rp:x0 ?x0 ; rp:y0 ?y0 ; rp:x1 ?x1 ; rp:y1 ?y1 .
+  ?doc rp:fileName ?fileName ; a ?docType .
+  ?docType rdfs:subClassOf doc:Document .
+  OPTIONAL { ?field rp:label ?label }
+  OPTIONAL { ?field fin:amount ?amount }
+  OPTIONAL { ?field fin:text ?text }
+  OPTIONAL { ?field fin:currency ?currency }
+  OPTIONAL { ?field fin:period ?period }
+  OPTIONAL { ?field fin:taxYear ?ty }
+  OPTIONAL { ?field fin:borrower/rp:name ?borrower }
+  BIND(IF(BOUND(?ty), STR(?ty), "") AS ?taxYear)
+  FILTER({{borrower}} = "" || (BOUND(?borrower) && LCASE(STR(?borrower)) = LCASE({{borrower}})))
+}
+ORDER BY ?fileName ?page ?field

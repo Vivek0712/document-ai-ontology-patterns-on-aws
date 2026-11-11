@@ -1,0 +1,102 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix doco: <http://purl.org/spar/doco/> .
+@prefix doc:  <urn:rp:ont:doc:> .
+@prefix rp:   <urn:rp:ont:rp:> .
+
+# Canonical layout roles (evidence_core.enums.CanonicalRole) and the engine label vocabularies
+# that map onto them. Engine codes are skos:notation values in one scheme per engine, mapped to the
+# canonical role with skos:exactMatch (engine codes as notations, labels disjoint).
+# DoCO alignment uses skos:exactMatch where DoCO has the same structural notion and skos:closeMatch
+# where it is near. Derived roles (rp:derived true) are produced by the unit builder, not by an engine.
+
+doc:RoleScheme a skos:ConceptScheme ;
+    skos:prefLabel "Regionproof canonical layout roles" .
+
+doc:DoclingLabelScheme a skos:ConceptScheme ;
+    skos:prefLabel "Docling DocItemLabel values" ;
+    rp:engine "docling" .
+
+doc:TextractLabelScheme a skos:ConceptScheme ;
+    skos:prefLabel "Amazon Textract block types" ;
+    rp:engine "textract" .
+
+# ---------------------------------------------------------------- canonical roles
+
+doc:Title a skos:Concept ; skos:inScheme doc:RoleScheme ; rp:canonicalRole "title" ;
+    skos:prefLabel "Title" ; skos:exactMatch doco:Title .
+doc:SectionHeader a skos:Concept ; skos:inScheme doc:RoleScheme ; rp:canonicalRole "section_header" ;
+    skos:prefLabel "Section header" ; skos:altLabel "Heading" ; skos:exactMatch doco:SectionTitle .
+doc:Text a skos:Concept ; skos:inScheme doc:RoleScheme ; rp:canonicalRole "text" ;
+    skos:prefLabel "Body text" ; skos:closeMatch doco:Paragraph .
+doc:ListItem a skos:Concept ; skos:inScheme doc:RoleScheme ; rp:canonicalRole "list_item" ;
+    skos:prefLabel "List item" ; skos:closeMatch doco:List .
+doc:Table a skos:Concept ; skos:inScheme doc:RoleScheme ; rp:canonicalRole "table" ;
+    skos:prefLabel "Table" ; skos:exactMatch doco:Table .
+doc:TableCell a skos:Concept ; skos:inScheme doc:RoleScheme ; rp:canonicalRole "table_cell" ;
+    skos:prefLabel "Table cell" ; skos:broader doc:Table .
+doc:KeyValue a skos:Concept ; skos:inScheme doc:RoleScheme ; rp:canonicalRole "key_value" ;
+    skos:prefLabel "Key-value pair" ; skos:altLabel "Form field" .
+doc:Caption a skos:Concept ; skos:inScheme doc:RoleScheme ; rp:canonicalRole "caption" ;
+    skos:prefLabel "Caption" ; skos:closeMatch doco:Label .
+doc:Footnote a skos:Concept ; skos:inScheme doc:RoleScheme ; rp:canonicalRole "footnote" ;
+    skos:prefLabel "Footnote" ; skos:exactMatch doco:Footnote .
+doc:Picture a skos:Concept ; skos:inScheme doc:RoleScheme ; rp:canonicalRole "picture" ;
+    skos:prefLabel "Picture" ; skos:altLabel "Chart", "Figure body" ; skos:closeMatch doco:Figure .
+doc:Formula a skos:Concept ; skos:inScheme doc:RoleScheme ; rp:canonicalRole "formula" ;
+    skos:prefLabel "Formula" ; skos:exactMatch doco:Formula .
+doc:PageHeader a skos:Concept ; skos:inScheme doc:RoleScheme ; rp:canonicalRole "page_header" ;
+    skos:prefLabel "Page header" ; skos:altLabel "Running head" .
+doc:PageFooter a skos:Concept ; skos:inScheme doc:RoleScheme ; rp:canonicalRole "page_footer" ;
+    skos:prefLabel "Page footer" ; skos:altLabel "Running foot", "Page number" .
+doc:UnitLabel a skos:Concept ; skos:inScheme doc:RoleScheme ; rp:canonicalRole "unit_label" ; rp:derived true ;
+    skos:prefLabel "Unit label" ; skos:closeMatch doco:Label ;
+    skos:scopeNote "Derived: the caption or heading the unit builder attaches to a unit as its label." .
+doc:MarkerLink a skos:Concept ; skos:inScheme doc:RoleScheme ; rp:canonicalRole "marker_link" ; rp:derived true ;
+    skos:prefLabel "Footnote marker link" ;
+    skos:scopeNote "Derived: a raised marker glyph linked to its footnote by the marker hard rule." .
+
+# ---------------------------------------------------------------- Docling labels
+
+doc:docling-title a skos:Concept ; skos:inScheme doc:DoclingLabelScheme ; skos:notation "title" ; skos:exactMatch doc:Title .
+doc:docling-section_header a skos:Concept ; skos:inScheme doc:DoclingLabelScheme ; skos:notation "section_header" ; skos:exactMatch doc:SectionHeader .
+doc:docling-text a skos:Concept ; skos:inScheme doc:DoclingLabelScheme ; skos:notation "text" ; skos:exactMatch doc:Text .
+doc:docling-paragraph a skos:Concept ; skos:inScheme doc:DoclingLabelScheme ; skos:notation "paragraph" ; skos:exactMatch doc:Text .
+doc:docling-reference a skos:Concept ; skos:inScheme doc:DoclingLabelScheme ; skos:notation "reference" ; skos:exactMatch doc:Text .
+doc:docling-handwritten_text a skos:Concept ; skos:inScheme doc:DoclingLabelScheme ; skos:notation "handwritten_text" ; skos:exactMatch doc:Text .
+doc:docling-code a skos:Concept ; skos:inScheme doc:DoclingLabelScheme ; skos:notation "code" ; skos:exactMatch doc:Text .
+doc:docling-list_item a skos:Concept ; skos:inScheme doc:DoclingLabelScheme ; skos:notation "list_item" ; skos:exactMatch doc:ListItem .
+doc:docling-table a skos:Concept ; skos:inScheme doc:DoclingLabelScheme ; skos:notation "table" ; skos:exactMatch doc:Table .
+doc:docling-document_index a skos:Concept ; skos:inScheme doc:DoclingLabelScheme ; skos:notation "document_index" ; skos:exactMatch doc:Table .
+doc:docling-table_cell a skos:Concept ; skos:inScheme doc:DoclingLabelScheme ; skos:notation "table_cell" ; skos:exactMatch doc:TableCell ;
+    skos:scopeNote "Not a DocItemLabel: an entry of tables[].data.table_cells in DoclingDocument JSON." .
+doc:docling-key_value_region a skos:Concept ; skos:inScheme doc:DoclingLabelScheme ; skos:notation "key_value_region" ; skos:exactMatch doc:KeyValue .
+doc:docling-form a skos:Concept ; skos:inScheme doc:DoclingLabelScheme ; skos:notation "form" ; skos:exactMatch doc:KeyValue .
+doc:docling-checkbox_selected a skos:Concept ; skos:inScheme doc:DoclingLabelScheme ; skos:notation "checkbox_selected" ; skos:exactMatch doc:KeyValue .
+doc:docling-checkbox_unselected a skos:Concept ; skos:inScheme doc:DoclingLabelScheme ; skos:notation "checkbox_unselected" ; skos:exactMatch doc:KeyValue .
+doc:docling-caption a skos:Concept ; skos:inScheme doc:DoclingLabelScheme ; skos:notation "caption" ; skos:exactMatch doc:Caption .
+doc:docling-footnote a skos:Concept ; skos:inScheme doc:DoclingLabelScheme ; skos:notation "footnote" ; skos:exactMatch doc:Footnote .
+doc:docling-picture a skos:Concept ; skos:inScheme doc:DoclingLabelScheme ; skos:notation "picture" ; skos:exactMatch doc:Picture .
+doc:docling-chart a skos:Concept ; skos:inScheme doc:DoclingLabelScheme ; skos:notation "chart" ; skos:exactMatch doc:Picture .
+doc:docling-formula a skos:Concept ; skos:inScheme doc:DoclingLabelScheme ; skos:notation "formula" ; skos:exactMatch doc:Formula .
+doc:docling-page_header a skos:Concept ; skos:inScheme doc:DoclingLabelScheme ; skos:notation "page_header" ; skos:exactMatch doc:PageHeader .
+doc:docling-page_footer a skos:Concept ; skos:inScheme doc:DoclingLabelScheme ; skos:notation "page_footer" ; skos:exactMatch doc:PageFooter .
+
+# ---------------------------------------------------------------- Textract block types
+
+doc:textract-LAYOUT_TITLE a skos:Concept ; skos:inScheme doc:TextractLabelScheme ; skos:notation "LAYOUT_TITLE" ; skos:exactMatch doc:Title .
+doc:textract-LAYOUT_SECTION_HEADER a skos:Concept ; skos:inScheme doc:TextractLabelScheme ; skos:notation "LAYOUT_SECTION_HEADER" ; skos:exactMatch doc:SectionHeader .
+doc:textract-LAYOUT_TEXT a skos:Concept ; skos:inScheme doc:TextractLabelScheme ; skos:notation "LAYOUT_TEXT" ; skos:exactMatch doc:Text .
+doc:textract-LAYOUT_LIST a skos:Concept ; skos:inScheme doc:TextractLabelScheme ; skos:notation "LAYOUT_LIST" ; skos:exactMatch doc:ListItem .
+doc:textract-LAYOUT_TABLE a skos:Concept ; skos:inScheme doc:TextractLabelScheme ; skos:notation "LAYOUT_TABLE" ; skos:exactMatch doc:Table .
+doc:textract-TABLE a skos:Concept ; skos:inScheme doc:TextractLabelScheme ; skos:notation "TABLE" ; skos:exactMatch doc:Table .
+doc:textract-CELL a skos:Concept ; skos:inScheme doc:TextractLabelScheme ; skos:notation "CELL" ; skos:exactMatch doc:TableCell .
+doc:textract-MERGED_CELL a skos:Concept ; skos:inScheme doc:TextractLabelScheme ; skos:notation "MERGED_CELL" ; skos:exactMatch doc:TableCell .
+doc:textract-LAYOUT_KEY_VALUE a skos:Concept ; skos:inScheme doc:TextractLabelScheme ; skos:notation "LAYOUT_KEY_VALUE" ; skos:exactMatch doc:KeyValue .
+doc:textract-KEY_VALUE_SET a skos:Concept ; skos:inScheme doc:TextractLabelScheme ; skos:notation "KEY_VALUE_SET" ; skos:exactMatch doc:KeyValue .
+doc:textract-TABLE_TITLE a skos:Concept ; skos:inScheme doc:TextractLabelScheme ; skos:notation "TABLE_TITLE" ; skos:exactMatch doc:Caption .
+doc:textract-TABLE_FOOTER a skos:Concept ; skos:inScheme doc:TextractLabelScheme ; skos:notation "TABLE_FOOTER" ; skos:exactMatch doc:Footnote .
+doc:textract-LAYOUT_FIGURE a skos:Concept ; skos:inScheme doc:TextractLabelScheme ; skos:notation "LAYOUT_FIGURE" ; skos:exactMatch doc:Picture .
+doc:textract-LAYOUT_HEADER a skos:Concept ; skos:inScheme doc:TextractLabelScheme ; skos:notation "LAYOUT_HEADER" ; skos:exactMatch doc:PageHeader .
+doc:textract-LAYOUT_FOOTER a skos:Concept ; skos:inScheme doc:TextractLabelScheme ; skos:notation "LAYOUT_FOOTER" ; skos:exactMatch doc:PageFooter .
+doc:textract-LAYOUT_PAGE_NUMBER a skos:Concept ; skos:inScheme doc:TextractLabelScheme ; skos:notation "LAYOUT_PAGE_NUMBER" ; skos:exactMatch doc:PageFooter .

@@ -1,0 +1,32 @@
+{
+  "request": {
+    "method": "GET",
+    "path": "/namespaces/<NAMESPACE_ID>/ontologies",
+    "body": null
+  },
+  "status": 200,
+  "latency_ms": 763.3,
+  "response": {
+    "ontologies": [
+      {
+        "ontologyId": "urn:rp:ont:fin",
+        "uri": "urn:rp:ont:fin",
+        "title": "Regionproof fin: extension (sha256 a3c6901e45f4)",
+        "description": "Field concepts and defined quantities for fictitious lending, reporting and trade documents.",
+        "ontologyType": "user_uploaded",
+        "parseStatus": "ok",
+        "status": null,
+        "deleteError": null,
+        "format": "turtle",
+        "domainTags": [],
+        "classCount": 4,
+        "propertyCount": 15,
+        "axiomCount": 359,
+        "embeddingCount": 19,
+        "graphUri": "https://ontology-workbench.local/<NAMESPACE_ID>/urn%3Arp%3Aont%3Afin",
+        "createdAt": "2026-11-11T05:28:24.360948+00:00",
+        "updatedAt": "2026-11-11T05:28:24.360948+00:00"
+      }
+    ]
+  }
+}

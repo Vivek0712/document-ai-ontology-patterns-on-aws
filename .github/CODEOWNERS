@@ -1,0 +1,25 @@
+# Code owners. GitHub requests a review from these owners when a pull request
+# touches matching paths. Later rules win.
+
+*                         @Vivek0712
+
+# Reusable building blocks
+/packages/                @Vivek0712
+/services/                @Vivek0712
+/ontology/                @Vivek0712
+
+# Infrastructure and operator scripts (changes can replace AWS resources)
+/infra/                   @Vivek0712
+/scripts/                 @Vivek0712
+
+# Reference use case
+/usecases/                @Vivek0712
+
+# Repository hygiene and security
+/.github/                 @Vivek0712
+/.gitleaks.toml           @Vivek0712
+/.pre-commit-config.yaml  @Vivek0712
+/SECURITY.md              @Vivek0712
+/LICENSE                  @Vivek0712
+/NOTICE                   @Vivek0712
+/THIRD_PARTY_LICENSES.md  @Vivek0712

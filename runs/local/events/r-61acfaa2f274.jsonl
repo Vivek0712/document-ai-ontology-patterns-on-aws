@@ -1,0 +1,194 @@
+{"type": "run_start", "runId": "r-61acfaa2f274", "packageId": "pkg-lending-01", "pipelineVersion": "2.3.1", "question": "What is Arjun Fictus's year-to-date gross pay on the September 2026 payslip?", "modelId": "us.anthropic.claude-sonnet-4-6", "configSha": "a42731845bd93c07fb4e21644d86495b8349e4aa6e75014b90f547815ec35447", "promptSha": "59984da199bb287de4b76a1d91bc0a5c27fde51028c39ffd04a33c3950a7d302", "tools": ["search_units", "graph_hop", "get_region", "doc_status"], "t": 0.0}
+{"type": "text", "delta": "I'll search"}
+{"type": "text", "delta": " for Arjun Fictus"}
+{"type": "text", "delta": "'s September"}
+{"type": "text", "delta": " 2026 payslip information"}
+{"type": "text", "delta": " right"}
+{"type": "text", "delta": " away."}
+{"type": "tool_start", "callId": "tooluse_IoY8Sbd1rPGYpETrS3zIsK", "tool": "search_units", "input": {"query": "Arjun Fictus September 2026 payslip year-to-date gross pay"}, "t": 4.237}
+{"type": "tool_end", "callId": "tooluse_IoY8Sbd1rPGYpETrS3zIsK", "tool": "search_units", "ms": 4, "status": "ok", "summary": "5 units", "units": ["payslip-2026-09-arjun-fictus-scan-8ff645:2.3.1:eu-02", "payslip-2026-09-maya-fictus-bd153b:2.3.1:eu-03", "w2-2025-arjun-fictus-546450:2.3.1:eu-02", "payslip-2026-09-maya-fictus-bd153b:2.3.1:eu-02", "payslip-2026-09-arjun-fictus-scan-8ff645:2.3.1:eu-01"], "scores": [{"unitId": "payslip-2026-09-arjun-fictus-scan-8ff645:2.3.1:eu-02", "denseNorm": 1.0, "bm25Norm": 0.6947, "fused": 0.9084}, {"unitId": "payslip-2026-09-maya-fictus-bd153b:2.3.1:eu-03", "denseNorm": 0.5825, "bm25Norm": 1.0, "fused": 0.7078}, {"unitId": "w2-2025-arjun-fictus-546450:2.3.1:eu-02", "denseNorm": 0.8484, "bm25Norm": 0.1171, "fused": 0.629}, {"unitId": "payslip-2026-09-maya-fictus-bd153b:2.3.1:eu-02", "denseNorm": 0.5156, "bm25Norm": 0.5315, "fused": 0.5204}, {"unitId": "payslip-2026-09-arjun-fictus-scan-8ff645:2.3.1:eu-01", "denseNorm": 0.2714, "bm25Norm": 0.7028, "fused": 0.4008}], "retrieved": [{"rank": 1, "unitId": "payslip-2026-09-arjun-fictus-scan-8ff645:2.3.1:eu-02", "docId": "payslip-2026-09-arjun-fictus-scan-8ff645", "fileName": "payslip_2026-09_arjun_fictus_scan.pdf", "unitType": "table_panel", "label": "Payslip · Arjun Fictus · NewAge Global Fintech Payments", "docType": "doc:Payslip", "breadcrumb": "Payslip Sep 2026 › Arjun Fictus › NewAge Global Fintech Payments", "text": "Employee Arjun Fictus Pay period 01-30 Sep 2026 Employee ID E-2290 Pay date 30 Sep 2026", "pages": [1], "pageWidth": 612.0, "pageHeight": 792.0, "bboxes": [{"page": 1, "x0": 42.55, "y0": 95.2, "x1": 561.76, "y1": 175.04}], "fields": [], "period": "2026-09", "piiFlag": "none", "resolvable": true, "scores": {"denseRaw": 1.689111, "bm25Raw": 2.894883, "denseNorm": 1.0, "bm25Norm": 0.6947, "fused": 0.9084}}, {"rank": 2, "unitId": "payslip-2026-09-maya-fictus-bd153b:2.3.1:eu-03", "docId": "payslip-2026-09-maya-fictus-bd153b", "fileName": "payslip_2026-09_maya_fictus.pdf", "unitType": "table_panel", "label": "Payslip · Maya Fictus · Earnings and deductions", "docType": "doc:Payslip", "breadcrumb": "Payslip Sep 2026 › Maya Fictus › Earnings and deductions", "text": "Description │ Current │ Year to date\nGross pay │ 9,000.00 │ 81,000.00\n401(k) employee deferral │ 600.00 │ 5,400.00\nFederal income tax │ 1,170.00 │ 10,530.00\nSocial Security │ 558.00 │ 5,022.00\nMedicare │ 130.50 │ 1,174.50\nNet pay │ 6,541.50 │ 58,873.50", "pages": [1], "pageWidth": 612.0, "pageHeight": 792.0, "bboxes": [{"page": 1, "x0": 46.7, "y0": 202.48, "x1": 564.84, "y1": 358.4}], "fields": [{"fieldId": "f-payslip-gross-pay-for-the-period", "label": "Gross pay · Current", "value": "9,000.00", "valueNumber": "9000.00", "concept": "fin:PayslipGrossPay", "period": "2026-09", "page": 1, "bbox": {"page": 1, "x0": 60.0, "y0": 233.81, "x1": 399.51, "y1": 243.07}}, {"fieldId": "f-payslip-gross-pay-year-to-date", "label": "Gross pay · Year to date", "value": "81,000.00", "valueNumber": "81000.00", "concept": "fin:PayslipGrossPayYtd", "period": "2026-09", "page": 1, "bbox": {"page": 1, "x0": 60.0, "y0": 233.81, "x1": 551.51, "y1": 243.07}}, {"fieldId": "f-payslip-401-k-deferral-for-the-period", "label": "401(k) employee deferral · Current", "value": "600.00", "valueNumber": "600.00", "concept": "fin:Payslip401kDeferral", "period": "2026-09", "page": 1, "bbox": {"page": 1, "x0": 60.0, "y0": 255.81, "x1": 399.52, "y1": 265.07}}, {"fieldId": "f-federal-income-tax-current", "label": "Federal income tax · Current", "value": "1,170.00", "valueNumber": "1170.00", "period": "2026-09", "page": 1, "bbox": {"page": 1, "x0": 60.0, "y0": 277.81, "x1": 399.52, "y1": 287.07}}, {"fieldId": "f-federal-income-tax-year-to-date", "label": "Federal income tax · Year to date", "value": "10,530.00", "valueNumber": "10530.00", "period": "2026-09", "page": 1, "bbox": {"page": 1, "x0": 60.0, "y0": 277.81, "x1": 551.52, "y1": 287.07}}, {"fieldId": "f-social-security-current", "label": "Social Security · Current", "value": "558.00", "valueNumber": "558.00", "period": "2026-09", "page": 1, "bbox": {"page": 1, "x0": 60.0, "y0": 299.81, "x1": 399.52, "y1": 309.07}}, {"fieldId": "f-social-security-year-to-date", "label": "Social Security · Year to date", "value": "5,022.00", "valueNumber": "5022.00", "period": "2026-09", "page": 1, "bbox": {"page": 1, "x0": 60.0, "y0": 299.81, "x1": 551.52, "y1": 309.07}}, {"fieldId": "f-medicare-current", "label": "Medicare · Current", "value": "130.50", "valueNumber": "130.50", "period": "2026-09", "page": 1, "bbox": {"page": 1, "x0": 60.0, "y0": 321.81, "x1": 399.52, "y1": 331.07}}, {"fieldId": "f-medicare-year-to-date", "label": "Medicare · Year to date", "value": "1,174.50", "valueNumber": "1174.50", "period": "2026-09", "page": 1, "bbox": {"page": 1, "x0": 60.0, "y0": 321.81, "x1": 551.52, "y1": 331.07}}, {"fieldId": "f-payslip-net-pay-for-the-period", "label": "Net pay · Current", "value": "6,541.50", "valueNumber": "6541.50", "concept": "fin:PayslipNetPay", "period": "2026-09", "page": 1, "bbox": {"page": 1, "x0": 60.0, "y0": 343.81, "x1": 399.51, "y1": 353.07}}, {"fieldId": "f-net-pay-year-to-date", "label": "Net pay · Year to date", "value": "58,873.50", "valueNumber": "58873.50", "period": "2026-09", "page": 1, "bbox": {"page": 1, "x0": 60.0, "y0": 343.81, "x1": 551.51, "y1": 353.07}}], "period": "2026-09", "piiFlag": "none", "resolvable": true, "scores": {"denseRaw": 1.439023, "bm25Raw": 4.159088, "denseNorm": 0.5825, "bm25Norm": 1.0, "fused": 0.7078}}, {"rank": 3, "unitId": "w2-2025-arjun-fictus-546450:2.3.1:eu-02", "docId": "w2-2025-arjun-fictus-546450", "fileName": "w2_2025_arjun_fictus.pdf", "unitType": "field_group", "label": "W-2 · Arjun Fictus · Wages (Boxes 1–6)", "docType": "doc:W2", "breadcrumb": "W-2 2025 › Arjun Fictus › Wages (Boxes 1–6)", "text": "c Employer's name, address, and ZIP code\nNewAge Global Fintech Payments 410 Market Street Seattle, WA 98104\ne Employee's first name and initial Last name f Employee's address and ZIP code\nArjun Fictus 18 Harbor Lane Seattle, WA 98101\n3 Social security wages\n1 Wages, tips, other compensation\n2 Federal income tax withheld\n71,250.00\n8,550.00\n4 Social security tax withheld\n75,000.00\n4,650.00\n5 Medicare wages and tips\n6 Medicare tax withheld\n75,000.00\n12a See instructions for box 12 Code\n3,750.00\n1,087.50", "pages": [1], "pageWidth": 612.0, "pageHeight": 792.0, "bboxes": [{"page": 1, "x0": 39.0, "y0": 100.33, "x1": 568.0, "y1": 365.4}], "fields": [{"fieldId": "f-box12a", "label": "12a See instructions for box 12", "value": "3,750.00", "valueNumber": "3750.00", "concept": "fin:W2Box12Amount", "period": "TY2025", "page": 1, "bbox": {"page": 1, "x0": 444.71, "y0": 280.27, "x1": 566.88, "y1": 305.45}}, {"fieldId": "f-box3", "label": "3 Social security wages", "value": "75,000.00", "valueNumber": "75000.00", "concept": "fin:W2SocialSecurityWagesBox3", "period": "TY2025", "page": 1, "bbox": {"page": 1, "x0": 309.27, "y0": 136.27, "x1": 431.88, "y1": 161.45}}, {"fieldId": "f-box5", "label": "5 Medicare wages and tips", "value": "75,000.00", "valueNumber": "75000.00", "concept": "fin:W2MedicareWagesBox5", "period": "TY2025", "page": 1, "bbox": {"page": 1, "x0": 309.27, "y0": 172.35, "x1": 431.88, "y1": 197.45}}, {"fieldId": "f-box1", "label": "1 Wages, tips, other compensation", "value": "71,250.00", "valueNumber": "71250.00", "concept": "fin:W2WagesBox1", "period": "TY2025", "page": 1, "bbox": {"page": 1, "x0": 309.71, "y0": 100.33, "x1": 431.88, "y1": 125.45}}, {"fieldId": "f-box2", "label": "2 Federal income tax withheld", "value": "8,550.00", "valueNumber": "8550.00", "concept": "fin:W2FederalIncomeTaxWithheldBox2", "period": "TY2025", "page": 1, "bbox": {"page": 1, "x0": 444.19, "y0": 100.33, "x1": 566.88, "y1": 125.45}}, {"fieldId": "f-box4", "label": "4 Social security tax withheld", "value": "4,650.00", "valueNumber": "4650.00", "concept": "fin:W2SocialSecurityTaxWithheldBox4", "period": "TY2025", "page": 1, "bbox": {"page": 1, "x0": 444.08, "y0": 136.27, "x1": 566.88, "y1": 161.45}}, {"fieldId": "f-box6", "label": "6 Medicare tax withheld", "value": "1,087.50", "valueNumber": "1087.50", "concept": "fin:W2MedicareTaxWithheldBox6", "period": "TY2025", "page": 1, "bbox": {"page": 1, "x0": 444.25, "y0": 172.33, "x1": 566.88, "y1": 197.45}}, {"fieldId": "f-boxc", "label": "c Employer's name, address, and ZIP code", "value": "NewAge Global Fintech Payments", "concept": "fin:W2EmployerName", "period": "TY2025", "page": 1, "bbox": {"page": 1, "x0": 39.25, "y0": 172.35, "x1": 222.99, "y1": 195.87}}, {"fieldId": "f-boxe", "label": "e Employee's first name and initial Last name f Employee's address and ZIP code", "value": "Arjun Fictus", "concept": "fin:W2EmployeeName", "period": "TY2025", "page": 1, "bbox": {"page": 1, "x0": 39.24, "y0": 316.27, "x1": 286.16, "y1": 339.87}}], "period": "TY2025", "piiFlag": "none", "resolvable": true, "scores": {"denseRaw": 1.598296, "bm25Raw": 0.503543, "denseNorm": 0.8484, "bm25Norm": 0.1171, "fused": 0.629}}, {"rank": 4, "unitId": "payslip-2026-09-maya-fictus-bd153b:2.3.1:eu-02", "docId": "payslip-2026-09-maya-fictus-bd153b", "fileName": "payslip_2026-09_maya_fictus.pdf", "unitType": "table_panel", "label": "Payslip · Maya Fictus · NewAge Global Fintech Services", "docType": "doc:Payslip", "breadcrumb": "Payslip Sep 2026 › Maya Fictus › NewAge Global Fintech Services", "text": "Employee Maya Fictus Pay period 01-30 Sep │ Employee ID E-0417 Pay date 30 Sep\n2026 │ 2026", "pages": [1], "pageWidth": 612.0, "pageHeight": 792.0, "bboxes": [{"page": 1, "x0": 46.91, "y0": 98.6, "x1": 564.57, "y1": 176.55}], "fields": [], "period": "2026-09", "piiFlag": "none", "resolvable": true, "scores": {"denseRaw": 1.398965, "bm25Raw": 2.219466, "denseNorm": 0.5156, "bm25Norm": 0.5315, "fused": 0.5204}}, {"rank": 5, "unitId": "payslip-2026-09-arjun-fictus-scan-8ff645:2.3.1:eu-01", "docId": "payslip-2026-09-arjun-fictus-scan-8ff645", "fileName": "payslip_2026-09_arjun_fictus_scan.pdf", "unitType": "section_text", "label": "Payslip · Arjun Fictus · NewAge Global Fintech Payments", "docType": "doc:Payslip", "breadcrumb": "Payslip Sep 2026 › Arjun Fictus › NewAge Global Fintech Payments", "text": "NewAge Global Fintech Payments\n410 Market Street, Seattle, WA 98104\nYear-to-date figures cover 01 Jan 2026 to 30 Sep 2026.\nEarnings Statement", "pages": [1], "pageWidth": 612.0, "pageHeight": 792.0, "bboxes": [{"page": 1, "x0": 41.04, "y0": 48.7, "x1": 561.4, "y1": 386.02}], "fields": [], "period": "2026-09", "piiFlag": "none", "resolvable": true, "scores": {"denseRaw": 1.25268, "bm25Raw": 2.928652, "denseNorm": 0.2714, "bm25Norm": 0.7028, "fused": 0.4008}}], "rows": [], "t": 4.237}
+{"type": "text", "delta": "I"}
+{"type": "text", "delta": " found"}
+{"type": "text", "delta": " Arjun Fictus's September"}
+{"type": "text", "delta": " 2026 payslip,"}
+{"type": "text", "delta": " but the"}
+{"type": "text", "delta": " earnings"}
+{"type": "text", "delta": "/"}
+{"type": "text", "delta": "de"}
+{"type": "text", "delta": "ductions table"}
+{"type": "text", "delta": " unit"}
+{"type": "text", "delta": " ("}
+{"type": "text", "delta": "eu"}
+{"type": "text", "delta": "-02) for"}
+{"type": "text", "delta": " his"}
+{"type": "text", "delta": " payslip doesn"}
+{"type": "text", "delta": "'t have"}
+{"type": "text", "delta": " structured"}
+{"type": "text", "delta": " fields"}
+{"type": "text", "delta": ". Let me search"}
+{"type": "text", "delta": " more"}
+{"type": "text", "delta": " specifically for the Y"}
+{"type": "text", "delta": "TD gross"}
+{"type": "text", "delta": " pay figure"}
+{"type": "text", "delta": " from"}
+{"type": "text", "delta": " that"}
+{"type": "text", "delta": " payslip."}
+{"type": "tool_start", "callId": "tooluse_QDpvZ3n5svwkQqZfecb9cm", "tool": "search_units", "input": {"query": "Arjun Fictus earnings deductions gross pay year to date 2026", "docType": "doc:Payslip"}, "t": 12.373}
+{"type": "tool_end", "callId": "tooluse_QDpvZ3n5svwkQqZfecb9cm", "tool": "search_units", "ms": 357, "status": "ok", "summary": "5 units", "units": ["payslip-2026-09-maya-fictus-bd153b:2.3.1:eu-03", "payslip-2026-09-arjun-fictus-scan-8ff645:2.3.1:eu-02", "payslip-2026-09-maya-fictus-bd153b:2.3.1:eu-02", "payslip-2026-09-arjun-fictus-scan-8ff645:2.3.1:eu-01", "payslip-2026-09-maya-fictus-bd153b:2.3.1:eu-01"], "scores": [{"unitId": "payslip-2026-09-maya-fictus-bd153b:2.3.1:eu-03", "denseNorm": 0.6889, "bm25Norm": 1.0, "fused": 0.7822}, {"unitId": "payslip-2026-09-arjun-fictus-scan-8ff645:2.3.1:eu-02", "denseNorm": 1.0, "bm25Norm": 0.1764, "fused": 0.7529}, {"unitId": "payslip-2026-09-maya-fictus-bd153b:2.3.1:eu-02", "denseNorm": 0.4314, "bm25Norm": 0.0, "fused": 0.302}, {"unitId": "payslip-2026-09-arjun-fictus-scan-8ff645:2.3.1:eu-01", "denseNorm": 0.189, "bm25Norm": 0.3865, "fused": 0.2483}, {"unitId": "payslip-2026-09-maya-fictus-bd153b:2.3.1:eu-01", "denseNorm": 0.0, "bm25Norm": 0.256, "fused": 0.0768}], "retrieved": [{"rank": 1, "unitId": "payslip-2026-09-maya-fictus-bd153b:2.3.1:eu-03", "docId": "payslip-2026-09-maya-fictus-bd153b", "fileName": "payslip_2026-09_maya_fictus.pdf", "unitType": "table_panel", "label": "Payslip · Maya Fictus · Earnings and deductions", "docType": "doc:Payslip", "breadcrumb": "Payslip Sep 2026 › Maya Fictus › Earnings and deductions", "text": "Description │ Current │ Year to date\nGross pay │ 9,000.00 │ 81,000.00\n401(k) employee deferral │ 600.00 │ 5,400.00\nFederal income tax │ 1,170.00 │ 10,530.00\nSocial Security │ 558.00 │ 5,022.00\nMedicare │ 130.50 │ 1,174.50\nNet pay │ 6,541.50 │ 58,873.50", "pages": [1], "pageWidth": 612.0, "pageHeight": 792.0, "bboxes": [{"page": 1, "x0": 46.7, "y0": 202.48, "x1": 564.84, "y1": 358.4}], "fields": [{"fieldId": "f-payslip-gross-pay-for-the-period", "label": "Gross pay · Current", "value": "9,000.00", "valueNumber": "9000.00", "concept": "fin:PayslipGrossPay", "period": "2026-09", "page": 1, "bbox": {"page": 1, "x0": 60.0, "y0": 233.81, "x1": 399.51, "y1": 243.07}}, {"fieldId": "f-payslip-gross-pay-year-to-date", "label": "Gross pay · Year to date", "value": "81,000.00", "valueNumber": "81000.00", "concept": "fin:PayslipGrossPayYtd", "period": "2026-09", "page": 1, "bbox": {"page": 1, "x0": 60.0, "y0": 233.81, "x1": 551.51, "y1": 243.07}}, {"fieldId": "f-payslip-401-k-deferral-for-the-period", "label": "401(k) employee deferral · Current", "value": "600.00", "valueNumber": "600.00", "concept": "fin:Payslip401kDeferral", "period": "2026-09", "page": 1, "bbox": {"page": 1, "x0": 60.0, "y0": 255.81, "x1": 399.52, "y1": 265.07}}, {"fieldId": "f-federal-income-tax-current", "label": "Federal income tax · Current", "value": "1,170.00", "valueNumber": "1170.00", "period": "2026-09", "page": 1, "bbox": {"page": 1, "x0": 60.0, "y0": 277.81, "x1": 399.52, "y1": 287.07}}, {"fieldId": "f-federal-income-tax-year-to-date", "label": "Federal income tax · Year to date", "value": "10,530.00", "valueNumber": "10530.00", "period": "2026-09", "page": 1, "bbox": {"page": 1, "x0": 60.0, "y0": 277.81, "x1": 551.52, "y1": 287.07}}, {"fieldId": "f-social-security-current", "label": "Social Security · Current", "value": "558.00", "valueNumber": "558.00", "period": "2026-09", "page": 1, "bbox": {"page": 1, "x0": 60.0, "y0": 299.81, "x1": 399.52, "y1": 309.07}}, {"fieldId": "f-social-security-year-to-date", "label": "Social Security · Year to date", "value": "5,022.00", "valueNumber": "5022.00", "period": "2026-09", "page": 1, "bbox": {"page": 1, "x0": 60.0, "y0": 299.81, "x1": 551.52, "y1": 309.07}}, {"fieldId": "f-medicare-current", "label": "Medicare · Current", "value": "130.50", "valueNumber": "130.50", "period": "2026-09", "page": 1, "bbox": {"page": 1, "x0": 60.0, "y0": 321.81, "x1": 399.52, "y1": 331.07}}, {"fieldId": "f-medicare-year-to-date", "label": "Medicare · Year to date", "value": "1,174.50", "valueNumber": "1174.50", "period": "2026-09", "page": 1, "bbox": {"page": 1, "x0": 60.0, "y0": 321.81, "x1": 551.52, "y1": 331.07}}, {"fieldId": "f-payslip-net-pay-for-the-period", "label": "Net pay · Current", "value": "6,541.50", "valueNumber": "6541.50", "concept": "fin:PayslipNetPay", "period": "2026-09", "page": 1, "bbox": {"page": 1, "x0": 60.0, "y0": 343.81, "x1": 399.51, "y1": 353.07}}, {"fieldId": "f-net-pay-year-to-date", "label": "Net pay · Year to date", "value": "58,873.50", "valueNumber": "58873.50", "period": "2026-09", "page": 1, "bbox": {"page": 1, "x0": 60.0, "y0": 343.81, "x1": 551.51, "y1": 353.07}}], "period": "2026-09", "piiFlag": "none", "resolvable": true, "scores": {"denseRaw": 1.486331, "bm25Raw": 5.519561, "denseNorm": 0.6889, "bm25Norm": 1.0, "fused": 0.7822}}, {"rank": 2, "unitId": "payslip-2026-09-arjun-fictus-scan-8ff645:2.3.1:eu-02", "docId": "payslip-2026-09-arjun-fictus-scan-8ff645", "fileName": "payslip_2026-09_arjun_fictus_scan.pdf", "unitType": "table_panel", "label": "Payslip · Arjun Fictus · NewAge Global Fintech Payments", "docType": "doc:Payslip", "breadcrumb": "Payslip Sep 2026 › Arjun Fictus › NewAge Global Fintech Payments", "text": "Employee Arjun Fictus Pay period 01-30 Sep 2026 Employee ID E-2290 Pay date 30 Sep 2026", "pages": [1], "pageWidth": 612.0, "pageHeight": 792.0, "bboxes": [{"page": 1, "x0": 42.55, "y0": 95.2, "x1": 561.76, "y1": 175.04}], "fields": [], "period": "2026-09", "piiFlag": "none", "resolvable": true, "scores": {"denseRaw": 1.647034, "bm25Raw": 2.366014, "denseNorm": 1.0, "bm25Norm": 0.1764, "fused": 0.7529}}, {"rank": 3, "unitId": "payslip-2026-09-maya-fictus-bd153b:2.3.1:eu-02", "docId": "payslip-2026-09-maya-fictus-bd153b", "fileName": "payslip_2026-09_maya_fictus.pdf", "unitType": "table_panel", "label": "Payslip · Maya Fictus · NewAge Global Fintech Services", "docType": "doc:Payslip", "breadcrumb": "Payslip Sep 2026 › Maya Fictus › NewAge Global Fintech Services", "text": "Employee Maya Fictus Pay period 01-30 Sep │ Employee ID E-0417 Pay date 30 Sep\n2026 │ 2026", "pages": [1], "pageWidth": 612.0, "pageHeight": 792.0, "bboxes": [{"page": 1, "x0": 46.91, "y0": 98.6, "x1": 564.57, "y1": 176.55}], "fields": [], "period": "2026-09", "piiFlag": "none", "resolvable": true, "scores": {"denseRaw": 1.353332, "bm25Raw": 1.690597, "denseNorm": 0.4314, "bm25Norm": 0.0, "fused": 0.302}}, {"rank": 4, "unitId": "payslip-2026-09-arjun-fictus-scan-8ff645:2.3.1:eu-01", "docId": "payslip-2026-09-arjun-fictus-scan-8ff645", "fileName": "payslip_2026-09_arjun_fictus_scan.pdf", "unitType": "section_text", "label": "Payslip · Arjun Fictus · NewAge Global Fintech Payments", "docType": "doc:Payslip", "breadcrumb": "Payslip Sep 2026 › Arjun Fictus › NewAge Global Fintech Payments", "text": "NewAge Global Fintech Payments\n410 Market Street, Seattle, WA 98104\nYear-to-date figures cover 01 Jan 2026 to 30 Sep 2026.\nEarnings Statement", "pages": [1], "pageWidth": 612.0, "pageHeight": 792.0, "bboxes": [{"page": 1, "x0": 41.04, "y0": 48.7, "x1": 561.4, "y1": 386.02}], "fields": [], "period": "2026-09", "piiFlag": "none", "resolvable": true, "scores": {"denseRaw": 1.228164, "bm25Raw": 3.170315, "denseNorm": 0.189, "bm25Norm": 0.3865, "fused": 0.2483}}, {"rank": 5, "unitId": "payslip-2026-09-maya-fictus-bd153b:2.3.1:eu-01", "docId": "payslip-2026-09-maya-fictus-bd153b", "fileName": "payslip_2026-09_maya_fictus.pdf", "unitType": "section_text", "label": "Payslip · Maya Fictus · NewAge Global Fintech Services", "docType": "doc:Payslip", "breadcrumb": "Payslip Sep 2026 › Maya Fictus › NewAge Global Fintech Services", "text": "NewAge Global Fintech Services\n400 Market Street, Seattle, WA 98104\nYear-to-date figures cover 01 Jan 2026 to 30 Sep 2026.\nEarnings Statement", "pages": [1], "pageWidth": 612.0, "pageHeight": 792.0, "bboxes": [{"page": 1, "x0": 48.0, "y0": 53.95, "x1": 564.0, "y1": 383.66}], "fields": [], "period": "2026-09", "piiFlag": "none", "resolvable": true, "scores": {"denseRaw": 1.13052, "bm25Raw": 2.670768, "denseNorm": 0.0, "bm25Norm": 0.256, "fused": 0.0768}}], "rows": [], "t": 12.373}
+{"type": "text", "delta": "The"}
+{"type": "text", "delta": " search"}
+{"type": "text", "delta": " results"}
+{"type": "text", "delta": " show"}
+{"type": "text", "delta": " that"}
+{"type": "text", "delta": " Arjun Fictus's"}
+{"type": "text", "delta": " September"}
+{"type": "text", "delta": " 2026 payslip ("}
+{"type": "text", "delta": "from"}
+{"type": "text", "delta": " the sc"}
+{"type": "text", "delta": "anned PDF) does"}
+{"type": "text", "delta": " not"}
+{"type": "text", "delta": " have structured"}
+{"type": "text", "delta": " fields"}
+{"type": "text", "delta": " with"}
+{"type": "text", "delta": " a"}
+{"type": "text", "delta": " Y"}
+{"type": "text", "delta": "T"}
+{"type": "text", "delta": "D gross"}
+{"type": "text", "delta": " pay figure extracted"}
+{"type": "text", "delta": " —"}
+{"type": "text", "delta": " the"}
+{"type": "text", "delta": " earnings"}
+{"type": "text", "delta": " table"}
+{"type": "text", "delta": " unit"}
+{"type": "text", "delta": " (`"}
+{"type": "text", "delta": "eu"}
+{"type": "text", "delta": "-02`) contains"}
+{"type": "text", "delta": " only the header"}
+{"type": "text", "delta": " row text"}
+{"type": "text", "delta": "."}
+{"type": "text", "delta": " The document is"}
+{"type": "text", "delta": " noted"}
+{"type": "text", "delta": " as a"}
+{"type": "text", "delta": " scan"}
+{"type": "text", "delta": ","}
+{"type": "text", "delta": " which"}
+{"type": "text", "delta": " may"}
+{"type": "text", "delta": " have limited"}
+{"type": "text", "delta": " field"}
+{"type": "text", "delta": " extraction."}
+{"type": "text", "delta": " The"}
+{"type": "text", "delta": " Y"}
+{"type": "text", "delta": "TD gross pay figure is not available"}
+{"type": "text", "delta": " as"}
+{"type": "text", "delta": " a structured field in this package"}
+{"type": "text", "delta": " for"}
+{"type": "text", "delta": " Arjun Fictus's"}
+{"type": "text", "delta": " pay"}
+{"type": "text", "delta": "slip.\n\n```"}
+{"type": "text", "delta": "json\n{\n  \"answer"}
+{"type": "text", "delta": "\": \""}
+{"type": "text", "delta": "Arjun Fictus's September"}
+{"type": "text", "delta": " 2026 payslip ("}
+{"type": "text", "delta": "pay"}
+{"type": "text", "delta": "slip_2026-09_"}
+{"type": "text", "delta": "arjun_fictus_scan"}
+{"type": "text", "delta": ".pdf,"}
+{"type": "text", "delta": " pay"}
+{"type": "text", "delta": " period"}
+{"type": "text", "delta": " 01–"}
+{"type": "text", "delta": "30 Sep 2026,"}
+{"type": "text", "delta": " New"}
+{"type": "text", "delta": "Age Global Fintech Payments)"}
+{"type": "text", "delta": " was"}
+{"type": "text", "delta": " ing"}
+{"type": "text", "delta": "ested as"}
+{"type": "text", "delta": " a sc"}
+{"type": "text", "delta": "anned document. The earnings"}
+{"type": "text", "delta": " table unit was"}
+{"type": "text", "delta": " retrieved"}
+{"type": "text", "delta": " but contains"}
+{"type": "text", "delta": " no"}
+{"type": "text", "delta": " structured fields —"}
+{"type": "text", "delta": " the year"}
+{"type": "text", "delta": "-to-date gross pay figure could"}
+{"type": "text", "delta": " not be extracted from the scan"}
+{"type": "text", "delta": " and"}
+{"type": "text", "delta": " is therefore"}
+{"type": "text", "delta": " not available in"}
+{"type": "text", "delta": " this"}
+{"type": "text", "delta": " package.\","}
+{"type": "text", "delta": "\n  \"total"}
+{"type": "text", "delta": "\":"}
+{"type": "text", "delta": " null"}
+{"type": "text", "delta": ",\n  \"currency"}
+{"type": "text", "delta": "\": null"}
+{"type": "text", "delta": ",\n  \"arithmetic"}
+{"type": "text", "delta": "\": null"}
+{"type": "text", "delta": ",\n  \"claims"}
+{"type": "text", "delta": "\": [],"}
+{"type": "text", "delta": "\n  \"c"}
+{"type": "text", "delta": "ave"}
+{"type": "text", "delta": "ats\": ["}
+{"type": "text", "delta": "\n    \""}
+{"type": "text", "delta": "Arjun Fictus's pay"}
+{"type": "text", "delta": "slip is"}
+{"type": "text", "delta": " a scanned PDF"}
+{"type": "text", "delta": ";"}
+{"type": "text", "delta": " OC"}
+{"type": "text", "delta": "R field"}
+{"type": "text", "delta": " extraction did"}
+{"type": "text", "delta": " not produce"}
+{"type": "text", "delta": " a"}
+{"type": "text", "delta": " structured Y"}
+{"type": "text", "delta": "TD gross pay value"}
+{"type": "text", "delta": ".\","}
+{"type": "text", "delta": "\n    \"The earnings table unit ("}
+{"type": "text", "delta": "pay"}
+{"type": "text", "delta": "slip-2026-09-"}
+{"type": "text", "delta": "arjun-fictus-scan"}
+{"type": "text", "delta": "-8ff645:2.3"}
+{"type": "text", "delta": ".1:eu-02) returned"}
+{"type": "text", "delta": " no fields"}
+{"type": "text", "delta": ","}
+{"type": "text", "delta": " so"}
+{"type": "text", "delta": " no"}
+{"type": "text", "delta": " figure"}
+{"type": "text", "delta": " can"}
+{"type": "text", "delta": " be cited"}
+{"type": "text", "delta": ".\","}
+{"type": "text", "delta": "\n    \"Per"}
+{"type": "text", "delta": " package"}
+{"type": "text", "delta": " definitions"}
+{"type": "text", "delta": ", pay"}
+{"type": "text", "delta": "slip"}
+{"type": "text", "delta": " figures"}
+{"type": "text", "delta": " cor"}
+{"type": "text", "delta": "rob"}
+{"type": "text", "delta": "orate income"}
+{"type": "text", "delta": " but"}
+{"type": "text", "delta": " are"}
+{"type": "text", "delta": " not used"}
+{"type": "text", "delta": " to"}
+{"type": "text", "delta": " calculate qualifying"}
+{"type": "text", "delta": " income;"}
+{"type": "text", "delta": " the W"}
+{"type": "text", "delta": "-2 Box"}
+{"type": "text", "delta": " 1 figure"}
+{"type": "text", "delta": " for"}
+{"type": "text", "delta": " T"}
+{"type": "text", "delta": "Y"}
+{"type": "text", "delta": "2"}
+{"type": "text", "delta": "025"}
+{"type": "text", "delta": " is $"}
+{"type": "text", "delta": "71"}
+{"type": "text", "delta": ",250"}
+{"type": "text", "delta": "."}
+{"type": "text", "delta": "00 and"}
+{"type": "text", "delta": " is"}
+{"type": "text", "delta": " the"}
+{"type": "text", "delta": " relevant"}
+{"type": "text", "delta": " qualifying"}
+{"type": "text", "delta": " income figure.\"\n  ]"}
+{"type": "text", "delta": "\n}\n```"}
+{"answer": "Arjun Fictus's September 2026 payslip (payslip_2026-09_arjun_fictus_scan.pdf, pay period 01–30 Sep 2026, NewAge Global Fintech Payments) was ingested as a scanned document. The earnings table unit was retrieved but contains no structured fields — the year-to-date gross pay figure could not be extracted from the scan and is therefore not available in this package.", "claims": [], "caveats": ["Arjun Fictus's payslip is a scanned PDF; OCR field extraction did not produce a structured YTD gross pay value.", "The earnings table unit (payslip-2026-09-arjun-fictus-scan-8ff645:2.3.1:eu-02) returned no fields, so no figure can be cited.", "Per package definitions, payslip figures corroborate income but are not used to calculate qualifying income; the W-2 Box 1 figure for TY2025 is $71,250.00 and is the relevant qualifying income figure."], "citationRetries": 0, "uncitedNumbers": [], "type": "answer"}
+{"runId": "r-61acfaa2f274", "packageId": "pkg-lending-01", "pipelineVersion": "2.3.1", "configSha": "a42731845bd93c07fb4e21644d86495b8349e4aa6e75014b90f547815ec35447", "blockShas": {"preprocessing": "40e8c03f17781382dcbcc29f7a0a84a8b1e9642cf92500d3980254a0cbd69a07", "retrieval": "3587393d6f0d8c38adfaf6853c1463b54cc1ee872646ff354b3408da63dd586c", "generation": "4731dca541739b7b91e53099ae45acb0f255c753e313bec48702fa79ecad436e", "agent": "5ce789906365b6a0f9d139eba009f17b61d3113720a21c755e3f5be4459551f0"}, "promptSha": "59984da199bb287de4b76a1d91bc0a5c27fde51028c39ffd04a33c3950a7d302", "modelId": "us.anthropic.claude-sonnet-4-6", "corpusHash": "34856e2c51fa71d6ddc21b4493efde7b9d6ccd1d87ed0f3287908d6612b687e2", "memoryRecordsInjected": 0, "latencyMs": 19955, "usage": {"inputTokens": 18544, "outputTokens": 662, "totalTokens": 19206}, "startedAt": "2026-11-10T22:13:31.811Z", "type": "run", "question": "What is Arjun Fictus's year-to-date gross pay on the September 2026 payslip?"}

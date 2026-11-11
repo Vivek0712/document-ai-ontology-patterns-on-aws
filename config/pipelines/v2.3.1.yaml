@@ -1,0 +1,31 @@
+pipelineVersion: "2.3.1"
+title: "2.3.1 evidence units"
+description: "Layout-aware extraction, evidence units, ontology binding. Only preprocessing differs from 1.0."
+preprocessing:
+  extraction: { layout: roles, router: { digital: docling, scan: textract, docx: docling-native, scanTextCharsMax: 50, textractFeatures: [LAYOUT, TABLES, FORMS] } }
+  chunker: { type: evidence_units }
+  units: { tau: 0.40, phaseB: cosine, markerLink: hard-rule, residual: section_text, maxResidualTokens: 400, fieldBbox: true, bboxFrame: pdf-points-top-left, reviewMinConfidence: 0.80 }
+  ontology: { version: "1.2.0", graphs: [fibo, doco, rp] }
+  enrichment: { breadcrumb: true, docType: ontology, fieldConcept: ontology, period: true, bbox: true }
+  classify: { method: skos-indicators, tieBreakModel: "${MODEL_COMPACT}", minMargin: 0.15 }
+  piiGate: { engine: comprehend, action: hold, rule: rp-pii-v1, minScore: 0.80 }
+  render: { dpi: 150 }
+retrieval:
+  embedModel: ${EMBED_MODEL}
+  embedDimensions: 1024
+  fusion: { dense: 0.7, bm25: 0.3, normalization: min_max, subQueryK: 20 }
+  k: 5
+  filtersInsideQuery: [allowedPrincipals, packageId, pipelineVersion]
+  readiness: { maxWaitSeconds: 90, pollSeconds: 5 }
+generation:
+  modelId: ${MODEL_ANSWER}
+  temperature: 0
+  maxTokens: 700
+  prompt: prompts/answer_v1.txt
+agent:
+  runtime: rp-agent
+  tools: [search_units@1, graph_hop@1, get_region@1, doc_status@1]
+  memory: { retrieval: "off", write: post-lock }
+  goldenSetCheck: true
+  maxToolCalls: 8
+  citationRetry: 1

@@ -1,0 +1,3 @@
+# Dev/test requirements for B's local pipeline and ingestion tests (installed by `make venv`).
+-r ../lambdas/requirements/ingest.txt
+reportlab==4.4.4

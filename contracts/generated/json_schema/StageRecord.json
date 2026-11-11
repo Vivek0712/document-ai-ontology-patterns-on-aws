@@ -1,0 +1,681 @@
+{
+  "$defs": {
+    "ArtifactKind": {
+      "description": "What an artifact is; the UI picks a viewer by kind.",
+      "enum": [
+        "source_pdf",
+        "manifest",
+        "route",
+        "text_layer",
+        "docling_json",
+        "textract_json",
+        "classification",
+        "units_jsonl",
+        "build_report",
+        "pii_decisions",
+        "gold_unit",
+        "gold_units_jsonl",
+        "page_image",
+        "index_receipt",
+        "abox_nquads",
+        "graph_receipt",
+        "ready_receipt",
+        "config",
+        "run"
+      ],
+      "title": "ArtifactKind",
+      "type": "string"
+    },
+    "ArtifactRef": {
+      "description": "A file a stage read or wrote. Always in the data bucket (RP_DATA_BUCKET).",
+      "properties": {
+        "key": {
+          "title": "Key",
+          "type": "string"
+        },
+        "kind": {
+          "$ref": "#/$defs/ArtifactKind"
+        },
+        "contentType": {
+          "default": "application/json",
+          "title": "Contenttype",
+          "type": "string"
+        },
+        "sizeBytes": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Sizebytes"
+        },
+        "sha256": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Sha256"
+        },
+        "versionId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Versionid"
+        },
+        "page": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Page"
+        },
+        "count": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Count"
+        },
+        "note": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Note"
+        }
+      },
+      "required": [
+        "key",
+        "kind"
+      ],
+      "title": "ArtifactRef",
+      "type": "object"
+    },
+    "Engine": {
+      "description": "Engines that can produce a stage's output. Shown in the stage inspector.",
+      "enum": [
+        "text-layer",
+        "docling",
+        "textract",
+        "pypdf",
+        "skos-indicators",
+        "nova",
+        "eu-builder",
+        "fixed-chunker",
+        "comprehend",
+        "pdfium",
+        "titan-v2+aoss",
+        "neptune",
+        "lambda"
+      ],
+      "title": "Engine",
+      "type": "string"
+    },
+    "StageConfigSnapshot": {
+      "description": "The slice(s) of the resolved pipeline config this stage used.",
+      "properties": {
+        "paths": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Paths",
+          "type": "array"
+        },
+        "values": {
+          "additionalProperties": true,
+          "title": "Values",
+          "type": "object"
+        },
+        "sha": {
+          "title": "Sha",
+          "type": "string"
+        }
+      },
+      "required": [
+        "paths",
+        "values",
+        "sha"
+      ],
+      "title": "StageConfigSnapshot",
+      "type": "object"
+    },
+    "StageError": {
+      "properties": {
+        "type": {
+          "title": "Type",
+          "type": "string"
+        },
+        "message": {
+          "title": "Message",
+          "type": "string"
+        },
+        "cause": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Cause"
+        },
+        "retryable": {
+          "default": false,
+          "title": "Retryable",
+          "type": "boolean"
+        },
+        "at": {
+          "title": "At",
+          "type": "string"
+        }
+      },
+      "required": [
+        "type",
+        "message"
+      ],
+      "title": "StageError",
+      "type": "object"
+    },
+    "StageGroup": {
+      "description": "Display columns on the stage board.",
+      "enum": [
+        "upload",
+        "extract",
+        "units",
+        "gate",
+        "index"
+      ],
+      "title": "StageGroup",
+      "type": "string"
+    },
+    "StageId": {
+      "description": "Ordered ingestion stages. Order and metadata live in stages.REGISTRY.",
+      "enum": [
+        "register",
+        "route",
+        "extract",
+        "classify",
+        "units",
+        "pii_gate",
+        "promote",
+        "index",
+        "graph",
+        "ready"
+      ],
+      "title": "StageId",
+      "type": "string"
+    },
+    "StageProgress": {
+      "properties": {
+        "done": {
+          "title": "Done",
+          "type": "integer"
+        },
+        "total": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Total"
+        },
+        "unit": {
+          "default": "pages",
+          "title": "Unit",
+          "type": "string"
+        }
+      },
+      "required": [
+        "done"
+      ],
+      "title": "StageProgress",
+      "type": "object"
+    },
+    "StageState": {
+      "description": "Current state of one stage record.",
+      "enum": [
+        "PENDING",
+        "QUEUED",
+        "RUNNING",
+        "SUCCEEDED",
+        "FAILED",
+        "SKIPPED"
+      ],
+      "title": "StageState",
+      "type": "string"
+    },
+    "StageVersions": {
+      "description": "Everything that determines a stage's output, shown in the stage inspector.",
+      "properties": {
+        "pipelineVersion": {
+          "title": "Pipelineversion",
+          "type": "string"
+        },
+        "configSha": {
+          "title": "Configsha",
+          "type": "string"
+        },
+        "configVersionId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Configversionid"
+        },
+        "ontologyVersion": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Ontologyversion"
+        },
+        "engineVersion": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Engineversion"
+        },
+        "modelId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Modelid"
+        },
+        "promptSha": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Promptsha"
+        },
+        "codeSha": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Codesha"
+        }
+      },
+      "required": [
+        "pipelineVersion",
+        "configSha"
+      ],
+      "title": "StageVersions",
+      "type": "object"
+    }
+  },
+  "description": "Current state of one stage of one (doc, pipelineVersion) lane.\n\nKey: pk = docId, sk = ``STAGE#{pv}#{order:02d}#{stageId}``;\nGSI ``byPackage``: gsi1pk = packageId, gsi1sk = ``{pv}#{docId}#S{order:02d}#{stageId}``.",
+  "properties": {
+    "docId": {
+      "title": "Docid",
+      "type": "string"
+    },
+    "packageId": {
+      "title": "Packageid",
+      "type": "string"
+    },
+    "pipelineVersion": {
+      "title": "Pipelineversion",
+      "type": "string"
+    },
+    "stageId": {
+      "$ref": "#/$defs/StageId"
+    },
+    "order": {
+      "title": "Order",
+      "type": "integer"
+    },
+    "group": {
+      "$ref": "#/$defs/StageGroup"
+    },
+    "title": {
+      "title": "Title",
+      "type": "string"
+    },
+    "state": {
+      "$ref": "#/$defs/StageState",
+      "default": "PENDING"
+    },
+    "attempt": {
+      "default": 0,
+      "title": "Attempt",
+      "type": "integer"
+    },
+    "engine": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Engine"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "services": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Services",
+      "type": "array"
+    },
+    "functionName": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Functionname"
+    },
+    "sfnState": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Sfnstate"
+    },
+    "executionArn": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Executionarn"
+    },
+    "queuedAt": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Queuedat"
+    },
+    "startedAt": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Startedat"
+    },
+    "lastHeartbeatAt": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Lastheartbeatat"
+    },
+    "heartbeatCount": {
+      "default": 0,
+      "title": "Heartbeatcount",
+      "type": "integer"
+    },
+    "endedAt": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Endedat"
+    },
+    "durationMs": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Durationms"
+    },
+    "progress": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/StageProgress"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "message": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Message"
+    },
+    "headline": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Headline"
+    },
+    "inputs": {
+      "items": {
+        "$ref": "#/$defs/ArtifactRef"
+      },
+      "title": "Inputs",
+      "type": "array"
+    },
+    "artifacts": {
+      "items": {
+        "$ref": "#/$defs/ArtifactRef"
+      },
+      "title": "Artifacts",
+      "type": "array"
+    },
+    "input": {
+      "anyOf": [
+        {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Input"
+    },
+    "output": {
+      "anyOf": [
+        {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Output"
+    },
+    "metrics": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "number"
+          },
+          {
+            "type": "integer"
+          }
+        ]
+      },
+      "title": "Metrics",
+      "type": "object"
+    },
+    "config": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/StageConfigSnapshot"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "versions": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/StageVersions"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "skipReason": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Skipreason"
+    },
+    "error": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/StageError"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "updatedAt": {
+      "title": "Updatedat",
+      "type": "string"
+    }
+  },
+  "required": [
+    "docId",
+    "packageId",
+    "pipelineVersion",
+    "stageId",
+    "order",
+    "group",
+    "title"
+  ],
+  "title": "StageRecord",
+  "type": "object"
+}

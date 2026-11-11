@@ -1,0 +1,1259 @@
+{
+  "packageId": "pkg-tradeconf-01",
+  "name": "Trade confirmations · XS-2031–XS-2033",
+  "description": "Trade confirmation: coupon 4.25% with marker 3 on page 1, step-up footnote on page 2.",
+  "ownerEmail": "user-a@example.com",
+  "allowedGroups": [
+    "lending-analyst",
+    "markets-analyst"
+  ],
+  "seed": 2031,
+  "generatorVersion": "1.0.0",
+  "footer": "Fictitious document · NewAge Global Fintech · for demonstration only",
+  "bboxFrame": "pdf-points-top-left",
+  "corpusHash": "84436b1927bcd4fa33e13a59983a457c6a21bb799ddebff1deb7a3360f4adaa7",
+  "expected": {},
+  "questions": [
+    "q-tc31-01",
+    "q-tc31-02",
+    "q-tc31-03",
+    "q-tc31-04",
+    "q-tc31-05",
+    "q-tc32-01",
+    "q-tc32-02",
+    "q-tc32-03",
+    "q-tc32-04",
+    "q-tc32-05",
+    "q-tc33-01",
+    "q-tc33-02",
+    "q-tc33-03",
+    "q-tc33-04",
+    "q-tc33-05"
+  ],
+  "documents": [
+    {
+      "fileName": "trade_confirmation_xs2031.pdf",
+      "docId": "trade-confirmation-xs2031-9af5c5",
+      "docType": "doc:TradeConfirmation",
+      "route": "digital",
+      "title": "Trade Confirmation XS-2031",
+      "pageCount": 2,
+      "pageWidth": 612.0,
+      "pageHeight": 792.0,
+      "sha256": "870247c5f50b1f72c36aac977c5da73b411d512a6683f6f16fa2a5ed8118d59e",
+      "bboxFrame": "pdf-points-top-left",
+      "attributes": {
+        "security": "XS-2031",
+        "coupon": "4.25",
+        "stepRate": "6.00",
+        "stepYear": 3,
+        "triggerRating": "BBB-",
+        "issuerRating": "BBB (watch)",
+        "settlementDate": "14 Oct 2026"
+      },
+      "notes": [],
+      "regions": [
+        {
+          "regionId": "tc-title",
+          "kind": "header",
+          "page": 1,
+          "bbox": {
+            "page": 1,
+            "x0": 60.0,
+            "y0": 49.95,
+            "x1": 552.0,
+            "y1": 79.86
+          },
+          "role": "title",
+          "label": "Trade Confirmation",
+          "value": "TC-2026-10-0031"
+        },
+        {
+          "regionId": "tc-intro",
+          "kind": "text",
+          "page": 1,
+          "bbox": {
+            "page": 1,
+            "x0": 60.0,
+            "y0": 96.82,
+            "x1": 551.31,
+            "y1": 119.57
+          },
+          "role": "text",
+          "label": "confirmation statement",
+          "value": "We confirm the following transaction between the parties named below. All parties, securities and ratings in this document are fictitious."
+        },
+        {
+          "regionId": "tc-details",
+          "kind": "unit",
+          "page": 1,
+          "bbox": {
+            "page": 1,
+            "x0": 54.0,
+            "y0": 167.8,
+            "x1": 552.0,
+            "y1": 287.8
+          },
+          "role": "table",
+          "label": "Trade confirmation · Trade details",
+          "extra": {
+            "unitType": "table_panel"
+          }
+        },
+        {
+          "regionId": "tc-settlement",
+          "kind": "field",
+          "page": 1,
+          "bbox": {
+            "page": 1,
+            "x0": 54.0,
+            "y0": 207.8,
+            "x1": 552.0,
+            "y1": 227.8
+          },
+          "role": "table_cell",
+          "label": "Settlement date",
+          "value": "14 Oct 2026",
+          "concept": "fin:SettlementDate",
+          "fieldId": "f-settlement-date",
+          "unitRef": "tc-details"
+        },
+        {
+          "regionId": "tc-terms",
+          "kind": "unit",
+          "page": 1,
+          "bbox": {
+            "page": 1,
+            "x0": 54.0,
+            "y0": 340.6,
+            "x1": 552.0,
+            "y1": 500.6
+          },
+          "role": "table",
+          "label": "Trade confirmation · XS-2031 · Security terms",
+          "extra": {
+            "unitType": "table_panel",
+            "ontologyClass": "fibo-sec-dbt-bnd:StepUpBond"
+          }
+        },
+        {
+          "regionId": "tc-security",
+          "kind": "field",
+          "page": 1,
+          "bbox": {
+            "page": 1,
+            "x0": 54.0,
+            "y0": 360.6,
+            "x1": 552.0,
+            "y1": 380.6
+          },
+          "role": "table_cell",
+          "label": "Security",
+          "value": "XS-2031",
+          "concept": "fin:SecurityIdentifier",
+          "fieldId": "f-security",
+          "unitRef": "tc-terms",
+          "labelBbox": {
+            "page": 1,
+            "x0": 60.0,
+            "y0": 367.78,
+            "x1": 94.31,
+            "y1": 376.57
+          },
+          "valueBbox": {
+            "page": 1,
+            "x0": 250.0,
+            "y0": 367.78,
+            "x1": 286.96,
+            "y1": 376.57
+          }
+        },
+        {
+          "regionId": "tc-issuer-rating",
+          "kind": "field",
+          "page": 1,
+          "bbox": {
+            "page": 1,
+            "x0": 54.0,
+            "y0": 400.6,
+            "x1": 552.0,
+            "y1": 420.6
+          },
+          "role": "table_cell",
+          "label": "Issuer rating",
+          "value": "BBB (watch)",
+          "concept": "fin:IssuerRating",
+          "fieldId": "f-issuer-rating",
+          "unitRef": "tc-terms",
+          "labelBbox": {
+            "page": 1,
+            "x0": 60.0,
+            "y0": 407.78,
+            "x1": 112.27,
+            "y1": 416.57
+          },
+          "valueBbox": {
+            "page": 1,
+            "x0": 250.0,
+            "y0": 407.78,
+            "x1": 302.79,
+            "y1": 416.57
+          }
+        },
+        {
+          "regionId": "tc-nominal",
+          "kind": "field",
+          "page": 1,
+          "bbox": {
+            "page": 1,
+            "x0": 54.0,
+            "y0": 420.6,
+            "x1": 552.0,
+            "y1": 440.6
+          },
+          "role": "table_cell",
+          "label": "Nominal",
+          "value": "USD 5,000,000.00",
+          "valueNumber": "5000000.00",
+          "concept": "fin:NominalAmount",
+          "fieldId": "f-nominal",
+          "unitRef": "tc-terms",
+          "labelBbox": {
+            "page": 1,
+            "x0": 60.0,
+            "y0": 427.78,
+            "x1": 94.84,
+            "y1": 436.57
+          },
+          "valueBbox": {
+            "page": 1,
+            "x0": 250.0,
+            "y0": 427.78,
+            "x1": 328.16,
+            "y1": 436.57
+          }
+        },
+        {
+          "regionId": "tc-coupon",
+          "kind": "field",
+          "page": 1,
+          "bbox": {
+            "page": 1,
+            "x0": 54.0,
+            "y0": 440.6,
+            "x1": 552.0,
+            "y1": 460.6
+          },
+          "role": "table_cell",
+          "label": "Coupon",
+          "value": "4.25%",
+          "valueNumber": "4.25",
+          "concept": "fin:CouponRate",
+          "fieldId": "f-coupon",
+          "unitRef": "tc-terms",
+          "labelBbox": {
+            "page": 1,
+            "x0": 60.0,
+            "y0": 447.78,
+            "x1": 93.27,
+            "y1": 456.57
+          },
+          "valueBbox": {
+            "page": 1,
+            "x0": 250.0,
+            "y0": 446.29,
+            "x1": 281.07,
+            "y1": 456.57
+          },
+          "extra": {
+            "marker": "3"
+          }
+        },
+        {
+          "regionId": "tc-maturity",
+          "kind": "field",
+          "page": 1,
+          "bbox": {
+            "page": 1,
+            "x0": 54.0,
+            "y0": 480.6,
+            "x1": 552.0,
+            "y1": 500.6
+          },
+          "role": "table_cell",
+          "label": "Maturity",
+          "value": "15 Sep 2033",
+          "concept": "fin:MaturityDate",
+          "fieldId": "f-maturity",
+          "unitRef": "tc-terms",
+          "labelBbox": {
+            "page": 1,
+            "x0": 60.0,
+            "y0": 487.78,
+            "x1": 93.78,
+            "y1": 496.57
+          },
+          "valueBbox": {
+            "page": 1,
+            "x0": 250.0,
+            "y0": 487.78,
+            "x1": 303.87,
+            "y1": 496.57
+          }
+        },
+        {
+          "regionId": "tc-coupon-marker",
+          "kind": "marker",
+          "page": 1,
+          "bbox": {
+            "page": 1,
+            "x0": 250.0,
+            "y0": 446.29,
+            "x1": 281.07,
+            "y1": 456.57
+          },
+          "role": "marker_link",
+          "label": "footnote marker 3 on coupon",
+          "value": "3",
+          "unitRef": "tc-terms",
+          "extra": {
+            "links": "tc-footnote3",
+            "footnotePage": 2
+          }
+        },
+        {
+          "regionId": "tc-footnote1",
+          "kind": "footnote",
+          "page": 1,
+          "bbox": {
+            "page": 1,
+            "x0": 60.0,
+            "y0": 532.29,
+            "x1": 177.94,
+            "y1": 542.26
+          },
+          "role": "footnote",
+          "label": "footnote 1",
+          "value": "Clean price, percent of nominal."
+        },
+        {
+          "regionId": "tc-footnote2",
+          "kind": "footnote",
+          "page": 1,
+          "bbox": {
+            "page": 1,
+            "x0": 60.0,
+            "y0": 546.29,
+            "x1": 237.07,
+            "y1": 556.26
+          },
+          "role": "footnote",
+          "label": "footnote 2",
+          "value": "Settlement through the fictitious clearing system."
+        },
+        {
+          "regionId": "footer-p1",
+          "kind": "footer",
+          "page": 1,
+          "bbox": {
+            "page": 1,
+            "x0": 190.95,
+            "y0": 762.62,
+            "x1": 421.05,
+            "y1": 769.55
+          },
+          "role": "page_footer",
+          "label": "footer",
+          "value": "Fictitious document · NewAge Global Fintech · for demonstration only"
+        },
+        {
+          "regionId": "tc-p2-header",
+          "kind": "header",
+          "page": 2,
+          "bbox": {
+            "page": 2,
+            "x0": 60.0,
+            "y0": 52.1,
+            "x1": 314.26,
+            "y1": 62.28
+          },
+          "role": "page_header",
+          "label": "continued header"
+        },
+        {
+          "regionId": "tc-footnote3",
+          "kind": "footnote",
+          "page": 2,
+          "bbox": {
+            "page": 2,
+            "x0": 60.0,
+            "y0": 109.77,
+            "x1": 218.01,
+            "y1": 120.87
+          },
+          "role": "footnote",
+          "label": "footnote 3",
+          "value": "6.00% from year 3 if rating < BBB-",
+          "valueNumber": "6.00",
+          "concept": "fin:StepUpCouponRate",
+          "fieldId": "f-step-up",
+          "unitRef": "tc-terms",
+          "extra": {
+            "newRate": "6.00",
+            "effectiveFromYear": 3,
+            "triggerRating": "BBB-",
+            "marker": "3",
+            "markerPage": 1,
+            "ontologyClass": "fin:RatingTriggeredStepEvent"
+          }
+        },
+        {
+          "regionId": "tc-stepup-expl",
+          "kind": "text",
+          "page": 2,
+          "bbox": {
+            "page": 2,
+            "x0": 60.0,
+            "y0": 133.62,
+            "x1": 545.79,
+            "y1": 169.87
+          },
+          "role": "text",
+          "label": "step-up explanation",
+          "value": "The coupon steps up from the start of the coupon year stated above when the issuer's rating from any agency named in the offering terms falls below the trigger rating. The step-up applies once and does not reverse if the rating later recovers."
+        },
+        {
+          "regionId": "footer-p2",
+          "kind": "footer",
+          "page": 2,
+          "bbox": {
+            "page": 2,
+            "x0": 190.95,
+            "y0": 762.62,
+            "x1": 421.05,
+            "y1": 769.55
+          },
+          "role": "page_footer",
+          "label": "footer",
+          "value": "Fictitious document · NewAge Global Fintech · for demonstration only"
+        }
+      ]
+    },
+    {
+      "fileName": "trade_confirmation_xs2032.pdf",
+      "docId": "trade-confirmation-xs2032-5f0fa4",
+      "docType": "doc:TradeConfirmation",
+      "route": "digital",
+      "title": "Trade Confirmation XS-2032",
+      "pageCount": 2,
+      "pageWidth": 612.0,
+      "pageHeight": 792.0,
+      "sha256": "9a20e07daa0a0a12d978a329e9a1e7aa6a154df5ef2853ec71419e5008146c6d",
+      "bboxFrame": "pdf-points-top-left",
+      "attributes": {
+        "security": "XS-2032",
+        "coupon": "4.50",
+        "stepRate": "5.75",
+        "stepYear": 3,
+        "triggerRating": "BBB-",
+        "issuerRating": "BBB (watch)",
+        "settlementDate": "22 Oct 2026"
+      },
+      "notes": [],
+      "regions": [
+        {
+          "regionId": "tc-title",
+          "kind": "header",
+          "page": 1,
+          "bbox": {
+            "page": 1,
+            "x0": 60.0,
+            "y0": 49.95,
+            "x1": 552.0,
+            "y1": 79.86
+          },
+          "role": "title",
+          "label": "Trade Confirmation",
+          "value": "TC-2026-10-0032"
+        },
+        {
+          "regionId": "tc-intro",
+          "kind": "text",
+          "page": 1,
+          "bbox": {
+            "page": 1,
+            "x0": 60.0,
+            "y0": 96.82,
+            "x1": 551.31,
+            "y1": 119.57
+          },
+          "role": "text",
+          "label": "confirmation statement",
+          "value": "We confirm the following transaction between the parties named below. All parties, securities and ratings in this document are fictitious."
+        },
+        {
+          "regionId": "tc-details",
+          "kind": "unit",
+          "page": 1,
+          "bbox": {
+            "page": 1,
+            "x0": 54.0,
+            "y0": 167.8,
+            "x1": 552.0,
+            "y1": 287.8
+          },
+          "role": "table",
+          "label": "Trade confirmation · Trade details",
+          "extra": {
+            "unitType": "table_panel"
+          }
+        },
+        {
+          "regionId": "tc-settlement",
+          "kind": "field",
+          "page": 1,
+          "bbox": {
+            "page": 1,
+            "x0": 54.0,
+            "y0": 207.8,
+            "x1": 552.0,
+            "y1": 227.8
+          },
+          "role": "table_cell",
+          "label": "Settlement date",
+          "value": "22 Oct 2026",
+          "concept": "fin:SettlementDate",
+          "fieldId": "f-settlement-date",
+          "unitRef": "tc-details"
+        },
+        {
+          "regionId": "tc-terms",
+          "kind": "unit",
+          "page": 1,
+          "bbox": {
+            "page": 1,
+            "x0": 54.0,
+            "y0": 340.6,
+            "x1": 552.0,
+            "y1": 500.6
+          },
+          "role": "table",
+          "label": "Trade confirmation · XS-2032 · Security terms",
+          "extra": {
+            "unitType": "table_panel",
+            "ontologyClass": "fibo-sec-dbt-bnd:StepUpBond"
+          }
+        },
+        {
+          "regionId": "tc-security",
+          "kind": "field",
+          "page": 1,
+          "bbox": {
+            "page": 1,
+            "x0": 54.0,
+            "y0": 360.6,
+            "x1": 552.0,
+            "y1": 380.6
+          },
+          "role": "table_cell",
+          "label": "Security",
+          "value": "XS-2032",
+          "concept": "fin:SecurityIdentifier",
+          "fieldId": "f-security",
+          "unitRef": "tc-terms",
+          "labelBbox": {
+            "page": 1,
+            "x0": 60.0,
+            "y0": 367.78,
+            "x1": 94.31,
+            "y1": 376.57
+          },
+          "valueBbox": {
+            "page": 1,
+            "x0": 250.0,
+            "y0": 367.78,
+            "x1": 286.96,
+            "y1": 376.57
+          }
+        },
+        {
+          "regionId": "tc-issuer-rating",
+          "kind": "field",
+          "page": 1,
+          "bbox": {
+            "page": 1,
+            "x0": 54.0,
+            "y0": 400.6,
+            "x1": 552.0,
+            "y1": 420.6
+          },
+          "role": "table_cell",
+          "label": "Issuer rating",
+          "value": "BBB (watch)",
+          "concept": "fin:IssuerRating",
+          "fieldId": "f-issuer-rating",
+          "unitRef": "tc-terms",
+          "labelBbox": {
+            "page": 1,
+            "x0": 60.0,
+            "y0": 407.78,
+            "x1": 112.27,
+            "y1": 416.57
+          },
+          "valueBbox": {
+            "page": 1,
+            "x0": 250.0,
+            "y0": 407.78,
+            "x1": 302.79,
+            "y1": 416.57
+          }
+        },
+        {
+          "regionId": "tc-nominal",
+          "kind": "field",
+          "page": 1,
+          "bbox": {
+            "page": 1,
+            "x0": 54.0,
+            "y0": 420.6,
+            "x1": 552.0,
+            "y1": 440.6
+          },
+          "role": "table_cell",
+          "label": "Nominal",
+          "value": "USD 7,000,000.00",
+          "valueNumber": "7000000.00",
+          "concept": "fin:NominalAmount",
+          "fieldId": "f-nominal",
+          "unitRef": "tc-terms",
+          "labelBbox": {
+            "page": 1,
+            "x0": 60.0,
+            "y0": 427.78,
+            "x1": 94.84,
+            "y1": 436.57
+          },
+          "valueBbox": {
+            "page": 1,
+            "x0": 250.0,
+            "y0": 427.78,
+            "x1": 328.16,
+            "y1": 436.57
+          }
+        },
+        {
+          "regionId": "tc-coupon",
+          "kind": "field",
+          "page": 1,
+          "bbox": {
+            "page": 1,
+            "x0": 54.0,
+            "y0": 440.6,
+            "x1": 552.0,
+            "y1": 460.6
+          },
+          "role": "table_cell",
+          "label": "Coupon",
+          "value": "4.50%",
+          "valueNumber": "4.50",
+          "concept": "fin:CouponRate",
+          "fieldId": "f-coupon",
+          "unitRef": "tc-terms",
+          "labelBbox": {
+            "page": 1,
+            "x0": 60.0,
+            "y0": 447.78,
+            "x1": 93.27,
+            "y1": 456.57
+          },
+          "valueBbox": {
+            "page": 1,
+            "x0": 250.0,
+            "y0": 446.29,
+            "x1": 281.07,
+            "y1": 456.57
+          },
+          "extra": {
+            "marker": "3"
+          }
+        },
+        {
+          "regionId": "tc-maturity",
+          "kind": "field",
+          "page": 1,
+          "bbox": {
+            "page": 1,
+            "x0": 54.0,
+            "y0": 480.6,
+            "x1": 552.0,
+            "y1": 500.6
+          },
+          "role": "table_cell",
+          "label": "Maturity",
+          "value": "15 Sep 2031",
+          "concept": "fin:MaturityDate",
+          "fieldId": "f-maturity",
+          "unitRef": "tc-terms",
+          "labelBbox": {
+            "page": 1,
+            "x0": 60.0,
+            "y0": 487.78,
+            "x1": 93.78,
+            "y1": 496.57
+          },
+          "valueBbox": {
+            "page": 1,
+            "x0": 250.0,
+            "y0": 487.78,
+            "x1": 303.87,
+            "y1": 496.57
+          }
+        },
+        {
+          "regionId": "tc-coupon-marker",
+          "kind": "marker",
+          "page": 1,
+          "bbox": {
+            "page": 1,
+            "x0": 250.0,
+            "y0": 446.29,
+            "x1": 281.07,
+            "y1": 456.57
+          },
+          "role": "marker_link",
+          "label": "footnote marker 3 on coupon",
+          "value": "3",
+          "unitRef": "tc-terms",
+          "extra": {
+            "links": "tc-footnote3",
+            "footnotePage": 2
+          }
+        },
+        {
+          "regionId": "tc-footnote1",
+          "kind": "footnote",
+          "page": 1,
+          "bbox": {
+            "page": 1,
+            "x0": 60.0,
+            "y0": 532.29,
+            "x1": 177.94,
+            "y1": 542.26
+          },
+          "role": "footnote",
+          "label": "footnote 1",
+          "value": "Clean price, percent of nominal."
+        },
+        {
+          "regionId": "tc-footnote2",
+          "kind": "footnote",
+          "page": 1,
+          "bbox": {
+            "page": 1,
+            "x0": 60.0,
+            "y0": 546.29,
+            "x1": 237.07,
+            "y1": 556.26
+          },
+          "role": "footnote",
+          "label": "footnote 2",
+          "value": "Settlement through the fictitious clearing system."
+        },
+        {
+          "regionId": "footer-p1",
+          "kind": "footer",
+          "page": 1,
+          "bbox": {
+            "page": 1,
+            "x0": 190.95,
+            "y0": 762.62,
+            "x1": 421.05,
+            "y1": 769.55
+          },
+          "role": "page_footer",
+          "label": "footer",
+          "value": "Fictitious document · NewAge Global Fintech · for demonstration only"
+        },
+        {
+          "regionId": "tc-p2-header",
+          "kind": "header",
+          "page": 2,
+          "bbox": {
+            "page": 2,
+            "x0": 60.0,
+            "y0": 52.1,
+            "x1": 314.26,
+            "y1": 62.28
+          },
+          "role": "page_header",
+          "label": "continued header"
+        },
+        {
+          "regionId": "tc-footnote3",
+          "kind": "footnote",
+          "page": 2,
+          "bbox": {
+            "page": 2,
+            "x0": 60.0,
+            "y0": 109.77,
+            "x1": 218.01,
+            "y1": 120.87
+          },
+          "role": "footnote",
+          "label": "footnote 3",
+          "value": "5.75% from year 3 if rating < BBB-",
+          "valueNumber": "5.75",
+          "concept": "fin:StepUpCouponRate",
+          "fieldId": "f-step-up",
+          "unitRef": "tc-terms",
+          "extra": {
+            "newRate": "5.75",
+            "effectiveFromYear": 3,
+            "triggerRating": "BBB-",
+            "marker": "3",
+            "markerPage": 1,
+            "ontologyClass": "fin:RatingTriggeredStepEvent"
+          }
+        },
+        {
+          "regionId": "tc-stepup-expl",
+          "kind": "text",
+          "page": 2,
+          "bbox": {
+            "page": 2,
+            "x0": 60.0,
+            "y0": 133.62,
+            "x1": 545.79,
+            "y1": 169.87
+          },
+          "role": "text",
+          "label": "step-up explanation",
+          "value": "The coupon steps up from the start of the coupon year stated above when the issuer's rating from any agency named in the offering terms falls below the trigger rating. The step-up applies once and does not reverse if the rating later recovers."
+        },
+        {
+          "regionId": "footer-p2",
+          "kind": "footer",
+          "page": 2,
+          "bbox": {
+            "page": 2,
+            "x0": 190.95,
+            "y0": 762.62,
+            "x1": 421.05,
+            "y1": 769.55
+          },
+          "role": "page_footer",
+          "label": "footer",
+          "value": "Fictitious document · NewAge Global Fintech · for demonstration only"
+        }
+      ]
+    },
+    {
+      "fileName": "trade_confirmation_xs2033.pdf",
+      "docId": "trade-confirmation-xs2033-cb595e",
+      "docType": "doc:TradeConfirmation",
+      "route": "digital",
+      "title": "Trade Confirmation XS-2033",
+      "pageCount": 2,
+      "pageWidth": 612.0,
+      "pageHeight": 792.0,
+      "sha256": "f0096a57ea98e6ffe117815604c10e779e01b01d73e0a8f9f0e096620e9b2743",
+      "bboxFrame": "pdf-points-top-left",
+      "attributes": {
+        "security": "XS-2033",
+        "coupon": "4.00",
+        "stepRate": "5.50",
+        "stepYear": 2,
+        "triggerRating": "BB+",
+        "issuerRating": "BBB- (watch)",
+        "settlementDate": "18 Oct 2026"
+      },
+      "notes": [],
+      "regions": [
+        {
+          "regionId": "tc-title",
+          "kind": "header",
+          "page": 1,
+          "bbox": {
+            "page": 1,
+            "x0": 60.0,
+            "y0": 49.95,
+            "x1": 552.0,
+            "y1": 79.86
+          },
+          "role": "title",
+          "label": "Trade Confirmation",
+          "value": "TC-2026-10-0033"
+        },
+        {
+          "regionId": "tc-intro",
+          "kind": "text",
+          "page": 1,
+          "bbox": {
+            "page": 1,
+            "x0": 60.0,
+            "y0": 96.82,
+            "x1": 551.31,
+            "y1": 119.57
+          },
+          "role": "text",
+          "label": "confirmation statement",
+          "value": "We confirm the following transaction between the parties named below. All parties, securities and ratings in this document are fictitious."
+        },
+        {
+          "regionId": "tc-details",
+          "kind": "unit",
+          "page": 1,
+          "bbox": {
+            "page": 1,
+            "x0": 54.0,
+            "y0": 167.8,
+            "x1": 552.0,
+            "y1": 287.8
+          },
+          "role": "table",
+          "label": "Trade confirmation · Trade details",
+          "extra": {
+            "unitType": "table_panel"
+          }
+        },
+        {
+          "regionId": "tc-settlement",
+          "kind": "field",
+          "page": 1,
+          "bbox": {
+            "page": 1,
+            "x0": 54.0,
+            "y0": 207.8,
+            "x1": 552.0,
+            "y1": 227.8
+          },
+          "role": "table_cell",
+          "label": "Settlement date",
+          "value": "18 Oct 2026",
+          "concept": "fin:SettlementDate",
+          "fieldId": "f-settlement-date",
+          "unitRef": "tc-details"
+        },
+        {
+          "regionId": "tc-terms",
+          "kind": "unit",
+          "page": 1,
+          "bbox": {
+            "page": 1,
+            "x0": 54.0,
+            "y0": 340.6,
+            "x1": 552.0,
+            "y1": 500.6
+          },
+          "role": "table",
+          "label": "Trade confirmation · XS-2033 · Security terms",
+          "extra": {
+            "unitType": "table_panel",
+            "ontologyClass": "fibo-sec-dbt-bnd:StepUpBond"
+          }
+        },
+        {
+          "regionId": "tc-security",
+          "kind": "field",
+          "page": 1,
+          "bbox": {
+            "page": 1,
+            "x0": 54.0,
+            "y0": 360.6,
+            "x1": 552.0,
+            "y1": 380.6
+          },
+          "role": "table_cell",
+          "label": "Security",
+          "value": "XS-2033",
+          "concept": "fin:SecurityIdentifier",
+          "fieldId": "f-security",
+          "unitRef": "tc-terms",
+          "labelBbox": {
+            "page": 1,
+            "x0": 60.0,
+            "y0": 367.78,
+            "x1": 94.31,
+            "y1": 376.57
+          },
+          "valueBbox": {
+            "page": 1,
+            "x0": 250.0,
+            "y0": 367.78,
+            "x1": 286.96,
+            "y1": 376.57
+          }
+        },
+        {
+          "regionId": "tc-issuer-rating",
+          "kind": "field",
+          "page": 1,
+          "bbox": {
+            "page": 1,
+            "x0": 54.0,
+            "y0": 400.6,
+            "x1": 552.0,
+            "y1": 420.6
+          },
+          "role": "table_cell",
+          "label": "Issuer rating",
+          "value": "BBB- (watch)",
+          "concept": "fin:IssuerRating",
+          "fieldId": "f-issuer-rating",
+          "unitRef": "tc-terms",
+          "labelBbox": {
+            "page": 1,
+            "x0": 60.0,
+            "y0": 407.78,
+            "x1": 112.27,
+            "y1": 416.57
+          },
+          "valueBbox": {
+            "page": 1,
+            "x0": 250.0,
+            "y0": 407.78,
+            "x1": 305.95,
+            "y1": 416.57
+          }
+        },
+        {
+          "regionId": "tc-nominal",
+          "kind": "field",
+          "page": 1,
+          "bbox": {
+            "page": 1,
+            "x0": 54.0,
+            "y0": 420.6,
+            "x1": 552.0,
+            "y1": 440.6
+          },
+          "role": "table_cell",
+          "label": "Nominal",
+          "value": "USD 3,000,000.00",
+          "valueNumber": "3000000.00",
+          "concept": "fin:NominalAmount",
+          "fieldId": "f-nominal",
+          "unitRef": "tc-terms",
+          "labelBbox": {
+            "page": 1,
+            "x0": 60.0,
+            "y0": 427.78,
+            "x1": 94.84,
+            "y1": 436.57
+          },
+          "valueBbox": {
+            "page": 1,
+            "x0": 250.0,
+            "y0": 427.78,
+            "x1": 328.16,
+            "y1": 436.57
+          }
+        },
+        {
+          "regionId": "tc-coupon",
+          "kind": "field",
+          "page": 1,
+          "bbox": {
+            "page": 1,
+            "x0": 54.0,
+            "y0": 440.6,
+            "x1": 552.0,
+            "y1": 460.6
+          },
+          "role": "table_cell",
+          "label": "Coupon",
+          "value": "4.00%",
+          "valueNumber": "4.00",
+          "concept": "fin:CouponRate",
+          "fieldId": "f-coupon",
+          "unitRef": "tc-terms",
+          "labelBbox": {
+            "page": 1,
+            "x0": 60.0,
+            "y0": 447.78,
+            "x1": 93.27,
+            "y1": 456.57
+          },
+          "valueBbox": {
+            "page": 1,
+            "x0": 250.0,
+            "y0": 446.29,
+            "x1": 281.07,
+            "y1": 456.57
+          },
+          "extra": {
+            "marker": "3"
+          }
+        },
+        {
+          "regionId": "tc-maturity",
+          "kind": "field",
+          "page": 1,
+          "bbox": {
+            "page": 1,
+            "x0": 54.0,
+            "y0": 480.6,
+            "x1": 552.0,
+            "y1": 500.6
+          },
+          "role": "table_cell",
+          "label": "Maturity",
+          "value": "15 Sep 2032",
+          "concept": "fin:MaturityDate",
+          "fieldId": "f-maturity",
+          "unitRef": "tc-terms",
+          "labelBbox": {
+            "page": 1,
+            "x0": 60.0,
+            "y0": 487.78,
+            "x1": 93.78,
+            "y1": 496.57
+          },
+          "valueBbox": {
+            "page": 1,
+            "x0": 250.0,
+            "y0": 487.78,
+            "x1": 303.87,
+            "y1": 496.57
+          }
+        },
+        {
+          "regionId": "tc-coupon-marker",
+          "kind": "marker",
+          "page": 1,
+          "bbox": {
+            "page": 1,
+            "x0": 250.0,
+            "y0": 446.29,
+            "x1": 281.07,
+            "y1": 456.57
+          },
+          "role": "marker_link",
+          "label": "footnote marker 3 on coupon",
+          "value": "3",
+          "unitRef": "tc-terms",
+          "extra": {
+            "links": "tc-footnote3",
+            "footnotePage": 2
+          }
+        },
+        {
+          "regionId": "tc-footnote1",
+          "kind": "footnote",
+          "page": 1,
+          "bbox": {
+            "page": 1,
+            "x0": 60.0,
+            "y0": 532.29,
+            "x1": 177.94,
+            "y1": 542.26
+          },
+          "role": "footnote",
+          "label": "footnote 1",
+          "value": "Clean price, percent of nominal."
+        },
+        {
+          "regionId": "tc-footnote2",
+          "kind": "footnote",
+          "page": 1,
+          "bbox": {
+            "page": 1,
+            "x0": 60.0,
+            "y0": 546.29,
+            "x1": 237.07,
+            "y1": 556.26
+          },
+          "role": "footnote",
+          "label": "footnote 2",
+          "value": "Settlement through the fictitious clearing system."
+        },
+        {
+          "regionId": "footer-p1",
+          "kind": "footer",
+          "page": 1,
+          "bbox": {
+            "page": 1,
+            "x0": 190.95,
+            "y0": 762.62,
+            "x1": 421.05,
+            "y1": 769.55
+          },
+          "role": "page_footer",
+          "label": "footer",
+          "value": "Fictitious document · NewAge Global Fintech · for demonstration only"
+        },
+        {
+          "regionId": "tc-p2-header",
+          "kind": "header",
+          "page": 2,
+          "bbox": {
+            "page": 2,
+            "x0": 60.0,
+            "y0": 52.1,
+            "x1": 314.26,
+            "y1": 62.28
+          },
+          "role": "page_header",
+          "label": "continued header"
+        },
+        {
+          "regionId": "tc-footnote3",
+          "kind": "footnote",
+          "page": 2,
+          "bbox": {
+            "page": 2,
+            "x0": 60.0,
+            "y0": 109.77,
+            "x1": 213.85,
+            "y1": 120.87
+          },
+          "role": "footnote",
+          "label": "footnote 3",
+          "value": "5.50% from year 2 if rating < BB+",
+          "valueNumber": "5.50",
+          "concept": "fin:StepUpCouponRate",
+          "fieldId": "f-step-up",
+          "unitRef": "tc-terms",
+          "extra": {
+            "newRate": "5.50",
+            "effectiveFromYear": 2,
+            "triggerRating": "BB+",
+            "marker": "3",
+            "markerPage": 1,
+            "ontologyClass": "fin:RatingTriggeredStepEvent"
+          }
+        },
+        {
+          "regionId": "tc-stepup-expl",
+          "kind": "text",
+          "page": 2,
+          "bbox": {
+            "page": 2,
+            "x0": 60.0,
+            "y0": 133.62,
+            "x1": 545.79,
+            "y1": 169.87
+          },
+          "role": "text",
+          "label": "step-up explanation",
+          "value": "The coupon steps up from the start of the coupon year stated above when the issuer's rating from any agency named in the offering terms falls below the trigger rating. The step-up applies once and does not reverse if the rating later recovers."
+        },
+        {
+          "regionId": "footer-p2",
+          "kind": "footer",
+          "page": 2,
+          "bbox": {
+            "page": 2,
+            "x0": 190.95,
+            "y0": 762.62,
+            "x1": 421.05,
+            "y1": 769.55
+          },
+          "role": "page_footer",
+          "label": "footer",
+          "value": "Fictitious document · NewAge Global Fintech · for demonstration only"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,194 @@
+{"type": "run_start", "runId": "r-3df8851c5c70", "packageId": "pkg-lending-01", "pipelineVersion": "1.0", "question": "What are Arjun Fictus's 2025 wages in W-2 Box 1?", "modelId": "us.anthropic.claude-sonnet-4-6", "configSha": "1f437eb1624d9df0b867a42d73fe7d27b7de6fb441c90c917f15b23f564748dc", "promptSha": "59984da199bb287de4b76a1d91bc0a5c27fde51028c39ffd04a33c3950a7d302", "tools": ["search_units", "graph_hop", "get_region", "doc_status"], "t": 0.0}
+{"type": "text", "delta": "I'll search for Arjun"}
+{"type": "text", "delta": " Fictus's W"}
+{"type": "text", "delta": "-2 information"}
+{"type": "text", "delta": " and"}
+{"type": "text", "delta": " also"}
+{"type": "text", "delta": " query"}
+{"type": "text", "delta": " the knowledge"}
+{"type": "text", "delta": " graph simultaneously"}
+{"type": "text", "delta": "."}
+{"type": "tool_start", "callId": "tooluse_wwQHLcKGE5KF7PJBJpvbqu", "tool": "search_units", "input": {"query": "Arjun Fictus W-2 Box 1 wages 2025", "docType": "doc:W2"}, "t": 2.705}
+{"type": "tool_end", "callId": "tooluse_wwQHLcKGE5KF7PJBJpvbqu", "tool": "search_units", "ms": 363, "status": "ok", "summary": "0 units", "units": [], "scores": [], "retrieved": [], "rows": [], "t": 2.705}
+{"type": "tool_start", "callId": "tooluse_8OpN3eswQZ5YP3sPhs3xUM", "tool": "graph_hop", "input": {"template": "qi_sum_w2_box1_v1", "params": {"borrower": "Arjun Fictus", "taxYear": "2025"}}, "t": 2.705}
+{"type": "tool_end", "callId": "tooluse_8OpN3eswQZ5YP3sPhs3xUM", "tool": "graph_hop", "ms": 3, "status": "ok", "summary": "0 rows · no ABox for pipelineVersion 1.0 (ontology: none)", "units": [], "scores": [], "retrieved": [], "rows": [], "template": "qi_sum_w2_box1_v1", "t": 2.705}
+{"type": "text", "delta": "The W"}
+{"type": "text", "delta": "-2 specific"}
+{"type": "text", "delta": " search"}
+{"type": "text", "delta": " returned nothing"}
+{"type": "text", "delta": ". Let me try a broader search without"}
+{"type": "text", "delta": " the doc"}
+{"type": "text", "delta": " type filter."}
+{"type": "tool_start", "callId": "tooluse_e44TR2RGCBUzqnEdCpfwCj", "tool": "search_units", "input": {"query": "Arjun Fictus W-2 Box 1 wages 2025"}, "t": 9.287}
+{"type": "tool_end", "callId": "tooluse_e44TR2RGCBUzqnEdCpfwCj", "tool": "search_units", "ms": 7, "status": "ok", "summary": "3 units", "units": ["w2-2025-arjun-fictus-546450:1.0:c-01", "w2-2025-maya-fictus-827d37:1.0:c-01", "payslip-2026-09-maya-fictus-bd153b:1.0:c-01"], "scores": [{"unitId": "w2-2025-arjun-fictus-546450:1.0:c-01", "denseNorm": 1.0, "bm25Norm": 1.0, "fused": 1.0}, {"unitId": "w2-2025-maya-fictus-827d37:1.0:c-01", "denseNorm": 0.8297, "bm25Norm": 0.7727, "fused": 0.8126}, {"unitId": "payslip-2026-09-maya-fictus-bd153b:1.0:c-01", "denseNorm": 0.0, "bm25Norm": 0.0, "fused": 0.0}], "retrieved": [{"rank": 1, "unitId": "w2-2025-arjun-fictus-546450:1.0:c-01", "docId": "w2-2025-arjun-fictus-546450", "fileName": "w2_2025_arjun_fictus.pdf", "unitType": "chunk", "label": "chunk c-01", "chunkLabel": "chunk c-01", "breadcrumb": "", "text": "Form W-2\nWage and Tax Statement\n2025\nCopy C—For EMPLOYEE'S RECORDS (See Notice to Employee on the back of Copy B.)\nDepartment of the Treasury—Internal Revenue Service (form layout, fictitious data)\na Employee's social security number\nb Employer identification number (EIN)\nc Employer's name, address, and ZIP code\nd Control number\ne Employee's first name and initial   Last name      f Employee's address and ZIP code\n1 Wages, tips, other compensation\n2 Federal income tax withheld\n3 Social security wages\n4 Social security tax withheld\n5 Medicare wages and tips\n6 Medicare tax withheld\n7 Social security tips\n8 Allocated tips\n9\n10 Dependent care benefits\n11 Nonqualified plans\n12a See instructions for box 12\n13 Retirement plan\n12b\n14 Other\n12c\n12d\n15 State\nEmployer's state ID number\n16 State wages, tips, etc.\n17 State income tax\nCode\n3,750.00\nD\n75,000.00\n75,000.00\n71,250.00\n8,550.00\n4,650.00\n1,087.50\nX\nXXX-XX-2290\n00-4417306\nNewAge Global Fintech Payments\n410 Market Street\nSeattle, WA 98104\nNGF-25-2290\nArjun Fictus\n18 Harbor Lane\nSeattle, WA 98101\nWA\nFictitious document · NewAge Global Fintech · for demonstration only", "pages": [1], "bboxes": [], "fields": [], "piiFlag": "none", "resolvable": false, "scores": {"denseRaw": 1.362861, "bm25Raw": 1.867276, "denseNorm": 1.0, "bm25Norm": 1.0, "fused": 1.0}}, {"rank": 2, "unitId": "w2-2025-maya-fictus-827d37:1.0:c-01", "docId": "w2-2025-maya-fictus-827d37", "fileName": "w2_2025_maya_fictus.pdf", "unitType": "chunk", "label": "chunk c-01", "chunkLabel": "chunk c-01", "breadcrumb": "", "text": "Form W-2\nWage and Tax Statement\n2025\nCopy C—For EMPLOYEE'S RECORDS (See Notice to Employee on the back of Copy B.)\nDepartment of the Treasury—Internal Revenue Service (form layout, fictitious data)\na Employee's social security number\nb Employer identification number (EIN)\nc Employer's name, address, and ZIP code\nd Control number\ne Employee's first name and initial   Last name      f Employee's address and ZIP code\n1 Wages, tips, other compensation\n2 Federal income tax withheld\n3 Social security wages\n4 Social security tax withheld\n5 Medicare wages and tips\n6 Medicare tax withheld\n7 Social security tips\n8 Allocated tips\n9\n10 Dependent care benefits\n11 Nonqualified plans\n12a See instructions for box 12\n13 Retirement plan\n12b\n14 Other\n12c\n12d\n15 State\nEmployer's state ID number\n16 State wages, tips, etc.\n17 State income tax\nCode\n6,600.00\nD\n105,000.00\n105,000.00\n98,400.00\n13,776.00\n6,510.00\n1,522.50\nX\nXXX-XX-0417\n00-4417305\nNewAge Global Fintech Services\n400 Market Street\nSeattle, WA 98104\nNGF-25-0417\nMaya Fictus\n18 Harbor Lane\nSeattle, WA 98101\nWA\nFictitious document · NewAge Global Fintech · for demonstration only", "pages": [1], "bboxes": [], "fields": [], "piiFlag": "none", "resolvable": false, "scores": {"denseRaw": 1.340737, "bm25Raw": 1.459877, "denseNorm": 0.8297, "bm25Norm": 0.7727, "fused": 0.8126}}, {"rank": 3, "unitId": "payslip-2026-09-maya-fictus-bd153b:1.0:c-01", "docId": "payslip-2026-09-maya-fictus-bd153b", "fileName": "payslip_2026-09_maya_fictus.pdf", "unitType": "chunk", "label": "chunk c-01", "chunkLabel": "chunk c-01", "breadcrumb": "", "text": "NewAge Global Fintech Services\n400 Market Street, Seattle, WA 98104\nEarnings Statement\nEmployee\nMaya Fictus\nEmployee ID\nE-0417\nPay period\n01–30 Sep 2026\nPay date\n30 Sep 2026\nDescription\nCurrent\nYear to date\nGross pay\n9,000.00\n81,000.00\n401(k) employee deferral\n600.00\n5,400.00\nFederal income tax\n1,170.00\n10,530.00\nSocial Security\n558.00\n5,022.00\nMedicare\n130.50\n1,174.50\nNet pay\n6,541.50\n58,873.50\nYear-to-date figures cover 01 Jan 2026 to 30 Sep 2026.\nFictitious document · NewAge Global Fintech · for demonstration only", "pages": [1], "bboxes": [], "fields": [], "piiFlag": "none", "resolvable": false, "scores": {"denseRaw": 1.232956, "bm25Raw": 0.074811, "denseNorm": 0.0, "bm25Norm": 0.0, "fused": 0.0}}], "rows": [], "t": 9.288}
+{"type": "text", "delta": "I"}
+{"type": "text", "delta": " have"}
+{"type": "text", "delta": " the information"}
+{"type": "text", "delta": " needed"}
+{"type": "text", "delta": " from"}
+{"type": "text", "delta": " Arjun Fictus's"}
+{"type": "text", "delta": " "}
+{"type": "text", "delta": "2025 W-2. The"}
+{"type": "text", "delta": " Box"}
+{"type": "text", "delta": " 1 wages"}
+{"type": "text", "delta": " figure"}
+{"type": "text", "delta": " is clearly"}
+{"type": "text", "delta": " present"}
+{"type": "text", "delta": " in the retrieved"}
+{"type": "text", "delta": " document"}
+{"type": "text", "delta": "."}
+{"type": "text", "delta": "\n\n```"}
+{"type": "text", "delta": "json\n{\n  \"answer"}
+{"type": "text", "delta": "\": \""}
+{"type": "text", "delta": "Arjun Fictus's"}
+{"type": "text", "delta": " 2025 W-2 "}
+{"type": "text", "delta": "Box"}
+{"type": "text", "delta": " 1 ("}
+{"type": "text", "delta": "Wages,"}
+{"type": "text", "delta": " tips, other compensation) shows $"}
+{"type": "text", "delta": "71"}
+{"type": "text", "delta": ",250.00,"}
+{"type": "text", "delta": " issued"}
+{"type": "text", "delta": " by"}
+{"type": "text", "delta": " New"}
+{"type": "text", "delta": "Age Global Fintech"}
+{"type": "text", "delta": " Payments."}
+{"type": "text", "delta": " This"}
+{"type": "text", "delta": " figure reflects"}
+{"type": "text", "delta": " his"}
+{"type": "text", "delta": " gross"}
+{"type": "text", "delta": " wages"}
+{"type": "text", "delta": " reduced"}
+{"type": "text", "delta": " by his"}
+{"type": "text", "delta": " "}
+{"type": "text", "delta": "401"}
+{"type": "text", "delta": "(k) deferral of"}
+{"type": "text", "delta": " $3"}
+{"type": "text", "delta": ",750.00 ("}
+{"type": "text", "delta": "Code"}
+{"type": "text", "delta": " D"}
+{"type": "text", "delta": ") from"}
+{"type": "text", "delta": " a"}
+{"type": "text", "delta": " gross"}
+{"type": "text", "delta": " of"}
+{"type": "text", "delta": " $75"}
+{"type": "text", "delta": ",000.00.\","}
+{"type": "text", "delta": "\n  \"total"}
+{"type": "text", "delta": "\":"}
+{"type": "text", "delta": " \""}
+{"type": "text", "delta": "71,250.00\",\n  "}
+{"type": "text", "delta": "\"currency"}
+{"type": "text", "delta": "\": \"USD\",\n  \"arithmetic"}
+{"type": "text", "delta": "\":"}
+{"type": "text", "delta": " \""}
+{"type": "text", "delta": "75"}
+{"type": "text", "delta": ",000.00 −"}
+{"type": "text", "delta": " 3,750.00 ="}
+{"type": "text", "delta": " 71,250.00\","}
+{"type": "text", "delta": "\n  \"claims"}
+{"type": "text", "delta": "\": [\n    {\n      \""}
+{"type": "text", "delta": "text"}
+{"type": "text", "delta": "\": \"$"}
+{"type": "text", "delta": "71,250.00\",\n      "}
+{"type": "text", "delta": "\"value"}
+{"type": "text", "delta": "\": \"71250"}
+{"type": "text", "delta": ".00\",\n      \"unit"}
+{"type": "text", "delta": "Id"}
+{"type": "text", "delta": "\": \"w2-2025-"}
+{"type": "text", "delta": "arjun-fictus-546"}
+{"type": "text", "delta": "450:1.0:c-"}
+{"type": "text", "delta": "01\",\n      \"field"}
+{"type": "text", "delta": "Id"}
+{"type": "text", "delta": "\": null"}
+{"type": "text", "delta": "\n    },"}
+{"type": "text", "delta": "\n    {\n      \"text\":"}
+{"type": "text", "delta": " \"$"}
+{"type": "text", "delta": "3,750.00\",\n      "}
+{"type": "text", "delta": "\"value\": \"3750.00"}
+{"type": "text", "delta": "\",\n      \"unitId\": \""}
+{"type": "text", "delta": "w2-2025-arj"}
+{"type": "text", "delta": "un-fictus-546450:"}
+{"type": "text", "delta": "1.0:c-01\","}
+{"type": "text", "delta": "\n      \"fieldId\": null"}
+{"type": "text", "delta": "\n    },"}
+{"type": "text", "delta": "\n    {\n      \"text\":"}
+{"type": "text", "delta": " \"$75,000.00\","}
+{"type": "text", "delta": "\n      \"value\": \"75000."}
+{"type": "text", "delta": "00\",\n      \"unitId\":"}
+{"type": "text", "delta": " \"w2-2025-ar"}
+{"type": "text", "delta": "jun-fictus-546450"}
+{"type": "text", "delta": ":1.0:c-01"}
+{"type": "text", "delta": "\",\n      \"fieldId\": null"}
+{"type": "text", "delta": "\n    }\n  ],"}
+{"type": "text", "delta": "\n  \"c"}
+{"type": "text", "delta": "ave"}
+{"type": "text", "delta": "ats\": [\n    \"The"}
+{"type": "text", "delta": " unit"}
+{"type": "text", "delta": " has"}
+{"type": "text", "delta": " no"}
+{"type": "text", "delta": " structured"}
+{"type": "text", "delta": " fields"}
+{"type": "text", "delta": ";"}
+{"type": "text", "delta": " figures"}
+{"type": "text", "delta": " are read"}
+{"type": "text", "delta": " directly"}
+{"type": "text", "delta": " from the chunk"}
+{"type": "text", "delta": " text.\","}
+{"type": "text", "delta": "\n    \"The $"}
+{"type": "text", "delta": "71,250.00 Box"}
+{"type": "text", "delta": " 1 figure is net"}
+{"type": "text", "delta": " of the $3,750.00"}
+{"type": "text", "delta": " Code"}
+{"type": "text", "delta": " D "}
+{"type": "text", "delta": "401(k) deferral shown"}
+{"type": "text", "delta": " on"}
+{"type": "text", "delta": " the same"}
+{"type": "text", "delta": " form"}
+{"type": "text", "delta": ".\""}
+{"type": "text", "delta": "\n  ]\n}\n```"}
+{"type": "text", "delta": "```"}
+{"type": "text", "delta": "json\n{\n  \"answer\":"}
+{"type": "text", "delta": " \"Arjun Fictus"}
+{"type": "text", "delta": "'s 2025 W-2"}
+{"type": "text", "delta": " Box 1 (Wages"}
+{"type": "text", "delta": ", tips, other compensation) shows $"}
+{"type": "text", "delta": "71,250.00, issued by"}
+{"type": "text", "delta": " NewAge Global Fintech Payments"}
+{"type": "text", "delta": ".\","}
+{"type": "text", "delta": "\n  \"total\": \"71,"}
+{"type": "text", "delta": "250.00\",\n  \"currency"}
+{"type": "text", "delta": "\": \"USD\",\n  \"arithmetic"}
+{"type": "text", "delta": "\": null"}
+{"type": "text", "delta": ",\n  \"claims\": ["}
+{"type": "text", "delta": "\n    {\n      \"text\": \"$"}
+{"type": "text", "delta": "71,250.00\",\n      "}
+{"type": "text", "delta": "\"value\": \"71250.00"}
+{"type": "text", "delta": "\",\n      \"unitId\": \""}
+{"type": "text", "delta": "w2-2025-arj"}
+{"type": "text", "delta": "un-fictus-546450:"}
+{"type": "text", "delta": "1.0:c-01\","}
+{"type": "text", "delta": "\n      \"fieldId\": null"}
+{"type": "text", "delta": "\n    }"}
+{"type": "text", "delta": "\n  ],\n  \"cave"}
+{"type": "text", "delta": "ats\": [\n    \"The unit"}
+{"type": "text", "delta": " has no structured fields; the"}
+{"type": "text", "delta": " Box"}
+{"type": "text", "delta": " 1 figure is read directly from"}
+{"type": "text", "delta": " the chunk text.\","}
+{"type": "text", "delta": "\n    \"The "}
+{"type": "text", "delta": "401(k) deferral and"}
+{"type": "text", "delta": " gross wage"}
+{"type": "text", "delta": " figures were"}
+{"type": "text", "delta": " removed"}
+{"type": "text", "delta": " from the answer"}
+{"type": "text", "delta": " as"}
+{"type": "text", "delta": " they could"}
+{"type": "text", "delta": " not be cited to"}
+{"type": "text", "delta": " a"}
+{"type": "text", "delta": " discrete"}
+{"type": "text", "delta": " field returned"}
+{"type": "text", "delta": " by a"}
+{"type": "text", "delta": " tool.\"\n  ]\n}"}
+{"type": "text", "delta": "\n```"}
+{"answer": "Arjun Fictus's 2025 W-2 Box 1 (Wages, tips, other compensation) shows $71,250.00, issued by NewAge Global Fintech Payments.", "total": "71,250.00", "currency": "USD", "claims": [{"text": "$71,250.00", "value": "71250.00", "unitId": "w2-2025-arjun-fictus-546450:1.0:c-01", "docId": "w2-2025-arjun-fictus-546450", "fileName": "w2_2025_arjun_fictus.pdf", "label": "chunk c-01", "resolvable": false, "chunkLabel": "chunk c-01", "reason": "chunk has no page region"}], "caveats": ["The unit has no structured fields; the Box 1 figure is read directly from the chunk text.", "The 401(k) deferral and gross wage figures were removed from the answer as they could not be cited to a discrete field returned by a tool."], "citationRetries": 1, "uncitedNumbers": [], "type": "answer"}
+{"runId": "r-3df8851c5c70", "packageId": "pkg-lending-01", "pipelineVersion": "1.0", "configSha": "1f437eb1624d9df0b867a42d73fe7d27b7de6fb441c90c917f15b23f564748dc", "blockShas": {"preprocessing": "ba267beb165e0af475c323c9f78543f5ee90fc7c201ccbf59f34842e3d4e6114", "retrieval": "3587393d6f0d8c38adfaf6853c1463b54cc1ee872646ff354b3408da63dd586c", "generation": "4731dca541739b7b91e53099ae45acb0f255c753e313bec48702fa79ecad436e", "agent": "5ce789906365b6a0f9d139eba009f17b61d3113720a21c755e3f5be4459551f0"}, "promptSha": "59984da199bb287de4b76a1d91bc0a5c27fde51028c39ffd04a33c3950a7d302", "modelId": "us.anthropic.claude-sonnet-4-6", "corpusHash": "34856e2c51fa71d6ddc21b4493efde7b9d6ccd1d87ed0f3287908d6612b687e2", "memoryRecordsInjected": 0, "latencyMs": 20880, "usage": {"inputTokens": 12837, "outputTokens": 1009, "totalTokens": 13846}, "startedAt": "2026-11-10T22:12:39.987Z", "type": "run", "question": "What are Arjun Fictus's 2025 wages in W-2 Box 1?"}

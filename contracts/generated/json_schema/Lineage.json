@@ -1,0 +1,383 @@
+{
+  "$defs": {
+    "ArtifactKind": {
+      "description": "What an artifact is; the UI picks a viewer by kind.",
+      "enum": [
+        "source_pdf",
+        "manifest",
+        "route",
+        "text_layer",
+        "docling_json",
+        "textract_json",
+        "classification",
+        "units_jsonl",
+        "build_report",
+        "pii_decisions",
+        "gold_unit",
+        "gold_units_jsonl",
+        "page_image",
+        "index_receipt",
+        "abox_nquads",
+        "graph_receipt",
+        "ready_receipt",
+        "config",
+        "run"
+      ],
+      "title": "ArtifactKind",
+      "type": "string"
+    },
+    "ArtifactRef": {
+      "description": "A file a stage read or wrote. Always in the data bucket (RP_DATA_BUCKET).",
+      "properties": {
+        "key": {
+          "title": "Key",
+          "type": "string"
+        },
+        "kind": {
+          "$ref": "#/$defs/ArtifactKind"
+        },
+        "contentType": {
+          "default": "application/json",
+          "title": "Contenttype",
+          "type": "string"
+        },
+        "sizeBytes": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Sizebytes"
+        },
+        "sha256": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Sha256"
+        },
+        "versionId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Versionid"
+        },
+        "page": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Page"
+        },
+        "count": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Count"
+        },
+        "note": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Note"
+        }
+      },
+      "required": [
+        "key",
+        "kind"
+      ],
+      "title": "ArtifactRef",
+      "type": "object"
+    },
+    "BBox": {
+      "properties": {
+        "page": {
+          "minimum": 1,
+          "title": "Page",
+          "type": "integer"
+        },
+        "x0": {
+          "title": "X0",
+          "type": "number"
+        },
+        "y0": {
+          "title": "Y0",
+          "type": "number"
+        },
+        "x1": {
+          "title": "X1",
+          "type": "number"
+        },
+        "y1": {
+          "title": "Y1",
+          "type": "number"
+        }
+      },
+      "required": [
+        "page",
+        "x0",
+        "y0",
+        "x1",
+        "y1"
+      ],
+      "title": "BBox",
+      "type": "object"
+    },
+    "LineageStep": {
+      "description": "One hop of the chain figure -> field -> unit -> blocks -> page region -> source object.",
+      "properties": {
+        "kind": {
+          "enum": [
+            "claim",
+            "field",
+            "unit",
+            "blocks",
+            "region",
+            "page_image",
+            "source",
+            "index",
+            "graph"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "title": {
+          "title": "Title",
+          "type": "string"
+        },
+        "summary": {
+          "title": "Summary",
+          "type": "string"
+        },
+        "data": {
+          "additionalProperties": true,
+          "title": "Data",
+          "type": "object"
+        },
+        "bbox": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/BBox"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "artifacts": {
+          "items": {
+            "$ref": "#/$defs/ArtifactRef"
+          },
+          "title": "Artifacts",
+          "type": "array"
+        },
+        "stage": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/StageRef"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "kind",
+        "title",
+        "summary"
+      ],
+      "title": "LineageStep",
+      "type": "object"
+    },
+    "StageId": {
+      "description": "Ordered ingestion stages. Order and metadata live in stages.REGISTRY.",
+      "enum": [
+        "register",
+        "route",
+        "extract",
+        "classify",
+        "units",
+        "pii_gate",
+        "promote",
+        "index",
+        "graph",
+        "ready"
+      ],
+      "title": "StageId",
+      "type": "string"
+    },
+    "StageRef": {
+      "properties": {
+        "stageId": {
+          "$ref": "#/$defs/StageId"
+        },
+        "state": {
+          "$ref": "#/$defs/StageState"
+        },
+        "startedAt": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Startedat"
+        },
+        "endedAt": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Endedat"
+        },
+        "durationMs": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Durationms"
+        },
+        "attempt": {
+          "default": 0,
+          "title": "Attempt",
+          "type": "integer"
+        },
+        "executionArn": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Executionarn"
+        }
+      },
+      "required": [
+        "stageId",
+        "state"
+      ],
+      "title": "StageRef",
+      "type": "object"
+    },
+    "StageState": {
+      "description": "Current state of one stage record.",
+      "enum": [
+        "PENDING",
+        "QUEUED",
+        "RUNNING",
+        "SUCCEEDED",
+        "FAILED",
+        "SKIPPED"
+      ],
+      "title": "StageState",
+      "type": "string"
+    }
+  },
+  "properties": {
+    "unitId": {
+      "title": "Unitid",
+      "type": "string"
+    },
+    "fieldId": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Fieldid"
+    },
+    "packageId": {
+      "title": "Packageid",
+      "type": "string"
+    },
+    "pipelineVersion": {
+      "title": "Pipelineversion",
+      "type": "string"
+    },
+    "steps": {
+      "items": {
+        "$ref": "#/$defs/LineageStep"
+      },
+      "title": "Steps",
+      "type": "array"
+    },
+    "versions": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "title": "Versions",
+      "type": "object"
+    }
+  },
+  "required": [
+    "unitId",
+    "packageId",
+    "pipelineVersion",
+    "steps",
+    "versions"
+  ],
+  "title": "Lineage",
+  "type": "object"
+}

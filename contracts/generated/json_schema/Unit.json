@@ -1,0 +1,609 @@
+{
+  "$defs": {
+    "BBox": {
+      "properties": {
+        "page": {
+          "minimum": 1,
+          "title": "Page",
+          "type": "integer"
+        },
+        "x0": {
+          "title": "X0",
+          "type": "number"
+        },
+        "y0": {
+          "title": "Y0",
+          "type": "number"
+        },
+        "x1": {
+          "title": "X1",
+          "type": "number"
+        },
+        "y1": {
+          "title": "Y1",
+          "type": "number"
+        }
+      },
+      "required": [
+        "page",
+        "x0",
+        "y0",
+        "x1",
+        "y1"
+      ],
+      "title": "BBox",
+      "type": "object"
+    },
+    "BlockRef": {
+      "description": "Pointer back into the engine output a member or field came from (lineage).",
+      "properties": {
+        "engine": {
+          "$ref": "#/$defs/Engine"
+        },
+        "artifactKey": {
+          "title": "Artifactkey",
+          "type": "string"
+        },
+        "pointer": {
+          "title": "Pointer",
+          "type": "string"
+        },
+        "engineLabel": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Enginelabel"
+        }
+      },
+      "required": [
+        "engine",
+        "artifactKey",
+        "pointer"
+      ],
+      "title": "BlockRef",
+      "type": "object"
+    },
+    "CanonicalRole": {
+      "description": "Canonical layout roles (aligned to DoCO). Engine labels map here via the vocab snapshot.",
+      "enum": [
+        "title",
+        "section_header",
+        "text",
+        "list_item",
+        "table",
+        "table_cell",
+        "key_value",
+        "caption",
+        "footnote",
+        "picture",
+        "formula",
+        "page_header",
+        "page_footer",
+        "unit_label",
+        "marker_link"
+      ],
+      "title": "CanonicalRole",
+      "type": "string"
+    },
+    "Engine": {
+      "description": "Engines that can produce a stage's output. Shown in the stage inspector.",
+      "enum": [
+        "text-layer",
+        "docling",
+        "textract",
+        "pypdf",
+        "skos-indicators",
+        "nova",
+        "eu-builder",
+        "fixed-chunker",
+        "comprehend",
+        "pdfium",
+        "titan-v2+aoss",
+        "neptune",
+        "lambda"
+      ],
+      "title": "Engine",
+      "type": "string"
+    },
+    "FieldValue": {
+      "description": "A labelled value inside a unit (a W-2 box, a payslip YTD line). Citations point here.",
+      "properties": {
+        "fieldId": {
+          "title": "Fieldid",
+          "type": "string"
+        },
+        "label": {
+          "title": "Label",
+          "type": "string"
+        },
+        "value": {
+          "title": "Value",
+          "type": "string"
+        },
+        "valueNumber": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Valuenumber"
+        },
+        "currency": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Currency"
+        },
+        "concept": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Concept"
+        },
+        "period": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Period"
+        },
+        "bbox": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/BBox"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "source": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Source"
+        },
+        "confidence": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Confidence"
+        },
+        "blockRefs": {
+          "items": {
+            "$ref": "#/$defs/BlockRef"
+          },
+          "title": "Blockrefs",
+          "type": "array"
+        }
+      },
+      "required": [
+        "fieldId",
+        "label",
+        "value"
+      ],
+      "title": "FieldValue",
+      "type": "object"
+    },
+    "Member": {
+      "description": "A layout block allocated to a unit (paper: unit members).",
+      "properties": {
+        "memberId": {
+          "title": "Memberid",
+          "type": "string"
+        },
+        "role": {
+          "$ref": "#/$defs/CanonicalRole"
+        },
+        "text": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Text"
+        },
+        "bbox": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/BBox"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "blockRef": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/BlockRef"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "phase": {
+          "anyOf": [
+            {
+              "enum": [
+                "A",
+                "B",
+                "C",
+                "marker"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Phase"
+        },
+        "allocScore": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Allocscore"
+        }
+      },
+      "required": [
+        "memberId",
+        "role"
+      ],
+      "title": "Member",
+      "type": "object"
+    },
+    "PiiFlag": {
+      "description": "Result of the PII gate for one unit.",
+      "enum": [
+        "none",
+        "masked",
+        "held"
+      ],
+      "title": "PiiFlag",
+      "type": "string"
+    },
+    "UnitProvenance": {
+      "properties": {
+        "engine": {
+          "$ref": "#/$defs/Engine"
+        },
+        "engineVersion": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Engineversion"
+        },
+        "ontologyVersion": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Ontologyversion"
+        },
+        "bboxFrame": {
+          "const": "pdf-points-top-left",
+          "default": "pdf-points-top-left",
+          "title": "Bboxframe",
+          "type": "string"
+        },
+        "sourceKey": {
+          "title": "Sourcekey",
+          "type": "string"
+        },
+        "sourceVersionId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Sourceversionid"
+        },
+        "sourceSha": {
+          "title": "Sourcesha",
+          "type": "string"
+        },
+        "extractArtifacts": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Extractartifacts",
+          "type": "array"
+        },
+        "configSha": {
+          "title": "Configsha",
+          "type": "string"
+        },
+        "build": {
+          "additionalProperties": true,
+          "title": "Build",
+          "type": "object"
+        }
+      },
+      "required": [
+        "engine",
+        "sourceKey",
+        "sourceSha",
+        "configSha"
+      ],
+      "title": "UnitProvenance",
+      "type": "object"
+    },
+    "UnitType": {
+      "description": "Unit types. v1.0 produces only CHUNK; v2.3.1 produces the evidence-unit types.",
+      "enum": [
+        "chunk",
+        "table_panel",
+        "section_text",
+        "figure_panel",
+        "field_group",
+        "list_block"
+      ],
+      "title": "UnitType",
+      "type": "string"
+    }
+  },
+  "description": "One retrievable item. v1.0 = fixed chunk (unitType chunk), v2.3.1 = evidence unit.\n\nWritten to silver/.../units/units.jsonl by `units`; passed units copied to Gold by `promote`.",
+  "properties": {
+    "unitId": {
+      "title": "Unitid",
+      "type": "string"
+    },
+    "docId": {
+      "title": "Docid",
+      "type": "string"
+    },
+    "packageId": {
+      "title": "Packageid",
+      "type": "string"
+    },
+    "pipelineVersion": {
+      "title": "Pipelineversion",
+      "type": "string"
+    },
+    "unitType": {
+      "$ref": "#/$defs/UnitType"
+    },
+    "label": {
+      "title": "Label",
+      "type": "string"
+    },
+    "chunkLabel": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Chunklabel"
+    },
+    "fileName": {
+      "title": "Filename",
+      "type": "string"
+    },
+    "docType": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Doctype"
+    },
+    "breadcrumb": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Breadcrumb",
+      "type": "array"
+    },
+    "text": {
+      "title": "Text",
+      "type": "string"
+    },
+    "pages": {
+      "items": {
+        "type": "integer"
+      },
+      "title": "Pages",
+      "type": "array"
+    },
+    "pageWidth": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Pagewidth"
+    },
+    "pageHeight": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Pageheight"
+    },
+    "bboxes": {
+      "items": {
+        "$ref": "#/$defs/BBox"
+      },
+      "title": "Bboxes",
+      "type": "array"
+    },
+    "members": {
+      "items": {
+        "$ref": "#/$defs/Member"
+      },
+      "title": "Members",
+      "type": "array"
+    },
+    "fields": {
+      "items": {
+        "$ref": "#/$defs/FieldValue"
+      },
+      "title": "Fields",
+      "type": "array"
+    },
+    "fieldConcepts": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Fieldconcepts",
+      "type": "array"
+    },
+    "period": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Period"
+    },
+    "piiFlag": {
+      "$ref": "#/$defs/PiiFlag",
+      "default": "none"
+    },
+    "allowedPrincipals": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Allowedprincipals",
+      "type": "array"
+    },
+    "confidence": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Confidence"
+    },
+    "chars": {
+      "default": 0,
+      "title": "Chars",
+      "type": "integer"
+    },
+    "tokens": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Tokens"
+    },
+    "provenance": {
+      "$ref": "#/$defs/UnitProvenance"
+    }
+  },
+  "required": [
+    "unitId",
+    "docId",
+    "packageId",
+    "pipelineVersion",
+    "unitType",
+    "label",
+    "fileName",
+    "text",
+    "pages",
+    "allowedPrincipals",
+    "provenance"
+  ],
+  "title": "Unit",
+  "type": "object"
+}

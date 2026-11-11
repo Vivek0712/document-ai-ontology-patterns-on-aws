@@ -1,0 +1,1136 @@
+{
+ "runId": "r-6d0df2be061a",
+ "createdAt": "2026-11-11T00:47:46.507Z",
+ "packageId": "pkg-lending-02",
+ "pipelineVersion": "2.3.1",
+ "question": "What is the total income across this package?",
+ "callerSub": "local-dev-owner-0000",
+ "groups": [
+  "lending-analyst"
+ ],
+ "modelId": "us.anthropic.claude-sonnet-4-6",
+ "promptSha": "59984da199bb287de4b76a1d91bc0a5c27fde51028c39ffd04a33c3950a7d302",
+ "configSha": "a42731845bd93c07fb4e21644d86495b8349e4aa6e75014b90f547815ec35447",
+ "blockShas": {
+  "preprocessing": "40e8c03f17781382dcbcc29f7a0a84a8b1e9642cf92500d3980254a0cbd69a07",
+  "retrieval": "3587393d6f0d8c38adfaf6853c1463b54cc1ee872646ff354b3408da63dd586c",
+  "generation": "4731dca541739b7b91e53099ae45acb0f255c753e313bec48702fa79ecad436e",
+  "agent": "5ce789906365b6a0f9d139eba009f17b61d3113720a21c755e3f5be4459551f0"
+ },
+ "corpusHash": "154f70ce2e0dd9db8441c719d2c23ed41a91403d0053125a8a6035ba54ac0c30",
+ "memoryRecordsInjected": 0,
+ "toolsEnabled": [
+  "search_units",
+  "graph_hop",
+  "get_region",
+  "doc_status"
+ ],
+ "toolCalls": [
+  {
+   "callId": "tooluse_sXjvZI68nQ7xWrLHuMg6bl",
+   "tool": "search_units",
+   "input": {
+    "query": "W-2 Box 1 wages qualifying income",
+    "docType": "doc:W2"
+   },
+   "injected": {
+    "callerSub": "local-",
+    "groups": [
+     "lending-analyst"
+    ],
+    "pipelineVersion": "2.3.1",
+    "packageId": "pkg-lending-02",
+    "runId": "r-6d0df2be061a",
+    "via": "local-gateway"
+   },
+   "startedAt": "2026-11-11T00:47:48.913Z",
+   "ms": 13,
+   "status": "ok",
+   "output": {
+    "units": [
+     {
+      "rank": 1,
+      "unitId": "w2-2025-lena-fictus-5bf98e:2.3.1:eu-02",
+      "docId": "w2-2025-lena-fictus-5bf98e",
+      "fileName": "w2_2025_lena_fictus.pdf",
+      "unitType": "field_group",
+      "label": "W-2 · Lena Fictus · Wages (Boxes 1–6)",
+      "docType": "doc:W2",
+      "breadcrumb": "W-2 2025 › Lena Fictus › Wages (Boxes 1–6)",
+      "text": "c Employer's name, address, and ZIP code\nNewAge Global Fintech Services 400 Market Street Seattle, WA 98104\ne Employee's first name and initial Last name f Employee's address and ZIP code\nLena Fictus 7 Orchard Row Tacoma, WA 98402\n3 Social security wages\n1 Wages, tips, other compensation\n2 Federal income tax withheld\n97,850.00\n12,360.00\n4 Social security tax withheld\n103,000.00\n5 Medicare wages and tips\n6 Medicare tax withheld\n103,000.00\n12a See instructions for box 12 Code\n5,150.00\n6,386.00\n1,493.50",
+      "pages": [
+       1
+      ],
+      "pageWidth": 612.0,
+      "pageHeight": 792.0,
+      "bboxes": [
+       {
+        "page": 1,
+        "x0": 39.0,
+        "y0": 100.33,
+        "x1": 568.0,
+        "y1": 365.4
+       }
+      ],
+      "fields": [
+       {
+        "fieldId": "f-box12a",
+        "label": "12a See instructions for box 12",
+        "value": "5,150.00",
+        "valueNumber": "5150.00",
+        "concept": "fin:W2Box12Amount",
+        "period": "TY2025",
+        "page": 1,
+        "bbox": {
+         "page": 1,
+         "x0": 444.71,
+         "y0": 280.27,
+         "x1": 566.88,
+         "y1": 305.45
+        }
+       },
+       {
+        "fieldId": "f-box3",
+        "label": "3 Social security wages",
+        "value": "103,000.00",
+        "valueNumber": "103000.00",
+        "concept": "fin:W2SocialSecurityWagesBox3",
+        "period": "TY2025",
+        "page": 1,
+        "bbox": {
+         "page": 1,
+         "x0": 309.27,
+         "y0": 136.27,
+         "x1": 431.88,
+         "y1": 161.45
+        }
+       },
+       {
+        "fieldId": "f-box5",
+        "label": "5 Medicare wages and tips",
+        "value": "103,000.00",
+        "valueNumber": "103000.00",
+        "concept": "fin:W2MedicareWagesBox5",
+        "period": "TY2025",
+        "page": 1,
+        "bbox": {
+         "page": 1,
+         "x0": 309.27,
+         "y0": 172.35,
+         "x1": 431.88,
+         "y1": 197.45
+        }
+       },
+       {
+        "fieldId": "f-box1",
+        "label": "1 Wages, tips, other compensation",
+        "value": "97,850.00",
+        "valueNumber": "97850.00",
+        "concept": "fin:W2WagesBox1",
+        "period": "TY2025",
+        "page": 1,
+        "bbox": {
+         "page": 1,
+         "x0": 309.71,
+         "y0": 100.33,
+         "x1": 431.88,
+         "y1": 125.45
+        }
+       },
+       {
+        "fieldId": "f-box2",
+        "label": "2 Federal income tax withheld",
+        "value": "12,360.00",
+        "valueNumber": "12360.00",
+        "concept": "fin:W2FederalIncomeTaxWithheldBox2",
+        "period": "TY2025",
+        "page": 1,
+        "bbox": {
+         "page": 1,
+         "x0": 444.19,
+         "y0": 100.33,
+         "x1": 566.88,
+         "y1": 125.45
+        }
+       },
+       {
+        "fieldId": "f-box4",
+        "label": "4 Social security tax withheld",
+        "value": "6,386.00",
+        "valueNumber": "6386.00",
+        "concept": "fin:W2SocialSecurityTaxWithheldBox4",
+        "period": "TY2025",
+        "page": 1,
+        "bbox": {
+         "page": 1,
+         "x0": 444.08,
+         "y0": 136.27,
+         "x1": 566.88,
+         "y1": 161.45
+        }
+       },
+       {
+        "fieldId": "f-box6",
+        "label": "6 Medicare tax withheld",
+        "value": "1,493.50",
+        "valueNumber": "1493.50",
+        "concept": "fin:W2MedicareTaxWithheldBox6",
+        "period": "TY2025",
+        "page": 1,
+        "bbox": {
+         "page": 1,
+         "x0": 444.25,
+         "y0": 172.33,
+         "x1": 566.88,
+         "y1": 197.45
+        }
+       },
+       {
+        "fieldId": "f-boxc",
+        "label": "c Employer's name, address, and ZIP code",
+        "value": "NewAge Global Fintech Services",
+        "concept": "fin:W2EmployerName",
+        "period": "TY2025",
+        "page": 1,
+        "bbox": {
+         "page": 1,
+         "x0": 39.25,
+         "y0": 172.35,
+         "x1": 222.99,
+         "y1": 195.87
+        }
+       },
+       {
+        "fieldId": "f-boxe",
+        "label": "e Employee's first name and initial Last name f Employee's address and ZIP code",
+        "value": "Lena Fictus",
+        "concept": "fin:W2EmployeeName",
+        "period": "TY2025",
+        "page": 1,
+        "bbox": {
+         "page": 1,
+         "x0": 39.24,
+         "y0": 316.27,
+         "x1": 286.16,
+         "y1": 338.15
+        }
+       }
+      ],
+      "period": "TY2025",
+      "piiFlag": "none",
+      "resolvable": true,
+      "scores": {
+       "denseRaw": 1.421519,
+       "bm25Raw": 3.406984,
+       "denseNorm": 1.0,
+       "bm25Norm": 1.0,
+       "fused": 1.0
+      }
+     },
+     {
+      "rank": 2,
+      "unitId": "w2-2025-omar-fictus-5dc972:2.3.1:eu-01",
+      "docId": "w2-2025-omar-fictus-5dc972",
+      "fileName": "w2_2025_omar_fictus.pdf",
+      "unitType": "section_text",
+      "label": "W-2 · Omar Fictus · 2025",
+      "docType": "doc:W2",
+      "breadcrumb": "W-2 2025 › Omar Fictus › 2025",
+      "text": "Form W-2 Wage and Tax Statement\n2025\nCopy C-For EMPLOYEE'S RECORDS (See Notice to Employee on the back of Copy B.) Department of the Treasury-Internal Revenue Service (form layout, fictitious data)\na Employee's social security number\nXXX-XX-4081\nb Employer identification number (EIN)\n00-4417306\nd Control number\nNGF-25-4081\n15 State\nEmployer's state ID number\n7 Social security tips\n8 Allocated tips\n9\n10 Dependent care benefits\n11 Nonqualified plans\n13 Retirement plan\nD\n12b\nX\n14 Other\n12c\n16 State wages, tips, etc.\n12d\n17 State income tax\nWA",
+      "pages": [
+       1
+      ],
+      "pageWidth": 612.0,
+      "pageHeight": 792.0,
+      "bboxes": [
+       {
+        "page": 1,
+        "x0": 36.0,
+        "y0": 40.51,
+        "x1": 576.0,
+        "y1": 449.4
+       }
+      ],
+      "fields": [],
+      "period": "TY2025",
+      "piiFlag": "none",
+      "resolvable": true,
+      "scores": {
+       "denseRaw": 1.380278,
+       "bm25Raw": 1.790483,
+       "denseNorm": 0.4967,
+       "bm25Norm": 0.0,
+       "fused": 0.3477
+      }
+     },
+     {
+      "rank": 3,
+      "unitId": "w2-2025-lena-fictus-5bf98e:2.3.1:eu-01",
+      "docId": "w2-2025-lena-fictus-5bf98e",
+      "fileName": "w2_2025_lena_fictus.pdf",
+      "unitType": "section_text",
+      "label": "W-2 · Lena Fictus · 2025",
+      "docType": "doc:W2",
+      "breadcrumb": "W-2 2025 › Lena Fictus › 2025",
+      "text": "Form W-2 Wage and Tax Statement\n2025\nCopy C-For EMPLOYEE'S RECORDS (See Notice to Employee on the back of Copy B.) Department of the Treasury-Internal Revenue Service (form layout, fictitious data)\na Employee's social security number\nXXX-XX-4159\nb Employer identification number (EIN)\n00-4417305\nd Control number\nNGF-25-4159\n15 State\nEmployer's state ID number\n7 Social security tips\n8 Allocated tips\n9\n10 Dependent care benefits\n11 Nonqualified plans\n13 Retirement plan\nD\n12b\nX\n14 Other\n12c\n16 State wages, tips, etc.\n12d\n17 State income tax\nWA",
+      "pages": [
+       1
+      ],
+      "pageWidth": 612.0,
+      "pageHeight": 792.0,
+      "bboxes": [
+       {
+        "page": 1,
+        "x0": 36.0,
+        "y0": 40.51,
+        "x1": 576.0,
+        "y1": 449.4
+       }
+      ],
+      "fields": [],
+      "period": "TY2025",
+      "piiFlag": "none",
+      "resolvable": true,
+      "scores": {
+       "denseRaw": 1.380066,
+       "bm25Raw": 1.790483,
+       "denseNorm": 0.4941,
+       "bm25Norm": 0.0,
+       "fused": 0.3459
+      }
+     },
+     {
+      "rank": 4,
+      "unitId": "w2-2025-omar-fictus-5dc972:2.3.1:eu-02",
+      "docId": "w2-2025-omar-fictus-5dc972",
+      "fileName": "w2_2025_omar_fictus.pdf",
+      "unitType": "field_group",
+      "label": "W-2 · Omar Fictus · Wages (Boxes 1–6)",
+      "docType": "doc:W2",
+      "breadcrumb": "W-2 2025 › Omar Fictus › Wages (Boxes 1–6)",
+      "text": "c Employer's name, address, and ZIP code\nNewAge Global Fintech Payments 410 Market Street Seattle, WA 98104\ne Employee's first name and initial Last name f Employee's address and ZIP code\nOmar Fictus 7 Orchard Row Tacoma, WA 98402\n3 Social security wages\n1 Wages, tips, other compensation\n2 Federal income tax withheld\n90,240.00\n11,520.00\n4 Social security tax withheld\n96,000.00\n5,952.00\n5 Medicare wages and tips\n6 Medicare tax withheld\n96,000.00\n12a See instructions for box 12 Code\n5,760.00\n1,392.00",
+      "pages": [
+       1
+      ],
+      "pageWidth": 612.0,
+      "pageHeight": 792.0,
+      "bboxes": [
+       {
+        "page": 1,
+        "x0": 39.0,
+        "y0": 100.33,
+        "x1": 568.0,
+        "y1": 365.4
+       }
+      ],
+      "fields": [
+       {
+        "fieldId": "f-box12a",
+        "label": "12a See instructions for box 12",
+        "value": "5,760.00",
+        "valueNumber": "5760.00",
+        "concept": "fin:W2Box12Amount",
+        "period": "TY2025",
+        "page": 1,
+        "bbox": {
+         "page": 1,
+         "x0": 444.71,
+         "y0": 280.27,
+         "x1": 566.88,
+         "y1": 305.45
+        }
+       },
+       {
+        "fieldId": "f-box3",
+        "label": "3 Social security wages",
+        "value": "96,000.00",
+        "valueNumber": "96000.00",
+        "concept": "fin:W2SocialSecurityWagesBox3",
+        "period": "TY2025",
+        "page": 1,
+        "bbox": {
+         "page": 1,
+         "x0": 309.27,
+         "y0": 136.27,
+         "x1": 431.88,
+         "y1": 161.45
+        }
+       },
+       {
+        "fieldId": "f-box5",
+        "label": "5 Medicare wages and tips",
+        "value": "96,000.00",
+        "valueNumber": "96000.00",
+        "concept": "fin:W2MedicareWagesBox5",
+        "period": "TY2025",
+        "page": 1,
+        "bbox": {
+         "page": 1,
+         "x0": 309.27,
+         "y0": 172.35,
+         "x1": 431.88,
+         "y1": 197.45
+        }
+       },
+       {
+        "fieldId": "f-box1",
+        "label": "1 Wages, tips, other compensation",
+        "value": "90,240.00",
+        "valueNumber": "90240.00",
+        "concept": "fin:W2WagesBox1",
+        "period": "TY2025",
+        "page": 1,
+        "bbox": {
+         "page": 1,
+         "x0": 309.71,
+         "y0": 100.33,
+         "x1": 431.88,
+         "y1": 125.45
+        }
+       },
+       {
+        "fieldId": "f-box2",
+        "label": "2 Federal income tax withheld",
+        "value": "11,520.00",
+        "valueNumber": "11520.00",
+        "concept": "fin:W2FederalIncomeTaxWithheldBox2",
+        "period": "TY2025",
+        "page": 1,
+        "bbox": {
+         "page": 1,
+         "x0": 444.19,
+         "y0": 100.33,
+         "x1": 566.88,
+         "y1": 125.45
+        }
+       },
+       {
+        "fieldId": "f-box4",
+        "label": "4 Social security tax withheld",
+        "value": "5,952.00",
+        "valueNumber": "5952.00",
+        "concept": "fin:W2SocialSecurityTaxWithheldBox4",
+        "period": "TY2025",
+        "page": 1,
+        "bbox": {
+         "page": 1,
+         "x0": 444.08,
+         "y0": 136.27,
+         "x1": 566.88,
+         "y1": 161.45
+        }
+       },
+       {
+        "fieldId": "f-box6",
+        "label": "6 Medicare tax withheld",
+        "value": "1,392.00",
+        "valueNumber": "1392.00",
+        "concept": "fin:W2MedicareTaxWithheldBox6",
+        "period": "TY2025",
+        "page": 1,
+        "bbox": {
+         "page": 1,
+         "x0": 444.25,
+         "y0": 172.33,
+         "x1": 566.88,
+         "y1": 197.45
+        }
+       },
+       {
+        "fieldId": "f-boxc",
+        "label": "c Employer's name, address, and ZIP code",
+        "value": "NewAge Global Fintech Payments",
+        "concept": "fin:W2EmployerName",
+        "period": "TY2025",
+        "page": 1,
+        "bbox": {
+         "page": 1,
+         "x0": 39.25,
+         "y0": 172.35,
+         "x1": 222.99,
+         "y1": 195.87
+        }
+       },
+       {
+        "fieldId": "f-boxe",
+        "label": "e Employee's first name and initial Last name f Employee's address and ZIP code",
+        "value": "Omar Fictus",
+        "concept": "fin:W2EmployeeName",
+        "period": "TY2025",
+        "page": 1,
+        "bbox": {
+         "page": 1,
+         "x0": 39.24,
+         "y0": 316.27,
+         "x1": 286.16,
+         "y1": 338.15
+        }
+       }
+      ],
+      "period": "TY2025",
+      "piiFlag": "none",
+      "resolvable": true,
+      "scores": {
+       "denseRaw": 1.339583,
+       "bm25Raw": 3.406984,
+       "denseNorm": 0.0,
+       "bm25Norm": 1.0,
+       "fused": 0.3
+      }
+     }
+    ],
+    "query": {
+     "index": "units-v2-3-1",
+     "k": 5,
+     "subQueryK": 20,
+     "weights": {
+      "dense": 0.7,
+      "bm25": 0.3
+     },
+     "normalization": "min_max",
+     "filter": {
+      "bool": {
+       "filter": [
+        {
+         "terms": {
+          "allowedPrincipals": [
+           "user:local-dev-owner-0000",
+           "group:lending-analyst"
+          ]
+         }
+        },
+        {
+         "term": {
+          "packageId": "pkg-lending-02"
+         }
+        },
+        {
+         "term": {
+          "pipelineVersion": "2.3.1"
+         }
+        },
+        {
+         "term": {
+          "docType": "doc:W2"
+         }
+        }
+       ],
+       "must_not": [
+        {
+         "term": {
+          "piiFlag": "held"
+         }
+        }
+       ]
+      }
+     },
+     "embedModel": "amazon.titan-embed-text-v2:0"
+    },
+    "latencyMs": 12
+   }
+  },
+  {
+   "callId": "tooluse_krL9uMfdgGWUC2X4EBb5DS",
+   "tool": "graph_hop",
+   "input": {
+    "template": "qi_sum_w2_box1_v1",
+    "params": {}
+   },
+   "injected": {
+    "callerSub": "local-",
+    "groups": [
+     "lending-analyst"
+    ],
+    "pipelineVersion": "2.3.1",
+    "packageId": "pkg-lending-02",
+    "runId": "r-6d0df2be061a",
+    "via": "local-gateway"
+   },
+   "startedAt": "2026-11-11T00:47:48.914Z",
+   "ms": 5,
+   "status": "ok",
+   "output": {
+    "template": "qi_sum_w2_box1_v1",
+    "sparql": "# template: qi_sum_w2_box1_v1\n# purpose:  fin:QualifyingIncome operands: W-2 Box 1 wages per borrower for the latest tax year\n#           (per borrower), with the unit and field each figure came from. graph_hop sums ?wagesBox1\n#           as decimals into `total`; operands come from the ?field IRIs.\n# params:   taxYear  optional  \"\" = latest tax year per borrower; \"2025\" = that tax year only\n# columns:  borrower, taxYear, wagesBox1, unit, field\n# graphs:   FROM clause = TBox graphs + the caller-readable ABox graph urn:rp:graph:abox:{packageId}:{pv}\n# notes:    no inference; the operand concept is read from fin:QualifyingIncome (fin:operandConcept).\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX prov: <http://www.w3.org/ns/prov#>\nPREFIX fin: <urn:rp:ont:fin:>\nPREFIX doc: <urn:rp:ont:doc:>\nPREFIX rp: <urn:rp:ont:rp:>\nSELECT ?borrower ?taxYear ?wagesBox1 ?unit ?field\nFROM <urn:rp:graph:tbox:fibo>\nFROM <urn:rp:graph:tbox:doco>\nFROM <urn:rp:graph:tbox:rp>\nFROM <urn:rp:graph:abox:pkg-lending-02:2.3.1>\nWHERE {\n  fin:QualifyingIncome fin:operandConcept ?operand .\n  ?field a fin:FieldValue ;\n         fin:concept ?operand ;\n         fin:amount ?wagesBox1 ;\n         fin:taxYear ?ty ;\n         fin:borrower ?party ;\n         prov:wasDerivedFrom ?unit .\n  ?unit a doc:EvidenceUnit .\n  ?party rp:name ?borrower .\n  BIND(STR(?ty) AS ?taxYear)\n  {\n    SELECT ?party (MAX(xsd:integer(STR(?y))) AS ?latest)\n    WHERE {\n      fin:QualifyingIncome fin:operandConcept ?op2 .\n      ?f2 a fin:FieldValue ; fin:concept ?op2 ; fin:borrower ?party ; fin:taxYear ?y .\n    }\n    GROUP BY ?party\n  }\n  FILTER(IF(\"\" = \"\", xsd:integer(?taxYear) = ?latest, ?taxYear = \"\"))\n}\nORDER BY ?borrower ?field\n",
+    "graphs": [
+     "urn:rp:graph:tbox:fibo",
+     "urn:rp:graph:tbox:doco",
+     "urn:rp:graph:tbox:rp",
+     "urn:rp:graph:abox:pkg-lending-02:2.3.1"
+    ],
+    "columns": [
+     "borrower",
+     "taxYear",
+     "wagesBox1",
+     "unit",
+     "field"
+    ],
+    "rows": [
+     {
+      "borrower": "Lena Fictus",
+      "taxYear": "2025",
+      "wagesBox1": "97850",
+      "unit": "urn:rp:unit:w2-2025-lena-fictus-5bf98e:2.3.1:eu-02",
+      "field": "urn:rp:field:w2-2025-lena-fictus-5bf98e:2.3.1:eu-02/f-box1"
+     },
+     {
+      "borrower": "Omar Fictus",
+      "taxYear": "2025",
+      "wagesBox1": "90240",
+      "unit": "urn:rp:unit:w2-2025-omar-fictus-5dc972:2.3.1:eu-02",
+      "field": "urn:rp:field:w2-2025-omar-fictus-5dc972:2.3.1:eu-02/f-box1"
+     }
+    ],
+    "rowCount": 2,
+    "total": "188090.00",
+    "operands": [
+     {
+      "unitId": "w2-2025-lena-fictus-5bf98e:2.3.1:eu-02",
+      "fieldId": "f-box1",
+      "value": "97850.00",
+      "label": "Lena Fictus"
+     },
+     {
+      "unitId": "w2-2025-omar-fictus-5dc972:2.3.1:eu-02",
+      "fieldId": "f-box1",
+      "value": "90240.00",
+      "label": "Omar Fictus"
+     }
+    ],
+    "latencyMs": 4
+   }
+  }
+ ],
+ "retrieved": [
+  {
+   "rank": 1,
+   "unitId": "w2-2025-lena-fictus-5bf98e:2.3.1:eu-02",
+   "docId": "w2-2025-lena-fictus-5bf98e",
+   "fileName": "w2_2025_lena_fictus.pdf",
+   "unitType": "field_group",
+   "label": "W-2 · Lena Fictus · Wages (Boxes 1–6)",
+   "docType": "doc:W2",
+   "breadcrumb": "W-2 2025 › Lena Fictus › Wages (Boxes 1–6)",
+   "text": "c Employer's name, address, and ZIP code\nNewAge Global Fintech Services 400 Market Street Seattle, WA 98104\ne Employee's first name and initial Last name f Employee's address and ZIP code\nLena Fictus 7 Orchard Row Tacoma, WA 98402\n3 Social security wages\n1 Wages, tips, other compensation\n2 Federal income tax withheld\n97,850.00\n12,360.00\n4 Social security tax withheld\n103,000.00\n5 Medicare wages and tips\n6 Medicare tax withheld\n103,000.00\n12a See instructions for box 12 Code\n5,150.00\n6,386.00\n1,493.50",
+   "pages": [
+    1
+   ],
+   "pageWidth": 612.0,
+   "pageHeight": 792.0,
+   "bboxes": [
+    {
+     "page": 1,
+     "x0": 39.0,
+     "y0": 100.33,
+     "x1": 568.0,
+     "y1": 365.4
+    }
+   ],
+   "fields": [
+    {
+     "fieldId": "f-box12a",
+     "label": "12a See instructions for box 12",
+     "value": "5,150.00",
+     "valueNumber": "5150.00",
+     "concept": "fin:W2Box12Amount",
+     "period": "TY2025",
+     "page": 1,
+     "bbox": {
+      "page": 1,
+      "x0": 444.71,
+      "y0": 280.27,
+      "x1": 566.88,
+      "y1": 305.45
+     }
+    },
+    {
+     "fieldId": "f-box3",
+     "label": "3 Social security wages",
+     "value": "103,000.00",
+     "valueNumber": "103000.00",
+     "concept": "fin:W2SocialSecurityWagesBox3",
+     "period": "TY2025",
+     "page": 1,
+     "bbox": {
+      "page": 1,
+      "x0": 309.27,
+      "y0": 136.27,
+      "x1": 431.88,
+      "y1": 161.45
+     }
+    },
+    {
+     "fieldId": "f-box5",
+     "label": "5 Medicare wages and tips",
+     "value": "103,000.00",
+     "valueNumber": "103000.00",
+     "concept": "fin:W2MedicareWagesBox5",
+     "period": "TY2025",
+     "page": 1,
+     "bbox": {
+      "page": 1,
+      "x0": 309.27,
+      "y0": 172.35,
+      "x1": 431.88,
+      "y1": 197.45
+     }
+    },
+    {
+     "fieldId": "f-box1",
+     "label": "1 Wages, tips, other compensation",
+     "value": "97,850.00",
+     "valueNumber": "97850.00",
+     "concept": "fin:W2WagesBox1",
+     "period": "TY2025",
+     "page": 1,
+     "bbox": {
+      "page": 1,
+      "x0": 309.71,
+      "y0": 100.33,
+      "x1": 431.88,
+      "y1": 125.45
+     }
+    },
+    {
+     "fieldId": "f-box2",
+     "label": "2 Federal income tax withheld",
+     "value": "12,360.00",
+     "valueNumber": "12360.00",
+     "concept": "fin:W2FederalIncomeTaxWithheldBox2",
+     "period": "TY2025",
+     "page": 1,
+     "bbox": {
+      "page": 1,
+      "x0": 444.19,
+      "y0": 100.33,
+      "x1": 566.88,
+      "y1": 125.45
+     }
+    },
+    {
+     "fieldId": "f-box4",
+     "label": "4 Social security tax withheld",
+     "value": "6,386.00",
+     "valueNumber": "6386.00",
+     "concept": "fin:W2SocialSecurityTaxWithheldBox4",
+     "period": "TY2025",
+     "page": 1,
+     "bbox": {
+      "page": 1,
+      "x0": 444.08,
+      "y0": 136.27,
+      "x1": 566.88,
+      "y1": 161.45
+     }
+    },
+    {
+     "fieldId": "f-box6",
+     "label": "6 Medicare tax withheld",
+     "value": "1,493.50",
+     "valueNumber": "1493.50",
+     "concept": "fin:W2MedicareTaxWithheldBox6",
+     "period": "TY2025",
+     "page": 1,
+     "bbox": {
+      "page": 1,
+      "x0": 444.25,
+      "y0": 172.33,
+      "x1": 566.88,
+      "y1": 197.45
+     }
+    },
+    {
+     "fieldId": "f-boxc",
+     "label": "c Employer's name, address, and ZIP code",
+     "value": "NewAge Global Fintech Services",
+     "concept": "fin:W2EmployerName",
+     "period": "TY2025",
+     "page": 1,
+     "bbox": {
+      "page": 1,
+      "x0": 39.25,
+      "y0": 172.35,
+      "x1": 222.99,
+      "y1": 195.87
+     }
+    },
+    {
+     "fieldId": "f-boxe",
+     "label": "e Employee's first name and initial Last name f Employee's address and ZIP code",
+     "value": "Lena Fictus",
+     "concept": "fin:W2EmployeeName",
+     "period": "TY2025",
+     "page": 1,
+     "bbox": {
+      "page": 1,
+      "x0": 39.24,
+      "y0": 316.27,
+      "x1": 286.16,
+      "y1": 338.15
+     }
+    }
+   ],
+   "period": "TY2025",
+   "piiFlag": "none",
+   "resolvable": true,
+   "scores": {
+    "denseRaw": 1.421519,
+    "bm25Raw": 3.406984,
+    "denseNorm": 1.0,
+    "bm25Norm": 1.0,
+    "fused": 1.0
+   }
+  },
+  {
+   "rank": 2,
+   "unitId": "w2-2025-omar-fictus-5dc972:2.3.1:eu-01",
+   "docId": "w2-2025-omar-fictus-5dc972",
+   "fileName": "w2_2025_omar_fictus.pdf",
+   "unitType": "section_text",
+   "label": "W-2 · Omar Fictus · 2025",
+   "docType": "doc:W2",
+   "breadcrumb": "W-2 2025 › Omar Fictus › 2025",
+   "text": "Form W-2 Wage and Tax Statement\n2025\nCopy C-For EMPLOYEE'S RECORDS (See Notice to Employee on the back of Copy B.) Department of the Treasury-Internal Revenue Service (form layout, fictitious data)\na Employee's social security number\nXXX-XX-4081\nb Employer identification number (EIN)\n00-4417306\nd Control number\nNGF-25-4081\n15 State\nEmployer's state ID number\n7 Social security tips\n8 Allocated tips\n9\n10 Dependent care benefits\n11 Nonqualified plans\n13 Retirement plan\nD\n12b\nX\n14 Other\n12c\n16 State wages, tips, etc.\n12d\n17 State income tax\nWA",
+   "pages": [
+    1
+   ],
+   "pageWidth": 612.0,
+   "pageHeight": 792.0,
+   "bboxes": [
+    {
+     "page": 1,
+     "x0": 36.0,
+     "y0": 40.51,
+     "x1": 576.0,
+     "y1": 449.4
+    }
+   ],
+   "fields": [],
+   "period": "TY2025",
+   "piiFlag": "none",
+   "resolvable": true,
+   "scores": {
+    "denseRaw": 1.380278,
+    "bm25Raw": 1.790483,
+    "denseNorm": 0.4967,
+    "bm25Norm": 0.0,
+    "fused": 0.3477
+   }
+  },
+  {
+   "rank": 3,
+   "unitId": "w2-2025-lena-fictus-5bf98e:2.3.1:eu-01",
+   "docId": "w2-2025-lena-fictus-5bf98e",
+   "fileName": "w2_2025_lena_fictus.pdf",
+   "unitType": "section_text",
+   "label": "W-2 · Lena Fictus · 2025",
+   "docType": "doc:W2",
+   "breadcrumb": "W-2 2025 › Lena Fictus › 2025",
+   "text": "Form W-2 Wage and Tax Statement\n2025\nCopy C-For EMPLOYEE'S RECORDS (See Notice to Employee on the back of Copy B.) Department of the Treasury-Internal Revenue Service (form layout, fictitious data)\na Employee's social security number\nXXX-XX-4159\nb Employer identification number (EIN)\n00-4417305\nd Control number\nNGF-25-4159\n15 State\nEmployer's state ID number\n7 Social security tips\n8 Allocated tips\n9\n10 Dependent care benefits\n11 Nonqualified plans\n13 Retirement plan\nD\n12b\nX\n14 Other\n12c\n16 State wages, tips, etc.\n12d\n17 State income tax\nWA",
+   "pages": [
+    1
+   ],
+   "pageWidth": 612.0,
+   "pageHeight": 792.0,
+   "bboxes": [
+    {
+     "page": 1,
+     "x0": 36.0,
+     "y0": 40.51,
+     "x1": 576.0,
+     "y1": 449.4
+    }
+   ],
+   "fields": [],
+   "period": "TY2025",
+   "piiFlag": "none",
+   "resolvable": true,
+   "scores": {
+    "denseRaw": 1.380066,
+    "bm25Raw": 1.790483,
+    "denseNorm": 0.4941,
+    "bm25Norm": 0.0,
+    "fused": 0.3459
+   }
+  },
+  {
+   "rank": 4,
+   "unitId": "w2-2025-omar-fictus-5dc972:2.3.1:eu-02",
+   "docId": "w2-2025-omar-fictus-5dc972",
+   "fileName": "w2_2025_omar_fictus.pdf",
+   "unitType": "field_group",
+   "label": "W-2 · Omar Fictus · Wages (Boxes 1–6)",
+   "docType": "doc:W2",
+   "breadcrumb": "W-2 2025 › Omar Fictus › Wages (Boxes 1–6)",
+   "text": "c Employer's name, address, and ZIP code\nNewAge Global Fintech Payments 410 Market Street Seattle, WA 98104\ne Employee's first name and initial Last name f Employee's address and ZIP code\nOmar Fictus 7 Orchard Row Tacoma, WA 98402\n3 Social security wages\n1 Wages, tips, other compensation\n2 Federal income tax withheld\n90,240.00\n11,520.00\n4 Social security tax withheld\n96,000.00\n5,952.00\n5 Medicare wages and tips\n6 Medicare tax withheld\n96,000.00\n12a See instructions for box 12 Code\n5,760.00\n1,392.00",
+   "pages": [
+    1
+   ],
+   "pageWidth": 612.0,
+   "pageHeight": 792.0,
+   "bboxes": [
+    {
+     "page": 1,
+     "x0": 39.0,
+     "y0": 100.33,
+     "x1": 568.0,
+     "y1": 365.4
+    }
+   ],
+   "fields": [
+    {
+     "fieldId": "f-box12a",
+     "label": "12a See instructions for box 12",
+     "value": "5,760.00",
+     "valueNumber": "5760.00",
+     "concept": "fin:W2Box12Amount",
+     "period": "TY2025",
+     "page": 1,
+     "bbox": {
+      "page": 1,
+      "x0": 444.71,
+      "y0": 280.27,
+      "x1": 566.88,
+      "y1": 305.45
+     }
+    },
+    {
+     "fieldId": "f-box3",
+     "label": "3 Social security wages",
+     "value": "96,000.00",
+     "valueNumber": "96000.00",
+     "concept": "fin:W2SocialSecurityWagesBox3",
+     "period": "TY2025",
+     "page": 1,
+     "bbox": {
+      "page": 1,
+      "x0": 309.27,
+      "y0": 136.27,
+      "x1": 431.88,
+      "y1": 161.45
+     }
+    },
+    {
+     "fieldId": "f-box5",
+     "label": "5 Medicare wages and tips",
+     "value": "96,000.00",
+     "valueNumber": "96000.00",
+     "concept": "fin:W2MedicareWagesBox5",
+     "period": "TY2025",
+     "page": 1,
+     "bbox": {
+      "page": 1,
+      "x0": 309.27,
+      "y0": 172.35,
+      "x1": 431.88,
+      "y1": 197.45
+     }
+    },
+    {
+     "fieldId": "f-box1",
+     "label": "1 Wages, tips, other compensation",
+     "value": "90,240.00",
+     "valueNumber": "90240.00",
+     "concept": "fin:W2WagesBox1",
+     "period": "TY2025",
+     "page": 1,
+     "bbox": {
+      "page": 1,
+      "x0": 309.71,
+      "y0": 100.33,
+      "x1": 431.88,
+      "y1": 125.45
+     }
+    },
+    {
+     "fieldId": "f-box2",
+     "label": "2 Federal income tax withheld",
+     "value": "11,520.00",
+     "valueNumber": "11520.00",
+     "concept": "fin:W2FederalIncomeTaxWithheldBox2",
+     "period": "TY2025",
+     "page": 1,
+     "bbox": {
+      "page": 1,
+      "x0": 444.19,
+      "y0": 100.33,
+      "x1": 566.88,
+      "y1": 125.45
+     }
+    },
+    {
+     "fieldId": "f-box4",
+     "label": "4 Social security tax withheld",
+     "value": "5,952.00",
+     "valueNumber": "5952.00",
+     "concept": "fin:W2SocialSecurityTaxWithheldBox4",
+     "period": "TY2025",
+     "page": 1,
+     "bbox": {
+      "page": 1,
+      "x0": 444.08,
+      "y0": 136.27,
+      "x1": 566.88,
+      "y1": 161.45
+     }
+    },
+    {
+     "fieldId": "f-box6",
+     "label": "6 Medicare tax withheld",
+     "value": "1,392.00",
+     "valueNumber": "1392.00",
+     "concept": "fin:W2MedicareTaxWithheldBox6",
+     "period": "TY2025",
+     "page": 1,
+     "bbox": {
+      "page": 1,
+      "x0": 444.25,
+      "y0": 172.33,
+      "x1": 566.88,
+      "y1": 197.45
+     }
+    },
+    {
+     "fieldId": "f-boxc",
+     "label": "c Employer's name, address, and ZIP code",
+     "value": "NewAge Global Fintech Payments",
+     "concept": "fin:W2EmployerName",
+     "period": "TY2025",
+     "page": 1,
+     "bbox": {
+      "page": 1,
+      "x0": 39.25,
+      "y0": 172.35,
+      "x1": 222.99,
+      "y1": 195.87
+     }
+    },
+    {
+     "fieldId": "f-boxe",
+     "label": "e Employee's first name and initial Last name f Employee's address and ZIP code",
+     "value": "Omar Fictus",
+     "concept": "fin:W2EmployeeName",
+     "period": "TY2025",
+     "page": 1,
+     "bbox": {
+      "page": 1,
+      "x0": 39.24,
+      "y0": 316.27,
+      "x1": 286.16,
+      "y1": 338.15
+     }
+    }
+   ],
+   "period": "TY2025",
+   "piiFlag": "none",
+   "resolvable": true,
+   "scores": {
+    "denseRaw": 1.339583,
+    "bm25Raw": 3.406984,
+    "denseNorm": 0.0,
+    "bm25Norm": 1.0,
+    "fused": 0.3
+   }
+  }
+ ],
+ "retrievedText": [
+  "c Employer's name, address, and ZIP code\nNewAge Global Fintech Services 400 Market Street Seattle, WA 98104\ne Employee's first name and initial Last name f Employee's address and ZIP code\nLena Fictus 7 Orchard Row Tacoma, WA 98402\n3 Social security wages\n1 Wages, tips, other compensation\n2 Federal income tax withheld\n97,850.00\n12,360.00\n4 Social security tax withheld\n103,000.00\n5 Medicare wages and tips\n6 Medicare tax withheld\n103,000.00\n12a See instructions for box 12 Code\n5,150.00\n6,386.00\n1,493.50",
+  "Form W-2 Wage and Tax Statement\n2025\nCopy C-For EMPLOYEE'S RECORDS (See Notice to Employee on the back of Copy B.) Department of the Treasury-Internal Revenue Service (form layout, fictitious data)\na Employee's social security number\nXXX-XX-4081\nb Employer identification number (EIN)\n00-4417306\nd Control number\nNGF-25-4081\n15 State\nEmployer's state ID number\n7 Social security tips\n8 Allocated tips\n9\n10 Dependent care benefits\n11 Nonqualified plans\n13 Retirement plan\nD\n12b\nX\n14 Other\n12c\n16 State wages, tips, etc.\n12d\n17 State income tax\nWA",
+  "Form W-2 Wage and Tax Statement\n2025\nCopy C-For EMPLOYEE'S RECORDS (See Notice to Employee on the back of Copy B.) Department of the Treasury-Internal Revenue Service (form layout, fictitious data)\na Employee's social security number\nXXX-XX-4159\nb Employer identification number (EIN)\n00-4417305\nd Control number\nNGF-25-4159\n15 State\nEmployer's state ID number\n7 Social security tips\n8 Allocated tips\n9\n10 Dependent care benefits\n11 Nonqualified plans\n13 Retirement plan\nD\n12b\nX\n14 Other\n12c\n16 State wages, tips, etc.\n12d\n17 State income tax\nWA",
+  "c Employer's name, address, and ZIP code\nNewAge Global Fintech Payments 410 Market Street Seattle, WA 98104\ne Employee's first name and initial Last name f Employee's address and ZIP code\nOmar Fictus 7 Orchard Row Tacoma, WA 98402\n3 Social security wages\n1 Wages, tips, other compensation\n2 Federal income tax withheld\n90,240.00\n11,520.00\n4 Social security tax withheld\n96,000.00\n5,952.00\n5 Medicare wages and tips\n6 Medicare tax withheld\n96,000.00\n12a See instructions for box 12 Code\n5,760.00\n1,392.00"
+ ],
+ "answer": {
+  "answer": "Total qualifying income for this package is $188,090.00 for tax year 2025, derived solely from W-2 Box 1 wages. Lena Fictus contributed $97,850.00 (employer: NewAge Global Fintech Services) and Omar Fictus contributed $90,240.00 (employer: NewAge Global Fintech Payments).",
+  "total": "188,090.00",
+  "currency": "USD",
+  "arithmetic": "97,850.00 + 90,240.00 = 188,090.00",
+  "claims": [
+   {
+    "text": "$97,850.00",
+    "value": "97850.00",
+    "unitId": "w2-2025-lena-fictus-5bf98e:2.3.1:eu-02",
+    "fieldId": "f-box1",
+    "docId": "w2-2025-lena-fictus-5bf98e",
+    "fileName": "w2_2025_lena_fictus.pdf",
+    "label": "W-2 · Lena Fictus · Wages (Boxes 1–6) · Box 1 · p.1",
+    "page": 1,
+    "bbox": {
+     "page": 1,
+     "x0": 309.71,
+     "y0": 100.33,
+     "x1": 431.88,
+     "y1": 125.45
+    },
+    "unitBbox": {
+     "page": 1,
+     "x0": 39.0,
+     "y0": 100.33,
+     "x1": 568.0,
+     "y1": 365.4
+    },
+    "resolvable": true
+   },
+   {
+    "text": "$90,240.00",
+    "value": "90240.00",
+    "unitId": "w2-2025-omar-fictus-5dc972:2.3.1:eu-02",
+    "fieldId": "f-box1",
+    "docId": "w2-2025-omar-fictus-5dc972",
+    "fileName": "w2_2025_omar_fictus.pdf",
+    "label": "W-2 · Omar Fictus · Wages (Boxes 1–6) · Box 1 · p.1",
+    "page": 1,
+    "bbox": {
+     "page": 1,
+     "x0": 309.71,
+     "y0": 100.33,
+     "x1": 431.88,
+     "y1": 125.45
+    },
+    "unitBbox": {
+     "page": 1,
+     "x0": 39.0,
+     "y0": 100.33,
+     "x1": 568.0,
+     "y1": 365.4
+    },
+    "resolvable": true
+   }
+  ],
+  "caveats": [
+   "Qualifying income is defined as W-2 Box 1 wages only; payslips and bank deposits are corroborating documents and are not added to the total.",
+   "Both W-2s are for tax year 2025, which is the latest (and only) tax year present in this package."
+  ],
+  "citationRetries": 0,
+  "uncitedNumbers": []
+ },
+ "check": {
+  "qid": "q-lend2-01",
+  "expected": "188,090.00",
+  "actual": "188,090.00",
+  "match": true
+ },
+ "usage": {
+  "inputTokens": 9272,
+  "outputTokens": 648,
+  "totalTokens": 9920
+ },
+ "latencyMs": 10001,
+ "status": "ok",
+ "s3Key": "runs/r-6d0df2be061a.json",
+ "provenance": {
+  "mode": "local-run",
+  "label": "local run · Bedrock",
+  "note": "Asked on a developer machine against the local pipeline's outputs; not the deployed AWS stack.",
+  "build": "build/e2e-lending-02",
+  "model": "Amazon Bedrock Converse (real)",
+  "embeddings": "amazon.titan-embed-text-v2:0 (real Bedrock; responses recorded)",
+  "index": "in-memory k-NN (exact inner product) + BM25 (Lucene formula) over the run's units; NOT OpenSearch",
+  "graph": "pyoxigraph in-process (NOT Amazon Neptune)",
+  "stores": "moto (S3, DynamoDB) loaded from the run's world snapshot",
+  "piiGate": "Amazon Comprehend DetectPiiEntities (real; responses recorded) (runs/local/recorded/comprehend.json)",
+  "extraction": "docling 2.145.0 (local, dev mode)",
+  "scanPages": "local Docling OCR shaped as a Textract response (NOT Amazon Textract)",
+  "phaseBEmbeddings": "amazon.titan-embed-text-v2:0 (real Bedrock; responses recorded)",
+  "toolTransport": "tool Lambda handlers in-process (local gateway; identity injected like the interceptor)"
+ }
+}

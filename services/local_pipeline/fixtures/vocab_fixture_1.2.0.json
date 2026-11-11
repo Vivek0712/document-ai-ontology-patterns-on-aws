@@ -1,0 +1,362 @@
+{
+ "ontologyVersion": "1.2.0",
+ "generatedAt": "2026-11-03T00:00:00.000Z",
+ "source": "build",
+ "roles": [
+  {
+   "role": "title",
+   "concept": "doc:Title",
+   "prefLabel": "Title",
+   "doco": "doco:Title",
+   "engineLabels": {
+    "docling": [
+     "title"
+    ],
+    "textract": [
+     "LAYOUT_TITLE"
+    ]
+   }
+  },
+  {
+   "role": "section_header",
+   "concept": "doc:SectionHeader",
+   "prefLabel": "Section header",
+   "doco": "doco:SectionTitle",
+   "engineLabels": {
+    "docling": [
+     "section_header"
+    ],
+    "textract": [
+     "LAYOUT_SECTION_HEADER"
+    ]
+   }
+  },
+  {
+   "role": "text",
+   "concept": "doc:Paragraph",
+   "prefLabel": "Paragraph",
+   "doco": "doco:Paragraph",
+   "engineLabels": {
+    "docling": [
+     "text",
+     "paragraph",
+     "reference"
+    ],
+    "textract": [
+     "LAYOUT_TEXT",
+     "LINE"
+    ]
+   }
+  },
+  {
+   "role": "list_item",
+   "concept": "doc:ListItem",
+   "prefLabel": "List item",
+   "doco": "doco:ListItem",
+   "engineLabels": {
+    "docling": [
+     "list_item"
+    ],
+    "textract": [
+     "LAYOUT_LIST"
+    ]
+   }
+  },
+  {
+   "role": "table",
+   "concept": "doc:Table",
+   "prefLabel": "Table",
+   "doco": "doco:Table",
+   "engineLabels": {
+    "docling": [
+     "table",
+     "document_index"
+    ],
+    "textract": [
+     "LAYOUT_TABLE",
+     "TABLE"
+    ]
+   }
+  },
+  {
+   "role": "key_value",
+   "concept": "doc:KeyValue",
+   "prefLabel": "Key-value region",
+   "doco": null,
+   "engineLabels": {
+    "docling": [
+     "key_value_region",
+     "form"
+    ],
+    "textract": [
+     "LAYOUT_KEY_VALUE",
+     "KEY_VALUE_SET"
+    ]
+   }
+  },
+  {
+   "role": "caption",
+   "concept": "doc:Caption",
+   "prefLabel": "Caption",
+   "doco": "doco:Caption",
+   "engineLabels": {
+    "docling": [
+     "caption"
+    ],
+    "textract": [
+     "TABLE_TITLE"
+    ]
+   }
+  },
+  {
+   "role": "footnote",
+   "concept": "doc:Footnote",
+   "prefLabel": "Footnote",
+   "doco": "doco:Footnote",
+   "engineLabels": {
+    "docling": [
+     "footnote"
+    ],
+    "textract": [
+     "TABLE_FOOTER"
+    ]
+   }
+  },
+  {
+   "role": "picture",
+   "concept": "doc:Figure",
+   "prefLabel": "Figure",
+   "doco": "doco:Figure",
+   "engineLabels": {
+    "docling": [
+     "picture",
+     "chart"
+    ],
+    "textract": [
+     "LAYOUT_FIGURE"
+    ]
+   }
+  },
+  {
+   "role": "formula",
+   "concept": "doc:Formula",
+   "prefLabel": "Formula",
+   "doco": "doco:Formula",
+   "engineLabels": {
+    "docling": [
+     "formula"
+    ],
+    "textract": []
+   }
+  },
+  {
+   "role": "page_header",
+   "concept": "doc:PageHeader",
+   "prefLabel": "Page header",
+   "doco": "doco:Header",
+   "engineLabels": {
+    "docling": [
+     "page_header"
+    ],
+    "textract": [
+     "LAYOUT_HEADER",
+     "LAYOUT_PAGE_NUMBER"
+    ]
+   }
+  },
+  {
+   "role": "page_footer",
+   "concept": "doc:PageFooter",
+   "prefLabel": "Page footer",
+   "doco": "doco:Footer",
+   "engineLabels": {
+    "docling": [
+     "page_footer"
+    ],
+    "textract": [
+     "LAYOUT_FOOTER"
+    ]
+   }
+  }
+ ],
+ "docTypes": [
+  {
+   "concept": "doc:W2",
+   "prefLabel": "W-2 Wage and Tax Statement",
+   "shortLabel": "W-2",
+   "altLabels": [
+    "Form W-2"
+   ],
+   "indicators": [
+    "wage and tax statement",
+    "form w-2",
+    "social security wages",
+    "medicare wages and tips",
+    "federal income tax withheld"
+   ],
+   "periodKind": "tax_year"
+  },
+  {
+   "concept": "doc:Payslip",
+   "prefLabel": "Payslip",
+   "shortLabel": "Payslip",
+   "altLabels": [
+    "Earnings statement",
+    "Pay stub"
+   ],
+   "indicators": [
+    "payslip",
+    "pay period",
+    "pay date",
+    "gross pay",
+    "net pay",
+    "ytd"
+   ],
+   "periodKind": "pay_period"
+  },
+  {
+   "concept": "doc:BankStatement",
+   "prefLabel": "Bank statement",
+   "shortLabel": "Bank statement",
+   "altLabels": [
+    "Account statement"
+   ],
+   "indicators": [
+    "statement period",
+    "account number",
+    "opening balance",
+    "closing balance",
+    "deposits"
+   ],
+   "periodKind": "statement_period"
+  }
+ ],
+ "fieldConcepts": [
+  {
+   "concept": "fin:W2WagesBox1",
+   "prefLabel": "Wages, tips, other compensation",
+   "altLabels": [
+    "1 Wages, tips, other compensation",
+    "Box 1"
+   ],
+   "notation": "1",
+   "docType": "doc:W2",
+   "unitGroup": "Wages (Boxes 1–6)"
+  },
+  {
+   "concept": "fin:W2FederalTaxWithheldBox2",
+   "prefLabel": "Federal income tax withheld",
+   "altLabels": [
+    "2 Federal income tax withheld",
+    "Box 2"
+   ],
+   "notation": "2",
+   "docType": "doc:W2",
+   "unitGroup": "Wages (Boxes 1–6)"
+  },
+  {
+   "concept": "fin:W2SocialSecurityWagesBox3",
+   "prefLabel": "Social security wages",
+   "altLabels": [
+    "3 Social security wages",
+    "Box 3"
+   ],
+   "notation": "3",
+   "docType": "doc:W2",
+   "unitGroup": "Wages (Boxes 1–6)"
+  },
+  {
+   "concept": "fin:W2SocialSecurityTaxBox4",
+   "prefLabel": "Social security tax withheld",
+   "altLabels": [
+    "4 Social security tax withheld",
+    "Box 4"
+   ],
+   "notation": "4",
+   "docType": "doc:W2",
+   "unitGroup": "Wages (Boxes 1–6)"
+  },
+  {
+   "concept": "fin:W2MedicareWagesBox5",
+   "prefLabel": "Medicare wages and tips",
+   "altLabels": [
+    "5 Medicare wages and tips",
+    "Box 5"
+   ],
+   "notation": "5",
+   "docType": "doc:W2",
+   "unitGroup": "Wages (Boxes 1–6)"
+  },
+  {
+   "concept": "fin:W2MedicareTaxBox6",
+   "prefLabel": "Medicare tax withheld",
+   "altLabels": [
+    "6 Medicare tax withheld",
+    "Box 6"
+   ],
+   "notation": "6",
+   "docType": "doc:W2",
+   "unitGroup": "Wages (Boxes 1–6)"
+  },
+  {
+   "concept": "fin:W2Box12aAmount",
+   "prefLabel": "Box 12a amount",
+   "altLabels": [
+    "12a",
+    "12a D"
+   ],
+   "notation": "12a",
+   "docType": "doc:W2",
+   "unitGroup": "Box 12"
+  },
+  {
+   "concept": "fin:EmployeeName",
+   "prefLabel": "Employee name",
+   "altLabels": [
+    "Employee's name",
+    "Employee"
+   ],
+   "docType": "doc:W2",
+   "datatype": "string"
+  },
+  {
+   "concept": "fin:PayslipGrossPay",
+   "prefLabel": "Gross pay",
+   "altLabels": [
+    "Gross",
+    "Gross earnings"
+   ],
+   "docType": "doc:Payslip",
+   "unitGroup": "Earnings"
+  },
+  {
+   "concept": "fin:PayslipNetPay",
+   "prefLabel": "Net pay",
+   "altLabels": [
+    "Net"
+   ],
+   "docType": "doc:Payslip",
+   "unitGroup": "Earnings"
+  },
+  {
+   "concept": "fin:PayslipYtdGross",
+   "prefLabel": "YTD gross",
+   "altLabels": [
+    "Year to date gross",
+    "Gross YTD"
+   ],
+   "docType": "doc:Payslip",
+   "unitGroup": "Year to date"
+  },
+  {
+   "concept": "fin:Payslip401k",
+   "prefLabel": "401(k)",
+   "altLabels": [
+    "401(k) deferral",
+    "401k"
+   ],
+   "docType": "doc:Payslip",
+   "unitGroup": "Deductions"
+  }
+ ]
+}

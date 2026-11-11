@@ -1,0 +1,183 @@
+{
+  "$defs": {
+    "ArtifactKind": {
+      "description": "What an artifact is; the UI picks a viewer by kind.",
+      "enum": [
+        "source_pdf",
+        "manifest",
+        "route",
+        "text_layer",
+        "docling_json",
+        "textract_json",
+        "classification",
+        "units_jsonl",
+        "build_report",
+        "pii_decisions",
+        "gold_unit",
+        "gold_units_jsonl",
+        "page_image",
+        "index_receipt",
+        "abox_nquads",
+        "graph_receipt",
+        "ready_receipt",
+        "config",
+        "run"
+      ],
+      "title": "ArtifactKind",
+      "type": "string"
+    },
+    "ArtifactRef": {
+      "description": "A file a stage read or wrote. Always in the data bucket (RP_DATA_BUCKET).",
+      "properties": {
+        "key": {
+          "title": "Key",
+          "type": "string"
+        },
+        "kind": {
+          "$ref": "#/$defs/ArtifactKind"
+        },
+        "contentType": {
+          "default": "application/json",
+          "title": "Contenttype",
+          "type": "string"
+        },
+        "sizeBytes": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Sizebytes"
+        },
+        "sha256": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Sha256"
+        },
+        "versionId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Versionid"
+        },
+        "page": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Page"
+        },
+        "count": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Count"
+        },
+        "note": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Note"
+        }
+      },
+      "required": [
+        "key",
+        "kind"
+      ],
+      "title": "ArtifactRef",
+      "type": "object"
+    }
+  },
+  "description": "One branch result inside the extract Parallel (docling for digital pages, textract per scan page).",
+  "properties": {
+    "engine": {
+      "enum": [
+        "docling",
+        "textract"
+      ],
+      "title": "Engine",
+      "type": "string"
+    },
+    "pages": {
+      "items": {
+        "type": "integer"
+      },
+      "title": "Pages",
+      "type": "array"
+    },
+    "artifacts": {
+      "items": {
+        "$ref": "#/$defs/ArtifactRef"
+      },
+      "title": "Artifacts",
+      "type": "array"
+    },
+    "metrics": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "number"
+          },
+          {
+            "type": "integer"
+          }
+        ]
+      },
+      "title": "Metrics",
+      "type": "object"
+    },
+    "durationMs": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Durationms"
+    }
+  },
+  "required": [
+    "engine",
+    "pages",
+    "artifacts"
+  ],
+  "title": "ExtractPart",
+  "type": "object"
+}

@@ -1,0 +1,19 @@
+{
+  "what": "Recorded REST and MCP calls against a deployment of COA (the AWS Context Ontology Accelerator) on 2026-11-11, 05:26-05:40 UTC. Nothing in this folder is typed in: each file is a captured request and response.",
+  "coaVersion": "v0.3.9",
+  "region": "us-east-1",
+  "latencyBasis": "client wall clock, laptop to us-east-1 (Python urllib, no connection reuse)",
+  "redactions": {
+    "<EMAIL>": "the creating principal's e-mail (COA sets definedBy and owner to it)",
+    "<NAMESPACE_ID>": "COA namespace id",
+    "<SOURCE_ID>": "COA data source id",
+    "<DATAZONE_PROJECT_ID>": "Amazon DataZone project id",
+    "<PRESIGNED_S3_URL>": "presigned upload or download link",
+    "<S3_KEY>": "upload object key"
+  },
+  "files": [
+    "02_namespace.json", "03_ontology_ingest.json", "04_ontologies_list.json", "06_graph_class_qualifying_income.json",
+    "11_metric_get.json", "12_query_rest_tier1.json", "17_mcp_query_tier1.json", "18_mcp_negative_auth.json",
+    "19_ontology_export.json", "20_export_osi.json", "21_latency_summary.json"
+  ]
+}

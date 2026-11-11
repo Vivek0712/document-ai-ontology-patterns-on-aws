@@ -1,0 +1,143 @@
+{"type": "run_start", "runId": "r-84191139887c", "packageId": "pkg-tradeconf-01", "pipelineVersion": "2.3.1", "question": "What is the coupon on XS-2031 at issue?", "modelId": "us.anthropic.claude-sonnet-4-6", "configSha": "a42731845bd93c07fb4e21644d86495b8349e4aa6e75014b90f547815ec35447", "promptSha": "59984da199bb287de4b76a1d91bc0a5c27fde51028c39ffd04a33c3950a7d302", "tools": ["search_units", "graph_hop", "get_region", "doc_status"], "t": 0.0}
+{"type": "tool_start", "callId": "tooluse_MBXpjIeiDdoq7gbH8CCTBj", "tool": "search_units", "input": {"query": "XS-2031 coupon at issue"}, "t": 5.854}
+{"type": "tool_end", "callId": "tooluse_MBXpjIeiDdoq7gbH8CCTBj", "tool": "search_units", "ms": 9, "status": "ok", "summary": "5 units", "units": ["trade-confirmation-xs2031-9af5c5:2.3.1:eu-04", "trade-confirmation-xs2032-5f0fa4:2.3.1:eu-04", "trade-confirmation-xs2033-cb595e:2.3.1:eu-04", "trade-confirmation-xs2031-9af5c5:2.3.1:eu-02", "trade-confirmation-xs2033-cb595e:2.3.1:eu-02"], "scores": [{"unitId": "trade-confirmation-xs2031-9af5c5:2.3.1:eu-04", "denseNorm": 1.0, "bm25Norm": 1.0, "fused": 1.0}, {"unitId": "trade-confirmation-xs2032-5f0fa4:2.3.1:eu-04", "denseNorm": 0.8095, "bm25Norm": 1.0, "fused": 0.8666}, {"unitId": "trade-confirmation-xs2033-cb595e:2.3.1:eu-04", "denseNorm": 0.8141, "bm25Norm": 0.48, "fused": 0.7139}, {"unitId": "trade-confirmation-xs2031-9af5c5:2.3.1:eu-02", "denseNorm": 0.3167, "bm25Norm": 0.0, "fused": 0.2217}, {"unitId": "trade-confirmation-xs2033-cb595e:2.3.1:eu-02", "denseNorm": 0.3108, "bm25Norm": 0.0, "fused": 0.2176}], "retrieved": [{"rank": 1, "unitId": "trade-confirmation-xs2031-9af5c5:2.3.1:eu-04", "docId": "trade-confirmation-xs2031-9af5c5", "fileName": "trade_confirmation_xs2031.pdf", "unitType": "table_panel", "label": "Trade confirmation · Security terms", "docType": "doc:TradeConfirmation", "breadcrumb": "Trade confirmation › Security terms", "text": "Term │ Value\nSecurity │ XS-2031\nIssuer │ NewAge Global Fintech\nIssuer rating │ BBB (watch)\nNominal │ USD 5,000,000.00\nCoupon │ 4.25% 3\nCoupon frequency │ Annual\nMaturity │ 15 Sep 2033\n3 6.00% from year 3 if rating < BBB-", "pages": [1, 2], "pageWidth": 612.0, "pageHeight": 792.0, "bboxes": [{"page": 1, "x0": 52.92, "y0": 339.12, "x1": 552.72, "y1": 501.03}, {"page": 2, "x0": 60.0, "y0": 109.77, "x1": 218.01, "y1": 120.87}], "fields": [{"fieldId": "f-security-identifier", "label": "Security", "value": "XS-2031", "concept": "fin:SecurityIdentifier", "page": 1, "bbox": {"page": 1, "x0": 60.43, "y0": 367.68, "x1": 285.23, "y1": 376.59}}, {"fieldId": "f-issuer", "label": "Issuer", "value": "NewAge Global Fintech", "page": 1, "bbox": {"page": 1, "x0": 60.88, "y0": 387.68, "x1": 349.14, "y1": 396.59}}, {"fieldId": "f-issuer-credit-rating", "label": "Issuer rating", "value": "BBB (watch)", "concept": "fin:IssuerRating", "page": 1, "bbox": {"page": 1, "x0": 60.88, "y0": 407.68, "x1": 302.45, "y1": 416.59}}, {"fieldId": "f-nominal-amount", "label": "Nominal", "value": "USD 5,000,000.00", "concept": "fin:NominalAmount", "page": 1, "bbox": {"page": 1, "x0": 60.72, "y0": 427.68, "x1": 327.7, "y1": 435.94}}, {"fieldId": "f-coupon-rate-at-issue", "label": "Coupon", "value": "4.25%", "valueNumber": "4.25", "concept": "fin:CouponRate", "page": 1, "bbox": {"page": 1, "x0": 60.47, "y0": 447.68, "x1": 276.35, "y1": 456.48}}, {"fieldId": "f-coupon-frequency", "label": "Coupon frequency", "value": "Annual", "page": 1, "bbox": {"page": 1, "x0": 60.47, "y0": 467.68, "x1": 278.91, "y1": 476.59}}, {"fieldId": "f-maturity-date", "label": "Maturity", "value": "15 Sep 2033", "concept": "fin:MaturityDate", "page": 1, "bbox": {"page": 1, "x0": 60.7, "y0": 487.68, "x1": 303.45, "y1": 496.59}}], "piiFlag": "none", "resolvable": true, "scores": {"denseRaw": 1.517419, "bm25Raw": 2.224297, "denseNorm": 1.0, "bm25Norm": 1.0, "fused": 1.0}}, {"rank": 2, "unitId": "trade-confirmation-xs2032-5f0fa4:2.3.1:eu-04", "docId": "trade-confirmation-xs2032-5f0fa4", "fileName": "trade_confirmation_xs2032.pdf", "unitType": "table_panel", "label": "Trade confirmation · Security terms", "docType": "doc:TradeConfirmation", "breadcrumb": "Trade confirmation › Security terms", "text": "Term │ Value\nSecurity │ XS-2032\nIssuer │ NewAge Global Fintech\nIssuer rating │ BBB (watch)\nNominal │ USD 7,000,000.00\nCoupon │ 4.50% 3\nCoupon frequency │ Annual\nMaturity │ 15 Sep 2031\n3 5.75% from year 3 if rating < BBB-", "pages": [1, 2], "pageWidth": 612.0, "pageHeight": 792.0, "bboxes": [{"page": 1, "x0": 52.91, "y0": 339.13, "x1": 552.72, "y1": 501.03}, {"page": 2, "x0": 60.0, "y0": 109.77, "x1": 218.01, "y1": 120.87}], "fields": [{"fieldId": "f-security-identifier", "label": "Security", "value": "XS-2032", "concept": "fin:SecurityIdentifier", "page": 1, "bbox": {"page": 1, "x0": 60.43, "y0": 367.68, "x1": 286.46, "y1": 376.59}}, {"fieldId": "f-issuer", "label": "Issuer", "value": "NewAge Global Fintech", "page": 1, "bbox": {"page": 1, "x0": 60.88, "y0": 387.68, "x1": 349.14, "y1": 396.59}}, {"fieldId": "f-issuer-credit-rating", "label": "Issuer rating", "value": "BBB (watch)", "concept": "fin:IssuerRating", "page": 1, "bbox": {"page": 1, "x0": 60.88, "y0": 407.68, "x1": 302.45, "y1": 416.59}}, {"fieldId": "f-nominal-amount", "label": "Nominal", "value": "USD 7,000,000.00", "concept": "fin:NominalAmount", "page": 1, "bbox": {"page": 1, "x0": 60.72, "y0": 427.68, "x1": 327.7, "y1": 435.94}}, {"fieldId": "f-coupon-rate-at-issue", "label": "Coupon", "value": "4.50%", "valueNumber": "4.50", "concept": "fin:CouponRate", "page": 1, "bbox": {"page": 1, "x0": 60.47, "y0": 447.68, "x1": 276.35, "y1": 456.48}}, {"fieldId": "f-coupon-frequency", "label": "Coupon frequency", "value": "Annual", "page": 1, "bbox": {"page": 1, "x0": 60.47, "y0": 467.68, "x1": 278.91, "y1": 476.59}}, {"fieldId": "f-maturity-date", "label": "Maturity", "value": "15 Sep 2031", "concept": "fin:MaturityDate", "page": 1, "bbox": {"page": 1, "x0": 60.7, "y0": 487.68, "x1": 302.14, "y1": 496.59}}], "piiFlag": "none", "resolvable": true, "scores": {"denseRaw": 1.435361, "bm25Raw": 2.224297, "denseNorm": 0.8095, "bm25Norm": 1.0, "fused": 0.8666}}, {"rank": 3, "unitId": "trade-confirmation-xs2033-cb595e:2.3.1:eu-04", "docId": "trade-confirmation-xs2033-cb595e", "fileName": "trade_confirmation_xs2033.pdf", "unitType": "table_panel", "label": "Trade confirmation · Security terms", "docType": "doc:TradeConfirmation", "breadcrumb": "Trade confirmation › Security terms", "text": "Term │ Value\nSecurity │ XS-2033\nIssuer │ NewAge Global Fintech\nIssuer rating │ BBB- (watch)\nNominal │ USD 3,000,000.00\nCoupon │ 4.00% 3\nCoupon frequency │ Annual\nMaturity │ 15 Sep 2032\n3 5.50% from year 2 if rating < BB+", "pages": [1, 2], "pageWidth": 612.0, "pageHeight": 792.0, "bboxes": [{"page": 1, "x0": 52.92, "y0": 339.14, "x1": 552.73, "y1": 501.03}, {"page": 2, "x0": 60.0, "y0": 109.77, "x1": 213.85, "y1": 120.87}], "fields": [{"fieldId": "f-security-identifier", "label": "Security", "value": "XS-2033", "concept": "fin:SecurityIdentifier", "page": 1, "bbox": {"page": 1, "x0": 60.43, "y0": 367.68, "x1": 286.54, "y1": 376.59}}, {"fieldId": "f-issuer", "label": "Issuer", "value": "NewAge Global Fintech", "page": 1, "bbox": {"page": 1, "x0": 60.88, "y0": 387.68, "x1": 349.14, "y1": 396.59}}, {"fieldId": "f-issuer-credit-rating", "label": "Issuer rating", "value": "BBB- (watch)", "concept": "fin:IssuerRating", "page": 1, "bbox": {"page": 1, "x0": 60.88, "y0": 407.68, "x1": 305.61, "y1": 416.59}}, {"fieldId": "f-nominal-amount", "label": "Nominal", "value": "USD 3,000,000.00", "concept": "fin:NominalAmount", "page": 1, "bbox": {"page": 1, "x0": 60.72, "y0": 427.68, "x1": 327.7, "y1": 435.94}}, {"fieldId": "f-coupon-rate-at-issue", "label": "Coupon", "value": "4.00%", "valueNumber": "4.00", "concept": "fin:CouponRate", "page": 1, "bbox": {"page": 1, "x0": 60.47, "y0": 447.68, "x1": 276.35, "y1": 456.48}}, {"fieldId": "f-coupon-frequency", "label": "Coupon frequency", "value": "Annual", "page": 1, "bbox": {"page": 1, "x0": 60.47, "y0": 467.68, "x1": 278.91, "y1": 476.59}}, {"fieldId": "f-maturity-date", "label": "Maturity", "value": "15 Sep 2032", "concept": "fin:MaturityDate", "page": 1, "bbox": {"page": 1, "x0": 60.7, "y0": 487.68, "x1": 303.37, "y1": 496.59}}], "piiFlag": "none", "resolvable": true, "scores": {"denseRaw": 1.437358, "bm25Raw": 1.324664, "denseNorm": 0.8141, "bm25Norm": 0.48, "fused": 0.7139}}, {"rank": 4, "unitId": "trade-confirmation-xs2031-9af5c5:2.3.1:eu-02", "docId": "trade-confirmation-xs2031-9af5c5", "fileName": "trade_confirmation_xs2031.pdf", "unitType": "section_text", "label": "Trade confirmation · Notes to the security terms", "docType": "doc:TradeConfirmation", "breadcrumb": "Trade confirmation › Notes to the security terms", "text": "Trade details\nSecurity terms\nTrade Confirmation TC-2026-10-0031 (continued)\nNotes to the security terms\nThe coupon steps up from the start of the coupon year stated above when the issuer's rating from any agency named in the offering terms falls below the trigger rating. The step-up applies once and does not reverse if the rating later recovers.", "pages": [1, 2], "pageWidth": 612.0, "pageHeight": 792.0, "bboxes": [{"page": 1, "x0": 60.0, "y0": 136.38, "x1": 143.36, "y1": 320.28}, {"page": 2, "x0": 60.0, "y0": 52.1, "x1": 545.79, "y1": 169.87}], "fields": [], "piiFlag": "none", "resolvable": true, "scores": {"denseRaw": 1.223106, "bm25Raw": 0.494126, "denseNorm": 0.3167, "bm25Norm": 0.0, "fused": 0.2217}}, {"rank": 5, "unitId": "trade-confirmation-xs2033-cb595e:2.3.1:eu-02", "docId": "trade-confirmation-xs2033-cb595e", "fileName": "trade_confirmation_xs2033.pdf", "unitType": "section_text", "label": "Trade confirmation · Notes to the security terms", "docType": "doc:TradeConfirmation", "breadcrumb": "Trade confirmation › Notes to the security terms", "text": "Trade details\nSecurity terms\nTrade Confirmation TC-2026-10-0033 (continued)\nNotes to the security terms\nThe coupon steps up from the start of the coupon year stated above when the issuer's rating from any agency named in the offering terms falls below the trigger rating. The step-up applies once and does not reverse if the rating later recovers.", "pages": [1, 2], "pageWidth": 612.0, "pageHeight": 792.0, "bboxes": [{"page": 1, "x0": 60.0, "y0": 136.38, "x1": 143.36, "y1": 320.28}, {"page": 2, "x0": 60.0, "y0": 52.1, "x1": 545.79, "y1": 169.87}], "fields": [], "piiFlag": "none", "resolvable": true, "scores": {"denseRaw": 1.220563, "bm25Raw": 0.494126, "denseNorm": 0.3108, "bm25Norm": 0.0, "fused": 0.2176}}], "rows": [], "t": 5.855}
+{"type": "text", "delta": "```"}
+{"type": "text", "delta": "json\n{\n  \"answer"}
+{"type": "text", "delta": "\": \""}
+{"type": "text", "delta": "The cou"}
+{"type": "text", "delta": "pon on"}
+{"type": "text", "delta": " X"}
+{"type": "text", "delta": "S-2031"}
+{"type": "text", "delta": " at"}
+{"type": "text", "delta": " issue"}
+{"type": "text", "delta": " is"}
+{"type": "text", "delta": " 4.25"}
+{"type": "text", "delta": "% per"}
+{"type": "text", "delta": " annum,"}
+{"type": "text", "delta": " paid"}
+{"type": "text", "delta": " annually"}
+{"type": "text", "delta": ". Note"}
+{"type": "text", "delta": " that the trade"}
+{"type": "text", "delta": " confirmation includes"}
+{"type": "text", "delta": " a"}
+{"type": "text", "delta": " step"}
+{"type": "text", "delta": "-up clause"}
+{"type": "text", "delta": ":"}
+{"type": "text", "delta": " the"}
+{"type": "text", "delta": " rate"}
+{"type": "text", "delta": " rises"}
+{"type": "text", "delta": " to"}
+{"type": "text", "delta": " 6"}
+{"type": "text", "delta": ".00"}
+{"type": "text", "delta": "% from"}
+{"type": "text", "delta": " year"}
+{"type": "text", "delta": " 3"}
+{"type": "text", "delta": " if the issuer's rating falls"}
+{"type": "text", "delta": " below BB"}
+{"type": "text", "delta": "B-.\","}
+{"type": "text", "delta": "\n  \"total"}
+{"type": "text", "delta": "\":"}
+{"type": "text", "delta": " null"}
+{"type": "text", "delta": ",\n  \"currency"}
+{"type": "text", "delta": "\": null"}
+{"type": "text", "delta": ",\n  \"arithmetic"}
+{"type": "text", "delta": "\": null"}
+{"type": "text", "delta": ",\n  \"claims"}
+{"type": "text", "delta": "\": [\n    {\n      \""}
+{"type": "text", "delta": "text"}
+{"type": "text", "delta": "\": \"4"}
+{"type": "text", "delta": ".25%"}
+{"type": "text", "delta": "\",\n      \"value"}
+{"type": "text", "delta": "\": \"4.25\",\n      "}
+{"type": "text", "delta": "\"unit"}
+{"type": "text", "delta": "Id"}
+{"type": "text", "delta": "\": \"trade"}
+{"type": "text", "delta": "-confirmation-xs2031-9"}
+{"type": "text", "delta": "af5c5:2.3"}
+{"type": "text", "delta": ".1:eu-04"}
+{"type": "text", "delta": "\",\n      \"field"}
+{"type": "text", "delta": "Id\": \"f-coupon-"}
+{"type": "text", "delta": "rate-at-issue\""}
+{"type": "text", "delta": "\n    }"}
+{"type": "text", "delta": "\n  ],\n  \"c"}
+{"type": "text", "delta": "ave"}
+{"type": "text", "delta": "ats\": [\n    \""}
+{"type": "text", "delta": "A"}
+{"type": "text", "delta": " step"}
+{"type": "text", "delta": "-up cou"}
+{"type": "text", "delta": "pon of"}
+{"type": "text", "delta": " 6"}
+{"type": "text", "delta": ".00% applies"}
+{"type": "text", "delta": " from"}
+{"type": "text", "delta": " year 3 if the issuer"}
+{"type": "text", "delta": " rating"}
+{"type": "text", "delta": " ("}
+{"type": "text", "delta": "currently"}
+{"type": "text", "delta": " BBB,"}
+{"type": "text", "delta": " on"}
+{"type": "text", "delta": " watch) falls below BBB-;"}
+{"type": "text", "delta": " the"}
+{"type": "text", "delta": " step-up is"}
+{"type": "text", "delta": " permanent"}
+{"type": "text", "delta": " and does not reverse on"}
+{"type": "text", "delta": " rating"}
+{"type": "text", "delta": " recovery.\""}
+{"type": "text", "delta": "\n  ]"}
+{"type": "text", "delta": "\n}\n```"}
+{"type": "text", "delta": "```"}
+{"type": "text", "delta": "json\n{\n  \"answer\":"}
+{"type": "text", "delta": " \"The coupon on XS-"}
+{"type": "text", "delta": "2031 at issue is 4"}
+{"type": "text", "delta": ".25% per annum, paid"}
+{"type": "text", "delta": " annually. The"}
+{"type": "text", "delta": " trade confirmation also"}
+{"type": "text", "delta": " notes"}
+{"type": "text", "delta": " a"}
+{"type": "text", "delta": " step-up clause if"}
+{"type": "text", "delta": " the issuer's rating falls below BB"}
+{"type": "text", "delta": "B-,"}
+{"type": "text", "delta": " but the"}
+{"type": "text", "delta": " step-up rate"}
+{"type": "text", "delta": " is referenced"}
+{"type": "text", "delta": " only"}
+{"type": "text", "delta": " in"}
+{"type": "text", "delta": " footn"}
+{"type": "text", "delta": "ote text"}
+{"type": "text", "delta": " and"}
+{"type": "text", "delta": " cannot"}
+{"type": "text", "delta": " be cited as"}
+{"type": "text", "delta": " a structured"}
+{"type": "text", "delta": " field"}
+{"type": "text", "delta": ".\",\n  \"total\": null,"}
+{"type": "text", "delta": "\n  \"currency\": null,"}
+{"type": "text", "delta": "\n  \"arithmetic\": null,\n  "}
+{"type": "text", "delta": "\"claims\": [\n    {"}
+{"type": "text", "delta": "\n      \"text\": \"4.25"}
+{"type": "text", "delta": "%\",\n      \"value\": \""}
+{"type": "text", "delta": "4.25\",\n      \"unit"}
+{"type": "text", "delta": "Id\": \"trade-confirmation-xs"}
+{"type": "text", "delta": "2031-9af5c5"}
+{"type": "text", "delta": ":2.3.1:eu"}
+{"type": "text", "delta": "-04\",\n      \"fieldId"}
+{"type": "text", "delta": "\": \"f-coupon-rate"}
+{"type": "text", "delta": "-at-issue\"\n    }"}
+{"type": "text", "delta": "\n  ],\n  \"cave"}
+{"type": "text", "delta": "ats\": [\n    \"The"}
+{"type": "text", "delta": " trade"}
+{"type": "text", "delta": " confirmation references"}
+{"type": "text", "delta": " a"}
+{"type": "text", "delta": " step-up coupon rate"}
+{"type": "text", "delta": " from"}
+{"type": "text", "delta": " year 3 if the issuer"}
+{"type": "text", "delta": " rating"}
+{"type": "text", "delta": " falls below BBB-,"}
+{"type": "text", "delta": " but that"}
+{"type": "text", "delta": " step"}
+{"type": "text", "delta": "-up rate appears"}
+{"type": "text", "delta": " only in un"}
+{"type": "text", "delta": "structured footnote text and could"}
+{"type": "text", "delta": " not be retrieved"}
+{"type": "text", "delta": " as a structured field value"}
+{"type": "text", "delta": ".\"\n  ]\n}\n```"}
+{"answer": "The coupon on XS-2031 at issue is 4.25% per annum, paid annually. The trade confirmation also notes a step-up clause if the issuer's rating falls below BBB-, but the step-up rate is referenced only in footnote text and cannot be cited as a structured field.", "claims": [{"text": "4.25%", "value": "4.25", "unitId": "trade-confirmation-xs2031-9af5c5:2.3.1:eu-04", "fieldId": "f-coupon-rate-at-issue", "docId": "trade-confirmation-xs2031-9af5c5", "fileName": "trade_confirmation_xs2031.pdf", "label": "Trade confirmation · Security terms · Coupon · p.1", "page": 1, "bbox": {"page": 1, "x0": 60.47, "y0": 447.68, "x1": 276.35, "y1": 456.48}, "unitBbox": {"page": 1, "x0": 52.92, "y0": 339.12, "x1": 552.72, "y1": 501.03}, "resolvable": true}], "caveats": ["The trade confirmation references a step-up coupon rate from year 3 if the issuer rating falls below BBB-, but that step-up rate appears only in unstructured footnote text and could not be retrieved as a structured field value."], "citationRetries": 1, "uncitedNumbers": [], "type": "answer"}
+{"runId": "r-84191139887c", "packageId": "pkg-tradeconf-01", "pipelineVersion": "2.3.1", "configSha": "a42731845bd93c07fb4e21644d86495b8349e4aa6e75014b90f547815ec35447", "blockShas": {"preprocessing": "40e8c03f17781382dcbcc29f7a0a84a8b1e9642cf92500d3980254a0cbd69a07", "retrieval": "3587393d6f0d8c38adfaf6853c1463b54cc1ee872646ff354b3408da63dd586c", "generation": "4731dca541739b7b91e53099ae45acb0f255c753e313bec48702fa79ecad436e", "agent": "5ce789906365b6a0f9d139eba009f17b61d3113720a21c755e3f5be4459551f0"}, "promptSha": "59984da199bb287de4b76a1d91bc0a5c27fde51028c39ffd04a33c3950a7d302", "modelId": "us.anthropic.claude-sonnet-4-6", "corpusHash": "84436b1927bcd4fa33e13a59983a457c6a21bb799ddebff1deb7a3360f4adaa7", "memoryRecordsInjected": 0, "latencyMs": 19705, "usage": {"inputTokens": 14006, "outputTokens": 571, "totalTokens": 14577}, "startedAt": "2026-11-11T00:46:43.562Z", "type": "run", "question": "What is the coupon on XS-2031 at issue?"}

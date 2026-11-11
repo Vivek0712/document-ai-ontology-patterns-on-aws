@@ -1,0 +1,1020 @@
+{
+ "runId": "r-92aed15b8e35",
+ "createdAt": "2026-11-11T00:41:09.048Z",
+ "packageId": "pkg-quarterly-01",
+ "pipelineVersion": "2.3.1",
+ "question": "How does management describe the revenue outlook for H2 in the Q3 FY2025 report?",
+ "callerSub": "local-dev-owner-0000",
+ "groups": [
+  "lending-analyst"
+ ],
+ "modelId": "us.anthropic.claude-sonnet-4-6",
+ "promptSha": "59984da199bb287de4b76a1d91bc0a5c27fde51028c39ffd04a33c3950a7d302",
+ "configSha": "a42731845bd93c07fb4e21644d86495b8349e4aa6e75014b90f547815ec35447",
+ "blockShas": {
+  "preprocessing": "40e8c03f17781382dcbcc29f7a0a84a8b1e9642cf92500d3980254a0cbd69a07",
+  "retrieval": "3587393d6f0d8c38adfaf6853c1463b54cc1ee872646ff354b3408da63dd586c",
+  "generation": "4731dca541739b7b91e53099ae45acb0f255c753e313bec48702fa79ecad436e",
+  "agent": "5ce789906365b6a0f9d139eba009f17b61d3113720a21c755e3f5be4459551f0"
+ },
+ "corpusHash": "4f9790b4a360d9ef57a232bb5ffd829704e5e2d07486c54522a00f9f83fd82b9",
+ "memoryRecordsInjected": 0,
+ "toolsEnabled": [
+  "search_units",
+  "graph_hop",
+  "get_region",
+  "doc_status"
+ ],
+ "toolCalls": [
+  {
+   "callId": "tooluse_e7x7GdtTupH8e2Cxh6FY5q",
+   "tool": "search_units",
+   "input": {
+    "query": "revenue outlook H2 second half FY2025"
+   },
+   "injected": {
+    "callerSub": "local-",
+    "groups": [
+     "lending-analyst"
+    ],
+    "pipelineVersion": "2.3.1",
+    "packageId": "pkg-quarterly-01",
+    "runId": "r-92aed15b8e35",
+    "via": "local-gateway"
+   },
+   "startedAt": "2026-11-11T00:41:12.778Z",
+   "ms": 384,
+   "status": "ok",
+   "output": {
+    "units": [
+     {
+      "rank": 1,
+      "unitId": "quarterly-report-q3-fy2025-ab5fea:2.3.1:eu-11",
+      "docId": "quarterly-report-q3-fy2025-ab5fea",
+      "fileName": "quarterly_report_q3_fy2025.pdf",
+      "unitType": "section_text",
+      "label": "Quarterly report · 3.3 Revenue commentary",
+      "docType": "doc:QuarterlyReport",
+      "breadcrumb": "Quarterly report Q3 FY2025 › 3.3 Revenue commentary",
+      "text": "3.3 Revenue commentary\nRevenue rose in each quarter of FY2025. Management expects modest growth in H2, as pricing changes in the payments business annualise and lending volumes stay selective.\nCustomer complaints fell compared with the prior quarter after changes to dispute handling. Card issuing volumes followed the usual seasonal pattern for the period.\nThe compliance function completed its annual review of sanctions screening controls. The group continued to simplify its legal entity structure where this reduces operating cost.\nThe lending business tightened underwriting criteria for unsecured products in selected segments. The group kept its funding mix stable, with customer deposits remaining the primary source of liquidity.",
+      "pages": [
+       13
+      ],
+      "pageWidth": 612.0,
+      "pageHeight": 792.0,
+      "bboxes": [
+       {
+        "page": 13,
+        "x0": 60.0,
+        "y0": 75.38,
+        "x1": 543.0,
+        "y1": 227.37
+       }
+      ],
+      "fields": [],
+      "period": "FY2025-Q3",
+      "piiFlag": "none",
+      "resolvable": true,
+      "scores": {
+       "denseRaw": 1.383721,
+       "bm25Raw": 2.593365,
+       "denseNorm": 0.9084,
+       "bm25Norm": 1.0,
+       "fused": 0.9359
+      }
+     },
+     {
+      "rank": 2,
+      "unitId": "quarterly-report-q3-fy2025-ab5fea:2.3.1:eu-10",
+      "docId": "quarterly-report-q3-fy2025-ab5fea",
+      "fileName": "quarterly_report_q3_fy2025.pdf",
+      "unitType": "figure_panel",
+      "label": "Quarterly report · 3.2 Revenue by segment",
+      "docType": "doc:QuarterlyReport",
+      "breadcrumb": "Quarterly report Q3 FY2025 › 3.2 Revenue by segment",
+      "text": "Figure 2 · Revenue by segment · Q3 FY2025 · USD millions",
+      "pages": [
+       12
+      ],
+      "pageWidth": 612.0,
+      "pageHeight": 792.0,
+      "bboxes": [
+       {
+        "page": 12,
+        "x0": 60.0,
+        "y0": 99.62,
+        "x1": 509.54,
+        "y1": 284.82
+       }
+      ],
+      "fields": [],
+      "period": "FY2025-Q3",
+      "piiFlag": "none",
+      "resolvable": true,
+      "scores": {
+       "denseRaw": 1.398601,
+       "bm25Raw": 1.865727,
+       "denseNorm": 1.0,
+       "bm25Norm": 0.5849,
+       "fused": 0.8755
+      }
+     },
+     {
+      "rank": 3,
+      "unitId": "quarterly-report-q3-fy2025-ab5fea:2.3.1:eu-13",
+      "docId": "quarterly-report-q3-fy2025-ab5fea",
+      "fileName": "quarterly_report_q3_fy2025.pdf",
+      "unitType": "table_panel",
+      "label": "Quarterly report · 3.4 Revenue by quarter",
+      "docType": "doc:QuarterlyReport",
+      "breadcrumb": "Quarterly report Q3 FY2025 › 3.4 Revenue by quarter",
+      "text": "The table below sets out total revenue for each quarter of the fiscal year.\nQuarter │ Total revenue\nQ1 FY2025 │ 4,120\nQ2 FY2025 │ 4,455\nQ3 FY2025 │ 4,890\nQ4 FY2025 │ 5,010 1\nTable 3 · Total revenue · USD millions\n1 Q4 figures are preliminary.",
+      "pages": [
+       14
+      ],
+      "pageWidth": 612.0,
+      "pageHeight": 792.0,
+      "bboxes": [
+       {
+        "page": 14,
+        "x0": 52.97,
+        "y0": 99.62,
+        "x1": 553.01,
+        "y1": 261.96
+       }
+      ],
+      "fields": [
+       {
+        "fieldId": "f-q1-fy2025-total-revenue",
+        "label": "Q1 FY2025 · Total revenue",
+        "value": "4,120",
+        "valueNumber": "4120.00",
+        "period": "FY2025-Q3",
+        "page": 14,
+        "bbox": {
+         "page": 14,
+         "x0": 60.0,
+         "y0": 169.47,
+         "x1": 299.54,
+         "y1": 178.27
+        }
+       },
+       {
+        "fieldId": "f-q2-fy2025-total-revenue",
+        "label": "Q2 FY2025 · Total revenue",
+        "value": "4,455",
+        "valueNumber": "4455.00",
+        "period": "FY2025-Q3",
+        "page": 14,
+        "bbox": {
+         "page": 14,
+         "x0": 60.0,
+         "y0": 189.48,
+         "x1": 299.62,
+         "y1": 198.27
+        }
+       },
+       {
+        "fieldId": "f-q3-fy2025-total-revenue",
+        "label": "Q3 FY2025 · Total revenue",
+        "value": "4,890",
+        "valueNumber": "4890.00",
+        "period": "FY2025-Q3",
+        "page": 14,
+        "bbox": {
+         "page": 14,
+         "x0": 60.0,
+         "y0": 209.47,
+         "x1": 299.54,
+         "y1": 218.27
+        }
+       },
+       {
+        "fieldId": "f-q4-fy2025-total-revenue",
+        "label": "Q4 FY2025 · Total revenue",
+        "value": "5,010",
+        "valueNumber": "5010.00",
+        "period": "FY2025-Q3",
+        "page": 14,
+        "bbox": {
+         "page": 14,
+         "x0": 60.0,
+         "y0": 229.47,
+         "x1": 299.54,
+         "y1": 238.27
+        }
+       }
+      ],
+      "period": "FY2025-Q3",
+      "piiFlag": "none",
+      "resolvable": true,
+      "scores": {
+       "denseRaw": 1.375609,
+       "bm25Raw": 1.956696,
+       "denseNorm": 0.8584,
+       "bm25Norm": 0.6368,
+       "fused": 0.7919
+      }
+     },
+     {
+      "rank": 4,
+      "unitId": "quarterly-report-q3-fy2025-ab5fea:2.3.1:eu-02",
+      "docId": "quarterly-report-q3-fy2025-ab5fea",
+      "fileName": "quarterly_report_q3_fy2025.pdf",
+      "unitType": "section_text",
+      "label": "Quarterly report · Contents",
+      "docType": "doc:QuarterlyReport",
+      "breadcrumb": "Quarterly report Q3 FY2025 › Contents",
+      "text": "Contents\nOverview\nStrategy and operations\nResults\nOutlook",
+      "pages": [
+       1
+      ],
+      "pageWidth": 612.0,
+      "pageHeight": 792.0,
+      "bboxes": [
+       {
+        "page": 1,
+        "x0": 60.0,
+        "y0": 321.38,
+        "x1": 187.29,
+        "y1": 402.87
+       }
+      ],
+      "fields": [],
+      "period": "FY2025-Q3",
+      "piiFlag": "none",
+      "resolvable": true,
+      "scores": {
+       "denseRaw": 1.344762,
+       "bm25Raw": 2.236961,
+       "denseNorm": 0.6685,
+       "bm25Norm": 0.7967,
+       "fused": 0.7069
+      }
+     },
+     {
+      "rank": 5,
+      "unitId": "quarterly-report-q3-fy2024-ab0f27:2.3.1:eu-11",
+      "docId": "quarterly-report-q3-fy2024-ab0f27",
+      "fileName": "quarterly_report_q3_fy2024.pdf",
+      "unitType": "section_text",
+      "label": "Quarterly report · 3.3 Revenue commentary",
+      "docType": "doc:QuarterlyReport",
+      "breadcrumb": "Quarterly report Q3 FY2024 › 3.3 Revenue commentary",
+      "text": "3.3 Revenue commentary\nRevenue rose in each quarter of FY2024. Management expects modest growth in H2, as pricing changes in the payments business annualise and lending volumes stay selective.\nThe compliance function completed its annual review of sanctions screening controls. Data platform work concentrated on lineage, so that every reported figure can be traced to its source.\nStaff training covered the revised conduct framework and the new incident reporting procedure. Partnership agreements with two payroll providers moved from pilot into general availability.\nOperating teams completed the migration of merchant onboarding to the shared identity service. Technology spending shifted from new builds towards reliability work on existing services.",
+      "pages": [
+       13
+      ],
+      "pageWidth": 612.0,
+      "pageHeight": 792.0,
+      "bboxes": [
+       {
+        "page": 13,
+        "x0": 60.0,
+        "y0": 75.38,
+        "x1": 539.11,
+        "y1": 227.37
+       }
+      ],
+      "fields": [],
+      "period": "FY2024-Q3",
+      "piiFlag": "none",
+      "resolvable": true,
+      "scores": {
+       "denseRaw": 1.307725,
+       "bm25Raw": 1.945699,
+       "denseNorm": 0.4404,
+       "bm25Norm": 0.6305,
+       "fused": 0.4974
+      }
+     }
+    ],
+    "query": {
+     "index": "units-v2-3-1",
+     "k": 5,
+     "subQueryK": 20,
+     "weights": {
+      "dense": 0.7,
+      "bm25": 0.3
+     },
+     "normalization": "min_max",
+     "filter": {
+      "bool": {
+       "filter": [
+        {
+         "terms": {
+          "allowedPrincipals": [
+           "user:local-dev-owner-0000",
+           "group:lending-analyst"
+          ]
+         }
+        },
+        {
+         "term": {
+          "packageId": "pkg-quarterly-01"
+         }
+        },
+        {
+         "term": {
+          "pipelineVersion": "2.3.1"
+         }
+        }
+       ],
+       "must_not": [
+        {
+         "term": {
+          "piiFlag": "held"
+         }
+        }
+       ]
+      }
+     },
+     "embedModel": "amazon.titan-embed-text-v2:0"
+    },
+    "latencyMs": 382
+   }
+  },
+  {
+   "callId": "tooluse_y3ki9PZNEEtzoDXsNRcYaT",
+   "tool": "search_units",
+   "input": {
+    "query": "management discussion revenue forecast Q3 FY2025"
+   },
+   "injected": {
+    "callerSub": "local-",
+    "groups": [
+     "lending-analyst"
+    ],
+    "pipelineVersion": "2.3.1",
+    "packageId": "pkg-quarterly-01",
+    "runId": "r-92aed15b8e35",
+    "via": "local-gateway"
+   },
+   "startedAt": "2026-11-11T00:41:12.778Z",
+   "ms": 336,
+   "status": "ok",
+   "output": {
+    "units": [
+     {
+      "rank": 1,
+      "unitId": "quarterly-report-q3-fy2025-ab5fea:2.3.1:eu-11",
+      "docId": "quarterly-report-q3-fy2025-ab5fea",
+      "fileName": "quarterly_report_q3_fy2025.pdf",
+      "unitType": "section_text",
+      "label": "Quarterly report · 3.3 Revenue commentary",
+      "docType": "doc:QuarterlyReport",
+      "breadcrumb": "Quarterly report Q3 FY2025 › 3.3 Revenue commentary",
+      "text": "3.3 Revenue commentary\nRevenue rose in each quarter of FY2025. Management expects modest growth in H2, as pricing changes in the payments business annualise and lending volumes stay selective.\nCustomer complaints fell compared with the prior quarter after changes to dispute handling. Card issuing volumes followed the usual seasonal pattern for the period.\nThe compliance function completed its annual review of sanctions screening controls. The group continued to simplify its legal entity structure where this reduces operating cost.\nThe lending business tightened underwriting criteria for unsecured products in selected segments. The group kept its funding mix stable, with customer deposits remaining the primary source of liquidity.",
+      "pages": [
+       13
+      ],
+      "pageWidth": 612.0,
+      "pageHeight": 792.0,
+      "bboxes": [
+       {
+        "page": 13,
+        "x0": 60.0,
+        "y0": 75.38,
+        "x1": 543.0,
+        "y1": 227.37
+       }
+      ],
+      "fields": [],
+      "period": "FY2025-Q3",
+      "piiFlag": "none",
+      "resolvable": true,
+      "scores": {
+       "denseRaw": 1.481897,
+       "bm25Raw": 2.034065,
+       "denseNorm": 1.0,
+       "bm25Norm": 1.0,
+       "fused": 1.0
+      }
+     },
+     {
+      "rank": 2,
+      "unitId": "quarterly-report-q3-fy2025-ab5fea:2.3.1:eu-13",
+      "docId": "quarterly-report-q3-fy2025-ab5fea",
+      "fileName": "quarterly_report_q3_fy2025.pdf",
+      "unitType": "table_panel",
+      "label": "Quarterly report · 3.4 Revenue by quarter",
+      "docType": "doc:QuarterlyReport",
+      "breadcrumb": "Quarterly report Q3 FY2025 › 3.4 Revenue by quarter",
+      "text": "The table below sets out total revenue for each quarter of the fiscal year.\nQuarter │ Total revenue\nQ1 FY2025 │ 4,120\nQ2 FY2025 │ 4,455\nQ3 FY2025 │ 4,890\nQ4 FY2025 │ 5,010 1\nTable 3 · Total revenue · USD millions\n1 Q4 figures are preliminary.",
+      "pages": [
+       14
+      ],
+      "pageWidth": 612.0,
+      "pageHeight": 792.0,
+      "bboxes": [
+       {
+        "page": 14,
+        "x0": 52.97,
+        "y0": 99.62,
+        "x1": 553.01,
+        "y1": 261.96
+       }
+      ],
+      "fields": [
+       {
+        "fieldId": "f-q1-fy2025-total-revenue",
+        "label": "Q1 FY2025 · Total revenue",
+        "value": "4,120",
+        "valueNumber": "4120.00",
+        "period": "FY2025-Q3",
+        "page": 14,
+        "bbox": {
+         "page": 14,
+         "x0": 60.0,
+         "y0": 169.47,
+         "x1": 299.54,
+         "y1": 178.27
+        }
+       },
+       {
+        "fieldId": "f-q2-fy2025-total-revenue",
+        "label": "Q2 FY2025 · Total revenue",
+        "value": "4,455",
+        "valueNumber": "4455.00",
+        "period": "FY2025-Q3",
+        "page": 14,
+        "bbox": {
+         "page": 14,
+         "x0": 60.0,
+         "y0": 189.48,
+         "x1": 299.62,
+         "y1": 198.27
+        }
+       },
+       {
+        "fieldId": "f-q3-fy2025-total-revenue",
+        "label": "Q3 FY2025 · Total revenue",
+        "value": "4,890",
+        "valueNumber": "4890.00",
+        "period": "FY2025-Q3",
+        "page": 14,
+        "bbox": {
+         "page": 14,
+         "x0": 60.0,
+         "y0": 209.47,
+         "x1": 299.54,
+         "y1": 218.27
+        }
+       },
+       {
+        "fieldId": "f-q4-fy2025-total-revenue",
+        "label": "Q4 FY2025 · Total revenue",
+        "value": "5,010",
+        "valueNumber": "5010.00",
+        "period": "FY2025-Q3",
+        "page": 14,
+        "bbox": {
+         "page": 14,
+         "x0": 60.0,
+         "y0": 229.47,
+         "x1": 299.54,
+         "y1": 238.27
+        }
+       }
+      ],
+      "period": "FY2025-Q3",
+      "piiFlag": "none",
+      "resolvable": true,
+      "scores": {
+       "denseRaw": 1.440289,
+       "bm25Raw": 1.963659,
+       "denseNorm": 0.7737,
+       "bm25Norm": 0.9416,
+       "fused": 0.8241
+      }
+     },
+     {
+      "rank": 3,
+      "unitId": "quarterly-report-q3-fy2023-f6e6a3:2.3.1:eu-11",
+      "docId": "quarterly-report-q3-fy2023-f6e6a3",
+      "fileName": "quarterly_report_q3_fy2023.pdf",
+      "unitType": "section_text",
+      "label": "Quarterly report · 3.3 Revenue commentary",
+      "docType": "doc:QuarterlyReport",
+      "breadcrumb": "Quarterly report Q3 FY2023 › 3.3 Revenue commentary",
+      "text": "3.3 Revenue commentary\nRevenue rose in each quarter of FY2023. Management expects modest growth in H2, as pricing changes in the payments business annualise and lending volumes stay selective.\nStaff training covered the revised conduct framework and the new incident reporting procedure. The lending business tightened underwriting criteria for unsecured products in selected segments.\nThe group kept its funding mix stable, with customer deposits remaining the primary source of liquidity. Risk management reviewed concentration limits across the lending book and found no breaches.\nCard issuing volumes followed the usual seasonal pattern for the period. Technology spending shifted from new builds towards reliability work on existing services.",
+      "pages": [
+       13
+      ],
+      "pageWidth": 612.0,
+      "pageHeight": 792.0,
+      "bboxes": [
+       {
+        "page": 13,
+        "x0": 60.0,
+        "y0": 75.38,
+        "x1": 535.78,
+        "y1": 227.37
+       }
+      ],
+      "fields": [],
+      "period": "FY2023-Q3",
+      "piiFlag": "none",
+      "resolvable": true,
+      "scores": {
+       "denseRaw": 1.418705,
+       "bm25Raw": 1.624124,
+       "denseNorm": 0.6563,
+       "bm25Norm": 0.66,
+       "fused": 0.6574
+      }
+     },
+     {
+      "rank": 4,
+      "unitId": "quarterly-report-q3-fy2024-ab0f27:2.3.1:eu-11",
+      "docId": "quarterly-report-q3-fy2024-ab0f27",
+      "fileName": "quarterly_report_q3_fy2024.pdf",
+      "unitType": "section_text",
+      "label": "Quarterly report · 3.3 Revenue commentary",
+      "docType": "doc:QuarterlyReport",
+      "breadcrumb": "Quarterly report Q3 FY2024 › 3.3 Revenue commentary",
+      "text": "3.3 Revenue commentary\nRevenue rose in each quarter of FY2024. Management expects modest growth in H2, as pricing changes in the payments business annualise and lending volumes stay selective.\nThe compliance function completed its annual review of sanctions screening controls. Data platform work concentrated on lineage, so that every reported figure can be traced to its source.\nStaff training covered the revised conduct framework and the new incident reporting procedure. Partnership agreements with two payroll providers moved from pilot into general availability.\nOperating teams completed the migration of merchant onboarding to the shared identity service. Technology spending shifted from new builds towards reliability work on existing services.",
+      "pages": [
+       13
+      ],
+      "pageWidth": 612.0,
+      "pageHeight": 792.0,
+      "bboxes": [
+       {
+        "page": 13,
+        "x0": 60.0,
+        "y0": 75.38,
+        "x1": 539.11,
+        "y1": 227.37
+       }
+      ],
+      "fields": [],
+      "period": "FY2024-Q3",
+      "piiFlag": "none",
+      "resolvable": true,
+      "scores": {
+       "denseRaw": 1.418785,
+       "bm25Raw": 1.388653,
+       "denseNorm": 0.6568,
+       "bm25Norm": 0.4647,
+       "fused": 0.5992
+      }
+     },
+     {
+      "rank": 5,
+      "unitId": "quarterly-report-q3-fy2025-ab5fea:2.3.1:eu-10",
+      "docId": "quarterly-report-q3-fy2025-ab5fea",
+      "fileName": "quarterly_report_q3_fy2025.pdf",
+      "unitType": "figure_panel",
+      "label": "Quarterly report · 3.2 Revenue by segment",
+      "docType": "doc:QuarterlyReport",
+      "breadcrumb": "Quarterly report Q3 FY2025 › 3.2 Revenue by segment",
+      "text": "Figure 2 · Revenue by segment · Q3 FY2025 · USD millions",
+      "pages": [
+       12
+      ],
+      "pageWidth": 612.0,
+      "pageHeight": 792.0,
+      "bboxes": [
+       {
+        "page": 12,
+        "x0": 60.0,
+        "y0": 99.62,
+        "x1": 509.54,
+        "y1": 284.82
+       }
+      ],
+      "fields": [],
+      "period": "FY2025-Q3",
+      "piiFlag": "none",
+      "resolvable": true,
+      "scores": {
+       "denseRaw": 1.372174,
+       "bm25Raw": 1.873567,
+       "denseNorm": 0.4033,
+       "bm25Norm": 0.8669,
+       "fused": 0.5424
+      }
+     }
+    ],
+    "query": {
+     "index": "units-v2-3-1",
+     "k": 5,
+     "subQueryK": 20,
+     "weights": {
+      "dense": 0.7,
+      "bm25": 0.3
+     },
+     "normalization": "min_max",
+     "filter": {
+      "bool": {
+       "filter": [
+        {
+         "terms": {
+          "allowedPrincipals": [
+           "user:local-dev-owner-0000",
+           "group:lending-analyst"
+          ]
+         }
+        },
+        {
+         "term": {
+          "packageId": "pkg-quarterly-01"
+         }
+        },
+        {
+         "term": {
+          "pipelineVersion": "2.3.1"
+         }
+        }
+       ],
+       "must_not": [
+        {
+         "term": {
+          "piiFlag": "held"
+         }
+        }
+       ]
+      }
+     },
+     "embedModel": "amazon.titan-embed-text-v2:0"
+    },
+    "latencyMs": 336
+   }
+  }
+ ],
+ "retrieved": [
+  {
+   "rank": 1,
+   "unitId": "quarterly-report-q3-fy2025-ab5fea:2.3.1:eu-11",
+   "docId": "quarterly-report-q3-fy2025-ab5fea",
+   "fileName": "quarterly_report_q3_fy2025.pdf",
+   "unitType": "section_text",
+   "label": "Quarterly report · 3.3 Revenue commentary",
+   "docType": "doc:QuarterlyReport",
+   "breadcrumb": "Quarterly report Q3 FY2025 › 3.3 Revenue commentary",
+   "text": "3.3 Revenue commentary\nRevenue rose in each quarter of FY2025. Management expects modest growth in H2, as pricing changes in the payments business annualise and lending volumes stay selective.\nCustomer complaints fell compared with the prior quarter after changes to dispute handling. Card issuing volumes followed the usual seasonal pattern for the period.\nThe compliance function completed its annual review of sanctions screening controls. The group continued to simplify its legal entity structure where this reduces operating cost.\nThe lending business tightened underwriting criteria for unsecured products in selected segments. The group kept its funding mix stable, with customer deposits remaining the primary source of liquidity.",
+   "pages": [
+    13
+   ],
+   "pageWidth": 612.0,
+   "pageHeight": 792.0,
+   "bboxes": [
+    {
+     "page": 13,
+     "x0": 60.0,
+     "y0": 75.38,
+     "x1": 543.0,
+     "y1": 227.37
+    }
+   ],
+   "fields": [],
+   "period": "FY2025-Q3",
+   "piiFlag": "none",
+   "resolvable": true,
+   "scores": {
+    "denseRaw": 1.383721,
+    "bm25Raw": 2.593365,
+    "denseNorm": 0.9084,
+    "bm25Norm": 1.0,
+    "fused": 0.9359
+   }
+  },
+  {
+   "rank": 2,
+   "unitId": "quarterly-report-q3-fy2025-ab5fea:2.3.1:eu-10",
+   "docId": "quarterly-report-q3-fy2025-ab5fea",
+   "fileName": "quarterly_report_q3_fy2025.pdf",
+   "unitType": "figure_panel",
+   "label": "Quarterly report · 3.2 Revenue by segment",
+   "docType": "doc:QuarterlyReport",
+   "breadcrumb": "Quarterly report Q3 FY2025 › 3.2 Revenue by segment",
+   "text": "Figure 2 · Revenue by segment · Q3 FY2025 · USD millions",
+   "pages": [
+    12
+   ],
+   "pageWidth": 612.0,
+   "pageHeight": 792.0,
+   "bboxes": [
+    {
+     "page": 12,
+     "x0": 60.0,
+     "y0": 99.62,
+     "x1": 509.54,
+     "y1": 284.82
+    }
+   ],
+   "fields": [],
+   "period": "FY2025-Q3",
+   "piiFlag": "none",
+   "resolvable": true,
+   "scores": {
+    "denseRaw": 1.398601,
+    "bm25Raw": 1.865727,
+    "denseNorm": 1.0,
+    "bm25Norm": 0.5849,
+    "fused": 0.8755
+   }
+  },
+  {
+   "rank": 3,
+   "unitId": "quarterly-report-q3-fy2025-ab5fea:2.3.1:eu-13",
+   "docId": "quarterly-report-q3-fy2025-ab5fea",
+   "fileName": "quarterly_report_q3_fy2025.pdf",
+   "unitType": "table_panel",
+   "label": "Quarterly report · 3.4 Revenue by quarter",
+   "docType": "doc:QuarterlyReport",
+   "breadcrumb": "Quarterly report Q3 FY2025 › 3.4 Revenue by quarter",
+   "text": "The table below sets out total revenue for each quarter of the fiscal year.\nQuarter │ Total revenue\nQ1 FY2025 │ 4,120\nQ2 FY2025 │ 4,455\nQ3 FY2025 │ 4,890\nQ4 FY2025 │ 5,010 1\nTable 3 · Total revenue · USD millions\n1 Q4 figures are preliminary.",
+   "pages": [
+    14
+   ],
+   "pageWidth": 612.0,
+   "pageHeight": 792.0,
+   "bboxes": [
+    {
+     "page": 14,
+     "x0": 52.97,
+     "y0": 99.62,
+     "x1": 553.01,
+     "y1": 261.96
+    }
+   ],
+   "fields": [
+    {
+     "fieldId": "f-q1-fy2025-total-revenue",
+     "label": "Q1 FY2025 · Total revenue",
+     "value": "4,120",
+     "valueNumber": "4120.00",
+     "period": "FY2025-Q3",
+     "page": 14,
+     "bbox": {
+      "page": 14,
+      "x0": 60.0,
+      "y0": 169.47,
+      "x1": 299.54,
+      "y1": 178.27
+     }
+    },
+    {
+     "fieldId": "f-q2-fy2025-total-revenue",
+     "label": "Q2 FY2025 · Total revenue",
+     "value": "4,455",
+     "valueNumber": "4455.00",
+     "period": "FY2025-Q3",
+     "page": 14,
+     "bbox": {
+      "page": 14,
+      "x0": 60.0,
+      "y0": 189.48,
+      "x1": 299.62,
+      "y1": 198.27
+     }
+    },
+    {
+     "fieldId": "f-q3-fy2025-total-revenue",
+     "label": "Q3 FY2025 · Total revenue",
+     "value": "4,890",
+     "valueNumber": "4890.00",
+     "period": "FY2025-Q3",
+     "page": 14,
+     "bbox": {
+      "page": 14,
+      "x0": 60.0,
+      "y0": 209.47,
+      "x1": 299.54,
+      "y1": 218.27
+     }
+    },
+    {
+     "fieldId": "f-q4-fy2025-total-revenue",
+     "label": "Q4 FY2025 · Total revenue",
+     "value": "5,010",
+     "valueNumber": "5010.00",
+     "period": "FY2025-Q3",
+     "page": 14,
+     "bbox": {
+      "page": 14,
+      "x0": 60.0,
+      "y0": 229.47,
+      "x1": 299.54,
+      "y1": 238.27
+     }
+    }
+   ],
+   "period": "FY2025-Q3",
+   "piiFlag": "none",
+   "resolvable": true,
+   "scores": {
+    "denseRaw": 1.375609,
+    "bm25Raw": 1.956696,
+    "denseNorm": 0.8584,
+    "bm25Norm": 0.6368,
+    "fused": 0.7919
+   }
+  },
+  {
+   "rank": 4,
+   "unitId": "quarterly-report-q3-fy2025-ab5fea:2.3.1:eu-02",
+   "docId": "quarterly-report-q3-fy2025-ab5fea",
+   "fileName": "quarterly_report_q3_fy2025.pdf",
+   "unitType": "section_text",
+   "label": "Quarterly report · Contents",
+   "docType": "doc:QuarterlyReport",
+   "breadcrumb": "Quarterly report Q3 FY2025 › Contents",
+   "text": "Contents\nOverview\nStrategy and operations\nResults\nOutlook",
+   "pages": [
+    1
+   ],
+   "pageWidth": 612.0,
+   "pageHeight": 792.0,
+   "bboxes": [
+    {
+     "page": 1,
+     "x0": 60.0,
+     "y0": 321.38,
+     "x1": 187.29,
+     "y1": 402.87
+    }
+   ],
+   "fields": [],
+   "period": "FY2025-Q3",
+   "piiFlag": "none",
+   "resolvable": true,
+   "scores": {
+    "denseRaw": 1.344762,
+    "bm25Raw": 2.236961,
+    "denseNorm": 0.6685,
+    "bm25Norm": 0.7967,
+    "fused": 0.7069
+   }
+  },
+  {
+   "rank": 5,
+   "unitId": "quarterly-report-q3-fy2024-ab0f27:2.3.1:eu-11",
+   "docId": "quarterly-report-q3-fy2024-ab0f27",
+   "fileName": "quarterly_report_q3_fy2024.pdf",
+   "unitType": "section_text",
+   "label": "Quarterly report · 3.3 Revenue commentary",
+   "docType": "doc:QuarterlyReport",
+   "breadcrumb": "Quarterly report Q3 FY2024 › 3.3 Revenue commentary",
+   "text": "3.3 Revenue commentary\nRevenue rose in each quarter of FY2024. Management expects modest growth in H2, as pricing changes in the payments business annualise and lending volumes stay selective.\nThe compliance function completed its annual review of sanctions screening controls. Data platform work concentrated on lineage, so that every reported figure can be traced to its source.\nStaff training covered the revised conduct framework and the new incident reporting procedure. Partnership agreements with two payroll providers moved from pilot into general availability.\nOperating teams completed the migration of merchant onboarding to the shared identity service. Technology spending shifted from new builds towards reliability work on existing services.",
+   "pages": [
+    13
+   ],
+   "pageWidth": 612.0,
+   "pageHeight": 792.0,
+   "bboxes": [
+    {
+     "page": 13,
+     "x0": 60.0,
+     "y0": 75.38,
+     "x1": 539.11,
+     "y1": 227.37
+    }
+   ],
+   "fields": [],
+   "period": "FY2024-Q3",
+   "piiFlag": "none",
+   "resolvable": true,
+   "scores": {
+    "denseRaw": 1.307725,
+    "bm25Raw": 1.945699,
+    "denseNorm": 0.4404,
+    "bm25Norm": 0.6305,
+    "fused": 0.4974
+   }
+  },
+  {
+   "rank": 3,
+   "unitId": "quarterly-report-q3-fy2023-f6e6a3:2.3.1:eu-11",
+   "docId": "quarterly-report-q3-fy2023-f6e6a3",
+   "fileName": "quarterly_report_q3_fy2023.pdf",
+   "unitType": "section_text",
+   "label": "Quarterly report · 3.3 Revenue commentary",
+   "docType": "doc:QuarterlyReport",
+   "breadcrumb": "Quarterly report Q3 FY2023 › 3.3 Revenue commentary",
+   "text": "3.3 Revenue commentary\nRevenue rose in each quarter of FY2023. Management expects modest growth in H2, as pricing changes in the payments business annualise and lending volumes stay selective.\nStaff training covered the revised conduct framework and the new incident reporting procedure. The lending business tightened underwriting criteria for unsecured products in selected segments.\nThe group kept its funding mix stable, with customer deposits remaining the primary source of liquidity. Risk management reviewed concentration limits across the lending book and found no breaches.\nCard issuing volumes followed the usual seasonal pattern for the period. Technology spending shifted from new builds towards reliability work on existing services.",
+   "pages": [
+    13
+   ],
+   "pageWidth": 612.0,
+   "pageHeight": 792.0,
+   "bboxes": [
+    {
+     "page": 13,
+     "x0": 60.0,
+     "y0": 75.38,
+     "x1": 535.78,
+     "y1": 227.37
+    }
+   ],
+   "fields": [],
+   "period": "FY2023-Q3",
+   "piiFlag": "none",
+   "resolvable": true,
+   "scores": {
+    "denseRaw": 1.418705,
+    "bm25Raw": 1.624124,
+    "denseNorm": 0.6563,
+    "bm25Norm": 0.66,
+    "fused": 0.6574
+   }
+  }
+ ],
+ "retrievedText": [
+  "3.3 Revenue commentary\nRevenue rose in each quarter of FY2025. Management expects modest growth in H2, as pricing changes in the payments business annualise and lending volumes stay selective.\nCustomer complaints fell compared with the prior quarter after changes to dispute handling. Card issuing volumes followed the usual seasonal pattern for the period.\nThe compliance function completed its annual review of sanctions screening controls. The group continued to simplify its legal entity structure where this reduces operating cost.\nThe lending business tightened underwriting criteria for unsecured products in selected segments. The group kept its funding mix stable, with customer deposits remaining the primary source of liquidity.",
+  "Figure 2 · Revenue by segment · Q3 FY2025 · USD millions",
+  "The table below sets out total revenue for each quarter of the fiscal year.\nQuarter │ Total revenue\nQ1 FY2025 │ 4,120\nQ2 FY2025 │ 4,455\nQ3 FY2025 │ 4,890\nQ4 FY2025 │ 5,010 1\nTable 3 · Total revenue · USD millions\n1 Q4 figures are preliminary.",
+  "Contents\nOverview\nStrategy and operations\nResults\nOutlook",
+  "3.3 Revenue commentary\nRevenue rose in each quarter of FY2024. Management expects modest growth in H2, as pricing changes in the payments business annualise and lending volumes stay selective.\nThe compliance function completed its annual review of sanctions screening controls. Data platform work concentrated on lineage, so that every reported figure can be traced to its source.\nStaff training covered the revised conduct framework and the new incident reporting procedure. Partnership agreements with two payroll providers moved from pilot into general availability.\nOperating teams completed the migration of merchant onboarding to the shared identity service. Technology spending shifted from new builds towards reliability work on existing services.",
+  "3.3 Revenue commentary\nRevenue rose in each quarter of FY2023. Management expects modest growth in H2, as pricing changes in the payments business annualise and lending volumes stay selective.\nStaff training covered the revised conduct framework and the new incident reporting procedure. The lending business tightened underwriting criteria for unsecured products in selected segments.\nThe group kept its funding mix stable, with customer deposits remaining the primary source of liquidity. Risk management reviewed concentration limits across the lending book and found no breaches.\nCard issuing volumes followed the usual seasonal pattern for the period. Technology spending shifted from new builds towards reliability work on existing services."
+ ],
+ "answer": {
+  "answer": "In the Q3 FY2025 Revenue Commentary, management states that revenue rose in each quarter of FY2025 and expects 'modest growth in H2, as pricing changes in the payments business annualise and lending volumes stay selective.' The preliminary Q4 FY2025 revenue of USD 5,010 million, up from Q3's USD 4,890 million, is consistent with that modest-growth characterisation.",
+  "currency": "USD",
+  "claims": [
+   {
+    "text": "USD 4,890 million in Q3 FY2025",
+    "value": "4890.00",
+    "unitId": "quarterly-report-q3-fy2025-ab5fea:2.3.1:eu-13",
+    "fieldId": "f-q3-fy2025-total-revenue",
+    "docId": "quarterly-report-q3-fy2025-ab5fea",
+    "fileName": "quarterly_report_q3_fy2025.pdf",
+    "label": "Quarterly report · 3.4 Revenue by quarter · Q3 FY2025 · Total revenue · p.14",
+    "page": 14,
+    "bbox": {
+     "page": 14,
+     "x0": 60.0,
+     "y0": 209.47,
+     "x1": 299.54,
+     "y1": 218.27
+    },
+    "unitBbox": {
+     "page": 14,
+     "x0": 52.97,
+     "y0": 99.62,
+     "x1": 553.01,
+     "y1": 261.96
+    },
+    "resolvable": true
+   },
+   {
+    "text": "USD 5,010 million in Q4 FY2025 (preliminary)",
+    "value": "5010.00",
+    "unitId": "quarterly-report-q3-fy2025-ab5fea:2.3.1:eu-13",
+    "fieldId": "f-q4-fy2025-total-revenue",
+    "docId": "quarterly-report-q3-fy2025-ab5fea",
+    "fileName": "quarterly_report_q3_fy2025.pdf",
+    "label": "Quarterly report · 3.4 Revenue by quarter · Q4 FY2025 · Total revenue · p.14",
+    "page": 14,
+    "bbox": {
+     "page": 14,
+     "x0": 60.0,
+     "y0": 229.47,
+     "x1": 299.54,
+     "y1": 238.27
+    },
+    "unitBbox": {
+     "page": 14,
+     "x0": 52.97,
+     "y0": 99.62,
+     "x1": 553.01,
+     "y1": 261.96
+    },
+    "resolvable": true
+   }
+  ],
+  "caveats": [
+   "Management's H2 outlook is qualitative ('modest growth'); no specific revenue target or range is provided in the report.",
+   "Q4 FY2025 revenue of USD 5,010 million is flagged as preliminary in the source table.",
+   "The commentary does not quantify the impact of payments pricing changes or the degree of selectivity in lending volumes."
+  ],
+  "citationRetries": 1,
+  "uncitedNumbers": []
+ },
+ "usage": {
+  "inputTokens": 17013,
+  "outputTokens": 975,
+  "totalTokens": 17988
+ },
+ "latencyMs": 16196,
+ "status": "ok",
+ "s3Key": "runs/r-92aed15b8e35.json",
+ "provenance": {
+  "mode": "local-run",
+  "label": "local run · Bedrock",
+  "note": "Asked on a developer machine against the local pipeline's outputs; not the deployed AWS stack.",
+  "build": "build/e2e-quarterly",
+  "model": "Amazon Bedrock Converse (real)",
+  "embeddings": "amazon.titan-embed-text-v2:0 (real Bedrock; responses recorded)",
+  "index": "in-memory k-NN (exact inner product) + BM25 (Lucene formula) over the run's units; NOT OpenSearch",
+  "graph": "pyoxigraph in-process (NOT Amazon Neptune)",
+  "stores": "moto (S3, DynamoDB) loaded from the run's world snapshot",
+  "piiGate": "Amazon Comprehend DetectPiiEntities (real; responses recorded) (runs/local/recorded/comprehend.json)",
+  "extraction": "docling 2.145.0 (local, dev mode)",
+  "scanPages": "local Docling OCR shaped as a Textract response (NOT Amazon Textract)",
+  "phaseBEmbeddings": "amazon.titan-embed-text-v2:0 (real Bedrock; responses recorded)",
+  "toolTransport": "tool Lambda handlers in-process (local gateway; identity injected like the interceptor)"
+ }
+}

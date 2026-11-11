@@ -1,0 +1,133 @@
+{
+  "$defs": {
+    "GraphOperand": {
+      "properties": {
+        "unitId": {
+          "title": "Unitid",
+          "type": "string"
+        },
+        "fieldId": {
+          "title": "Fieldid",
+          "type": "string"
+        },
+        "value": {
+          "title": "Value",
+          "type": "string"
+        },
+        "concept": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Concept"
+        },
+        "label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Label"
+        }
+      },
+      "required": [
+        "unitId",
+        "fieldId",
+        "value"
+      ],
+      "title": "GraphOperand",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "template": {
+      "title": "Template",
+      "type": "string"
+    },
+    "sparql": {
+      "title": "Sparql",
+      "type": "string"
+    },
+    "graphs": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Graphs",
+      "type": "array"
+    },
+    "columns": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Columns",
+      "type": "array"
+    },
+    "rows": {
+      "items": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "title": "Rows",
+      "type": "array"
+    },
+    "rowCount": {
+      "title": "Rowcount",
+      "type": "integer"
+    },
+    "total": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Total"
+    },
+    "operands": {
+      "items": {
+        "$ref": "#/$defs/GraphOperand"
+      },
+      "title": "Operands",
+      "type": "array"
+    },
+    "note": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Note"
+    },
+    "latencyMs": {
+      "title": "Latencyms",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "template",
+    "sparql",
+    "graphs",
+    "columns",
+    "rows",
+    "rowCount",
+    "latencyMs"
+  ],
+  "title": "GraphHopResult",
+  "type": "object"
+}

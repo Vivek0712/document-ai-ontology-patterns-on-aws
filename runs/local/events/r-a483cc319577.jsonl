@@ -1,0 +1,97 @@
+{"type": "run_start", "runId": "r-a483cc319577", "packageId": "pkg-lending-01", "pipelineVersion": "1.0", "question": "Who is the employer on Maya Fictus's 2025 W-2?", "modelId": "us.anthropic.claude-sonnet-4-6", "configSha": "1f437eb1624d9df0b867a42d73fe7d27b7de6fb441c90c917f15b23f564748dc", "promptSha": "59984da199bb287de4b76a1d91bc0a5c27fde51028c39ffd04a33c3950a7d302", "tools": ["search_units", "graph_hop", "get_region", "doc_status"], "t": 0.0}
+{"type": "tool_start", "callId": "tooluse_Rj6z2cto5rlE5WlkpuOJ6S", "tool": "search_units", "input": {"query": "Maya Fictus employer W-2 2025", "docType": "doc:W2"}, "t": 5.093}
+{"type": "tool_end", "callId": "tooluse_Rj6z2cto5rlE5WlkpuOJ6S", "tool": "search_units", "ms": 360, "status": "ok", "summary": "0 units", "units": [], "scores": [], "retrieved": [], "rows": [], "t": 5.093}
+{"type": "tool_start", "callId": "tooluse_4QpEAkVacXuKV9MTMo368c", "tool": "search_units", "input": {"query": "Maya Fictus employer W-2 2025"}, "t": 11.385}
+{"type": "tool_end", "callId": "tooluse_4QpEAkVacXuKV9MTMo368c", "tool": "search_units", "ms": 3, "status": "ok", "summary": "3 units", "units": ["w2-2025-maya-fictus-827d37:1.0:c-01", "w2-2025-arjun-fictus-546450:1.0:c-01", "payslip-2026-09-maya-fictus-bd153b:1.0:c-01"], "scores": [{"unitId": "w2-2025-maya-fictus-827d37:1.0:c-01", "denseNorm": 1.0, "bm25Norm": 1.0, "fused": 1.0}, {"unitId": "w2-2025-arjun-fictus-546450:1.0:c-01", "denseNorm": 0.9082, "bm25Norm": 0.7478, "fused": 0.8601}, {"unitId": "payslip-2026-09-maya-fictus-bd153b:1.0:c-01", "denseNorm": 0.0, "bm25Norm": 0.0, "fused": 0.0}], "retrieved": [{"rank": 1, "unitId": "w2-2025-maya-fictus-827d37:1.0:c-01", "docId": "w2-2025-maya-fictus-827d37", "fileName": "w2_2025_maya_fictus.pdf", "unitType": "chunk", "label": "chunk c-01", "chunkLabel": "chunk c-01", "breadcrumb": "", "text": "Form W-2\nWage and Tax Statement\n2025\nCopy C—For EMPLOYEE'S RECORDS (See Notice to Employee on the back of Copy B.)\nDepartment of the Treasury—Internal Revenue Service (form layout, fictitious data)\na Employee's social security number\nb Employer identification number (EIN)\nc Employer's name, address, and ZIP code\nd Control number\ne Employee's first name and initial   Last name      f Employee's address and ZIP code\n1 Wages, tips, other compensation\n2 Federal income tax withheld\n3 Social security wages\n4 Social security tax withheld\n5 Medicare wages and tips\n6 Medicare tax withheld\n7 Social security tips\n8 Allocated tips\n9\n10 Dependent care benefits\n11 Nonqualified plans\n12a See instructions for box 12\n13 Retirement plan\n12b\n14 Other\n12c\n12d\n15 State\nEmployer's state ID number\n16 State wages, tips, etc.\n17 State income tax\nCode\n6,600.00\nD\n105,000.00\n105,000.00\n98,400.00\n13,776.00\n6,510.00\n1,522.50\nX\nXXX-XX-0417\n00-4417305\nNewAge Global Fintech Services\n400 Market Street\nSeattle, WA 98104\nNGF-25-0417\nMaya Fictus\n18 Harbor Lane\nSeattle, WA 98101\nWA\nFictitious document · NewAge Global Fintech · for demonstration only", "pages": [1], "bboxes": [], "fields": [], "piiFlag": "none", "resolvable": false, "scores": {"denseRaw": 1.507236, "bm25Raw": 1.112211, "denseNorm": 1.0, "bm25Norm": 1.0, "fused": 1.0}}, {"rank": 2, "unitId": "w2-2025-arjun-fictus-546450:1.0:c-01", "docId": "w2-2025-arjun-fictus-546450", "fileName": "w2_2025_arjun_fictus.pdf", "unitType": "chunk", "label": "chunk c-01", "chunkLabel": "chunk c-01", "breadcrumb": "", "text": "Form W-2\nWage and Tax Statement\n2025\nCopy C—For EMPLOYEE'S RECORDS (See Notice to Employee on the back of Copy B.)\nDepartment of the Treasury—Internal Revenue Service (form layout, fictitious data)\na Employee's social security number\nb Employer identification number (EIN)\nc Employer's name, address, and ZIP code\nd Control number\ne Employee's first name and initial   Last name      f Employee's address and ZIP code\n1 Wages, tips, other compensation\n2 Federal income tax withheld\n3 Social security wages\n4 Social security tax withheld\n5 Medicare wages and tips\n6 Medicare tax withheld\n7 Social security tips\n8 Allocated tips\n9\n10 Dependent care benefits\n11 Nonqualified plans\n12a See instructions for box 12\n13 Retirement plan\n12b\n14 Other\n12c\n12d\n15 State\nEmployer's state ID number\n16 State wages, tips, etc.\n17 State income tax\nCode\n3,750.00\nD\n75,000.00\n75,000.00\n71,250.00\n8,550.00\n4,650.00\n1,087.50\nX\nXXX-XX-2290\n00-4417306\nNewAge Global Fintech Payments\n410 Market Street\nSeattle, WA 98104\nNGF-25-2290\nArjun Fictus\n18 Harbor Lane\nSeattle, WA 98101\nWA\nFictitious document · NewAge Global Fintech · for demonstration only", "pages": [1], "bboxes": [], "fields": [], "piiFlag": "none", "resolvable": false, "scores": {"denseRaw": 1.480316, "bm25Raw": 0.91699, "denseNorm": 0.9082, "bm25Norm": 0.7478, "fused": 0.8601}}, {"rank": 3, "unitId": "payslip-2026-09-maya-fictus-bd153b:1.0:c-01", "docId": "payslip-2026-09-maya-fictus-bd153b", "fileName": "payslip_2026-09_maya_fictus.pdf", "unitType": "chunk", "label": "chunk c-01", "chunkLabel": "chunk c-01", "breadcrumb": "", "text": "NewAge Global Fintech Services\n400 Market Street, Seattle, WA 98104\nEarnings Statement\nEmployee\nMaya Fictus\nEmployee ID\nE-0417\nPay period\n01–30 Sep 2026\nPay date\n30 Sep 2026\nDescription\nCurrent\nYear to date\nGross pay\n9,000.00\n81,000.00\n401(k) employee deferral\n600.00\n5,400.00\nFederal income tax\n1,170.00\n10,530.00\nSocial Security\n558.00\n5,022.00\nMedicare\n130.50\n1,174.50\nNet pay\n6,541.50\n58,873.50\nYear-to-date figures cover 01 Jan 2026 to 30 Sep 2026.\nFictitious document · NewAge Global Fintech · for demonstration only", "pages": [1], "bboxes": [], "fields": [], "piiFlag": "none", "resolvable": false, "scores": {"denseRaw": 1.213879, "bm25Raw": 0.33813, "denseNorm": 0.0, "bm25Norm": 0.0, "fused": 0.0}}], "rows": [], "t": 11.385}
+{"type": "text", "delta": "```"}
+{"type": "text", "delta": "json\n{\n  \"answer"}
+{"type": "text", "delta": "\": \""}
+{"type": "text", "delta": "The"}
+{"type": "text", "delta": " employer"}
+{"type": "text", "delta": " listed"}
+{"type": "text", "delta": " on Maya"}
+{"type": "text", "delta": " Fictus's"}
+{"type": "text", "delta": " "}
+{"type": "text", "delta": "2025 W-2 is"}
+{"type": "text", "delta": " New"}
+{"type": "text", "delta": "Age Global Fintech Services, located"}
+{"type": "text", "delta": " at 400 Market Street, Seattle"}
+{"type": "text", "delta": ", WA 98104,"}
+{"type": "text", "delta": " with E"}
+{"type": "text", "delta": "IN 00"}
+{"type": "text", "delta": "-4417305.\","}
+{"type": "text", "delta": "\n  \"total"}
+{"type": "text", "delta": "\":"}
+{"type": "text", "delta": " null"}
+{"type": "text", "delta": ",\n  \"currency"}
+{"type": "text", "delta": "\": null"}
+{"type": "text", "delta": ",\n  \"arithmetic"}
+{"type": "text", "delta": "\": null"}
+{"type": "text", "delta": ",\n  \"claims"}
+{"type": "text", "delta": "\": [\n    {\n      \""}
+{"type": "text", "delta": "text\": \"NewAge Global Fin"}
+{"type": "text", "delta": "tech Services\",\n      \"value"}
+{"type": "text", "delta": "\": \"NewAge Global Fintech"}
+{"type": "text", "delta": " Services\",\n      \"unit"}
+{"type": "text", "delta": "Id"}
+{"type": "text", "delta": "\": \"w2-2025-"}
+{"type": "text", "delta": "maya-fictus-827d37"}
+{"type": "text", "delta": ":1.0:c-01"}
+{"type": "text", "delta": "\",\n      \"field"}
+{"type": "text", "delta": "Id"}
+{"type": "text", "delta": "\": null"}
+{"type": "text", "delta": "\n    }"}
+{"type": "text", "delta": "\n  ],\n  \"cave"}
+{"type": "text", "delta": "ats\": [\""}
+{"type": "text", "delta": "This"}
+{"type": "text", "delta": " is a fictitious document"}
+{"type": "text", "delta": " created"}
+{"type": "text", "delta": " for demonstration purposes only.\"]"}
+{"type": "text", "delta": "\n}\n```"}
+{"type": "text", "delta": "```"}
+{"type": "text", "delta": "json\n{\n  \"answer\":"}
+{"type": "text", "delta": " \"The employer listed on Maya Fict"}
+{"type": "text", "delta": "us's 2025 W-"}
+{"type": "text", "delta": "2 is NewAge Global Fin"}
+{"type": "text", "delta": "tech Services, with"}
+{"type": "text", "delta": " EIN 00-4417305"}
+{"type": "text", "delta": ".\",\n  \"total\": null,"}
+{"type": "text", "delta": "\n  \"currency\": null,"}
+{"type": "text", "delta": "\n  \"arithmetic\": null,\n  "}
+{"type": "text", "delta": "\"claims\": [\n    {"}
+{"type": "text", "delta": "\n      \"text\": \"NewAge Global"}
+{"type": "text", "delta": " Fintech Services\",\n      \""}
+{"type": "text", "delta": "value\": \"NewAge Global Fin"}
+{"type": "text", "delta": "tech Services\",\n      \"unitId"}
+{"type": "text", "delta": "\": \"w2-2025-"}
+{"type": "text", "delta": "maya-fictus-827d37"}
+{"type": "text", "delta": ":1.0:c-01"}
+{"type": "text", "delta": "\",\n      \"fieldId\": null"}
+{"type": "text", "delta": "\n    },"}
+{"type": "text", "delta": "\n    {\n      \"text\":"}
+{"type": "text", "delta": " \"00"}
+{"type": "text", "delta": "-4417305\",\n      \""}
+{"type": "text", "delta": "value\": \"00-4417305"}
+{"type": "text", "delta": "\",\n      \"unitId\": \""}
+{"type": "text", "delta": "w2-2025-maya-"}
+{"type": "text", "delta": "fictus-827d37:1"}
+{"type": "text", "delta": ".0:c-01\","}
+{"type": "text", "delta": "\n      \"fieldId\": null\n    "}
+{"type": "text", "delta": "}\n  ],\n  \"c"}
+{"type": "text", "delta": "aveats\": [\"This is a fict"}
+{"type": "text", "delta": "itious document created for demonstration purposes only.\","}
+{"type": "text", "delta": " \"Address"}
+{"type": "text", "delta": " details"}
+{"type": "text", "delta": " were"}
+{"type": "text", "delta": " om"}
+{"type": "text", "delta": "itted as"}
+{"type": "text", "delta": " they are"}
+{"type": "text", "delta": " embedded"}
+{"type": "text", "delta": " in un"}
+{"type": "text", "delta": "structured text without"}
+{"type": "text", "delta": " discrete"}
+{"type": "text", "delta": " field"}
+{"type": "text", "delta": " citations"}
+{"type": "text", "delta": ".\"]\n}\n```"}
+{"answer": "The employer listed on Maya Fictus's 2025 W-2 is NewAge Global Fintech Services, with EIN 00-4417305.", "claims": [{"text": "NewAge Global Fintech Services", "unitId": "w2-2025-maya-fictus-827d37:1.0:c-01", "docId": "w2-2025-maya-fictus-827d37", "fileName": "w2_2025_maya_fictus.pdf", "label": "chunk c-01", "resolvable": false, "chunkLabel": "chunk c-01", "reason": "chunk has no page region"}], "caveats": ["This is a fictitious document created for demonstration purposes only.", "Address details were omitted as they are embedded in unstructured text without discrete field citations."], "citationRetries": 1, "uncitedNumbers": [], "type": "answer"}
+{"runId": "r-a483cc319577", "packageId": "pkg-lending-01", "pipelineVersion": "1.0", "configSha": "1f437eb1624d9df0b867a42d73fe7d27b7de6fb441c90c917f15b23f564748dc", "blockShas": {"preprocessing": "ba267beb165e0af475c323c9f78543f5ee90fc7c201ccbf59f34842e3d4e6114", "retrieval": "3587393d6f0d8c38adfaf6853c1463b54cc1ee872646ff354b3408da63dd586c", "generation": "4731dca541739b7b91e53099ae45acb0f255c753e313bec48702fa79ecad436e", "agent": "5ce789906365b6a0f9d139eba009f17b61d3113720a21c755e3f5be4459551f0"}, "promptSha": "59984da199bb287de4b76a1d91bc0a5c27fde51028c39ffd04a33c3950a7d302", "modelId": "us.anthropic.claude-sonnet-4-6", "corpusHash": "34856e2c51fa71d6ddc21b4493efde7b9d6ccd1d87ed0f3287908d6612b687e2", "memoryRecordsInjected": 0, "latencyMs": 26253, "usage": {"inputTokens": 11741, "outputTokens": 601, "totalTokens": 12342}, "startedAt": "2026-11-10T22:14:37.208Z", "type": "run", "question": "Who is the employer on Maya Fictus's 2025 W-2?"}

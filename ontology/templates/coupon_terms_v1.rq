@@ -1,0 +1,51 @@
+# template: coupon_terms_v1
+# purpose:  a bond's coupon at issue and the rating-triggered step event read from the footnote its
+#           marker links (D2), each with the page region it came from.
+# params:   security  required  the security identifier as printed, e.g. "XS-2031" (matched case-insensitively)
+# columns:  security, bond, terms, field, concept, label, value, coupon, unit, event, newRate,
+#           effectiveFromYear, triggerRating, marker, footnote, region, page, x0, y0, x1, y1, fileName
+#           (field/value/label = the coupon field as printed, so graph_hop reports it as the operand;
+#           page and x0..y1 = the footnote's region)
+# graphs:   FROM clause = TBox graphs + the caller-readable ABox graph
+# notes:    the ABox is written by graph_write from deterministic bindings (no model); no row = no step
+#           event was linked and parsed for that security.
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX fin: <urn:rp:ont:fin:>
+PREFIX doc: <urn:rp:ont:doc:>
+PREFIX rp: <urn:rp:ont:rp:>
+PREFIX fibo-sec-dbt-bnd: <https://spec.edmcouncil.org/fibo/ontology/SEC/Debt/Bonds/>
+PREFIX fibo-sec-dbt-dbti: <https://spec.edmcouncil.org/fibo/ontology/SEC/Debt/DebtInstruments/>
+SELECT ?security ?bond ?terms ?field ?concept ?label ?value ?coupon ?unit ?event ?newRate ?effectiveFromYear
+       ?triggerRating ?marker ?footnote ?region ?page ?x0 ?y0 ?x1 ?y1 ?fileName
+{{FROM}}
+WHERE {
+  ?bond a fibo-sec-dbt-bnd:StepUpBond ;
+        rp:name ?security ;
+        fibo-sec-dbt-dbti:hasInterestPaymentTerms ?terms .
+  FILTER(LCASE(STR(?security)) = LCASE({{security}}))
+  ?terms a fibo-sec-dbt-bnd:SteppedCouponTerms ;
+         fin:hasStepEvent ?event ;
+         prov:wasDerivedFrom ?field .
+  BIND(fin:CouponRate AS ?concept)
+  ?field a fin:FieldValue ;
+         fin:concept ?concept ;
+         rp:value ?value ;
+         prov:wasDerivedFrom ?unit .
+  ?unit a doc:EvidenceUnit ; rp:inDocument ?doc .
+  ?doc rp:fileName ?fileName .
+  OPTIONAL { ?field rp:label ?label }
+  OPTIONAL { ?field fin:amount ?coupon }
+  ?event a fin:RatingTriggeredStepEvent ;
+         fin:newRate ?newRate ;
+         fin:effectiveFromYear ?effectiveFromYear ;
+         fin:triggerRating ?triggerRating ;
+         prov:wasDerivedFrom ?region .
+  ?region a doc:PageRegion ; rp:page ?page ; rp:x0 ?x0 ; rp:y0 ?y0 ; rp:x1 ?x1 ; rp:y1 ?y1 .
+  OPTIONAL { ?event rp:marker ?marker }
+  OPTIONAL { ?event rp:label ?footnote }
+}
+ORDER BY ?security ?event

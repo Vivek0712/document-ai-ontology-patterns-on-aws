@@ -1,0 +1,404 @@
+{
+  "$defs": {
+    "BBox": {
+      "properties": {
+        "page": {
+          "minimum": 1,
+          "title": "Page",
+          "type": "integer"
+        },
+        "x0": {
+          "title": "X0",
+          "type": "number"
+        },
+        "y0": {
+          "title": "Y0",
+          "type": "number"
+        },
+        "x1": {
+          "title": "X1",
+          "type": "number"
+        },
+        "y1": {
+          "title": "Y1",
+          "type": "number"
+        }
+      },
+      "required": [
+        "page",
+        "x0",
+        "y0",
+        "x1",
+        "y1"
+      ],
+      "title": "BBox",
+      "type": "object"
+    },
+    "FieldBrief": {
+      "properties": {
+        "fieldId": {
+          "title": "Fieldid",
+          "type": "string"
+        },
+        "label": {
+          "title": "Label",
+          "type": "string"
+        },
+        "value": {
+          "title": "Value",
+          "type": "string"
+        },
+        "valueNumber": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Valuenumber"
+        },
+        "concept": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Concept"
+        },
+        "period": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Period"
+        },
+        "page": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Page"
+        },
+        "bbox": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/BBox"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "fieldId",
+        "label",
+        "value"
+      ],
+      "title": "FieldBrief",
+      "type": "object"
+    },
+    "PiiFlag": {
+      "description": "Result of the PII gate for one unit.",
+      "enum": [
+        "none",
+        "masked",
+        "held"
+      ],
+      "title": "PiiFlag",
+      "type": "string"
+    },
+    "RetrievedUnit": {
+      "properties": {
+        "rank": {
+          "title": "Rank",
+          "type": "integer"
+        },
+        "unitId": {
+          "title": "Unitid",
+          "type": "string"
+        },
+        "docId": {
+          "title": "Docid",
+          "type": "string"
+        },
+        "fileName": {
+          "title": "Filename",
+          "type": "string"
+        },
+        "unitType": {
+          "$ref": "#/$defs/UnitType"
+        },
+        "label": {
+          "title": "Label",
+          "type": "string"
+        },
+        "chunkLabel": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Chunklabel"
+        },
+        "docType": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Doctype"
+        },
+        "breadcrumb": {
+          "default": "",
+          "title": "Breadcrumb",
+          "type": "string"
+        },
+        "text": {
+          "title": "Text",
+          "type": "string"
+        },
+        "pages": {
+          "items": {
+            "type": "integer"
+          },
+          "title": "Pages",
+          "type": "array"
+        },
+        "pageWidth": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Pagewidth"
+        },
+        "pageHeight": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Pageheight"
+        },
+        "bboxes": {
+          "items": {
+            "$ref": "#/$defs/BBox"
+          },
+          "title": "Bboxes",
+          "type": "array"
+        },
+        "fields": {
+          "items": {
+            "$ref": "#/$defs/FieldBrief"
+          },
+          "title": "Fields",
+          "type": "array"
+        },
+        "period": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Period"
+        },
+        "piiFlag": {
+          "$ref": "#/$defs/PiiFlag",
+          "default": "none"
+        },
+        "resolvable": {
+          "title": "Resolvable",
+          "type": "boolean"
+        },
+        "scores": {
+          "$ref": "#/$defs/UnitScores"
+        }
+      },
+      "required": [
+        "rank",
+        "unitId",
+        "docId",
+        "fileName",
+        "unitType",
+        "label",
+        "text",
+        "pages",
+        "resolvable",
+        "scores"
+      ],
+      "title": "RetrievedUnit",
+      "type": "object"
+    },
+    "SearchQueryEcho": {
+      "description": "What the retriever actually ran (shown in the query panel, F11).",
+      "properties": {
+        "index": {
+          "title": "Index",
+          "type": "string"
+        },
+        "k": {
+          "title": "K",
+          "type": "integer"
+        },
+        "subQueryK": {
+          "title": "Subqueryk",
+          "type": "integer"
+        },
+        "weights": {
+          "additionalProperties": {
+            "type": "number"
+          },
+          "title": "Weights",
+          "type": "object"
+        },
+        "normalization": {
+          "const": "min_max",
+          "default": "min_max",
+          "title": "Normalization",
+          "type": "string"
+        },
+        "filter": {
+          "additionalProperties": true,
+          "title": "Filter",
+          "type": "object"
+        },
+        "embedModel": {
+          "title": "Embedmodel",
+          "type": "string"
+        }
+      },
+      "required": [
+        "index",
+        "k",
+        "subQueryK",
+        "weights",
+        "filter",
+        "embedModel"
+      ],
+      "title": "SearchQueryEcho",
+      "type": "object"
+    },
+    "UnitScores": {
+      "properties": {
+        "denseRaw": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Denseraw"
+        },
+        "bm25Raw": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Bm25Raw"
+        },
+        "denseNorm": {
+          "title": "Densenorm",
+          "type": "number"
+        },
+        "bm25Norm": {
+          "title": "Bm25Norm",
+          "type": "number"
+        },
+        "fused": {
+          "title": "Fused",
+          "type": "number"
+        }
+      },
+      "required": [
+        "denseNorm",
+        "bm25Norm",
+        "fused"
+      ],
+      "title": "UnitScores",
+      "type": "object"
+    },
+    "UnitType": {
+      "description": "Unit types. v1.0 produces only CHUNK; v2.3.1 produces the evidence-unit types.",
+      "enum": [
+        "chunk",
+        "table_panel",
+        "section_text",
+        "figure_panel",
+        "field_group",
+        "list_block"
+      ],
+      "title": "UnitType",
+      "type": "string"
+    }
+  },
+  "properties": {
+    "units": {
+      "items": {
+        "$ref": "#/$defs/RetrievedUnit"
+      },
+      "title": "Units",
+      "type": "array"
+    },
+    "query": {
+      "$ref": "#/$defs/SearchQueryEcho"
+    },
+    "latencyMs": {
+      "title": "Latencyms",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "units",
+    "query",
+    "latencyMs"
+  ],
+  "title": "SearchUnitsResult",
+  "type": "object"
+}

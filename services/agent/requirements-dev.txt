@@ -1,0 +1,2 @@
+# Test-only dependency for the agent-plane tests (SPARQL templates on pyoxigraph). Not bundled.
+pyoxigraph==0.5.13

@@ -1,0 +1,428 @@
+{
+ "runId": "r-f1de7e43ece2",
+ "createdAt": "2026-11-11T00:42:01.190Z",
+ "packageId": "pkg-quarterly-01",
+ "pipelineVersion": "1.0",
+ "question": "What was Payments revenue in Q3 FY2025 according to Figure 2?",
+ "callerSub": "local-dev-owner-0000",
+ "groups": [
+  "lending-analyst"
+ ],
+ "modelId": "us.anthropic.claude-sonnet-4-6",
+ "promptSha": "59984da199bb287de4b76a1d91bc0a5c27fde51028c39ffd04a33c3950a7d302",
+ "configSha": "1f437eb1624d9df0b867a42d73fe7d27b7de6fb441c90c917f15b23f564748dc",
+ "blockShas": {
+  "preprocessing": "ba267beb165e0af475c323c9f78543f5ee90fc7c201ccbf59f34842e3d4e6114",
+  "retrieval": "3587393d6f0d8c38adfaf6853c1463b54cc1ee872646ff354b3408da63dd586c",
+  "generation": "4731dca541739b7b91e53099ae45acb0f255c753e313bec48702fa79ecad436e",
+  "agent": "5ce789906365b6a0f9d139eba009f17b61d3113720a21c755e3f5be4459551f0"
+ },
+ "corpusHash": "4f9790b4a360d9ef57a232bb5ffd829704e5e2d07486c54522a00f9f83fd82b9",
+ "memoryRecordsInjected": 0,
+ "toolsEnabled": [
+  "search_units",
+  "graph_hop",
+  "get_region",
+  "doc_status"
+ ],
+ "toolCalls": [
+  {
+   "callId": "tooluse_aBfAmaErzZeZAzfbZgl4nj",
+   "tool": "search_units",
+   "input": {
+    "query": "Payments revenue Q3 FY2025 Figure 2"
+   },
+   "injected": {
+    "callerSub": "local-",
+    "groups": [
+     "lending-analyst"
+    ],
+    "pipelineVersion": "1.0",
+    "packageId": "pkg-quarterly-01",
+    "runId": "r-f1de7e43ece2",
+    "via": "local-gateway"
+   },
+   "startedAt": "2026-11-11T00:42:08.010Z",
+   "ms": 365,
+   "status": "ok",
+   "output": {
+    "units": [
+     {
+      "rank": 1,
+      "unitId": "quarterly-report-q3-fy2025-ab5fea:1.0:c-06",
+      "docId": "quarterly-report-q3-fy2025-ab5fea",
+      "fileName": "quarterly_report_q3_fy2025.pdf",
+      "unitType": "chunk",
+      "label": "chunk c-06",
+      "chunkLabel": "chunk c-06",
+      "breadcrumb": "",
+      "text": "every market. The group\nkept its funding mix stable, with customer deposits remaining the primary source of liquidity.\nThe group continued to simplify its legal entity structure where this reduces operating cost. Card issuing\nvolumes followed the usual seasonal pattern for the period.\nData platform work concentrated on lineage, so that every reported figure can be traced to its source.\nCustomer complaints fell compared with the prior quarter after changes to dispute handling.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 11 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2025\n3.2 Revenue by segment\nFigure 2 · Revenue by segment · Q3 FY2025 · USD millions\n2,140\nPayments\n1,610\nLending\n1,140\nMarkets\nThe group continued to simplify its legal entity structure where this reduces operating cost. Customer research\ninformed changes to the mobile application's statement and document views.\nThe lending business tightened underwriting criteria for unsecured products in selected segments. Treasury\nextended the maturity profile of wholesale funding during the period.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 12 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2025\n3.3 Revenue commentary\nRevenue rose in each quarter of FY2025. Management expects modest growth in H2, as pricing changes in\nthe payments business annualise and lending volumes stay selective.\nCustomer complaints fell compared with the prior quarter after changes to dispute handling. Card issuing\nvolumes followed the usual seasonal pattern for the period.\nThe compliance function completed its annual review of sanctions screening controls. The group continued to\nsimplify its legal entity structure where this reduces operating cost.\nThe lending business tightened underwriting criteria for unsecured products in selected segments. The group\nkept its funding mix stable, with customer deposits remaining the primary source of liquidity.",
+      "pages": [
+       11,
+       12,
+       13
+      ],
+      "bboxes": [],
+      "fields": [],
+      "piiFlag": "none",
+      "resolvable": false,
+      "scores": {
+       "denseRaw": 1.49478,
+       "bm25Raw": 3.568794,
+       "denseNorm": 1.0,
+       "bm25Norm": 1.0,
+       "fused": 1.0
+      }
+     },
+     {
+      "rank": 2,
+      "unitId": "quarterly-report-q3-fy2023-f6e6a3:1.0:c-06",
+      "docId": "quarterly-report-q3-fy2023-f6e6a3",
+      "fileName": "quarterly_report_q3_fy2023.pdf",
+      "unitType": "chunk",
+      "label": "chunk c-06",
+      "chunkLabel": "chunk c-06",
+      "breadcrumb": "",
+      "text": "schedule in every market. The group\nkept its funding mix stable, with customer deposits remaining the primary source of liquidity.\nThe group continued to simplify its legal entity structure where this reduces operating cost. Cost discipline\nremained a priority, and discretionary spending was held flat.\nInvestment in fraud analytics focused on earlier detection of account takeover patterns. Data platform work\nconcentrated on lineage, so that every reported figure can be traced to its source.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 11 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2023\n3.2 Revenue by segment\nFigure 2 · Revenue by segment · Q3 FY2023 · USD millions\n1,844\nPayments\n1,407\nLending\n949\nMarkets\nPartnership agreements with two payroll providers moved from pilot into general availability. The group kept its\nfunding mix stable, with customer deposits remaining the primary source of liquidity.\nCard issuing volumes followed the usual seasonal pattern for the period. Cost discipline remained a priority,\nand discretionary spending was held flat.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 12 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2023\n3.3 Revenue commentary\nRevenue rose in each quarter of FY2023. Management expects modest growth in H2, as pricing changes in\nthe payments business annualise and lending volumes stay selective.\nStaff training covered the revised conduct framework and the new incident reporting procedure. The lending\nbusiness tightened underwriting criteria for unsecured products in selected segments.\nThe group kept its funding mix stable, with customer deposits remaining the primary source of liquidity. Risk\nmanagement reviewed concentration limits across the lending book and found no breaches.\nCard issuing volumes followed the usual seasonal pattern for the period. Technology spending shifted from\nnew builds towards reliability work on existing services.",
+      "pages": [
+       11,
+       12,
+       13
+      ],
+      "bboxes": [],
+      "fields": [],
+      "piiFlag": "none",
+      "resolvable": false,
+      "scores": {
+       "denseRaw": 1.463993,
+       "bm25Raw": 2.741258,
+       "denseNorm": 0.8741,
+       "bm25Norm": 0.7523,
+       "fused": 0.8376
+      }
+     },
+     {
+      "rank": 3,
+      "unitId": "quarterly-report-q3-fy2024-ab0f27:1.0:c-06",
+      "docId": "quarterly-report-q3-fy2024-ab0f27",
+      "fileName": "quarterly_report_q3_fy2024.pdf",
+      "unitType": "chunk",
+      "label": "chunk c-06",
+      "chunkLabel": "chunk c-06",
+      "breadcrumb": "",
+      "text": "services.\nPartnership agreements with two payroll providers moved from pilot into general availability. The lending\nbusiness tightened underwriting criteria for unsecured products in selected segments.\nOperating teams completed the migration of merchant onboarding to the shared identity service. Customer\nresearch informed changes to the mobile application's statement and document views.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 11 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2024\n3.2 Revenue by segment\nFigure 2 · Revenue by segment · Q3 FY2024 · USD millions\n1,797\nPayments\n1,279\nLending\n894\nMarkets\nCard issuing volumes followed the usual seasonal pattern for the period. The lending business tightened\nunderwriting criteria for unsecured products in selected segments.\nThe compliance function completed its annual review of sanctions screening controls. The board approved the\nupdated capital plan and the dividend policy remained unchanged.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 12 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2024\n3.3 Revenue commentary\nRevenue rose in each quarter of FY2024. Management expects modest growth in H2, as pricing changes in\nthe payments business annualise and lending volumes stay selective.\nThe compliance function completed its annual review of sanctions screening controls. Data platform work\nconcentrated on lineage, so that every reported figure can be traced to its source.\nStaff training covered the revised conduct framework and the new incident reporting procedure. Partnership\nagreements with two payroll providers moved from pilot into general availability.\nOperating teams completed the migration of merchant onboarding to the shared identity service. Technology\nspending shifted from new builds towards reliability work on existing services.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 13 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2024\n3.4 Revenue by quarter",
+      "pages": [
+       11,
+       12,
+       13,
+       14
+      ],
+      "bboxes": [],
+      "fields": [],
+      "piiFlag": "none",
+      "resolvable": false,
+      "scores": {
+       "denseRaw": 1.426851,
+       "bm25Raw": 2.801185,
+       "denseNorm": 0.7223,
+       "bm25Norm": 0.7702,
+       "fused": 0.7367
+      }
+     },
+     {
+      "rank": 4,
+      "unitId": "quarterly-report-q3-fy2025-ab5fea:1.0:c-01",
+      "docId": "quarterly-report-q3-fy2025-ab5fea",
+      "fileName": "quarterly_report_q3_fy2025.pdf",
+      "unitType": "chunk",
+      "label": "chunk c-01",
+      "chunkLabel": "chunk c-01",
+      "breadcrumb": "",
+      "text": "NewAge Global Fintech\nQuarterly Report · Q3 FY2025\nFor the third quarter of fiscal year 2025\nContents\n1. Overview\n2. Strategy and operations\n3. Results\n4. Outlook\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 1 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2025\n1. Overview\nThe compliance function completed its annual review of sanctions screening controls. Data platform work\nconcentrated on lineage, so that every reported figure can be traced to its source.\nStaff training covered the revised conduct framework and the new incident reporting procedure. Technology\nspending shifted from new builds towards reliability work on existing services.\nCost discipline remained a priority, and discretionary spending was held flat. Regional teams harmonised\nproduct terms so that customers see one fee schedule in every market.\nPartnership agreements with two payroll providers moved from pilot into general availability. The group\ncontinued to simplify its legal entity structure where this reduces operating cost.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 2 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2025\n1.2 Customers\nCustomer accounts reached 2.4 million at the end of Q3 FY2025, with most new accounts opened through the\nmobile application.\nRisk management reviewed concentration limits across the lending book and found no breaches. The markets\ndesk continued to serve corporate clients with hedging and short-term funding products.\nTreasury extended the maturity profile of wholesale funding during the period. Customer complaints fell\ncompared with the prior quarter after changes to dispute handling.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 3 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2025\nCost discipline remained a priority, and discretionary spending was held flat. The markets desk continued to\nserve corporate clients with hedging and short-term funding products.",
+      "pages": [
+       1,
+       2,
+       3,
+       4
+      ],
+      "bboxes": [],
+      "fields": [],
+      "piiFlag": "none",
+      "resolvable": false,
+      "scores": {
+       "denseRaw": 1.430476,
+       "bm25Raw": 1.435163,
+       "denseNorm": 0.7371,
+       "bm25Norm": 0.3614,
+       "fused": 0.6244
+      }
+     },
+     {
+      "rank": 5,
+      "unitId": "quarterly-report-q3-fy2024-ab0f27:1.0:c-07",
+      "docId": "quarterly-report-q3-fy2024-ab0f27",
+      "fileName": "quarterly_report_q3_fy2024.pdf",
+      "unitType": "chunk",
+      "label": "chunk c-07",
+      "chunkLabel": "chunk c-07",
+      "breadcrumb": "",
+      "text": "two payroll providers moved from pilot into general availability.\nOperating teams completed the migration of merchant onboarding to the shared identity service. Technology\nspending shifted from new builds towards reliability work on existing services.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 13 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2024\n3.4 Revenue by quarter\nThe table below sets out total revenue for each quarter of the fiscal year.\nTable 3 · Total revenue · USD millions\nQuarter\nTotal revenue\nQ1 FY2024\n3,705\nQ2 FY2024\n3,815\nQ3 FY2024\n3,970\nQ4 FY2024\n4,090\n1\n1\nQ4 figures are preliminary.\nThe quarter continued the programme of consolidating payment rails onto a single settlement platform. The\ncompliance function completed its annual review of sanctions screening controls.\nCustomer complaints fell compared with the prior quarter after changes to dispute handling. The group kept its\nfunding mix stable, with customer deposits remaining the primary source of liquidity.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 14 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2024\n3.5 Operating expenses\nPartnership agreements with two payroll providers moved from pilot into general availability. Card issuing\nvolumes followed the usual seasonal pattern for the period.\nTechnology spending shifted from new builds towards reliability work on existing services. The quarter\ncontinued the programme of consolidating payment rails onto a single settlement platform.\nInvestment in fraud analytics focused on earlier detection of account takeover patterns. The board approved\nthe updated capital plan and the dividend policy remained unchanged.\nTable 4 · Operating expenses by region · USD millions\nRegion\nQ3 FY2024\nAmericas\n757\nEMEA\n796\nTable 4 continues on the next page.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 15 of 16",
+      "pages": [
+       13,
+       14,
+       15
+      ],
+      "bboxes": [],
+      "fields": [],
+      "piiFlag": "none",
+      "resolvable": false,
+      "scores": {
+       "denseRaw": 1.398226,
+       "bm25Raw": 1.044356,
+       "denseNorm": 0.6053,
+       "bm25Norm": 0.2444,
+       "fused": 0.497
+      }
+     }
+    ],
+    "query": {
+     "index": "units-v1-0",
+     "k": 5,
+     "subQueryK": 20,
+     "weights": {
+      "dense": 0.7,
+      "bm25": 0.3
+     },
+     "normalization": "min_max",
+     "filter": {
+      "bool": {
+       "filter": [
+        {
+         "terms": {
+          "allowedPrincipals": [
+           "user:local-dev-owner-0000",
+           "group:lending-analyst"
+          ]
+         }
+        },
+        {
+         "term": {
+          "packageId": "pkg-quarterly-01"
+         }
+        },
+        {
+         "term": {
+          "pipelineVersion": "1.0"
+         }
+        }
+       ],
+       "must_not": [
+        {
+         "term": {
+          "piiFlag": "held"
+         }
+        }
+       ]
+      }
+     },
+     "embedModel": "amazon.titan-embed-text-v2:0"
+    },
+    "latencyMs": 364
+   }
+  }
+ ],
+ "retrieved": [
+  {
+   "rank": 1,
+   "unitId": "quarterly-report-q3-fy2025-ab5fea:1.0:c-06",
+   "docId": "quarterly-report-q3-fy2025-ab5fea",
+   "fileName": "quarterly_report_q3_fy2025.pdf",
+   "unitType": "chunk",
+   "label": "chunk c-06",
+   "chunkLabel": "chunk c-06",
+   "breadcrumb": "",
+   "text": "every market. The group\nkept its funding mix stable, with customer deposits remaining the primary source of liquidity.\nThe group continued to simplify its legal entity structure where this reduces operating cost. Card issuing\nvolumes followed the usual seasonal pattern for the period.\nData platform work concentrated on lineage, so that every reported figure can be traced to its source.\nCustomer complaints fell compared with the prior quarter after changes to dispute handling.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 11 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2025\n3.2 Revenue by segment\nFigure 2 · Revenue by segment · Q3 FY2025 · USD millions\n2,140\nPayments\n1,610\nLending\n1,140\nMarkets\nThe group continued to simplify its legal entity structure where this reduces operating cost. Customer research\ninformed changes to the mobile application's statement and document views.\nThe lending business tightened underwriting criteria for unsecured products in selected segments. Treasury\nextended the maturity profile of wholesale funding during the period.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 12 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2025\n3.3 Revenue commentary\nRevenue rose in each quarter of FY2025. Management expects modest growth in H2, as pricing changes in\nthe payments business annualise and lending volumes stay selective.\nCustomer complaints fell compared with the prior quarter after changes to dispute handling. Card issuing\nvolumes followed the usual seasonal pattern for the period.\nThe compliance function completed its annual review of sanctions screening controls. The group continued to\nsimplify its legal entity structure where this reduces operating cost.\nThe lending business tightened underwriting criteria for unsecured products in selected segments. The group\nkept its funding mix stable, with customer deposits remaining the primary source of liquidity.",
+   "pages": [
+    11,
+    12,
+    13
+   ],
+   "bboxes": [],
+   "fields": [],
+   "piiFlag": "none",
+   "resolvable": false,
+   "scores": {
+    "denseRaw": 1.49478,
+    "bm25Raw": 3.568794,
+    "denseNorm": 1.0,
+    "bm25Norm": 1.0,
+    "fused": 1.0
+   }
+  },
+  {
+   "rank": 2,
+   "unitId": "quarterly-report-q3-fy2023-f6e6a3:1.0:c-06",
+   "docId": "quarterly-report-q3-fy2023-f6e6a3",
+   "fileName": "quarterly_report_q3_fy2023.pdf",
+   "unitType": "chunk",
+   "label": "chunk c-06",
+   "chunkLabel": "chunk c-06",
+   "breadcrumb": "",
+   "text": "schedule in every market. The group\nkept its funding mix stable, with customer deposits remaining the primary source of liquidity.\nThe group continued to simplify its legal entity structure where this reduces operating cost. Cost discipline\nremained a priority, and discretionary spending was held flat.\nInvestment in fraud analytics focused on earlier detection of account takeover patterns. Data platform work\nconcentrated on lineage, so that every reported figure can be traced to its source.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 11 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2023\n3.2 Revenue by segment\nFigure 2 · Revenue by segment · Q3 FY2023 · USD millions\n1,844\nPayments\n1,407\nLending\n949\nMarkets\nPartnership agreements with two payroll providers moved from pilot into general availability. The group kept its\nfunding mix stable, with customer deposits remaining the primary source of liquidity.\nCard issuing volumes followed the usual seasonal pattern for the period. Cost discipline remained a priority,\nand discretionary spending was held flat.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 12 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2023\n3.3 Revenue commentary\nRevenue rose in each quarter of FY2023. Management expects modest growth in H2, as pricing changes in\nthe payments business annualise and lending volumes stay selective.\nStaff training covered the revised conduct framework and the new incident reporting procedure. The lending\nbusiness tightened underwriting criteria for unsecured products in selected segments.\nThe group kept its funding mix stable, with customer deposits remaining the primary source of liquidity. Risk\nmanagement reviewed concentration limits across the lending book and found no breaches.\nCard issuing volumes followed the usual seasonal pattern for the period. Technology spending shifted from\nnew builds towards reliability work on existing services.",
+   "pages": [
+    11,
+    12,
+    13
+   ],
+   "bboxes": [],
+   "fields": [],
+   "piiFlag": "none",
+   "resolvable": false,
+   "scores": {
+    "denseRaw": 1.463993,
+    "bm25Raw": 2.741258,
+    "denseNorm": 0.8741,
+    "bm25Norm": 0.7523,
+    "fused": 0.8376
+   }
+  },
+  {
+   "rank": 3,
+   "unitId": "quarterly-report-q3-fy2024-ab0f27:1.0:c-06",
+   "docId": "quarterly-report-q3-fy2024-ab0f27",
+   "fileName": "quarterly_report_q3_fy2024.pdf",
+   "unitType": "chunk",
+   "label": "chunk c-06",
+   "chunkLabel": "chunk c-06",
+   "breadcrumb": "",
+   "text": "services.\nPartnership agreements with two payroll providers moved from pilot into general availability. The lending\nbusiness tightened underwriting criteria for unsecured products in selected segments.\nOperating teams completed the migration of merchant onboarding to the shared identity service. Customer\nresearch informed changes to the mobile application's statement and document views.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 11 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2024\n3.2 Revenue by segment\nFigure 2 · Revenue by segment · Q3 FY2024 · USD millions\n1,797\nPayments\n1,279\nLending\n894\nMarkets\nCard issuing volumes followed the usual seasonal pattern for the period. The lending business tightened\nunderwriting criteria for unsecured products in selected segments.\nThe compliance function completed its annual review of sanctions screening controls. The board approved the\nupdated capital plan and the dividend policy remained unchanged.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 12 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2024\n3.3 Revenue commentary\nRevenue rose in each quarter of FY2024. Management expects modest growth in H2, as pricing changes in\nthe payments business annualise and lending volumes stay selective.\nThe compliance function completed its annual review of sanctions screening controls. Data platform work\nconcentrated on lineage, so that every reported figure can be traced to its source.\nStaff training covered the revised conduct framework and the new incident reporting procedure. Partnership\nagreements with two payroll providers moved from pilot into general availability.\nOperating teams completed the migration of merchant onboarding to the shared identity service. Technology\nspending shifted from new builds towards reliability work on existing services.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 13 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2024\n3.4 Revenue by quarter",
+   "pages": [
+    11,
+    12,
+    13,
+    14
+   ],
+   "bboxes": [],
+   "fields": [],
+   "piiFlag": "none",
+   "resolvable": false,
+   "scores": {
+    "denseRaw": 1.426851,
+    "bm25Raw": 2.801185,
+    "denseNorm": 0.7223,
+    "bm25Norm": 0.7702,
+    "fused": 0.7367
+   }
+  },
+  {
+   "rank": 4,
+   "unitId": "quarterly-report-q3-fy2025-ab5fea:1.0:c-01",
+   "docId": "quarterly-report-q3-fy2025-ab5fea",
+   "fileName": "quarterly_report_q3_fy2025.pdf",
+   "unitType": "chunk",
+   "label": "chunk c-01",
+   "chunkLabel": "chunk c-01",
+   "breadcrumb": "",
+   "text": "NewAge Global Fintech\nQuarterly Report · Q3 FY2025\nFor the third quarter of fiscal year 2025\nContents\n1. Overview\n2. Strategy and operations\n3. Results\n4. Outlook\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 1 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2025\n1. Overview\nThe compliance function completed its annual review of sanctions screening controls. Data platform work\nconcentrated on lineage, so that every reported figure can be traced to its source.\nStaff training covered the revised conduct framework and the new incident reporting procedure. Technology\nspending shifted from new builds towards reliability work on existing services.\nCost discipline remained a priority, and discretionary spending was held flat. Regional teams harmonised\nproduct terms so that customers see one fee schedule in every market.\nPartnership agreements with two payroll providers moved from pilot into general availability. The group\ncontinued to simplify its legal entity structure where this reduces operating cost.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 2 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2025\n1.2 Customers\nCustomer accounts reached 2.4 million at the end of Q3 FY2025, with most new accounts opened through the\nmobile application.\nRisk management reviewed concentration limits across the lending book and found no breaches. The markets\ndesk continued to serve corporate clients with hedging and short-term funding products.\nTreasury extended the maturity profile of wholesale funding during the period. Customer complaints fell\ncompared with the prior quarter after changes to dispute handling.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 3 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2025\nCost discipline remained a priority, and discretionary spending was held flat. The markets desk continued to\nserve corporate clients with hedging and short-term funding products.",
+   "pages": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "bboxes": [],
+   "fields": [],
+   "piiFlag": "none",
+   "resolvable": false,
+   "scores": {
+    "denseRaw": 1.430476,
+    "bm25Raw": 1.435163,
+    "denseNorm": 0.7371,
+    "bm25Norm": 0.3614,
+    "fused": 0.6244
+   }
+  },
+  {
+   "rank": 5,
+   "unitId": "quarterly-report-q3-fy2024-ab0f27:1.0:c-07",
+   "docId": "quarterly-report-q3-fy2024-ab0f27",
+   "fileName": "quarterly_report_q3_fy2024.pdf",
+   "unitType": "chunk",
+   "label": "chunk c-07",
+   "chunkLabel": "chunk c-07",
+   "breadcrumb": "",
+   "text": "two payroll providers moved from pilot into general availability.\nOperating teams completed the migration of merchant onboarding to the shared identity service. Technology\nspending shifted from new builds towards reliability work on existing services.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 13 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2024\n3.4 Revenue by quarter\nThe table below sets out total revenue for each quarter of the fiscal year.\nTable 3 · Total revenue · USD millions\nQuarter\nTotal revenue\nQ1 FY2024\n3,705\nQ2 FY2024\n3,815\nQ3 FY2024\n3,970\nQ4 FY2024\n4,090\n1\n1\nQ4 figures are preliminary.\nThe quarter continued the programme of consolidating payment rails onto a single settlement platform. The\ncompliance function completed its annual review of sanctions screening controls.\nCustomer complaints fell compared with the prior quarter after changes to dispute handling. The group kept its\nfunding mix stable, with customer deposits remaining the primary source of liquidity.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 14 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2024\n3.5 Operating expenses\nPartnership agreements with two payroll providers moved from pilot into general availability. Card issuing\nvolumes followed the usual seasonal pattern for the period.\nTechnology spending shifted from new builds towards reliability work on existing services. The quarter\ncontinued the programme of consolidating payment rails onto a single settlement platform.\nInvestment in fraud analytics focused on earlier detection of account takeover patterns. The board approved\nthe updated capital plan and the dividend policy remained unchanged.\nTable 4 · Operating expenses by region · USD millions\nRegion\nQ3 FY2024\nAmericas\n757\nEMEA\n796\nTable 4 continues on the next page.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 15 of 16",
+   "pages": [
+    13,
+    14,
+    15
+   ],
+   "bboxes": [],
+   "fields": [],
+   "piiFlag": "none",
+   "resolvable": false,
+   "scores": {
+    "denseRaw": 1.398226,
+    "bm25Raw": 1.044356,
+    "denseNorm": 0.6053,
+    "bm25Norm": 0.2444,
+    "fused": 0.497
+   }
+  }
+ ],
+ "retrievedText": [
+  "every market. The group\nkept its funding mix stable, with customer deposits remaining the primary source of liquidity.\nThe group continued to simplify its legal entity structure where this reduces operating cost. Card issuing\nvolumes followed the usual seasonal pattern for the period.\nData platform work concentrated on lineage, so that every reported figure can be traced to its source.\nCustomer complaints fell compared with the prior quarter after changes to dispute handling.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 11 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2025\n3.2 Revenue by segment\nFigure 2 · Revenue by segment · Q3 FY2025 · USD millions\n2,140\nPayments\n1,610\nLending\n1,140\nMarkets\nThe group continued to simplify its legal entity structure where this reduces operating cost. Customer research\ninformed changes to the mobile application's statement and document views.\nThe lending business tightened underwriting criteria for unsecured products in selected segments. Treasury\nextended the maturity profile of wholesale funding during the period.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 12 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2025\n3.3 Revenue commentary\nRevenue rose in each quarter of FY2025. Management expects modest growth in H2, as pricing changes in\nthe payments business annualise and lending volumes stay selective.\nCustomer complaints fell compared with the prior quarter after changes to dispute handling. Card issuing\nvolumes followed the usual seasonal pattern for the period.\nThe compliance function completed its annual review of sanctions screening controls. The group continued to\nsimplify its legal entity structure where this reduces operating cost.\nThe lending business tightened underwriting criteria for unsecured products in selected segments. The group\nkept its funding mix stable, with customer deposits remaining the primary source of liquidity.",
+  "schedule in every market. The group\nkept its funding mix stable, with customer deposits remaining the primary source of liquidity.\nThe group continued to simplify its legal entity structure where this reduces operating cost. Cost discipline\nremained a priority, and discretionary spending was held flat.\nInvestment in fraud analytics focused on earlier detection of account takeover patterns. Data platform work\nconcentrated on lineage, so that every reported figure can be traced to its source.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 11 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2023\n3.2 Revenue by segment\nFigure 2 · Revenue by segment · Q3 FY2023 · USD millions\n1,844\nPayments\n1,407\nLending\n949\nMarkets\nPartnership agreements with two payroll providers moved from pilot into general availability. The group kept its\nfunding mix stable, with customer deposits remaining the primary source of liquidity.\nCard issuing volumes followed the usual seasonal pattern for the period. Cost discipline remained a priority,\nand discretionary spending was held flat.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 12 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2023\n3.3 Revenue commentary\nRevenue rose in each quarter of FY2023. Management expects modest growth in H2, as pricing changes in\nthe payments business annualise and lending volumes stay selective.\nStaff training covered the revised conduct framework and the new incident reporting procedure. The lending\nbusiness tightened underwriting criteria for unsecured products in selected segments.\nThe group kept its funding mix stable, with customer deposits remaining the primary source of liquidity. Risk\nmanagement reviewed concentration limits across the lending book and found no breaches.\nCard issuing volumes followed the usual seasonal pattern for the period. Technology spending shifted from\nnew builds towards reliability work on existing services.",
+  "services.\nPartnership agreements with two payroll providers moved from pilot into general availability. The lending\nbusiness tightened underwriting criteria for unsecured products in selected segments.\nOperating teams completed the migration of merchant onboarding to the shared identity service. Customer\nresearch informed changes to the mobile application's statement and document views.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 11 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2024\n3.2 Revenue by segment\nFigure 2 · Revenue by segment · Q3 FY2024 · USD millions\n1,797\nPayments\n1,279\nLending\n894\nMarkets\nCard issuing volumes followed the usual seasonal pattern for the period. The lending business tightened\nunderwriting criteria for unsecured products in selected segments.\nThe compliance function completed its annual review of sanctions screening controls. The board approved the\nupdated capital plan and the dividend policy remained unchanged.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 12 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2024\n3.3 Revenue commentary\nRevenue rose in each quarter of FY2024. Management expects modest growth in H2, as pricing changes in\nthe payments business annualise and lending volumes stay selective.\nThe compliance function completed its annual review of sanctions screening controls. Data platform work\nconcentrated on lineage, so that every reported figure can be traced to its source.\nStaff training covered the revised conduct framework and the new incident reporting procedure. Partnership\nagreements with two payroll providers moved from pilot into general availability.\nOperating teams completed the migration of merchant onboarding to the shared identity service. Technology\nspending shifted from new builds towards reliability work on existing services.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 13 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2024\n3.4 Revenue by quarter",
+  "NewAge Global Fintech\nQuarterly Report · Q3 FY2025\nFor the third quarter of fiscal year 2025\nContents\n1. Overview\n2. Strategy and operations\n3. Results\n4. Outlook\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 1 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2025\n1. Overview\nThe compliance function completed its annual review of sanctions screening controls. Data platform work\nconcentrated on lineage, so that every reported figure can be traced to its source.\nStaff training covered the revised conduct framework and the new incident reporting procedure. Technology\nspending shifted from new builds towards reliability work on existing services.\nCost discipline remained a priority, and discretionary spending was held flat. Regional teams harmonised\nproduct terms so that customers see one fee schedule in every market.\nPartnership agreements with two payroll providers moved from pilot into general availability. The group\ncontinued to simplify its legal entity structure where this reduces operating cost.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 2 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2025\n1.2 Customers\nCustomer accounts reached 2.4 million at the end of Q3 FY2025, with most new accounts opened through the\nmobile application.\nRisk management reviewed concentration limits across the lending book and found no breaches. The markets\ndesk continued to serve corporate clients with hedging and short-term funding products.\nTreasury extended the maturity profile of wholesale funding during the period. Customer complaints fell\ncompared with the prior quarter after changes to dispute handling.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 3 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2025\nCost discipline remained a priority, and discretionary spending was held flat. The markets desk continued to\nserve corporate clients with hedging and short-term funding products.",
+  "two payroll providers moved from pilot into general availability.\nOperating teams completed the migration of merchant onboarding to the shared identity service. Technology\nspending shifted from new builds towards reliability work on existing services.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 13 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2024\n3.4 Revenue by quarter\nThe table below sets out total revenue for each quarter of the fiscal year.\nTable 3 · Total revenue · USD millions\nQuarter\nTotal revenue\nQ1 FY2024\n3,705\nQ2 FY2024\n3,815\nQ3 FY2024\n3,970\nQ4 FY2024\n4,090\n1\n1\nQ4 figures are preliminary.\nThe quarter continued the programme of consolidating payment rails onto a single settlement platform. The\ncompliance function completed its annual review of sanctions screening controls.\nCustomer complaints fell compared with the prior quarter after changes to dispute handling. The group kept its\nfunding mix stable, with customer deposits remaining the primary source of liquidity.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 14 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2024\n3.5 Operating expenses\nPartnership agreements with two payroll providers moved from pilot into general availability. Card issuing\nvolumes followed the usual seasonal pattern for the period.\nTechnology spending shifted from new builds towards reliability work on existing services. The quarter\ncontinued the programme of consolidating payment rails onto a single settlement platform.\nInvestment in fraud analytics focused on earlier detection of account takeover patterns. The board approved\nthe updated capital plan and the dividend policy remained unchanged.\nTable 4 · Operating expenses by region · USD millions\nRegion\nQ3 FY2024\nAmericas\n757\nEMEA\n796\nTable 4 continues on the next page.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 15 of 16"
+ ],
+ "answer": {
+  "answer": "According to Figure 2 (Revenue by segment) in the Q3 FY2025 Quarterly Report, Payments revenue was USD 2,140 million for the quarter.",
+  "total": "2,140.00",
+  "currency": "USD",
+  "claims": [
+   {
+    "text": "USD 2,140 million",
+    "value": "2140.00",
+    "unitId": "quarterly-report-q3-fy2025-ab5fea:1.0:c-06",
+    "docId": "quarterly-report-q3-fy2025-ab5fea",
+    "fileName": "quarterly_report_q3_fy2025.pdf",
+    "label": "chunk c-06",
+    "resolvable": false,
+    "chunkLabel": "chunk c-06",
+    "reason": "chunk has no page region"
+   }
+  ],
+  "caveats": [
+   "Figure 2 presents revenue in USD millions; the value is reported as a rounded figure.",
+   "This is a fictitious document produced by NewAge Global Fintech for demonstration purposes only."
+  ],
+  "citationRetries": 0,
+  "uncitedNumbers": []
+ },
+ "usage": {
+  "inputTokens": 7326,
+  "outputTokens": 283,
+  "totalTokens": 7609
+ },
+ "latencyMs": 13503,
+ "status": "ok",
+ "s3Key": "runs/r-f1de7e43ece2.json",
+ "provenance": {
+  "mode": "local-run",
+  "label": "local run · Bedrock",
+  "note": "Asked on a developer machine against the local pipeline's outputs; not the deployed AWS stack.",
+  "build": "build/e2e-quarterly",
+  "model": "Amazon Bedrock Converse (real)",
+  "embeddings": "amazon.titan-embed-text-v2:0 (real Bedrock; responses recorded)",
+  "index": "in-memory k-NN (exact inner product) + BM25 (Lucene formula) over the run's units; NOT OpenSearch",
+  "graph": "pyoxigraph in-process (NOT Amazon Neptune)",
+  "stores": "moto (S3, DynamoDB) loaded from the run's world snapshot",
+  "piiGate": "Amazon Comprehend DetectPiiEntities (real; responses recorded) (runs/local/recorded/comprehend.json)",
+  "extraction": "docling 2.145.0 (local, dev mode)",
+  "scanPages": "local Docling OCR shaped as a Textract response (NOT Amazon Textract)",
+  "phaseBEmbeddings": "amazon.titan-embed-text-v2:0 (real Bedrock; responses recorded)",
+  "toolTransport": "tool Lambda handlers in-process (local gateway; identity injected like the interceptor)"
+ }
+}

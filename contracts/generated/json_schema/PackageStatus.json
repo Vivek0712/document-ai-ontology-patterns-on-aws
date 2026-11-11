@@ -1,0 +1,655 @@
+{
+  "$defs": {
+    "Counters": {
+      "properties": {
+        "units": {
+          "default": 0,
+          "title": "Units",
+          "type": "integer"
+        },
+        "held": {
+          "default": 0,
+          "title": "Held",
+          "type": "integer"
+        },
+        "indexed": {
+          "default": 0,
+          "title": "Indexed",
+          "type": "integer"
+        },
+        "triples": {
+          "default": 0,
+          "title": "Triples",
+          "type": "integer"
+        }
+      },
+      "title": "Counters",
+      "type": "object"
+    },
+    "DocStatusView": {
+      "properties": {
+        "docId": {
+          "title": "Docid",
+          "type": "string"
+        },
+        "fileName": {
+          "title": "Filename",
+          "type": "string"
+        },
+        "sizeBytes": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Sizebytes"
+        },
+        "pageCount": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Pagecount"
+        },
+        "docType": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Doctype"
+        },
+        "uploadState": {
+          "enum": [
+            "AWAITING_UPLOAD",
+            "IN_BRONZE",
+            "QUARANTINED"
+          ],
+          "title": "Uploadstate",
+          "type": "string"
+        },
+        "bronzeKey": {
+          "title": "Bronzekey",
+          "type": "string"
+        },
+        "inBronzeAt": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Inbronzeat"
+        },
+        "lanes": {
+          "additionalProperties": {
+            "$ref": "#/$defs/LaneView"
+          },
+          "title": "Lanes",
+          "type": "object"
+        }
+      },
+      "required": [
+        "docId",
+        "fileName",
+        "uploadState",
+        "bronzeKey",
+        "lanes"
+      ],
+      "title": "DocStatusView",
+      "type": "object"
+    },
+    "Engine": {
+      "description": "Engines that can produce a stage's output. Shown in the stage inspector.",
+      "enum": [
+        "text-layer",
+        "docling",
+        "textract",
+        "pypdf",
+        "skos-indicators",
+        "nova",
+        "eu-builder",
+        "fixed-chunker",
+        "comprehend",
+        "pdfium",
+        "titan-v2+aoss",
+        "neptune",
+        "lambda"
+      ],
+      "title": "Engine",
+      "type": "string"
+    },
+    "LaneDocCounts": {
+      "properties": {
+        "total": {
+          "default": 0,
+          "title": "Total",
+          "type": "integer"
+        },
+        "pending": {
+          "default": 0,
+          "title": "Pending",
+          "type": "integer"
+        },
+        "running": {
+          "default": 0,
+          "title": "Running",
+          "type": "integer"
+        },
+        "succeeded": {
+          "default": 0,
+          "title": "Succeeded",
+          "type": "integer"
+        },
+        "failed": {
+          "default": 0,
+          "title": "Failed",
+          "type": "integer"
+        },
+        "skipped": {
+          "default": 0,
+          "title": "Skipped",
+          "type": "integer"
+        }
+      },
+      "title": "LaneDocCounts",
+      "type": "object"
+    },
+    "LaneRollup": {
+      "description": "Package-level readiness per pipeline version (rp-status-stream writes it).",
+      "properties": {
+        "state": {
+          "enum": [
+            "EMPTY",
+            "PENDING",
+            "RUNNING",
+            "SUCCEEDED",
+            "FAILED",
+            "PARTIAL"
+          ],
+          "title": "State",
+          "type": "string"
+        },
+        "ready": {
+          "title": "Ready",
+          "type": "boolean"
+        },
+        "indexed": {
+          "default": 0,
+          "title": "Indexed",
+          "type": "integer"
+        },
+        "expected": {
+          "default": 0,
+          "title": "Expected",
+          "type": "integer"
+        },
+        "docs": {
+          "$ref": "#/$defs/LaneDocCounts"
+        }
+      },
+      "required": [
+        "state",
+        "ready"
+      ],
+      "title": "LaneRollup",
+      "type": "object"
+    },
+    "LaneState": {
+      "description": "State of one (document, pipelineVersion) lane = one Step Functions execution.",
+      "enum": [
+        "PENDING",
+        "RUNNING",
+        "SUCCEEDED",
+        "FAILED",
+        "SKIPPED"
+      ],
+      "title": "LaneState",
+      "type": "string"
+    },
+    "LaneView": {
+      "properties": {
+        "state": {
+          "$ref": "#/$defs/LaneState"
+        },
+        "currentStage": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/StageId"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "executionArn": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Executionarn"
+        },
+        "startedAt": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Startedat"
+        },
+        "endedAt": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Endedat"
+        },
+        "durationMs": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Durationms"
+        },
+        "configSha": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Configsha"
+        },
+        "stages": {
+          "items": {
+            "$ref": "#/$defs/StageCell"
+          },
+          "title": "Stages",
+          "type": "array"
+        }
+      },
+      "required": [
+        "state",
+        "stages"
+      ],
+      "title": "LaneView",
+      "type": "object"
+    },
+    "StageCell": {
+      "properties": {
+        "stageId": {
+          "$ref": "#/$defs/StageId"
+        },
+        "group": {
+          "$ref": "#/$defs/StageGroup"
+        },
+        "order": {
+          "title": "Order",
+          "type": "integer"
+        },
+        "title": {
+          "title": "Title",
+          "type": "string"
+        },
+        "state": {
+          "$ref": "#/$defs/StageState"
+        },
+        "engine": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Engine"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "headline": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Headline"
+        },
+        "attempt": {
+          "default": 0,
+          "title": "Attempt",
+          "type": "integer"
+        },
+        "queuedAt": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Queuedat"
+        },
+        "startedAt": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Startedat"
+        },
+        "endedAt": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Endedat"
+        },
+        "durationMs": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Durationms"
+        },
+        "lastHeartbeatAt": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Lastheartbeatat"
+        },
+        "heartbeatCount": {
+          "default": 0,
+          "title": "Heartbeatcount",
+          "type": "integer"
+        },
+        "progress": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/StageProgress"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "metrics": {
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "integer"
+              }
+            ]
+          },
+          "title": "Metrics",
+          "type": "object"
+        },
+        "skipReason": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Skipreason"
+        },
+        "error": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/StageError"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "stageId",
+        "group",
+        "order",
+        "title",
+        "state"
+      ],
+      "title": "StageCell",
+      "type": "object"
+    },
+    "StageError": {
+      "properties": {
+        "type": {
+          "title": "Type",
+          "type": "string"
+        },
+        "message": {
+          "title": "Message",
+          "type": "string"
+        },
+        "cause": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Cause"
+        },
+        "retryable": {
+          "default": false,
+          "title": "Retryable",
+          "type": "boolean"
+        },
+        "at": {
+          "title": "At",
+          "type": "string"
+        }
+      },
+      "required": [
+        "type",
+        "message"
+      ],
+      "title": "StageError",
+      "type": "object"
+    },
+    "StageGroup": {
+      "description": "Display columns on the stage board.",
+      "enum": [
+        "upload",
+        "extract",
+        "units",
+        "gate",
+        "index"
+      ],
+      "title": "StageGroup",
+      "type": "string"
+    },
+    "StageId": {
+      "description": "Ordered ingestion stages. Order and metadata live in stages.REGISTRY.",
+      "enum": [
+        "register",
+        "route",
+        "extract",
+        "classify",
+        "units",
+        "pii_gate",
+        "promote",
+        "index",
+        "graph",
+        "ready"
+      ],
+      "title": "StageId",
+      "type": "string"
+    },
+    "StageProgress": {
+      "properties": {
+        "done": {
+          "title": "Done",
+          "type": "integer"
+        },
+        "total": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Total"
+        },
+        "unit": {
+          "default": "pages",
+          "title": "Unit",
+          "type": "string"
+        }
+      },
+      "required": [
+        "done"
+      ],
+      "title": "StageProgress",
+      "type": "object"
+    },
+    "StageState": {
+      "description": "Current state of one stage record.",
+      "enum": [
+        "PENDING",
+        "QUEUED",
+        "RUNNING",
+        "SUCCEEDED",
+        "FAILED",
+        "SKIPPED"
+      ],
+      "title": "StageState",
+      "type": "string"
+    }
+  },
+  "properties": {
+    "packageId": {
+      "title": "Packageid",
+      "type": "string"
+    },
+    "updatedAt": {
+      "title": "Updatedat",
+      "type": "string"
+    },
+    "serverTime": {
+      "title": "Servertime",
+      "type": "string"
+    },
+    "lanes": {
+      "additionalProperties": {
+        "$ref": "#/$defs/LaneRollup"
+      },
+      "title": "Lanes",
+      "type": "object"
+    },
+    "counters": {
+      "additionalProperties": {
+        "$ref": "#/$defs/Counters"
+      },
+      "title": "Counters",
+      "type": "object"
+    },
+    "objectsInBronze": {
+      "title": "Objectsinbronze",
+      "type": "integer"
+    },
+    "askReady": {
+      "title": "Askready",
+      "type": "boolean"
+    },
+    "docs": {
+      "items": {
+        "$ref": "#/$defs/DocStatusView"
+      },
+      "title": "Docs",
+      "type": "array"
+    }
+  },
+  "required": [
+    "packageId",
+    "updatedAt",
+    "serverTime",
+    "lanes",
+    "counters",
+    "objectsInBronze",
+    "askReady",
+    "docs"
+  ],
+  "title": "PackageStatus",
+  "type": "object"
+}

@@ -1,0 +1,40 @@
+# template: qi_sum_w2_box1_v1
+# purpose:  fin:QualifyingIncome operands: W-2 Box 1 wages per borrower for the latest tax year
+#           (per borrower), with the unit and field each figure came from. graph_hop sums ?wagesBox1
+#           as decimals into `total`; operands come from the ?field IRIs.
+# params:   taxYear  optional  "" = latest tax year per borrower; "2025" = that tax year only
+# columns:  borrower, taxYear, wagesBox1, unit, field
+# graphs:   FROM clause = TBox graphs + the caller-readable ABox graph urn:rp:graph:abox:{packageId}:{pv}
+# notes:    no inference; the operand concept is read from fin:QualifyingIncome (fin:operandConcept).
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX fin: <urn:rp:ont:fin:>
+PREFIX doc: <urn:rp:ont:doc:>
+PREFIX rp: <urn:rp:ont:rp:>
+SELECT ?borrower ?taxYear ?wagesBox1 ?unit ?field
+{{FROM}}
+WHERE {
+  fin:QualifyingIncome fin:operandConcept ?operand .
+  ?field a fin:FieldValue ;
+         fin:concept ?operand ;
+         fin:amount ?wagesBox1 ;
+         fin:taxYear ?ty ;
+         fin:borrower ?party ;
+         prov:wasDerivedFrom ?unit .
+  ?unit a doc:EvidenceUnit .
+  ?party rp:name ?borrower .
+  BIND(STR(?ty) AS ?taxYear)
+  {
+    SELECT ?party (MAX(xsd:integer(STR(?y))) AS ?latest)
+    WHERE {
+      fin:QualifyingIncome fin:operandConcept ?op2 .
+      ?f2 a fin:FieldValue ; fin:concept ?op2 ; fin:borrower ?party ; fin:taxYear ?y .
+    }
+    GROUP BY ?party
+  }
+  FILTER(IF({{taxYear}} = "", xsd:integer(?taxYear) = ?latest, ?taxYear = {{taxYear}}))
+}
+ORDER BY ?borrower ?field

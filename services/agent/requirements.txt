@@ -1,0 +1,9 @@
+# AgentCore Runtime bundle (rp_agent). deploy_agentcore.sh installs these for linux arm64:
+#   pip install --platform manylinux2014_aarch64 --only-binary=:all: --python-version 3.12 --target <bundle>
+strands-agents==1.63.0
+bedrock-agentcore==1.25.2
+mcp==2.3.0
+PyJWT[crypto]==2.15.1
+pydantic==2.14.2
+PyYAML==6.0.3
+boto3==1.43.123

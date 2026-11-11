@@ -1,0 +1,87 @@
+{
+  "rest_get_metric": {
+    "n": 4,
+    "min_ms": 718.9,
+    "median_ms": 1138.6,
+    "max_ms": 1171.0
+  },
+  "rest_query_tier1": {
+    "n": 5,
+    "min_ms": 10124.4,
+    "median_ms": 10612.3,
+    "max_ms": 12966.7
+  },
+  "rest_schema": {
+    "n": 1,
+    "min_ms": 3980.3,
+    "median_ms": 3980.3,
+    "max_ms": 3980.3
+  },
+  "rest_metric_create": {
+    "n": 1,
+    "min_ms": 7931.7,
+    "median_ms": 7931.7,
+    "max_ms": 7931.7
+  },
+  "rest_metric_validate": {
+    "n": 1,
+    "min_ms": 10134.8,
+    "median_ms": 10134.8,
+    "max_ms": 10134.8
+  },
+  "rest_download_ontology": {
+    "n": 2,
+    "min_ms": 1141.8,
+    "median_ms": 1293.65,
+    "max_ms": 1445.5
+  },
+  "rest_export_osi": {
+    "n": 2,
+    "min_ms": 1121.6,
+    "median_ms": 1131.5,
+    "max_ms": 1141.4
+  },
+  "rest_namespace_create": {
+    "n": 1,
+    "min_ms": 3588.7,
+    "median_ms": 3588.7,
+    "max_ms": 3588.7
+  },
+  "mcp_initialize": {
+    "n": 1,
+    "min_ms": 2085.2,
+    "median_ms": 2085.2,
+    "max_ms": 2085.2
+  },
+  "mcp_tools_list": {
+    "n": 1,
+    "min_ms": 2412.8,
+    "median_ms": 2412.8,
+    "max_ms": 2412.8
+  },
+  "mcp_list_metrics": {
+    "n": 1,
+    "min_ms": 1705.0,
+    "median_ms": 1705.0,
+    "max_ms": 1705.0
+  },
+  "mcp_describe_schema": {
+    "n": 3,
+    "min_ms": 1600.9,
+    "median_ms": 2563.6,
+    "max_ms": 2779.0
+  },
+  "mcp_query_tier1": {
+    "n": 3,
+    "min_ms": 10887.1,
+    "median_ms": 10925.8,
+    "max_ms": 11126.9
+  },
+  "serve_internal_totalMs_tier1": {
+    "n": 5,
+    "min_ms": 1862,
+    "median_ms": 1880,
+    "max_ms": 1915
+  },
+  "note": "Client-side wall clock from a laptop to us-east-1, Python urllib, no connection reuse. serve_internal_totalMs is COA's own trace timing (Athena execute ~1.9 s)."
+}

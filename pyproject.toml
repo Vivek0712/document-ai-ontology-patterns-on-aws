@@ -1,0 +1,18 @@
+# Repository tool config. Not an installable package.
+[tool.pytest.ini_options]
+pythonpath = ["services", "packages/evidence-core", "."]
+testpaths = ["packages", "services", "eval", "data", "ontology", "scripts", "tests"]
+addopts = "-q --import-mode=importlib"
+norecursedirs = [".venv", "node_modules", "build", "cdk.out", "dist", "ui", "infra"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+extend-exclude = ["ui", "usecases/provenant/ui", "infra", "build", "cdk.out", ".venv", "data/samples"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "S", "SIM"]
+ignore = ["S101", "S311", "B008"]
+
+[tool.ruff.lint.per-file-ignores]
+"**/tests/**" = ["S", "B"]

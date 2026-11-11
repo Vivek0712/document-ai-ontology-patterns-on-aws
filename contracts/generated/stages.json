@@ -1,0 +1,674 @@
+{
+  "1.0": {
+    "pipelineVersion": "1.0",
+    "mode": "naive",
+    "configSha": "1f437eb1624d9df0b867a42d73fe7d27b7de6fb441c90c917f15b23f564748dc",
+    "stages": [
+      {
+        "id": "register",
+        "order": 1,
+        "group": "upload",
+        "title": "Register",
+        "enabled": true,
+        "engines": [
+          "lambda"
+        ],
+        "services": [
+          "Amazon EventBridge",
+          "AWS Step Functions",
+          "AWS Lambda",
+          "Amazon S3",
+          "Amazon DynamoDB"
+        ],
+        "functions": [
+          "rp-register"
+        ],
+        "sfnStates": [
+          "Register",
+          "ModeChoice"
+        ],
+        "produces": [
+          "manifest"
+        ],
+        "consumes": [
+          "source_pdf"
+        ],
+        "configPaths": [
+          "pipelineVersion"
+        ],
+        "description": "Validate the Bronze object, hash it, count pages, load the pipeline config, write DocAcl and PENDING/SKIPPED records for every stage."
+      },
+      {
+        "id": "route",
+        "order": 2,
+        "group": "extract",
+        "title": "Route pages",
+        "enabled": false,
+        "skipReason": "preprocessing.extraction has no router: text-layer extraction for every page",
+        "engines": [
+          "pypdf"
+        ],
+        "services": [
+          "AWS Lambda"
+        ],
+        "functions": [
+          "rp-route"
+        ],
+        "sfnStates": [
+          "Route"
+        ],
+        "produces": [
+          "route"
+        ],
+        "consumes": [
+          "source_pdf"
+        ],
+        "configPaths": [
+          "preprocessing.extraction.router"
+        ],
+        "description": "Per page: text-layer chars > scanTextCharsMax -> digital (Docling), else scan (Textract)."
+      },
+      {
+        "id": "extract",
+        "order": 3,
+        "group": "extract",
+        "title": "Extract text layer",
+        "enabled": true,
+        "engines": [
+          "text-layer"
+        ],
+        "services": [
+          "AWS Lambda"
+        ],
+        "functions": [
+          "rp-text-layer"
+        ],
+        "sfnStates": [
+          "TextLayer"
+        ],
+        "produces": [
+          "text_layer"
+        ],
+        "consumes": [
+          "source_pdf"
+        ],
+        "configPaths": [
+          "preprocessing.extraction"
+        ],
+        "description": "pypdf extract_text() in default (stream-order) mode; scanned pages yield no text."
+      },
+      {
+        "id": "classify",
+        "order": 4,
+        "group": "units",
+        "title": "Classify",
+        "enabled": false,
+        "skipReason": "preprocessing.classify: none (enrichment.docType false)",
+        "engines": [
+          "skos-indicators",
+          "nova"
+        ],
+        "services": [
+          "AWS Lambda",
+          "Amazon Bedrock"
+        ],
+        "functions": [
+          "rp-classify"
+        ],
+        "sfnStates": [
+          "Classify"
+        ],
+        "produces": [
+          "classification"
+        ],
+        "consumes": [
+          "docling_json",
+          "textract_json"
+        ],
+        "configPaths": [
+          "preprocessing.classify",
+          "preprocessing.ontology"
+        ],
+        "description": "DocumentType from SKOS indicator phrases in the vocab snapshot; Amazon Nova 2 Lite breaks ties when the margin is below minMargin."
+      },
+      {
+        "id": "units",
+        "order": 5,
+        "group": "units",
+        "title": "Fixed chunks",
+        "enabled": true,
+        "engines": [
+          "fixed-chunker"
+        ],
+        "services": [
+          "AWS Lambda"
+        ],
+        "functions": [
+          "rp-naive-chunk"
+        ],
+        "sfnStates": [
+          "NaiveChunk"
+        ],
+        "produces": [
+          "units_jsonl",
+          "build_report"
+        ],
+        "consumes": [
+          "text_layer"
+        ],
+        "configPaths": [
+          "preprocessing.chunker",
+          "preprocessing.units",
+          "preprocessing.enrichment"
+        ],
+        "description": "Fixed-size chunks (sizeTokens, overlapPct); no bbox, no breadcrumb, no ontology."
+      },
+      {
+        "id": "pii_gate",
+        "order": 6,
+        "group": "gate",
+        "title": "PII gate",
+        "enabled": true,
+        "engines": [
+          "comprehend"
+        ],
+        "services": [
+          "Amazon Comprehend",
+          "AWS Lambda",
+          "Amazon DynamoDB"
+        ],
+        "functions": [
+          "rp-pii-gate"
+        ],
+        "sfnStates": [
+          "PiiGate"
+        ],
+        "produces": [
+          "pii_decisions"
+        ],
+        "consumes": [
+          "units_jsonl"
+        ],
+        "configPaths": [
+          "preprocessing.piiGate"
+        ],
+        "description": "DetectPiiEntities per unit; hold when an unmasked SSN/account/routing/card span scores >= minScore (rule rp-pii-v1). Held units stay in Silver."
+      },
+      {
+        "id": "promote",
+        "order": 7,
+        "group": "gate",
+        "title": "Promote to Gold",
+        "enabled": true,
+        "engines": [
+          "pdfium"
+        ],
+        "services": [
+          "AWS Lambda",
+          "Amazon S3"
+        ],
+        "functions": [
+          "rp-promote"
+        ],
+        "sfnStates": [
+          "Promote"
+        ],
+        "produces": [
+          "gold_units_jsonl",
+          "gold_unit",
+          "page_image"
+        ],
+        "consumes": [
+          "units_jsonl",
+          "pii_decisions",
+          "source_pdf"
+        ],
+        "configPaths": [
+          "preprocessing.render"
+        ],
+        "description": "Write passed units to Gold; render page PNGs with held bboxes filled black."
+      },
+      {
+        "id": "index",
+        "order": 8,
+        "group": "index",
+        "title": "Embed and index",
+        "enabled": true,
+        "engines": [
+          "titan-v2+aoss"
+        ],
+        "services": [
+          "Amazon Titan Text Embeddings V2",
+          "Amazon OpenSearch Serverless",
+          "AWS Lambda"
+        ],
+        "functions": [
+          "rp-embed-index"
+        ],
+        "sfnStates": [
+          "IndexAndGraph",
+          "EmbedIndex"
+        ],
+        "produces": [
+          "index_receipt"
+        ],
+        "consumes": [
+          "gold_units_jsonl"
+        ],
+        "configPaths": [
+          "retrieval.embedModel",
+          "retrieval.embedDimensions"
+        ],
+        "description": "Embed breadcrumb + text with Titan V2 (1024-d, normalized); bulk index with auto ids into units-v<pv>; ids stored in UnitStatus."
+      },
+      {
+        "id": "graph",
+        "order": 9,
+        "group": "index",
+        "title": "Graph write",
+        "enabled": false,
+        "skipReason": "preprocessing.ontology: none (this version binds no ontology)",
+        "engines": [
+          "neptune"
+        ],
+        "services": [
+          "Amazon Neptune",
+          "AWS Lambda"
+        ],
+        "functions": [
+          "rp-graph-write"
+        ],
+        "sfnStates": [
+          "GraphChoice",
+          "GraphWrite"
+        ],
+        "produces": [
+          "abox_nquads",
+          "graph_receipt"
+        ],
+        "consumes": [
+          "gold_units_jsonl"
+        ],
+        "configPaths": [
+          "preprocessing.ontology"
+        ],
+        "description": "Typed facts (fin:), units and page regions with PROV-O lineage into the package's named graph via SPARQL UPDATE (SigV4)."
+      },
+      {
+        "id": "ready",
+        "order": 10,
+        "group": "index",
+        "title": "Lane ready",
+        "enabled": true,
+        "engines": [
+          "lambda"
+        ],
+        "services": [
+          "Amazon OpenSearch Serverless",
+          "Amazon DynamoDB"
+        ],
+        "functions": [
+          "rp-mark-ready"
+        ],
+        "sfnStates": [
+          "MarkReady",
+          "Done"
+        ],
+        "produces": [
+          "ready_receipt"
+        ],
+        "consumes": [
+          "index_receipt",
+          "graph_receipt"
+        ],
+        "configPaths": [
+          "retrieval.readiness"
+        ],
+        "description": "Wait until the index count for this doc and lane equals the unit count (cap maxWaitSeconds), then mark the lane SUCCEEDED."
+      }
+    ]
+  },
+  "2.3.1": {
+    "pipelineVersion": "2.3.1",
+    "mode": "evidence_units",
+    "configSha": "a42731845bd93c07fb4e21644d86495b8349e4aa6e75014b90f547815ec35447",
+    "stages": [
+      {
+        "id": "register",
+        "order": 1,
+        "group": "upload",
+        "title": "Register",
+        "enabled": true,
+        "engines": [
+          "lambda"
+        ],
+        "services": [
+          "Amazon EventBridge",
+          "AWS Step Functions",
+          "AWS Lambda",
+          "Amazon S3",
+          "Amazon DynamoDB"
+        ],
+        "functions": [
+          "rp-register"
+        ],
+        "sfnStates": [
+          "Register",
+          "ModeChoice"
+        ],
+        "produces": [
+          "manifest"
+        ],
+        "consumes": [
+          "source_pdf"
+        ],
+        "configPaths": [
+          "pipelineVersion"
+        ],
+        "description": "Validate the Bronze object, hash it, count pages, load the pipeline config, write DocAcl and PENDING/SKIPPED records for every stage."
+      },
+      {
+        "id": "route",
+        "order": 2,
+        "group": "extract",
+        "title": "Route pages",
+        "enabled": true,
+        "engines": [
+          "pypdf"
+        ],
+        "services": [
+          "AWS Lambda"
+        ],
+        "functions": [
+          "rp-route"
+        ],
+        "sfnStates": [
+          "Route"
+        ],
+        "produces": [
+          "route"
+        ],
+        "consumes": [
+          "source_pdf"
+        ],
+        "configPaths": [
+          "preprocessing.extraction.router"
+        ],
+        "description": "Per page: text-layer chars > scanTextCharsMax -> digital (Docling), else scan (Textract)."
+      },
+      {
+        "id": "extract",
+        "order": 3,
+        "group": "extract",
+        "title": "Extract layout",
+        "enabled": true,
+        "engines": [
+          "docling",
+          "textract"
+        ],
+        "services": [
+          "Amazon SQS",
+          "AWS Fargate",
+          "Amazon Textract",
+          "AWS Lambda"
+        ],
+        "functions": [
+          "rp-stage-status",
+          "rp-docling-call",
+          "rp-textract-page"
+        ],
+        "sfnStates": [
+          "ExtractOpen",
+          "Extract",
+          "DoclingExtract",
+          "TextractPages",
+          "TextractPage",
+          "ExtractClose"
+        ],
+        "produces": [
+          "docling_json",
+          "textract_json"
+        ],
+        "consumes": [
+          "source_pdf",
+          "route"
+        ],
+        "configPaths": [
+          "preprocessing.extraction"
+        ],
+        "description": "Digital pages: SQS -> docling-serve on Fargate (task token). Scanned pages: Map -> Textract AnalyzeDocument (LAYOUT, TABLES, FORMS)."
+      },
+      {
+        "id": "classify",
+        "order": 4,
+        "group": "units",
+        "title": "Classify",
+        "enabled": true,
+        "engines": [
+          "skos-indicators",
+          "nova"
+        ],
+        "services": [
+          "AWS Lambda",
+          "Amazon Bedrock"
+        ],
+        "functions": [
+          "rp-classify"
+        ],
+        "sfnStates": [
+          "Classify"
+        ],
+        "produces": [
+          "classification"
+        ],
+        "consumes": [
+          "docling_json",
+          "textract_json"
+        ],
+        "configPaths": [
+          "preprocessing.classify",
+          "preprocessing.ontology"
+        ],
+        "description": "DocumentType from SKOS indicator phrases in the vocab snapshot; Amazon Nova 2 Lite breaks ties when the margin is below minMargin."
+      },
+      {
+        "id": "units",
+        "order": 5,
+        "group": "units",
+        "title": "Evidence units",
+        "enabled": true,
+        "engines": [
+          "eu-builder"
+        ],
+        "services": [
+          "AWS Lambda",
+          "Amazon S3",
+          "Amazon DynamoDB"
+        ],
+        "functions": [
+          "rp-eu-builder"
+        ],
+        "sfnStates": [
+          "BuildUnits"
+        ],
+        "produces": [
+          "units_jsonl",
+          "build_report"
+        ],
+        "consumes": [
+          "docling_json",
+          "textract_json",
+          "classification"
+        ],
+        "configPaths": [
+          "preprocessing.units",
+          "preprocessing.enrichment",
+          "preprocessing.ontology"
+        ],
+        "description": "Canonical bboxes (PDF points, top-left origin), roles via vocab snapshot, Phase A seeds, Phase B cosine tau, Phase C residual; fields with page + bbox; low-confidence fields to ReviewQueue."
+      },
+      {
+        "id": "pii_gate",
+        "order": 6,
+        "group": "gate",
+        "title": "PII gate",
+        "enabled": true,
+        "engines": [
+          "comprehend"
+        ],
+        "services": [
+          "Amazon Comprehend",
+          "AWS Lambda",
+          "Amazon DynamoDB"
+        ],
+        "functions": [
+          "rp-pii-gate"
+        ],
+        "sfnStates": [
+          "PiiGate"
+        ],
+        "produces": [
+          "pii_decisions"
+        ],
+        "consumes": [
+          "units_jsonl"
+        ],
+        "configPaths": [
+          "preprocessing.piiGate"
+        ],
+        "description": "DetectPiiEntities per unit; hold when an unmasked SSN/account/routing/card span scores >= minScore (rule rp-pii-v1). Held units stay in Silver."
+      },
+      {
+        "id": "promote",
+        "order": 7,
+        "group": "gate",
+        "title": "Promote to Gold",
+        "enabled": true,
+        "engines": [
+          "pdfium"
+        ],
+        "services": [
+          "AWS Lambda",
+          "Amazon S3"
+        ],
+        "functions": [
+          "rp-promote"
+        ],
+        "sfnStates": [
+          "Promote"
+        ],
+        "produces": [
+          "gold_units_jsonl",
+          "gold_unit",
+          "page_image"
+        ],
+        "consumes": [
+          "units_jsonl",
+          "pii_decisions",
+          "source_pdf"
+        ],
+        "configPaths": [
+          "preprocessing.render"
+        ],
+        "description": "Write passed units to Gold; render page PNGs with held bboxes filled black."
+      },
+      {
+        "id": "index",
+        "order": 8,
+        "group": "index",
+        "title": "Embed and index",
+        "enabled": true,
+        "engines": [
+          "titan-v2+aoss"
+        ],
+        "services": [
+          "Amazon Titan Text Embeddings V2",
+          "Amazon OpenSearch Serverless",
+          "AWS Lambda"
+        ],
+        "functions": [
+          "rp-embed-index"
+        ],
+        "sfnStates": [
+          "IndexAndGraph",
+          "EmbedIndex"
+        ],
+        "produces": [
+          "index_receipt"
+        ],
+        "consumes": [
+          "gold_units_jsonl"
+        ],
+        "configPaths": [
+          "retrieval.embedModel",
+          "retrieval.embedDimensions"
+        ],
+        "description": "Embed breadcrumb + text with Titan V2 (1024-d, normalized); bulk index with auto ids into units-v<pv>; ids stored in UnitStatus."
+      },
+      {
+        "id": "graph",
+        "order": 9,
+        "group": "index",
+        "title": "Graph write",
+        "enabled": true,
+        "engines": [
+          "neptune"
+        ],
+        "services": [
+          "Amazon Neptune",
+          "AWS Lambda"
+        ],
+        "functions": [
+          "rp-graph-write"
+        ],
+        "sfnStates": [
+          "GraphChoice",
+          "GraphWrite"
+        ],
+        "produces": [
+          "abox_nquads",
+          "graph_receipt"
+        ],
+        "consumes": [
+          "gold_units_jsonl"
+        ],
+        "configPaths": [
+          "preprocessing.ontology"
+        ],
+        "description": "Typed facts (fin:), units and page regions with PROV-O lineage into the package's named graph via SPARQL UPDATE (SigV4)."
+      },
+      {
+        "id": "ready",
+        "order": 10,
+        "group": "index",
+        "title": "Lane ready",
+        "enabled": true,
+        "engines": [
+          "lambda"
+        ],
+        "services": [
+          "Amazon OpenSearch Serverless",
+          "Amazon DynamoDB"
+        ],
+        "functions": [
+          "rp-mark-ready"
+        ],
+        "sfnStates": [
+          "MarkReady",
+          "Done"
+        ],
+        "produces": [
+          "ready_receipt"
+        ],
+        "consumes": [
+          "index_receipt",
+          "graph_receipt"
+        ],
+        "configPaths": [
+          "retrieval.readiness"
+        ],
+        "description": "Wait until the index count for this doc and lane equals the unit count (cap maxWaitSeconds), then mark the lane SUCCEEDED."
+      }
+    ]
+  }
+}

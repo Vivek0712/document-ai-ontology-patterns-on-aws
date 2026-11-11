@@ -1,0 +1,151 @@
+{"type": "run_start", "runId": "r-f1d85c74f25e", "packageId": "pkg-lending-01", "pipelineVersion": "1.0", "question": "What is the total income across this package?", "modelId": "us.anthropic.claude-opus-4-6-v1", "configSha": "1f437eb1624d9df0b867a42d73fe7d27b7de6fb441c90c917f15b23f564748dc", "promptSha": "59984da199bb287de4b76a1d91bc0a5c27fde51028c39ffd04a33c3950a7d302", "tools": ["search_units", "graph_hop", "get_region", "doc_status"], "t": 0.0}
+{"type": "text", "delta": "\n\nI'll start"}
+{"type": "text", "delta": " by retriev"}
+{"type": "text", "delta": "ing the qualifying"}
+{"type": "text", "delta": " income ("}
+{"type": "text", "delta": "sum"}
+{"type": "text", "delta": " of W-2 Box 1"}
+{"type": "text", "delta": " wages)"}
+{"type": "text", "delta": " using"}
+{"type": "text", "delta": " the dedicated"}
+{"type": "text", "delta": " graph"}
+{"type": "text", "delta": " template"}
+{"type": "text", "delta": ","}
+{"type": "text", "delta": " and also"}
+{"type": "text", "delta": " search"}
+{"type": "text", "delta": " for W"}
+{"type": "text", "delta": "-2 units"}
+{"type": "text", "delta": " to cor"}
+{"type": "text", "delta": "roborate."}
+{"type": "tool_start", "callId": "tooluse_aWfr0VuaNiWr5oX4lqbGNm", "tool": "graph_hop", "input": {"template": "qi_sum_w2_box1_v1", "params": {}}, "t": 9.701}
+{"type": "tool_end", "callId": "tooluse_aWfr0VuaNiWr5oX4lqbGNm", "tool": "graph_hop", "ms": 1, "status": "ok", "summary": "0 rows · no ABox for pipelineVersion 1.0 (ontology: none)", "units": [], "scores": [], "retrieved": [], "rows": [], "template": "qi_sum_w2_box1_v1", "t": 9.701}
+{"type": "tool_start", "callId": "tooluse_vYqMVamcidZFWR33Ls9o9e", "tool": "search_units", "input": {"query": "W-2 Box 1 wages total income", "k": 10}, "t": 9.701}
+{"type": "tool_end", "callId": "tooluse_vYqMVamcidZFWR33Ls9o9e", "tool": "search_units", "ms": 2, "status": "ok", "summary": "3 units", "units": ["w2-2025-maya-fictus-827d37:1.0:c-01", "w2-2025-arjun-fictus-546450:1.0:c-01", "payslip-2026-09-maya-fictus-bd153b:1.0:c-01"], "scores": [{"unitId": "w2-2025-maya-fictus-827d37:1.0:c-01", "denseNorm": 1.0, "bm25Norm": 1.0, "fused": 1.0}, {"unitId": "w2-2025-arjun-fictus-546450:1.0:c-01", "denseNorm": 0.9811, "bm25Norm": 1.0, "fused": 0.9868}, {"unitId": "payslip-2026-09-maya-fictus-bd153b:1.0:c-01", "denseNorm": 0.0, "bm25Norm": 0.0, "fused": 0.0}], "retrieved": [{"rank": 1, "unitId": "w2-2025-maya-fictus-827d37:1.0:c-01", "docId": "w2-2025-maya-fictus-827d37", "fileName": "w2_2025_maya_fictus.pdf", "unitType": "chunk", "label": "chunk c-01", "chunkLabel": "chunk c-01", "breadcrumb": "", "text": "Form W-2\nWage and Tax Statement\n2025\nCopy C—For EMPLOYEE'S RECORDS (See Notice to Employee on the back of Copy B.)\nDepartment of the Treasury—Internal Revenue Service (form layout, fictitious data)\na Employee's social security number\nb Employer identification number (EIN)\nc Employer's name, address, and ZIP code\nd Control number\ne Employee's first name and initial   Last name      f Employee's address and ZIP code\n1 Wages, tips, other compensation\n2 Federal income tax withheld\n3 Social security wages\n4 Social security tax withheld\n5 Medicare wages and tips\n6 Medicare tax withheld\n7 Social security tips\n8 Allocated tips\n9\n10 Dependent care benefits\n11 Nonqualified plans\n12a See instructions for box 12\n13 Retirement plan\n12b\n14 Other\n12c\n12d\n15 State\nEmployer's state ID number\n16 State wages, tips, etc.\n17 State income tax\nCode\n6,600.00\nD\n105,000.00\n105,000.00\n98,400.00\n13,776.00\n6,510.00\n1,522.50\nX\nXXX-XX-0417\n00-4417305\nNewAge Global Fintech Services\n400 Market Street\nSeattle, WA 98104\nNGF-25-0417\nMaya Fictus\n18 Harbor Lane\nSeattle, WA 98101\nWA\nFictitious document · NewAge Global Fintech · for demonstration only", "pages": [1], "bboxes": [], "fields": [], "piiFlag": "none", "resolvable": false, "scores": {"denseRaw": 1.476383, "bm25Raw": 1.287565, "denseNorm": 1.0, "bm25Norm": 1.0, "fused": 1.0}}, {"rank": 2, "unitId": "w2-2025-arjun-fictus-546450:1.0:c-01", "docId": "w2-2025-arjun-fictus-546450", "fileName": "w2_2025_arjun_fictus.pdf", "unitType": "chunk", "label": "chunk c-01", "chunkLabel": "chunk c-01", "breadcrumb": "", "text": "Form W-2\nWage and Tax Statement\n2025\nCopy C—For EMPLOYEE'S RECORDS (See Notice to Employee on the back of Copy B.)\nDepartment of the Treasury—Internal Revenue Service (form layout, fictitious data)\na Employee's social security number\nb Employer identification number (EIN)\nc Employer's name, address, and ZIP code\nd Control number\ne Employee's first name and initial   Last name      f Employee's address and ZIP code\n1 Wages, tips, other compensation\n2 Federal income tax withheld\n3 Social security wages\n4 Social security tax withheld\n5 Medicare wages and tips\n6 Medicare tax withheld\n7 Social security tips\n8 Allocated tips\n9\n10 Dependent care benefits\n11 Nonqualified plans\n12a See instructions for box 12\n13 Retirement plan\n12b\n14 Other\n12c\n12d\n15 State\nEmployer's state ID number\n16 State wages, tips, etc.\n17 State income tax\nCode\n3,750.00\nD\n75,000.00\n75,000.00\n71,250.00\n8,550.00\n4,650.00\n1,087.50\nX\nXXX-XX-2290\n00-4417306\nNewAge Global Fintech Payments\n410 Market Street\nSeattle, WA 98104\nNGF-25-2290\nArjun Fictus\n18 Harbor Lane\nSeattle, WA 98101\nWA\nFictitious document · NewAge Global Fintech · for demonstration only", "pages": [1], "bboxes": [], "fields": [], "piiFlag": "none", "resolvable": false, "scores": {"denseRaw": 1.469521, "bm25Raw": 1.287565, "denseNorm": 0.9811, "bm25Norm": 1.0, "fused": 0.9868}}, {"rank": 3, "unitId": "payslip-2026-09-maya-fictus-bd153b:1.0:c-01", "docId": "payslip-2026-09-maya-fictus-bd153b", "fileName": "payslip_2026-09_maya_fictus.pdf", "unitType": "chunk", "label": "chunk c-01", "chunkLabel": "chunk c-01", "breadcrumb": "", "text": "NewAge Global Fintech Services\n400 Market Street, Seattle, WA 98104\nEarnings Statement\nEmployee\nMaya Fictus\nEmployee ID\nE-0417\nPay period\n01–30 Sep 2026\nPay date\n30 Sep 2026\nDescription\nCurrent\nYear to date\nGross pay\n9,000.00\n81,000.00\n401(k) employee deferral\n600.00\n5,400.00\nFederal income tax\n1,170.00\n10,530.00\nSocial Security\n558.00\n5,022.00\nMedicare\n130.50\n1,174.50\nNet pay\n6,541.50\n58,873.50\nYear-to-date figures cover 01 Jan 2026 to 30 Sep 2026.\nFictitious document · NewAge Global Fintech · for demonstration only", "pages": [1], "bboxes": [], "fields": [], "piiFlag": "none", "resolvable": false, "scores": {"denseRaw": 1.112483, "bm25Raw": 0.074811, "denseNorm": 0.0, "bm25Norm": 0.0, "fused": 0.0}}], "rows": [], "t": 9.701}
+{"type": "text", "delta": "I"}
+{"type": "text", "delta": " found two"}
+{"type": "text", "delta": " W-2 forms"}
+{"type": "text", "delta": " in the"}
+{"type": "text", "delta": " package. Let me identify"}
+{"type": "text", "delta": " the Box"}
+{"type": "text", "delta": " 1 figures"}
+{"type": "text", "delta": ":\n\n-"}
+{"type": "text", "delta": " **Maya"}
+{"type": "text", "delta": " Fictus**"}
+{"type": "text", "delta": " –"}
+{"type": "text", "delta": " W"}
+{"type": "text", "delta": "-2 Box"}
+{"type": "text", "delta": " 1 ("}
+{"type": "text", "delta": "Wages"}
+{"type": "text", "delta": ", tips, other compensation):"}
+{"type": "text", "delta": " **"}
+{"type": "text", "delta": "$98"}
+{"type": "text", "delta": ",400.00**\n- **"}
+{"type": "text", "delta": "Arjun Fictus**"}
+{"type": "text", "delta": " – W-2 Box 1"}
+{"type": "text", "delta": " (Wages, tips, other"}
+{"type": "text", "delta": " compensation): **$71,250."}
+{"type": "text", "delta": "00**\n\nThe"}
+{"type": "text", "delta": " pay"}
+{"type": "text", "delta": "slip for"}
+{"type": "text", "delta": " Maya"}
+{"type": "text", "delta": " Fictus is"}
+{"type": "text", "delta": " cor"}
+{"type": "text", "delta": "roborative"}
+{"type": "text", "delta": " only"}
+{"type": "text", "delta": " and"}
+{"type": "text", "delta": " is"}
+{"type": "text", "delta": " not added per"}
+{"type": "text", "delta": " the"}
+{"type": "text", "delta": " qualifying"}
+{"type": "text", "delta": "-"}
+{"type": "text", "delta": "income definition."}
+{"type": "text", "delta": " The"}
+{"type": "text", "delta": " graph"}
+{"type": "text", "delta": " template"}
+{"type": "text", "delta": " returned no rows"}
+{"type": "text", "delta": " ("}
+{"type": "text", "delta": "no"}
+{"type": "text", "delta": " A"}
+{"type": "text", "delta": "Box for this"}
+{"type": "text", "delta": " pipeline"}
+{"type": "text", "delta": " version),"}
+{"type": "text", "delta": " so I'll"}
+{"type": "text", "delta": " rely"}
+{"type": "text", "delta": " on the extracted"}
+{"type": "text", "delta": " unit"}
+{"type": "text", "delta": " text"}
+{"type": "text", "delta": ".\n\n```"}
+{"type": "text", "delta": "json\n{\n  \"answer\":"}
+{"type": "text", "delta": " \"The total qualifying"}
+{"type": "text", "delta": " income for"}
+{"type": "text", "delta": " this package is $169"}
+{"type": "text", "delta": ",650.00,"}
+{"type": "text", "delta": " calculated"}
+{"type": "text", "delta": " as the sum of W-2 "}
+{"type": "text", "delta": "Box 1 wages for the latest"}
+{"type": "text", "delta": " tax year (2025)."}
+{"type": "text", "delta": " Maya"}
+{"type": "text", "delta": " Fictus earned"}
+{"type": "text", "delta": " $98,400.00 and"}
+{"type": "text", "delta": " Arjun Fictus earned"}
+{"type": "text", "delta": " $71,250.00."}
+{"type": "text", "delta": " A"}
+{"type": "text", "delta": " September"}
+{"type": "text", "delta": " 2026 payslip for"}
+{"type": "text", "delta": " Maya Fictus was"}
+{"type": "text", "delta": " found"}
+{"type": "text", "delta": " but is cor"}
+{"type": "text", "delta": "roborative only and not"}
+{"type": "text", "delta": " added to the total"}
+{"type": "text", "delta": ".\",\n  \"total\": \"169"}
+{"type": "text", "delta": ",650.00\",\n  \""}
+{"type": "text", "delta": "currency\": \"USD\",\n  \""}
+{"type": "text", "delta": "arithmetic\": \"98,400.00"}
+{"type": "text", "delta": " + 71,250.00"}
+{"type": "text", "delta": " = 169,650.00"}
+{"type": "text", "delta": "\",\n  \"claims\": ["}
+{"type": "text", "delta": "\n    {\n      \"text\": \"$"}
+{"type": "text", "delta": "98,400.00\","}
+{"type": "text", "delta": "\n      \"value\": \"98400"}
+{"type": "text", "delta": ".00\",\n      \"unitId"}
+{"type": "text", "delta": "\": \"w2-2025-"}
+{"type": "text", "delta": "maya-fictus-827d37"}
+{"type": "text", "delta": ":1.0:c-01"}
+{"type": "text", "delta": "\",\n      \"fieldId\": null"}
+{"type": "text", "delta": "\n    },\n    {\n      "}
+{"type": "text", "delta": "\"text\": \"$71,250."}
+{"type": "text", "delta": "00\",\n      \"value\": \""}
+{"type": "text", "delta": "71250.00\",\n      \""}
+{"type": "text", "delta": "unitId\": \"w2-2"}
+{"type": "text", "delta": "025-arjun-fictus"}
+{"type": "text", "delta": "-546450:1.0:"}
+{"type": "text", "delta": "c-01\",\n      \"field"}
+{"type": "text", "delta": "Id\": null\n    }\n  "}
+{"type": "text", "delta": "],\n  \"caveats\":"}
+{"type": "text", "delta": " ["}
+{"type": "text", "delta": "\n    \"Graph"}
+{"type": "text", "delta": " template returned no A"}
+{"type": "text", "delta": "Box data"}
+{"type": "text", "delta": " for pipeline"}
+{"type": "text", "delta": " v"}
+{"type": "text", "delta": "1.0;"}
+{"type": "text", "delta": " tot"}
+{"type": "text", "delta": "als are derived"}
+{"type": "text", "delta": " directly"}
+{"type": "text", "delta": " from extracted W"}
+{"type": "text", "delta": "-2 text"}
+{"type": "text", "delta": ".\","}
+{"type": "text", "delta": "\n    \"A"}
+{"type": "text", "delta": " pay"}
+{"type": "text", "delta": "slip for Maya Fictus ("}
+{"type": "text", "delta": "Sep"}
+{"type": "text", "delta": " 2026) was"}
+{"type": "text", "delta": " found but is corroborative only"}
+{"type": "text", "delta": " and excluded"}
+{"type": "text", "delta": " per"}
+{"type": "text", "delta": " the"}
+{"type": "text", "delta": " qualifying-income definition.\""}
+{"type": "text", "delta": "\n  ]\n}\n```"}
+{"answer": "The total qualifying income for this package is $169,650.00, calculated as the sum of W-2 Box 1 wages for the latest tax year (2025). Maya Fictus earned $98,400.00 and Arjun Fictus earned $71,250.00. A September 2026 payslip for Maya Fictus was found but is corroborative only and not added to the total.", "total": "169,650.00", "currency": "USD", "arithmetic": "98,400.00 + 71,250.00 = 169,650.00", "claims": [{"text": "$98,400.00", "value": "98400.00", "unitId": "w2-2025-maya-fictus-827d37:1.0:c-01", "docId": "w2-2025-maya-fictus-827d37", "fileName": "w2_2025_maya_fictus.pdf", "label": "chunk c-01", "resolvable": false, "chunkLabel": "chunk c-01", "reason": "chunk has no page region"}, {"text": "$71,250.00", "value": "71250.00", "unitId": "w2-2025-arjun-fictus-546450:1.0:c-01", "docId": "w2-2025-arjun-fictus-546450", "fileName": "w2_2025_arjun_fictus.pdf", "label": "chunk c-01", "resolvable": false, "chunkLabel": "chunk c-01", "reason": "chunk has no page region"}], "caveats": ["Graph template returned no ABox data for pipeline v1.0; totals are derived directly from extracted W-2 text.", "A payslip for Maya Fictus (Sep 2026) was found but is corroborative only and excluded per the qualifying-income definition."], "citationRetries": 0, "uncitedNumbers": [], "type": "answer"}
+{"qid": "q-lend-01", "expected": "169,650.00", "actual": "169,650.00", "match": true, "type": "check"}
+{"runId": "r-f1d85c74f25e", "packageId": "pkg-lending-01", "pipelineVersion": "1.0", "configSha": "1f437eb1624d9df0b867a42d73fe7d27b7de6fb441c90c917f15b23f564748dc", "blockShas": {"preprocessing": "ba267beb165e0af475c323c9f78543f5ee90fc7c201ccbf59f34842e3d4e6114", "retrieval": "3587393d6f0d8c38adfaf6853c1463b54cc1ee872646ff354b3408da63dd586c", "generation": "4731dca541739b7b91e53099ae45acb0f255c753e313bec48702fa79ecad436e", "agent": "5ce789906365b6a0f9d139eba009f17b61d3113720a21c755e3f5be4459551f0"}, "promptSha": "59984da199bb287de4b76a1d91bc0a5c27fde51028c39ffd04a33c3950a7d302", "modelId": "us.anthropic.claude-opus-4-6-v1", "corpusHash": "34856e2c51fa71d6ddc21b4493efde7b9d6ccd1d87ed0f3287908d6612b687e2", "memoryRecordsInjected": 0, "latencyMs": 27165, "usage": {"inputTokens": 5597, "outputTokens": 714, "totalTokens": 6311}, "startedAt": "2026-11-11T03:25:14.159Z", "type": "run", "question": "What is the total income across this package?"}

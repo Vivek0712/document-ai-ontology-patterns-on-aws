@@ -1,0 +1,33 @@
+# Model ids are config. Pipeline configs reference them as ${KEY}; the resolved ids are part of the
+# pipeline config hash recorded with every run, so change them here, not through the environment.
+# The `us.` ids are US cross-Region inference profiles. Before you deploy, enable model access in the
+# Amazon Bedrock console and check availability in your Region:
+#   aws bedrock list-inference-profiles --region us-east-1
+#   make verify        # also invokes each model once
+region: us-east-1
+models:
+  EMBED_MODEL:
+    modelId: amazon.titan-embed-text-v2:0
+    provider: amazon
+    kind: embedding
+    acceptsTemperature: false
+    dimensions: 1024
+    normalize: true
+  MODEL_ANSWER:
+    modelId: us.anthropic.claude-sonnet-4-6
+    provider: anthropic
+    kind: text
+    acceptsTemperature: true
+    notes: Agent answer model, both lanes. Converse API via Strands BedrockModel.
+  MODEL_COMPACT:
+    modelId: us.amazon.nova-2-lite-v1:0
+    provider: amazon
+    kind: text
+    acceptsTemperature: true
+    notes: Classification tie-break (classify stage).
+  MODEL_FRONTIER:
+    modelId: us.anthropic.claude-opus-4-6-v1
+    provider: anthropic
+    kind: text
+    acceptsTemperature: true
+    notes: Walkthrough-only bigger-model branch (v1.0-frontier, post-lock).

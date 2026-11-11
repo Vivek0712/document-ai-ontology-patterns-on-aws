@@ -1,0 +1,33 @@
+# template: concept_by_label_v1
+# purpose:  printed label or phrase -> fin: field concept or defined quantity, through skos:prefLabel,
+#           skos:altLabel or skos:notation (whitespace-normalised, case-insensitive exact match).
+# params:   label  required  e.g. "Wages, tips, other compensation", "Box 1", "total income"
+# columns:  concept, prefLabel, matchedLabel, matchKind, docType, notation, definition
+# graphs:   FROM clause = TBox graphs (the ABox is not needed)
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX fin: <urn:rp:ont:fin:>
+PREFIX doc: <urn:rp:ont:doc:>
+PREFIX rp: <urn:rp:ont:rp:>
+SELECT DISTINCT ?concept ?prefLabel ?matchedLabel ?matchKind ?docType ?notation ?definition
+{{FROM}}
+WHERE {
+  BIND(LCASE(REPLACE(STR({{label}}), "\\s+", " ")) AS ?needle)
+  {
+    ?concept skos:prefLabel ?matchedLabel . BIND("prefLabel" AS ?matchKind)
+  } UNION {
+    ?concept skos:altLabel ?matchedLabel . BIND("altLabel" AS ?matchKind)
+  } UNION {
+    ?concept skos:notation ?matchedLabel . BIND("notation" AS ?matchKind)
+  }
+  FILTER(STRSTARTS(STR(?concept), "urn:rp:ont:fin:"))
+  FILTER(LCASE(REPLACE(STR(?matchedLabel), "\\s+", " ")) = ?needle)
+  OPTIONAL { ?concept skos:prefLabel ?prefLabel }
+  OPTIONAL { ?concept rp:docType ?docType }
+  OPTIONAL { ?concept skos:notation ?notation }
+  OPTIONAL { ?concept rdfs:comment|skos:definition ?definition }
+}
+ORDER BY ?concept ?matchKind

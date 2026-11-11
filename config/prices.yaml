@@ -1,0 +1,62 @@
+# List prices for cost estimates (SC-13, W-17). Every amount the API returns is
+# `estimate · measured usage × list price` and quotes `source` and `asOf` from here.
+#
+# Status: [verify] on first AWS use. The Amazon Bedrock pricing page renders its tables client-side, so the model
+# rows below could not be read from it on 2026-11-11. Anthropic rows are Anthropic's published per-token list price
+# for the model (platform.claude.com pricing, as cached 2026-11-03), which Bedrock on-demand has matched for Claude
+# models; Bedrock may add a premium for geographic (`us.`) cross-Region inference profiles — confirm before the
+# numbers are shown on AWS. The Amazon Nova 2 Lite row is from the Nova 2 launch material and is unverified.
+asOf: "2026-11-11"
+currency: USD
+models:  # per 1M tokens, on-demand
+  us.anthropic.claude-sonnet-4-6:
+    inputPerMTok: 3.00
+    outputPerMTok: 15.00
+    source: "https://platform.claude.com/docs/en/about-claude/pricing (Claude Sonnet 4.6; Bedrock on-demand [verify])"
+  us.anthropic.claude-opus-4-6-v1:
+    inputPerMTok: 5.00
+    outputPerMTok: 25.00
+    source: "https://platform.claude.com/docs/en/about-claude/pricing (Claude Opus 4.6; Bedrock on-demand [verify])"
+  us.amazon.nova-2-lite-v1:0:
+    inputPerMTok: 0.30
+    outputPerMTok: 2.50
+    source: "https://aws.amazon.com/bedrock/pricing/ (Amazon Nova 2 Lite) [verify: not read from the page]"
+  amazon.titan-embed-text-v2:0:
+    inputPerMTok: 0.02
+    outputPerMTok: 0.0
+    source: "https://aws.amazon.com/bedrock/pricing/ (Titan Text Embeddings V2) [verify]"
+# Budget guards price a model at least this high before a batch runs, so a wrong list price cannot overspend
+# (deliberately conservative: treat Opus as about 5x Sonnet for the guard). Reported costs use the list price above.
+guardPerMTok:
+  us.anthropic.claude-opus-4-6-v1: {input: 15.00, output: 75.00}
+services:  # per unit, us-east-1
+  textract.analyze_document.layout:
+    unit: page
+    usd: 0.004
+    source: "https://aws.amazon.com/textract/pricing/ (AnalyzeDocument Layout, first 1M pages) [verify]"
+  comprehend.detect_pii_entities:
+    unit: unit_100_chars  # billed in 100-character units, 3-unit minimum per request
+    usd: 0.0001
+    minUnitsPerRequest: 3
+    source: "https://aws.amazon.com/comprehend/pricing/ (DetectPiiEntities) [verify]"
+  fargate.vcpu:
+    unit: vcpu_s
+    usd: 0.000011244  # $0.04048 per vCPU-hour
+    source: "https://aws.amazon.com/fargate/pricing/ (Linux/x86, us-east-1) [verify]"
+  fargate.memory:
+    unit: gb_s
+    usd: 0.0000012347  # $0.004445 per GB-hour
+    source: "https://aws.amazon.com/fargate/pricing/ (Linux/x86, us-east-1) [verify]"
+  lambda.compute:
+    unit: lambda_gb_s
+    usd: 0.0000166667
+    source: "https://aws.amazon.com/lambda/pricing/ (x86, first 6B GB-s) [verify]"
+  lambda.requests:
+    unit: request
+    usd: 0.0000002
+    source: "https://aws.amazon.com/lambda/pricing/ [verify]"
+sizes:  # configured sizes the estimates allocate by (not prices)
+  doclingTask:
+    vcpu: 4
+    memoryGb: 16
+    source: "infra/lib/ingest-stack.ts (Docling Fargate task: cpu 4096, memoryLimitMiB 16384)"

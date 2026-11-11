@@ -1,0 +1,31 @@
+pipelineVersion: "1.0"
+title: "1.0 naive"
+description: "Text-layer extraction and fixed-size chunks. Control lane."
+preprocessing:
+  extraction: { engine: text-layer, library: "pypdf==6.21.4", mode: default, layout: none }
+  chunker: { type: fixed, sizeTokens: 300, overlapPct: 20, tokenizer: whitespace }
+  units: none
+  ontology: none
+  enrichment: { breadcrumb: false, docType: false, fieldConcept: false, period: false, bbox: false }
+  classify: none
+  piiGate: { engine: comprehend, action: hold, rule: rp-pii-v1, minScore: 0.80 }
+  render: { dpi: 150 }
+retrieval:
+  embedModel: ${EMBED_MODEL}
+  embedDimensions: 1024
+  fusion: { dense: 0.7, bm25: 0.3, normalization: min_max, subQueryK: 20 }
+  k: 5
+  filtersInsideQuery: [allowedPrincipals, packageId, pipelineVersion]
+  readiness: { maxWaitSeconds: 90, pollSeconds: 5 }
+generation:
+  modelId: ${MODEL_ANSWER}
+  temperature: 0
+  maxTokens: 700
+  prompt: prompts/answer_v1.txt
+agent:
+  runtime: rp-agent
+  tools: [search_units@1, graph_hop@1, get_region@1, doc_status@1]
+  memory: { retrieval: "off", write: post-lock }
+  goldenSetCheck: true
+  maxToolCalls: 8
+  citationRetry: 1

@@ -1,0 +1,115 @@
+{
+  "packages": {
+    "name": "rp-packages",
+    "pk": "packageId",
+    "sk": null,
+    "gsis": [
+      [
+        "byOwner",
+        "ownerSub",
+        "createdAt"
+      ]
+    ],
+    "ttl": null,
+    "stream": false
+  },
+  "documents": {
+    "name": "rp-documents",
+    "pk": "packageId",
+    "sk": "docId",
+    "gsis": [
+      [
+        "byDocId",
+        "docId",
+        null
+      ]
+    ],
+    "ttl": null,
+    "stream": false
+  },
+  "doc_status": {
+    "name": "rp-doc-status",
+    "pk": "pk",
+    "sk": "sk",
+    "gsis": [
+      [
+        "byPackage",
+        "gsi1pk",
+        "gsi1sk"
+      ]
+    ],
+    "ttl": "expiresAt",
+    "stream": true
+  },
+  "unit_status": {
+    "name": "rp-unit-status",
+    "pk": "unitId",
+    "sk": null,
+    "gsis": [
+      [
+        "byDocLane",
+        "docLane",
+        "unitId"
+      ],
+      [
+        "byPackageLane",
+        "packageLane",
+        "unitId"
+      ]
+    ],
+    "ttl": null,
+    "stream": false
+  },
+  "doc_acl": {
+    "name": "rp-doc-acl",
+    "pk": "docId",
+    "sk": null,
+    "gsis": [],
+    "ttl": null,
+    "stream": false
+  },
+  "runs": {
+    "name": "rp-runs",
+    "pk": "runId",
+    "sk": null,
+    "gsis": [
+      [
+        "byPackage",
+        "packageId",
+        "createdAt"
+      ]
+    ],
+    "ttl": null,
+    "stream": false
+  },
+  "pipeline_versions": {
+    "name": "rp-pipeline-versions",
+    "pk": "pipelineVersion",
+    "sk": null,
+    "gsis": [],
+    "ttl": null,
+    "stream": false
+  },
+  "review_queue": {
+    "name": "rp-review-queue",
+    "pk": "packageId",
+    "sk": "reviewKey",
+    "gsis": [],
+    "ttl": null,
+    "stream": false
+  },
+  "access_log": {
+    "name": "rp-access-log",
+    "pk": "runId",
+    "sk": "sk",
+    "gsis": [
+      [
+        "bySince",
+        "day",
+        "at"
+      ]
+    ],
+    "ttl": "ttl",
+    "stream": false
+  }
+}

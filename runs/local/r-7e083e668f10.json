@@ -1,0 +1,515 @@
+{
+ "runId": "r-7e083e668f10",
+ "createdAt": "2026-11-11T00:47:56.517Z",
+ "packageId": "pkg-lending-02",
+ "pipelineVersion": "1.0",
+ "question": "What is the total income across this package?",
+ "callerSub": "local-dev-owner-0000",
+ "groups": [
+  "lending-analyst"
+ ],
+ "modelId": "us.anthropic.claude-sonnet-4-6",
+ "promptSha": "59984da199bb287de4b76a1d91bc0a5c27fde51028c39ffd04a33c3950a7d302",
+ "configSha": "1f437eb1624d9df0b867a42d73fe7d27b7de6fb441c90c917f15b23f564748dc",
+ "blockShas": {
+  "preprocessing": "ba267beb165e0af475c323c9f78543f5ee90fc7c201ccbf59f34842e3d4e6114",
+  "retrieval": "3587393d6f0d8c38adfaf6853c1463b54cc1ee872646ff354b3408da63dd586c",
+  "generation": "4731dca541739b7b91e53099ae45acb0f255c753e313bec48702fa79ecad436e",
+  "agent": "5ce789906365b6a0f9d139eba009f17b61d3113720a21c755e3f5be4459551f0"
+ },
+ "corpusHash": "154f70ce2e0dd9db8441c719d2c23ed41a91403d0053125a8a6035ba54ac0c30",
+ "memoryRecordsInjected": 0,
+ "toolsEnabled": [
+  "search_units",
+  "graph_hop",
+  "get_region",
+  "doc_status"
+ ],
+ "toolCalls": [
+  {
+   "callId": "tooluse_E2a3t1fmCUJ6xcor3a0aVm",
+   "tool": "search_units",
+   "input": {
+    "query": "W-2 Box 1 wages qualifying income",
+    "docType": "doc:W2"
+   },
+   "injected": {
+    "callerSub": "local-",
+    "groups": [
+     "lending-analyst"
+    ],
+    "pipelineVersion": "1.0",
+    "packageId": "pkg-lending-02",
+    "runId": "r-7e083e668f10",
+    "via": "local-gateway"
+   },
+   "startedAt": "2026-11-11T00:48:00.144Z",
+   "ms": 5,
+   "status": "ok",
+   "output": {
+    "units": [],
+    "query": {
+     "index": "units-v1-0",
+     "k": 5,
+     "subQueryK": 20,
+     "weights": {
+      "dense": 0.7,
+      "bm25": 0.3
+     },
+     "normalization": "min_max",
+     "filter": {
+      "bool": {
+       "filter": [
+        {
+         "terms": {
+          "allowedPrincipals": [
+           "user:local-dev-owner-0000",
+           "group:lending-analyst"
+          ]
+         }
+        },
+        {
+         "term": {
+          "packageId": "pkg-lending-02"
+         }
+        },
+        {
+         "term": {
+          "pipelineVersion": "1.0"
+         }
+        },
+        {
+         "term": {
+          "docType": "doc:W2"
+         }
+        }
+       ],
+       "must_not": [
+        {
+         "term": {
+          "piiFlag": "held"
+         }
+        }
+       ]
+      }
+     },
+     "embedModel": "amazon.titan-embed-text-v2:0"
+    },
+    "latencyMs": 4
+   }
+  },
+  {
+   "callId": "tooluse_uEGPlpZn99bJhQ1dv2rSyf",
+   "tool": "graph_hop",
+   "input": {
+    "template": "qi_sum_w2_box1_v1",
+    "params": {}
+   },
+   "injected": {
+    "callerSub": "local-",
+    "groups": [
+     "lending-analyst"
+    ],
+    "pipelineVersion": "1.0",
+    "packageId": "pkg-lending-02",
+    "runId": "r-7e083e668f10",
+    "via": "local-gateway"
+   },
+   "startedAt": "2026-11-11T00:48:00.144Z",
+   "ms": 2,
+   "status": "ok",
+   "output": {
+    "template": "qi_sum_w2_box1_v1",
+    "sparql": "",
+    "graphs": [],
+    "columns": [],
+    "rows": [],
+    "rowCount": 0,
+    "operands": [],
+    "note": "no ABox for pipelineVersion 1.0 (ontology: none)",
+    "latencyMs": 2
+   }
+  },
+  {
+   "callId": "tooluse_gpZ7fv2Cy62c5o7uYbf8I4",
+   "tool": "search_units",
+   "input": {
+    "query": "W-2 Box 1 wages income tax year",
+    "k": 10
+   },
+   "injected": {
+    "callerSub": "local-",
+    "groups": [
+     "lending-analyst"
+    ],
+    "pipelineVersion": "1.0",
+    "packageId": "pkg-lending-02",
+    "runId": "r-7e083e668f10",
+    "via": "local-gateway"
+   },
+   "startedAt": "2026-11-11T00:48:06.370Z",
+   "ms": 2,
+   "status": "ok",
+   "output": {
+    "units": [
+     {
+      "rank": 1,
+      "unitId": "w2-2025-lena-fictus-5bf98e:1.0:c-01",
+      "docId": "w2-2025-lena-fictus-5bf98e",
+      "fileName": "w2_2025_lena_fictus.pdf",
+      "unitType": "chunk",
+      "label": "chunk c-01",
+      "chunkLabel": "chunk c-01",
+      "breadcrumb": "",
+      "text": "Form W-2\nWage and Tax Statement\n2025\nCopy C—For EMPLOYEE'S RECORDS (See Notice to Employee on the back of Copy B.)\nDepartment of the Treasury—Internal Revenue Service (form layout, fictitious data)\na Employee's social security number\nb Employer identification number (EIN)\nc Employer's name, address, and ZIP code\nd Control number\ne Employee's first name and initial   Last name      f Employee's address and ZIP code\n1 Wages, tips, other compensation\n2 Federal income tax withheld\n3 Social security wages\n4 Social security tax withheld\n5 Medicare wages and tips\n6 Medicare tax withheld\n7 Social security tips\n8 Allocated tips\n9\n10 Dependent care benefits\n11 Nonqualified plans\n12a See instructions for box 12\n13 Retirement plan\n12b\n14 Other\n12c\n12d\n15 State\nEmployer's state ID number\n16 State wages, tips, etc.\n17 State income tax\nCode\n5,150.00\nD\n103,000.00\n103,000.00\n97,850.00\n12,360.00\n6,386.00\n1,493.50\nX\nXXX-XX-4159\n00-4417305\nNewAge Global Fintech Services\n400 Market Street\nSeattle, WA 98104\nNGF-25-4159\nLena Fictus\n7 Orchard Row\nTacoma, WA 98402\nWA\nFictitious document · NewAge Global Fintech · for demonstration only",
+      "pages": [
+       1
+      ],
+      "bboxes": [],
+      "fields": [],
+      "piiFlag": "none",
+      "resolvable": false,
+      "scores": {
+       "denseRaw": 1.559045,
+       "bm25Raw": 1.391764,
+       "denseNorm": 1.0,
+       "bm25Norm": 1.0,
+       "fused": 1.0
+      }
+     },
+     {
+      "rank": 2,
+      "unitId": "w2-2025-omar-fictus-5dc972:1.0:c-01",
+      "docId": "w2-2025-omar-fictus-5dc972",
+      "fileName": "w2_2025_omar_fictus.pdf",
+      "unitType": "chunk",
+      "label": "chunk c-01",
+      "chunkLabel": "chunk c-01",
+      "breadcrumb": "",
+      "text": "Form W-2\nWage and Tax Statement\n2025\nCopy C—For EMPLOYEE'S RECORDS (See Notice to Employee on the back of Copy B.)\nDepartment of the Treasury—Internal Revenue Service (form layout, fictitious data)\na Employee's social security number\nb Employer identification number (EIN)\nc Employer's name, address, and ZIP code\nd Control number\ne Employee's first name and initial   Last name      f Employee's address and ZIP code\n1 Wages, tips, other compensation\n2 Federal income tax withheld\n3 Social security wages\n4 Social security tax withheld\n5 Medicare wages and tips\n6 Medicare tax withheld\n7 Social security tips\n8 Allocated tips\n9\n10 Dependent care benefits\n11 Nonqualified plans\n12a See instructions for box 12\n13 Retirement plan\n12b\n14 Other\n12c\n12d\n15 State\nEmployer's state ID number\n16 State wages, tips, etc.\n17 State income tax\nCode\n5,760.00\nD\n96,000.00\n96,000.00\n90,240.00\n11,520.00\n5,952.00\n1,392.00\nX\nXXX-XX-4081\n00-4417306\nNewAge Global Fintech Payments\n410 Market Street\nSeattle, WA 98104\nNGF-25-4081\nOmar Fictus\n7 Orchard Row\nTacoma, WA 98402\nWA\nFictitious document · NewAge Global Fintech · for demonstration only",
+      "pages": [
+       1
+      ],
+      "bboxes": [],
+      "fields": [],
+      "piiFlag": "none",
+      "resolvable": false,
+      "scores": {
+       "denseRaw": 1.545882,
+       "bm25Raw": 1.391764,
+       "denseNorm": 0.9731,
+       "bm25Norm": 1.0,
+       "fused": 0.9811
+      }
+     },
+     {
+      "rank": 3,
+      "unitId": "payslip-2026-09-lena-fictus-245bbc:1.0:c-01",
+      "docId": "payslip-2026-09-lena-fictus-245bbc",
+      "fileName": "payslip_2026-09_lena_fictus.pdf",
+      "unitType": "chunk",
+      "label": "chunk c-01",
+      "chunkLabel": "chunk c-01",
+      "breadcrumb": "",
+      "text": "NewAge Global Fintech Services\n400 Market Street, Seattle, WA 98104\nEarnings Statement\nEmployee\nLena Fictus\nEmployee ID\nE-4159\nPay period\n01–30 Sep 2026\nPay date\n30 Sep 2026\nDescription\nCurrent\nYear to date\nGross pay\n9,600.00\n86,400.00\n401(k) employee deferral\n480.00\n4,320.00\nFederal income tax\n1,152.00\n10,368.00\nSocial Security\n595.20\n5,356.80\nMedicare\n139.20\n1,252.80\nNet pay\n7,233.60\n65,102.40\nYear-to-date figures cover 01 Jan 2026 to 30 Sep 2026.\nFictitious document · NewAge Global Fintech · for demonstration only",
+      "pages": [
+       1
+      ],
+      "bboxes": [],
+      "fields": [],
+      "piiFlag": "masked",
+      "resolvable": false,
+      "scores": {
+       "denseRaw": 1.070585,
+       "bm25Raw": 0.854007,
+       "denseNorm": 0.0,
+       "bm25Norm": 0.0,
+       "fused": 0.0
+      }
+     }
+    ],
+    "query": {
+     "index": "units-v1-0",
+     "k": 10,
+     "subQueryK": 20,
+     "weights": {
+      "dense": 0.7,
+      "bm25": 0.3
+     },
+     "normalization": "min_max",
+     "filter": {
+      "bool": {
+       "filter": [
+        {
+         "terms": {
+          "allowedPrincipals": [
+           "user:local-dev-owner-0000",
+           "group:lending-analyst"
+          ]
+         }
+        },
+        {
+         "term": {
+          "packageId": "pkg-lending-02"
+         }
+        },
+        {
+         "term": {
+          "pipelineVersion": "1.0"
+         }
+        }
+       ],
+       "must_not": [
+        {
+         "term": {
+          "piiFlag": "held"
+         }
+        }
+       ]
+      }
+     },
+     "embedModel": "amazon.titan-embed-text-v2:0"
+    },
+    "latencyMs": 1
+   }
+  },
+  {
+   "callId": "tooluse_yVmFtReTf1kBhydGSxGDg4",
+   "tool": "doc_status",
+   "input": {},
+   "injected": {
+    "callerSub": "local-",
+    "groups": [
+     "lending-analyst"
+    ],
+    "pipelineVersion": "1.0",
+    "packageId": "pkg-lending-02",
+    "runId": "r-7e083e668f10",
+    "via": "local-gateway"
+   },
+   "startedAt": "2026-11-11T00:48:06.370Z",
+   "ms": 110,
+   "status": "ok",
+   "output": {
+    "packageId": "pkg-lending-02",
+    "pipelineVersion": "1.0",
+    "ready": true,
+    "docs": [
+     {
+      "docId": "bank-statement-2026-09-17441c",
+      "fileName": "bank_statement_2026-09.pdf",
+      "docType": "doc:BankStatement",
+      "laneState": "SUCCEEDED",
+      "currentStage": "ready",
+      "stages": {
+       "register": "SUCCEEDED",
+       "route": "SKIPPED",
+       "extract": "SUCCEEDED",
+       "classify": "SKIPPED",
+       "units": "SUCCEEDED",
+       "pii_gate": "SUCCEEDED",
+       "promote": "SUCCEEDED",
+       "index": "SUCCEEDED",
+       "graph": "SKIPPED",
+       "ready": "SUCCEEDED"
+      },
+      "units": 1,
+      "held": 1,
+      "indexed": 0
+     },
+     {
+      "docId": "payslip-2026-09-lena-fictus-245bbc",
+      "fileName": "payslip_2026-09_lena_fictus.pdf",
+      "docType": "doc:Payslip",
+      "laneState": "SUCCEEDED",
+      "currentStage": "ready",
+      "stages": {
+       "register": "SUCCEEDED",
+       "route": "SKIPPED",
+       "extract": "SUCCEEDED",
+       "classify": "SKIPPED",
+       "units": "SUCCEEDED",
+       "pii_gate": "SUCCEEDED",
+       "promote": "SUCCEEDED",
+       "index": "SUCCEEDED",
+       "graph": "SKIPPED",
+       "ready": "SUCCEEDED"
+      },
+      "units": 1,
+      "held": 0,
+      "indexed": 1
+     },
+     {
+      "docId": "payslip-2026-09-omar-fictus-scan-c4dafb",
+      "fileName": "payslip_2026-09_omar_fictus_scan.pdf",
+      "docType": "doc:Payslip",
+      "laneState": "SUCCEEDED",
+      "currentStage": "ready",
+      "stages": {
+       "register": "SUCCEEDED",
+       "route": "SKIPPED",
+       "extract": "SUCCEEDED",
+       "classify": "SKIPPED",
+       "units": "SUCCEEDED",
+       "pii_gate": "SUCCEEDED",
+       "promote": "SUCCEEDED",
+       "index": "SUCCEEDED",
+       "graph": "SKIPPED",
+       "ready": "SUCCEEDED"
+      },
+      "units": 0,
+      "held": 0,
+      "indexed": 0
+     },
+     {
+      "docId": "w2-2025-lena-fictus-5bf98e",
+      "fileName": "w2_2025_lena_fictus.pdf",
+      "docType": "doc:W2",
+      "laneState": "SUCCEEDED",
+      "currentStage": "ready",
+      "stages": {
+       "register": "SUCCEEDED",
+       "route": "SKIPPED",
+       "extract": "SUCCEEDED",
+       "classify": "SKIPPED",
+       "units": "SUCCEEDED",
+       "pii_gate": "SUCCEEDED",
+       "promote": "SUCCEEDED",
+       "index": "SUCCEEDED",
+       "graph": "SKIPPED",
+       "ready": "SUCCEEDED"
+      },
+      "units": 1,
+      "held": 0,
+      "indexed": 1
+     },
+     {
+      "docId": "w2-2025-omar-fictus-5dc972",
+      "fileName": "w2_2025_omar_fictus.pdf",
+      "docType": "doc:W2",
+      "laneState": "SUCCEEDED",
+      "currentStage": "ready",
+      "stages": {
+       "register": "SUCCEEDED",
+       "route": "SKIPPED",
+       "extract": "SUCCEEDED",
+       "classify": "SKIPPED",
+       "units": "SUCCEEDED",
+       "pii_gate": "SUCCEEDED",
+       "promote": "SUCCEEDED",
+       "index": "SUCCEEDED",
+       "graph": "SKIPPED",
+       "ready": "SUCCEEDED"
+      },
+      "units": 1,
+      "held": 0,
+      "indexed": 1
+     }
+    ]
+   }
+  }
+ ],
+ "retrieved": [
+  {
+   "rank": 1,
+   "unitId": "w2-2025-lena-fictus-5bf98e:1.0:c-01",
+   "docId": "w2-2025-lena-fictus-5bf98e",
+   "fileName": "w2_2025_lena_fictus.pdf",
+   "unitType": "chunk",
+   "label": "chunk c-01",
+   "chunkLabel": "chunk c-01",
+   "breadcrumb": "",
+   "text": "Form W-2\nWage and Tax Statement\n2025\nCopy C—For EMPLOYEE'S RECORDS (See Notice to Employee on the back of Copy B.)\nDepartment of the Treasury—Internal Revenue Service (form layout, fictitious data)\na Employee's social security number\nb Employer identification number (EIN)\nc Employer's name, address, and ZIP code\nd Control number\ne Employee's first name and initial   Last name      f Employee's address and ZIP code\n1 Wages, tips, other compensation\n2 Federal income tax withheld\n3 Social security wages\n4 Social security tax withheld\n5 Medicare wages and tips\n6 Medicare tax withheld\n7 Social security tips\n8 Allocated tips\n9\n10 Dependent care benefits\n11 Nonqualified plans\n12a See instructions for box 12\n13 Retirement plan\n12b\n14 Other\n12c\n12d\n15 State\nEmployer's state ID number\n16 State wages, tips, etc.\n17 State income tax\nCode\n5,150.00\nD\n103,000.00\n103,000.00\n97,850.00\n12,360.00\n6,386.00\n1,493.50\nX\nXXX-XX-4159\n00-4417305\nNewAge Global Fintech Services\n400 Market Street\nSeattle, WA 98104\nNGF-25-4159\nLena Fictus\n7 Orchard Row\nTacoma, WA 98402\nWA\nFictitious document · NewAge Global Fintech · for demonstration only",
+   "pages": [
+    1
+   ],
+   "bboxes": [],
+   "fields": [],
+   "piiFlag": "none",
+   "resolvable": false,
+   "scores": {
+    "denseRaw": 1.559045,
+    "bm25Raw": 1.391764,
+    "denseNorm": 1.0,
+    "bm25Norm": 1.0,
+    "fused": 1.0
+   }
+  },
+  {
+   "rank": 2,
+   "unitId": "w2-2025-omar-fictus-5dc972:1.0:c-01",
+   "docId": "w2-2025-omar-fictus-5dc972",
+   "fileName": "w2_2025_omar_fictus.pdf",
+   "unitType": "chunk",
+   "label": "chunk c-01",
+   "chunkLabel": "chunk c-01",
+   "breadcrumb": "",
+   "text": "Form W-2\nWage and Tax Statement\n2025\nCopy C—For EMPLOYEE'S RECORDS (See Notice to Employee on the back of Copy B.)\nDepartment of the Treasury—Internal Revenue Service (form layout, fictitious data)\na Employee's social security number\nb Employer identification number (EIN)\nc Employer's name, address, and ZIP code\nd Control number\ne Employee's first name and initial   Last name      f Employee's address and ZIP code\n1 Wages, tips, other compensation\n2 Federal income tax withheld\n3 Social security wages\n4 Social security tax withheld\n5 Medicare wages and tips\n6 Medicare tax withheld\n7 Social security tips\n8 Allocated tips\n9\n10 Dependent care benefits\n11 Nonqualified plans\n12a See instructions for box 12\n13 Retirement plan\n12b\n14 Other\n12c\n12d\n15 State\nEmployer's state ID number\n16 State wages, tips, etc.\n17 State income tax\nCode\n5,760.00\nD\n96,000.00\n96,000.00\n90,240.00\n11,520.00\n5,952.00\n1,392.00\nX\nXXX-XX-4081\n00-4417306\nNewAge Global Fintech Payments\n410 Market Street\nSeattle, WA 98104\nNGF-25-4081\nOmar Fictus\n7 Orchard Row\nTacoma, WA 98402\nWA\nFictitious document · NewAge Global Fintech · for demonstration only",
+   "pages": [
+    1
+   ],
+   "bboxes": [],
+   "fields": [],
+   "piiFlag": "none",
+   "resolvable": false,
+   "scores": {
+    "denseRaw": 1.545882,
+    "bm25Raw": 1.391764,
+    "denseNorm": 0.9731,
+    "bm25Norm": 1.0,
+    "fused": 0.9811
+   }
+  },
+  {
+   "rank": 3,
+   "unitId": "payslip-2026-09-lena-fictus-245bbc:1.0:c-01",
+   "docId": "payslip-2026-09-lena-fictus-245bbc",
+   "fileName": "payslip_2026-09_lena_fictus.pdf",
+   "unitType": "chunk",
+   "label": "chunk c-01",
+   "chunkLabel": "chunk c-01",
+   "breadcrumb": "",
+   "text": "NewAge Global Fintech Services\n400 Market Street, Seattle, WA 98104\nEarnings Statement\nEmployee\nLena Fictus\nEmployee ID\nE-4159\nPay period\n01–30 Sep 2026\nPay date\n30 Sep 2026\nDescription\nCurrent\nYear to date\nGross pay\n9,600.00\n86,400.00\n401(k) employee deferral\n480.00\n4,320.00\nFederal income tax\n1,152.00\n10,368.00\nSocial Security\n595.20\n5,356.80\nMedicare\n139.20\n1,252.80\nNet pay\n7,233.60\n65,102.40\nYear-to-date figures cover 01 Jan 2026 to 30 Sep 2026.\nFictitious document · NewAge Global Fintech · for demonstration only",
+   "pages": [
+    1
+   ],
+   "bboxes": [],
+   "fields": [],
+   "piiFlag": "masked",
+   "resolvable": false,
+   "scores": {
+    "denseRaw": 1.070585,
+    "bm25Raw": 0.854007,
+    "denseNorm": 0.0,
+    "bm25Norm": 0.0,
+    "fused": 0.0
+   }
+  }
+ ],
+ "retrievedText": [
+  "Form W-2\nWage and Tax Statement\n2025\nCopy C—For EMPLOYEE'S RECORDS (See Notice to Employee on the back of Copy B.)\nDepartment of the Treasury—Internal Revenue Service (form layout, fictitious data)\na Employee's social security number\nb Employer identification number (EIN)\nc Employer's name, address, and ZIP code\nd Control number\ne Employee's first name and initial   Last name      f Employee's address and ZIP code\n1 Wages, tips, other compensation\n2 Federal income tax withheld\n3 Social security wages\n4 Social security tax withheld\n5 Medicare wages and tips\n6 Medicare tax withheld\n7 Social security tips\n8 Allocated tips\n9\n10 Dependent care benefits\n11 Nonqualified plans\n12a See instructions for box 12\n13 Retirement plan\n12b\n14 Other\n12c\n12d\n15 State\nEmployer's state ID number\n16 State wages, tips, etc.\n17 State income tax\nCode\n5,150.00\nD\n103,000.00\n103,000.00\n97,850.00\n12,360.00\n6,386.00\n1,493.50\nX\nXXX-XX-4159\n00-4417305\nNewAge Global Fintech Services\n400 Market Street\nSeattle, WA 98104\nNGF-25-4159\nLena Fictus\n7 Orchard Row\nTacoma, WA 98402\nWA\nFictitious document · NewAge Global Fintech · for demonstration only",
+  "Form W-2\nWage and Tax Statement\n2025\nCopy C—For EMPLOYEE'S RECORDS (See Notice to Employee on the back of Copy B.)\nDepartment of the Treasury—Internal Revenue Service (form layout, fictitious data)\na Employee's social security number\nb Employer identification number (EIN)\nc Employer's name, address, and ZIP code\nd Control number\ne Employee's first name and initial   Last name      f Employee's address and ZIP code\n1 Wages, tips, other compensation\n2 Federal income tax withheld\n3 Social security wages\n4 Social security tax withheld\n5 Medicare wages and tips\n6 Medicare tax withheld\n7 Social security tips\n8 Allocated tips\n9\n10 Dependent care benefits\n11 Nonqualified plans\n12a See instructions for box 12\n13 Retirement plan\n12b\n14 Other\n12c\n12d\n15 State\nEmployer's state ID number\n16 State wages, tips, etc.\n17 State income tax\nCode\n5,760.00\nD\n96,000.00\n96,000.00\n90,240.00\n11,520.00\n5,952.00\n1,392.00\nX\nXXX-XX-4081\n00-4417306\nNewAge Global Fintech Payments\n410 Market Street\nSeattle, WA 98104\nNGF-25-4081\nOmar Fictus\n7 Orchard Row\nTacoma, WA 98402\nWA\nFictitious document · NewAge Global Fintech · for demonstration only",
+  "NewAge Global Fintech Services\n400 Market Street, Seattle, WA 98104\nEarnings Statement\nEmployee\nLena Fictus\nEmployee ID\nE-4159\nPay period\n01–30 Sep 2026\nPay date\n30 Sep 2026\nDescription\nCurrent\nYear to date\nGross pay\n9,600.00\n86,400.00\n401(k) employee deferral\n480.00\n4,320.00\nFederal income tax\n1,152.00\n10,368.00\nSocial Security\n595.20\n5,356.80\nMedicare\n139.20\n1,252.80\nNet pay\n7,233.60\n65,102.40\nYear-to-date figures cover 01 Jan 2026 to 30 Sep 2026.\nFictitious document · NewAge Global Fintech · for demonstration only"
+ ],
+ "usage": {},
+ "latencyMs": 21841,
+ "status": "error",
+ "error": "MaxTokensReachedException: Model stopped generating due to maximum token limit. The partial message has been added to the conversation history. You can continue by calling the agent again. For more information see: https://strandsagents.com/docs/user-guide/concepts/agents/agent-loop/#maxtokensreachedexception",
+ "s3Key": "runs/r-7e083e668f10.json",
+ "provenance": {
+  "mode": "local-run",
+  "label": "local run · Bedrock",
+  "note": "Asked on a developer machine against the local pipeline's outputs; not the deployed AWS stack.",
+  "build": "build/e2e-lending-02",
+  "model": "Amazon Bedrock Converse (real)",
+  "embeddings": "amazon.titan-embed-text-v2:0 (real Bedrock; responses recorded)",
+  "index": "in-memory k-NN (exact inner product) + BM25 (Lucene formula) over the run's units; NOT OpenSearch",
+  "graph": "pyoxigraph in-process (NOT Amazon Neptune)",
+  "stores": "moto (S3, DynamoDB) loaded from the run's world snapshot",
+  "piiGate": "Amazon Comprehend DetectPiiEntities (real; responses recorded) (runs/local/recorded/comprehend.json)",
+  "extraction": "docling 2.145.0 (local, dev mode)",
+  "scanPages": "local Docling OCR shaped as a Textract response (NOT Amazon Textract)",
+  "phaseBEmbeddings": "amazon.titan-embed-text-v2:0 (real Bedrock; responses recorded)",
+  "toolTransport": "tool Lambda handlers in-process (local gateway; identity injected like the interceptor)"
+ }
+}

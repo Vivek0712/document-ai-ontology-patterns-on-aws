@@ -1,0 +1,152 @@
+/*
+ * Provenant design tokens. One source of truth for colour, type, space, radius, border,
+ * shadow and motion. Tailwind maps onto these variables (tailwind.config.ts), so components never use raw hex.
+ *
+ * Themes: dark is the default. `data-theme` on <html> (or on any subtree, e.g. the /dev/ui kitchen sink)
+ * switches the colour roles. Presenter scaling is a later milestone and is not applied here.
+ *
+ * Colour roles, and what they must never be used for:
+ *   --boundary  #FF6200 orange: evidence-unit outlines, cited regions, the PII gate frame, held outlines.
+ *               Never buttons, focus, selection, headings, links, charts or decoration.
+ *   --loss      pink: failure, always with × or a dashed shape.
+ *   --cited     green: success, always with ✓.
+ */
+
+:root,
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  /* neutrals (zinc) */
+  --bg: #0a0a0b;
+  --bg-subtle: #111113;
+  --surface: #151517;
+  --surface-2: #1c1c1f;
+  --surface-3: #242428;
+  --canvas: #0d0d0f; /* behind page images */
+  --border: #26262a;
+  --border-strong: #34343a;
+  --text: #ededef;
+  --text-2: #a1a1aa;
+  --text-3: #8a8a93; /* placeholders and disabled states only */
+  --inverse: #0a0a0b;
+
+  /* roles */
+  --focus: var(--text); /* neutral ring: never a role colour */
+  --boundary: #ff6200;
+  --boundary-tint: rgba(255, 98, 0, 0.1);
+  --loss: #ff4d8b;
+  --loss-tint: rgba(255, 77, 139, 0.12);
+  --cited: #6ee750;
+  --cited-tint: rgba(110, 231, 80, 0.12);
+  --agent: #00c9a7;
+  --concept: #b466ff;
+  --layout: #3d9bff;
+  --running: var(--text-2); /* neutral; yellow is reserved for the Gold tier */
+  /* naive chunk slices: one indigo/slate family, told apart by pattern first */
+  --chunk-1: #818cf8;
+  --chunk-2: #a5b4fc;
+  --chunk-3: #94a3b8;
+  --chunk-4: #cbd5e1;
+  --tier-bronze: #8c6a4f; /* desaturated brown: never mistaken for the #FF6200 boundary */
+  --tier-silver: #a1a1aa;
+  --tier-gold: #f3c300;
+
+  /* elevation: borders first in dark, shadows only for overlays */
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.3);
+  --shadow-md: 0 4px 12px rgb(0 0 0 / 0.35);
+  --shadow-lg: 0 12px 32px rgb(0 0 0 / 0.5);
+  --page-shadow: 0 1px 2px rgb(0 0 0 / 0.5), 0 8px 24px rgb(0 0 0 / 0.35);
+  --page-dim: 0.94; /* page image brightness in dark theme: calmer, never altered otherwise */
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+
+  --bg: #ffffff;
+  --bg-subtle: #fafafa;
+  --surface: #ffffff;
+  --surface-2: #f4f4f5;
+  --surface-3: #ececee;
+  --canvas: #f4f4f5;
+  --border: #e4e4e7;
+  --border-strong: #d4d4d8;
+  --text: #18181b;
+  --text-2: #52525b;
+  --text-3: #68686f;
+  --inverse: #ffffff;
+
+  --focus: var(--text);
+  --boundary: #ff6200;
+  --boundary-tint: rgba(255, 98, 0, 0.08);
+  --loss: #d0306a;
+  --loss-tint: rgba(208, 48, 106, 0.08);
+  --cited: #2e8f1a;
+  --cited-tint: rgba(46, 143, 26, 0.08);
+  --agent: #008c74;
+  --concept: #8a3ad6;
+  --layout: #1f6fd1;
+  --running: var(--text-2);
+  --chunk-1: #4f46e5;
+  --chunk-2: #6366f1;
+  --chunk-3: #64748b;
+  --chunk-4: #475569;
+  --tier-bronze: #7a5a3f;
+  --tier-silver: #71717a;
+  --tier-gold: #b38f00;
+
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.06);
+  --shadow-md: 0 4px 12px rgb(0 0 0 / 0.08);
+  --shadow-lg: 0 12px 32px rgb(0 0 0 / 0.14);
+  --page-shadow: 0 1px 2px rgb(0 0 0 / 0.08), 0 6px 20px rgb(0 0 0 / 0.08);
+  --page-dim: 1;
+}
+
+:root {
+  /* type: px / line-height; base is 13/20 */
+  --font-sans: "Inter Variable", Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono Variable", "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* layout */
+  --sidebar-w: 232px;
+  --sidebar-w-collapsed: 56px;
+  --topbar-h: 48px;
+  --footer-h: 28px;
+
+  /* motion */
+  --dur-fast: 120ms;
+  --dur-base: 200ms;
+  --dur-slow: 320ms;
+  --dur-deliberate: 600ms;
+  --dur-narrative: 900ms;
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-enter: cubic-bezier(0, 0, 0, 1);
+  --ease-exit: cubic-bezier(0.3, 0, 1, 1);
+}
+
+/*
+ * Annotations drawn on a page image. The paper is always white, so marks on it use the light-theme roles in
+ * both themes (a dark-theme green on white paper would fail 3:1). PageCanvas puts this class on its SVG.
+ */
+.on-paper {
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #f4f4f5;
+  --surface-3: #ececee;
+  --border: #e4e4e7;
+  --border-strong: #a1a1aa; /* dashed member outlines must read on white */
+  --text: #18181b;
+  --text-2: #52525b;
+  --text-3: #68686f;
+  --inverse: #ffffff;
+  --loss: #d0306a;
+  --cited: #2e8f1a;
+  --agent: #008c74;
+  --concept: #8a3ad6;
+  --layout: #1f6fd1;
+  --running: #52525b;
+  --chunk-1: #4f46e5;
+  --chunk-2: #6366f1;
+  --chunk-3: #64748b;
+  --chunk-4: #475569;
+  --boundary-tint: rgba(255, 98, 0, 0.05);
+}

@@ -1,0 +1,65 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix fibo-sec-dbt-bnd: <https://spec.edmcouncil.org/fibo/ontology/SEC/Debt/Bonds/> .
+@prefix doc:  <urn:rp:ont:doc:> .
+@prefix rp:   <urn:rp:ont:rp:> .
+
+# Document types. `classify` scores rp:indicator phrases (case-insensitive, whitespace-normalised)
+# against the extracted text; skos:prefLabel / skos:altLabel are display names (disjoint).
+
+doc:DocTypeScheme a skos:ConceptScheme ;
+    skos:prefLabel "Regionproof document types" .
+
+doc:W2 a owl:Class, skos:Concept ;
+    rdfs:subClassOf doc:Document ;
+    skos:inScheme doc:DocTypeScheme ;
+    skos:prefLabel "W-2 Wage and Tax Statement" ;
+    skos:altLabel "Form W-2", "IRS Form W-2" ;
+    rp:shortLabel "W-2" ;
+    rp:periodKind "tax_year" ;
+    rp:indicator "Wage and Tax Statement", "Form W-2", "Wages, tips, other compensation",
+        "Social security wages", "Medicare wages and tips", "Employer identification number" ;
+    skos:definition "Annual statement of wages paid and taxes withheld, issued by an employer to an employee." .
+
+doc:Payslip a owl:Class, skos:Concept ;
+    rdfs:subClassOf doc:Document ;
+    skos:inScheme doc:DocTypeScheme ;
+    skos:prefLabel "Payslip" ;
+    skos:altLabel "Earnings statement", "Pay stub" ;
+    rp:shortLabel "Payslip" ;
+    rp:periodKind "pay_period" ;
+    rp:indicator "Earnings Statement", "Pay period", "Pay date", "Gross pay", "Net pay", "Year to date" ;
+    skos:definition "Per-period statement of an employee's gross pay, deductions and net pay with year-to-date totals." .
+
+doc:BankStatement a owl:Class, skos:Concept ;
+    rdfs:subClassOf doc:Document ;
+    skos:inScheme doc:DocTypeScheme ;
+    skos:prefLabel "Bank statement" ;
+    skos:altLabel "Account statement" ;
+    rp:shortLabel "Bank statement" ;
+    rp:periodKind "statement_period" ;
+    rp:indicator "Account Statement", "Statement period", "Account number", "Opening balance", "Closing balance",
+        "Deposits" ;
+    skos:definition "Periodic statement of a deposit account's balances and transactions." .
+
+doc:QuarterlyReport a owl:Class, skos:Concept ;
+    rdfs:subClassOf doc:Document ;
+    skos:inScheme doc:DocTypeScheme ;
+    skos:prefLabel "Quarterly report" ;
+    skos:altLabel "Quarterly results report" ;
+    rp:shortLabel "Quarterly report" ;
+    rp:periodKind "quarter" ;
+    rp:indicator "Quarterly Report", "Total revenue", "Revenue by segment", "Outlook", "Operating expenses" ;
+    skos:definition "Company report on one fiscal quarter's results." .
+
+doc:TradeConfirmation a owl:Class, skos:Concept ;
+    rdfs:subClassOf doc:Document ;
+    skos:inScheme doc:DocTypeScheme ;
+    skos:prefLabel "Trade confirmation" ;
+    skos:altLabel "Confirmation of trade" ;
+    rp:shortLabel "Trade confirmation" ;
+    rp:periodKind "none" ;
+    rp:indicator "Trade Confirmation", "Settlement date", "Trade date", "Coupon", "Security terms", "Nominal" ;
+    skos:definition "Confirmation of a securities transaction and the security's terms." ;
+    skos:related fibo-sec-dbt-bnd:Bond .

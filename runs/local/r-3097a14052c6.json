@@ -1,0 +1,237 @@
+{
+ "runId": "r-3097a14052c6",
+ "createdAt": "2026-11-11T03:29:11.460Z",
+ "packageId": "pkg-tradeconf-01",
+ "pipelineVersion": "2.3.1",
+ "question": "What coupon can XS-2031 step up to?",
+ "callerSub": "local-dev-owner-0000",
+ "groups": [
+  "lending-analyst"
+ ],
+ "modelId": "us.amazon.nova-2-lite-v1:0",
+ "promptSha": "59984da199bb287de4b76a1d91bc0a5c27fde51028c39ffd04a33c3950a7d302",
+ "configSha": "a42731845bd93c07fb4e21644d86495b8349e4aa6e75014b90f547815ec35447",
+ "blockShas": {
+  "preprocessing": "40e8c03f17781382dcbcc29f7a0a84a8b1e9642cf92500d3980254a0cbd69a07",
+  "retrieval": "3587393d6f0d8c38adfaf6853c1463b54cc1ee872646ff354b3408da63dd586c",
+  "generation": "4731dca541739b7b91e53099ae45acb0f255c753e313bec48702fa79ecad436e",
+  "agent": "5ce789906365b6a0f9d139eba009f17b61d3113720a21c755e3f5be4459551f0"
+ },
+ "corpusHash": "84436b1927bcd4fa33e13a59983a457c6a21bb799ddebff1deb7a3360f4adaa7",
+ "memoryRecordsInjected": 0,
+ "toolsEnabled": [
+  "search_units",
+  "graph_hop",
+  "get_region",
+  "doc_status"
+ ],
+ "toolCalls": [
+  {
+   "callId": "tooluse_VpvkVxBic3sF1GdLxDQgMQ",
+   "tool": "graph_hop",
+   "input": {
+    "template": "coupon_terms_v1",
+    "params": {
+     "security": "XS-2031"
+    }
+   },
+   "injected": {
+    "callerSub": "local-",
+    "groups": [
+     "lending-analyst"
+    ],
+    "pipelineVersion": "2.3.1",
+    "packageId": "pkg-tradeconf-01",
+    "runId": "r-3097a14052c6",
+    "via": "local-gateway"
+   },
+   "startedAt": "2026-11-11T03:29:12.743Z",
+   "ms": 5,
+   "status": "ok",
+   "output": {
+    "template": "coupon_terms_v1",
+    "sparql": "# template: coupon_terms_v1\n# purpose:  a bond's coupon at issue and the rating-triggered step event read from the footnote its\n#           marker links (D2), each with the page region it came from.\n# params:   security  required  the security identifier as printed, e.g. \"XS-2031\" (matched case-insensitively)\n# columns:  security, bond, terms, field, concept, label, value, coupon, unit, event, newRate,\n#           effectiveFromYear, triggerRating, marker, footnote, region, page, x0, y0, x1, y1, fileName\n#           (field/value/label = the coupon field as printed, so graph_hop reports it as the operand;\n#           page and x0..y1 = the footnote's region)\n# graphs:   FROM clause = TBox graphs + the caller-readable ABox graph\n# notes:    the ABox is written by graph_write from deterministic bindings (no model); no row = no step\n#           event was linked and parsed for that security.\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX prov: <http://www.w3.org/ns/prov#>\nPREFIX fin: <urn:rp:ont:fin:>\nPREFIX doc: <urn:rp:ont:doc:>\nPREFIX rp: <urn:rp:ont:rp:>\nPREFIX fibo-sec-dbt-bnd: <https://spec.edmcouncil.org/fibo/ontology/SEC/Debt/Bonds/>\nPREFIX fibo-sec-dbt-dbti: <https://spec.edmcouncil.org/fibo/ontology/SEC/Debt/DebtInstruments/>\nSELECT ?security ?bond ?terms ?field ?concept ?label ?value ?coupon ?unit ?event ?newRate ?effectiveFromYear\n       ?triggerRating ?marker ?footnote ?region ?page ?x0 ?y0 ?x1 ?y1 ?fileName\nFROM <urn:rp:graph:tbox:fibo>\nFROM <urn:rp:graph:tbox:doco>\nFROM <urn:rp:graph:tbox:rp>\nFROM <urn:rp:graph:abox:pkg-tradeconf-01:2.3.1>\nWHERE {\n  ?bond a fibo-sec-dbt-bnd:StepUpBond ;\n        rp:name ?security ;\n        fibo-sec-dbt-dbti:hasInterestPaymentTerms ?terms .\n  FILTER(LCASE(STR(?security)) = LCASE(\"XS-2031\"))\n  ?terms a fibo-sec-dbt-bnd:SteppedCouponTerms ;\n         fin:hasStepEvent ?event ;\n         prov:wasDerivedFrom ?field .\n  BIND(fin:CouponRate AS ?concept)\n  ?field a fin:FieldValue ;\n         fin:concept ?concept ;\n         rp:value ?value ;\n         prov:wasDerivedFrom ?unit .\n  ?unit a doc:EvidenceUnit ; rp:inDocument ?doc .\n  ?doc rp:fileName ?fileName .\n  OPTIONAL { ?field rp:label ?label }\n  OPTIONAL { ?field fin:amount ?coupon }\n  ?event a fin:RatingTriggeredStepEvent ;\n         fin:newRate ?newRate ;\n         fin:effectiveFromYear ?effectiveFromYear ;\n         fin:triggerRating ?triggerRating ;\n         prov:wasDerivedFrom ?region .\n  ?region a doc:PageRegion ; rp:page ?page ; rp:x0 ?x0 ; rp:y0 ?y0 ; rp:x1 ?x1 ; rp:y1 ?y1 .\n  OPTIONAL { ?event rp:marker ?marker }\n  OPTIONAL { ?event rp:label ?footnote }\n}\nORDER BY ?security ?event\n",
+    "graphs": [
+     "urn:rp:graph:tbox:fibo",
+     "urn:rp:graph:tbox:doco",
+     "urn:rp:graph:tbox:rp",
+     "urn:rp:graph:abox:pkg-tradeconf-01:2.3.1"
+    ],
+    "columns": [
+     "security",
+     "bond",
+     "terms",
+     "field",
+     "concept",
+     "label",
+     "value",
+     "coupon",
+     "unit",
+     "event",
+     "newRate",
+     "effectiveFromYear",
+     "triggerRating",
+     "marker",
+     "footnote",
+     "region",
+     "page",
+     "x0",
+     "y0",
+     "x1",
+     "y1",
+     "fileName"
+    ],
+    "rows": [
+     {
+      "security": "XS-2031",
+      "bond": "urn:rp:security:xs-2031",
+      "terms": "urn:rp:terms:trade-confirmation-xs2031-9af5c5:2.3.1:eu-04/f-coupon-rate-at-issue",
+      "field": "urn:rp:field:trade-confirmation-xs2031-9af5c5:2.3.1:eu-04/f-coupon-rate-at-issue",
+      "concept": "urn:rp:ont:fin:CouponRate",
+      "label": "Coupon",
+      "value": "4.25%",
+      "coupon": "4.25",
+      "unit": "urn:rp:unit:trade-confirmation-xs2031-9af5c5:2.3.1:eu-04",
+      "event": "urn:rp:step:trade-confirmation-xs2031-9af5c5:2.3.1:eu-04/f-coupon-rate-at-issue",
+      "newRate": "6",
+      "effectiveFromYear": "3",
+      "triggerRating": "BBB-",
+      "marker": "3",
+      "footnote": "3 6.00% from year 3 if rating < BBB-",
+      "region": "urn:rp:region:trade-confirmation-xs2031-9af5c5:2.3.1:eu-04/m-02/p2",
+      "page": "2",
+      "x0": "60",
+      "y0": "109.77",
+      "x1": "218.01",
+      "y1": "120.87",
+      "fileName": "trade_confirmation_xs2031.pdf"
+     }
+    ],
+    "rowCount": 1,
+    "operands": [
+     {
+      "unitId": "trade-confirmation-xs2031-9af5c5:2.3.1:eu-04",
+      "fieldId": "f-coupon-rate-at-issue",
+      "value": "4.25%",
+      "concept": "urn:rp:ont:fin:CouponRate",
+      "label": "Coupon"
+     }
+    ],
+    "latencyMs": 5
+   }
+  },
+  {
+   "callId": "tooluse_GfMWSC1ER5ghOSMgveXxBb",
+   "tool": "get_region",
+   "input": {
+    "unitId": "trade-confirmation-xs2031-9af5c5:2.3.1:eu-04",
+    "fieldId": "f-coupon-rate-at-issue"
+   },
+   "injected": {
+    "callerSub": "local-",
+    "groups": [
+     "lending-analyst"
+    ],
+    "pipelineVersion": "2.3.1",
+    "packageId": "pkg-tradeconf-01",
+    "runId": "r-3097a14052c6",
+    "via": "local-gateway"
+   },
+   "startedAt": "2026-11-11T03:29:13.617Z",
+   "ms": 8,
+   "status": "ok",
+   "output": {
+    "unitId": "trade-confirmation-xs2031-9af5c5:2.3.1:eu-04",
+    "fieldId": "f-coupon-rate-at-issue",
+    "docId": "trade-confirmation-xs2031-9af5c5",
+    "fileName": "trade_confirmation_xs2031.pdf",
+    "label": "Trade confirmation · Security terms",
+    "page": 1,
+    "bbox": {
+     "page": 1,
+     "x0": 60.47,
+     "y0": 447.68,
+     "x1": 276.35,
+     "y1": 456.48
+    },
+    "fieldBbox": {
+     "page": 1,
+     "x0": 60.47,
+     "y0": 447.68,
+     "x1": 276.35,
+     "y1": 456.48
+    },
+    "unitBboxes": [
+     {
+      "page": 1,
+      "x0": 52.92,
+      "y0": 339.12,
+      "x1": 552.72,
+      "y1": 501.03
+     },
+     {
+      "page": 2,
+      "x0": 60.0,
+      "y0": 109.77,
+      "x1": 218.01,
+      "y1": 120.87
+     }
+    ],
+    "pageWidth": 612.0,
+    "pageHeight": 792.0,
+    "pageImageKey": "gold/pkg-tradeconf-01/trade-confirmation-xs2031-9af5c5/2.3.1/pages/p001.png",
+    "heldRegions": [],
+    "value": "4.25%",
+    "fieldLabel": "Coupon",
+    "concept": "fin:CouponRate",
+    "unitType": "table_panel",
+    "breadcrumb": "Trade confirmation › Security terms",
+    "engine": "docling",
+    "piiFlag": "none",
+    "pipelineVersion": "2.3.1",
+    "ontologyVersion": "1.2.0"
+   }
+  }
+ ],
+ "retrieved": [],
+ "retrievedText": [],
+ "answer": {
+  "answer": "XS-2031 can step up to a 6.00% coupon from year 3 if the rating falls below BBB-, according to the footnote on page 2 of the trade confirmation.",
+  "claims": [],
+  "caveats": [
+   "The step-up rate of 6.00% is taken from the footnote text, not a numeric field; it is not directly citable as a field value."
+  ],
+  "citationRetries": 1,
+  "uncitedNumbers": [
+   "6.00"
+  ]
+ },
+ "usage": {
+  "inputTokens": 13381,
+  "outputTokens": 451,
+  "totalTokens": 13832
+ },
+ "latencyMs": 4893,
+ "status": "ok",
+ "s3Key": "runs/r-3097a14052c6.json",
+ "generationProfile": "compact",
+ "modelKey": "MODEL_COMPACT",
+ "toolSpecSha": "ba677bd6f99a21e360462cb80044caea9b343c8d5757f78dd2e018413f8f12f9",
+ "provenance": {
+  "mode": "local-run",
+  "label": "local run · Bedrock",
+  "note": "Asked on a developer machine against the local pipeline's outputs; not the deployed AWS stack.",
+  "build": "build/e2e-tradeconf",
+  "model": "Amazon Bedrock Converse (real)",
+  "embeddings": "amazon.titan-embed-text-v2:0 (real Bedrock; responses recorded)",
+  "index": "in-memory k-NN (exact inner product) + BM25 (Lucene formula) over the run's units; NOT OpenSearch",
+  "graph": "pyoxigraph in-process (NOT Amazon Neptune)",
+  "stores": "moto (S3, DynamoDB) loaded from the run's world snapshot",
+  "piiGate": "Amazon Comprehend DetectPiiEntities (real; responses recorded) (runs/local/recorded/comprehend.json)",
+  "extraction": "docling 2.145.0 (local, dev mode)",
+  "scanPages": "local Docling OCR shaped as a Textract response (NOT Amazon Textract)",
+  "phaseBEmbeddings": "amazon.titan-embed-text-v2:0 (real Bedrock; responses recorded)",
+  "toolTransport": "tool Lambda handlers in-process (local gateway; identity injected like the interceptor)",
+  "generationProfile": "compact: answer model swapped for these runs only (AskRequest.generationProfile); lane config unchanged"
+ }
+}

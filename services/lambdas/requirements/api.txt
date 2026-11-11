@@ -1,0 +1,3 @@
+# rp-api, rp-api-ask. Runtime deps beyond the `core` layer (packages/evidence-core) and the
+# python3.12 Lambda runtime's boto3/botocore/urllib3: none. scripts/build_lambdas.sh skips the
+# `api` layer while this file lists no packages.

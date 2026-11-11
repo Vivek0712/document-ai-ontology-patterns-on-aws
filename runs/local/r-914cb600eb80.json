@@ -1,0 +1,657 @@
+{
+ "runId": "r-914cb600eb80",
+ "createdAt": "2026-11-11T00:41:25.253Z",
+ "packageId": "pkg-quarterly-01",
+ "pipelineVersion": "1.0",
+ "question": "How many customer accounts did NewAge Global Fintech have at the end of Q3 FY2025?",
+ "callerSub": "local-dev-owner-0000",
+ "groups": [
+  "lending-analyst"
+ ],
+ "modelId": "us.anthropic.claude-sonnet-4-6",
+ "promptSha": "59984da199bb287de4b76a1d91bc0a5c27fde51028c39ffd04a33c3950a7d302",
+ "configSha": "1f437eb1624d9df0b867a42d73fe7d27b7de6fb441c90c917f15b23f564748dc",
+ "blockShas": {
+  "preprocessing": "ba267beb165e0af475c323c9f78543f5ee90fc7c201ccbf59f34842e3d4e6114",
+  "retrieval": "3587393d6f0d8c38adfaf6853c1463b54cc1ee872646ff354b3408da63dd586c",
+  "generation": "4731dca541739b7b91e53099ae45acb0f255c753e313bec48702fa79ecad436e",
+  "agent": "5ce789906365b6a0f9d139eba009f17b61d3113720a21c755e3f5be4459551f0"
+ },
+ "corpusHash": "4f9790b4a360d9ef57a232bb5ffd829704e5e2d07486c54522a00f9f83fd82b9",
+ "memoryRecordsInjected": 0,
+ "toolsEnabled": [
+  "search_units",
+  "graph_hop",
+  "get_region",
+  "doc_status"
+ ],
+ "toolCalls": [
+  {
+   "callId": "tooluse_iHvu2ddoF6LGNxaMOuEJrK",
+   "tool": "search_units",
+   "input": {
+    "query": "NewAge Global Fintech customer accounts Q3 FY2025"
+   },
+   "injected": {
+    "callerSub": "local-",
+    "groups": [
+     "lending-analyst"
+    ],
+    "pipelineVersion": "1.0",
+    "packageId": "pkg-quarterly-01",
+    "runId": "r-914cb600eb80",
+    "via": "local-gateway"
+   },
+   "startedAt": "2026-11-11T00:41:30.645Z",
+   "ms": 360,
+   "status": "ok",
+   "output": {
+    "units": [
+     {
+      "rank": 1,
+      "unitId": "quarterly-report-q3-fy2025-ab5fea:1.0:c-01",
+      "docId": "quarterly-report-q3-fy2025-ab5fea",
+      "fileName": "quarterly_report_q3_fy2025.pdf",
+      "unitType": "chunk",
+      "label": "chunk c-01",
+      "chunkLabel": "chunk c-01",
+      "breadcrumb": "",
+      "text": "NewAge Global Fintech\nQuarterly Report · Q3 FY2025\nFor the third quarter of fiscal year 2025\nContents\n1. Overview\n2. Strategy and operations\n3. Results\n4. Outlook\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 1 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2025\n1. Overview\nThe compliance function completed its annual review of sanctions screening controls. Data platform work\nconcentrated on lineage, so that every reported figure can be traced to its source.\nStaff training covered the revised conduct framework and the new incident reporting procedure. Technology\nspending shifted from new builds towards reliability work on existing services.\nCost discipline remained a priority, and discretionary spending was held flat. Regional teams harmonised\nproduct terms so that customers see one fee schedule in every market.\nPartnership agreements with two payroll providers moved from pilot into general availability. The group\ncontinued to simplify its legal entity structure where this reduces operating cost.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 2 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2025\n1.2 Customers\nCustomer accounts reached 2.4 million at the end of Q3 FY2025, with most new accounts opened through the\nmobile application.\nRisk management reviewed concentration limits across the lending book and found no breaches. The markets\ndesk continued to serve corporate clients with hedging and short-term funding products.\nTreasury extended the maturity profile of wholesale funding during the period. Customer complaints fell\ncompared with the prior quarter after changes to dispute handling.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 3 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2025\nCost discipline remained a priority, and discretionary spending was held flat. The markets desk continued to\nserve corporate clients with hedging and short-term funding products.",
+      "pages": [
+       1,
+       2,
+       3,
+       4
+      ],
+      "bboxes": [],
+      "fields": [],
+      "piiFlag": "none",
+      "resolvable": false,
+      "scores": {
+       "denseRaw": 1.791397,
+       "bm25Raw": 2.146002,
+       "denseNorm": 1.0,
+       "bm25Norm": 1.0,
+       "fused": 1.0
+      }
+     },
+     {
+      "rank": 2,
+      "unitId": "quarterly-report-q3-fy2024-ab0f27:1.0:c-01",
+      "docId": "quarterly-report-q3-fy2024-ab0f27",
+      "fileName": "quarterly_report_q3_fy2024.pdf",
+      "unitType": "chunk",
+      "label": "chunk c-01",
+      "chunkLabel": "chunk c-01",
+      "breadcrumb": "",
+      "text": "NewAge Global Fintech\nQuarterly Report · Q3 FY2024\nFor the third quarter of fiscal year 2024\nContents\n1. Overview\n2. Strategy and operations\n3. Results\n4. Outlook\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 1 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2024\n1. Overview\nInvestment in fraud analytics focused on earlier detection of account takeover patterns. Treasury extended the\nmaturity profile of wholesale funding during the period.\nThe quarter continued the programme of consolidating payment rails onto a single settlement platform. The\nmarkets desk continued to serve corporate clients with hedging and short-term funding products.\nPartnership agreements with two payroll providers moved from pilot into general availability. Operating teams\ncompleted the migration of merchant onboarding to the shared identity service.\nThe board approved the updated capital plan and the dividend policy remained unchanged. The group kept its\nfunding mix stable, with customer deposits remaining the primary source of liquidity.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 2 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2024\n1.2 Customers\nCustomer accounts reached 1.6 million at the end of Q3 FY2024, with most new accounts opened through the\nmobile application.\nRegional teams harmonised product terms so that customers see one fee schedule in every market. Customer\ncomplaints fell compared with the prior quarter after changes to dispute handling.\nCost discipline remained a priority, and discretionary spending was held flat. The compliance function\ncompleted its annual review of sanctions screening controls.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 3 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2024\nInvestment in fraud analytics focused on earlier detection of account takeover patterns. Risk management\nreviewed concentration limits across the lending book and found no breaches.",
+      "pages": [
+       1,
+       2,
+       3,
+       4
+      ],
+      "bboxes": [],
+      "fields": [],
+      "piiFlag": "none",
+      "resolvable": false,
+      "scores": {
+       "denseRaw": 1.7529,
+       "bm25Raw": 1.289173,
+       "denseNorm": 0.8386,
+       "bm25Norm": 0.5864,
+       "fused": 0.763
+      }
+     },
+     {
+      "rank": 3,
+      "unitId": "quarterly-report-q3-fy2023-f6e6a3:1.0:c-01",
+      "docId": "quarterly-report-q3-fy2023-f6e6a3",
+      "fileName": "quarterly_report_q3_fy2023.pdf",
+      "unitType": "chunk",
+      "label": "chunk c-01",
+      "chunkLabel": "chunk c-01",
+      "breadcrumb": "",
+      "text": "NewAge Global Fintech\nQuarterly Report · Q3 FY2023\nFor the third quarter of fiscal year 2023\nContents\n1. Overview\n2. Strategy and operations\n3. Results\n4. Outlook\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 1 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2023\n1. Overview\nCustomer research informed changes to the mobile application's statement and document views. Risk\nmanagement reviewed concentration limits across the lending book and found no breaches.\nCard issuing volumes followed the usual seasonal pattern for the period. Regional teams harmonised product\nterms so that customers see one fee schedule in every market.\nTechnology spending shifted from new builds towards reliability work on existing services. Customer\ncomplaints fell compared with the prior quarter after changes to dispute handling.\nThe markets desk continued to serve corporate clients with hedging and short-term funding products. The\ngroup kept its funding mix stable, with customer deposits remaining the primary source of liquidity.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 2 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2023\n1.2 Customers\nCustomer accounts reached 1.5 million at the end of Q3 FY2023, with most new accounts opened through the\nmobile application.\nStaff training covered the revised conduct framework and the new incident reporting procedure. Treasury\nextended the maturity profile of wholesale funding during the period.\nRisk management reviewed concentration limits across the lending book and found no breaches. Investment in\nfraud analytics focused on earlier detection of account takeover patterns.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 3 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2023\nRisk management reviewed concentration limits across the lending book and found no breaches. Data platform",
+      "pages": [
+       1,
+       2,
+       3,
+       4
+      ],
+      "bboxes": [],
+      "fields": [],
+      "piiFlag": "none",
+      "resolvable": false,
+      "scores": {
+       "denseRaw": 1.744309,
+       "bm25Raw": 1.303142,
+       "denseNorm": 0.8026,
+       "bm25Norm": 0.5931,
+       "fused": 0.7398
+      }
+     },
+     {
+      "rank": 4,
+      "unitId": "quarterly-report-q3-fy2025-ab5fea:1.0:c-03",
+      "docId": "quarterly-report-q3-fy2025-ab5fea",
+      "fileName": "quarterly_report_q3_fy2025.pdf",
+      "unitType": "chunk",
+      "label": "chunk c-03",
+      "chunkLabel": "chunk c-03",
+      "breadcrumb": "",
+      "text": "source. Risk\nmanagement reviewed concentration limits across the lending book and found no breaches.\nCustomer research informed changes to the mobile application's statement and document views. The lending\nbusiness tightened underwriting criteria for unsecured products in selected segments.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 5 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2025\nFigure 1 · Digital transactions processed · millions\n2,060\nQ1 FY2025\n2,228\nQ2 FY2025\n2,445\nQ3 FY2025\nTreasury extended the maturity profile of wholesale funding during the period. Operating teams completed the\nmigration of merchant onboarding to the shared identity service.\nCard issuing volumes followed the usual seasonal pattern for the period. The markets desk continued to serve\ncorporate clients with hedging and short-term funding products.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 6 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2025\nOperating teams completed the migration of merchant onboarding to the shared identity service. The\ncompliance function completed its annual review of sanctions screening controls.\nTechnology spending shifted from new builds towards reliability work on existing services. Customer\ncomplaints fell compared with the prior quarter after changes to dispute handling.\nInvestment in fraud analytics focused on earlier detection of account takeover patterns. The markets desk\ncontinued to serve corporate clients with hedging and short-term funding products.\nThe board approved the updated capital plan and the dividend policy remained unchanged. The lending\nbusiness tightened underwriting criteria for unsecured products in selected segments.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 7 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2025\nPartnership agreements with two payroll providers moved from pilot into general availability. Investment in\nfraud analytics focused on earlier detection of account takeover patterns.",
+      "pages": [
+       5,
+       6,
+       7,
+       8
+      ],
+      "bboxes": [],
+      "fields": [],
+      "piiFlag": "none",
+      "resolvable": false,
+      "scores": {
+       "denseRaw": 1.665133,
+       "bm25Raw": 0.971231,
+       "denseNorm": 0.4708,
+       "bm25Norm": 0.4329,
+       "fused": 0.4594
+      }
+     },
+     {
+      "rank": 5,
+      "unitId": "quarterly-report-q3-fy2025-ab5fea:1.0:c-04",
+      "docId": "quarterly-report-q3-fy2025-ab5fea",
+      "fileName": "quarterly_report_q3_fy2025.pdf",
+      "unitType": "chunk",
+      "label": "chunk c-04",
+      "chunkLabel": "chunk c-04",
+      "breadcrumb": "",
+      "text": "remained unchanged. The lending\nbusiness tightened underwriting criteria for unsecured products in selected segments.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 7 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2025\nPartnership agreements with two payroll providers moved from pilot into general availability. Investment in\nfraud analytics focused on earlier detection of account takeover patterns.\nTreasury extended the maturity profile of wholesale funding during the period. Regional teams harmonised\nproduct terms so that customers see one fee schedule in every market.\nData platform work concentrated on lineage, so that every reported figure can be traced to its source. The\nquarter continued the programme of consolidating payment rails onto a single settlement platform.\nTechnology spending shifted from new builds towards reliability work on existing services. Staff training\ncovered the revised conduct framework and the new incident reporting procedure.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 8 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2025\nTechnology spending shifted from new builds towards reliability work on existing services. Customer research\ninformed changes to the mobile application's statement and document views.\nPartnership agreements with two payroll providers moved from pilot into general availability. Treasury extended\nthe maturity profile of wholesale funding during the period.\nData platform work concentrated on lineage, so that every reported figure can be traced to its source. Risk\nmanagement reviewed concentration limits across the lending book and found no breaches.\nThe markets desk continued to serve corporate clients with hedging and short-term funding products.\nInvestment in fraud analytics focused on earlier detection of account takeover patterns.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 9 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2025\n3. Results",
+      "pages": [
+       7,
+       8,
+       9,
+       10
+      ],
+      "bboxes": [],
+      "fields": [],
+      "piiFlag": "none",
+      "resolvable": false,
+      "scores": {
+       "denseRaw": 1.663385,
+       "bm25Raw": 0.836822,
+       "denseNorm": 0.4635,
+       "bm25Norm": 0.368,
+       "fused": 0.4348
+      }
+     }
+    ],
+    "query": {
+     "index": "units-v1-0",
+     "k": 5,
+     "subQueryK": 20,
+     "weights": {
+      "dense": 0.7,
+      "bm25": 0.3
+     },
+     "normalization": "min_max",
+     "filter": {
+      "bool": {
+       "filter": [
+        {
+         "terms": {
+          "allowedPrincipals": [
+           "user:local-dev-owner-0000",
+           "group:lending-analyst"
+          ]
+         }
+        },
+        {
+         "term": {
+          "packageId": "pkg-quarterly-01"
+         }
+        },
+        {
+         "term": {
+          "pipelineVersion": "1.0"
+         }
+        }
+       ],
+       "must_not": [
+        {
+         "term": {
+          "piiFlag": "held"
+         }
+        }
+       ]
+      }
+     },
+     "embedModel": "amazon.titan-embed-text-v2:0"
+    },
+    "latencyMs": 359
+   }
+  },
+  {
+   "callId": "tooluse_WwVwq1fnXQ199clk1lEneR",
+   "tool": "search_units",
+   "input": {
+    "query": "number of customer accounts end of quarter 2025"
+   },
+   "injected": {
+    "callerSub": "local-",
+    "groups": [
+     "lending-analyst"
+    ],
+    "pipelineVersion": "1.0",
+    "packageId": "pkg-quarterly-01",
+    "runId": "r-914cb600eb80",
+    "via": "local-gateway"
+   },
+   "startedAt": "2026-11-11T00:41:30.645Z",
+   "ms": 339,
+   "status": "ok",
+   "output": {
+    "units": [
+     {
+      "rank": 1,
+      "unitId": "quarterly-report-q3-fy2025-ab5fea:1.0:c-01",
+      "docId": "quarterly-report-q3-fy2025-ab5fea",
+      "fileName": "quarterly_report_q3_fy2025.pdf",
+      "unitType": "chunk",
+      "label": "chunk c-01",
+      "chunkLabel": "chunk c-01",
+      "breadcrumb": "",
+      "text": "NewAge Global Fintech\nQuarterly Report · Q3 FY2025\nFor the third quarter of fiscal year 2025\nContents\n1. Overview\n2. Strategy and operations\n3. Results\n4. Outlook\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 1 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2025\n1. Overview\nThe compliance function completed its annual review of sanctions screening controls. Data platform work\nconcentrated on lineage, so that every reported figure can be traced to its source.\nStaff training covered the revised conduct framework and the new incident reporting procedure. Technology\nspending shifted from new builds towards reliability work on existing services.\nCost discipline remained a priority, and discretionary spending was held flat. Regional teams harmonised\nproduct terms so that customers see one fee schedule in every market.\nPartnership agreements with two payroll providers moved from pilot into general availability. The group\ncontinued to simplify its legal entity structure where this reduces operating cost.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 2 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2025\n1.2 Customers\nCustomer accounts reached 2.4 million at the end of Q3 FY2025, with most new accounts opened through the\nmobile application.\nRisk management reviewed concentration limits across the lending book and found no breaches. The markets\ndesk continued to serve corporate clients with hedging and short-term funding products.\nTreasury extended the maturity profile of wholesale funding during the period. Customer complaints fell\ncompared with the prior quarter after changes to dispute handling.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 3 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2025\nCost discipline remained a priority, and discretionary spending was held flat. The markets desk continued to\nserve corporate clients with hedging and short-term funding products.",
+      "pages": [
+       1,
+       2,
+       3,
+       4
+      ],
+      "bboxes": [],
+      "fields": [],
+      "piiFlag": "none",
+      "resolvable": false,
+      "scores": {
+       "denseRaw": 1.43682,
+       "bm25Raw": 3.484841,
+       "denseNorm": 1.0,
+       "bm25Norm": 1.0,
+       "fused": 1.0
+      }
+     },
+     {
+      "rank": 2,
+      "unitId": "quarterly-report-q3-fy2024-ab0f27:1.0:c-01",
+      "docId": "quarterly-report-q3-fy2024-ab0f27",
+      "fileName": "quarterly_report_q3_fy2024.pdf",
+      "unitType": "chunk",
+      "label": "chunk c-01",
+      "chunkLabel": "chunk c-01",
+      "breadcrumb": "",
+      "text": "NewAge Global Fintech\nQuarterly Report · Q3 FY2024\nFor the third quarter of fiscal year 2024\nContents\n1. Overview\n2. Strategy and operations\n3. Results\n4. Outlook\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 1 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2024\n1. Overview\nInvestment in fraud analytics focused on earlier detection of account takeover patterns. Treasury extended the\nmaturity profile of wholesale funding during the period.\nThe quarter continued the programme of consolidating payment rails onto a single settlement platform. The\nmarkets desk continued to serve corporate clients with hedging and short-term funding products.\nPartnership agreements with two payroll providers moved from pilot into general availability. Operating teams\ncompleted the migration of merchant onboarding to the shared identity service.\nThe board approved the updated capital plan and the dividend policy remained unchanged. The group kept its\nfunding mix stable, with customer deposits remaining the primary source of liquidity.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 2 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2024\n1.2 Customers\nCustomer accounts reached 1.6 million at the end of Q3 FY2024, with most new accounts opened through the\nmobile application.\nRegional teams harmonised product terms so that customers see one fee schedule in every market. Customer\ncomplaints fell compared with the prior quarter after changes to dispute handling.\nCost discipline remained a priority, and discretionary spending was held flat. The compliance function\ncompleted its annual review of sanctions screening controls.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 3 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2024\nInvestment in fraud analytics focused on earlier detection of account takeover patterns. Risk management\nreviewed concentration limits across the lending book and found no breaches.",
+      "pages": [
+       1,
+       2,
+       3,
+       4
+      ],
+      "bboxes": [],
+      "fields": [],
+      "piiFlag": "none",
+      "resolvable": false,
+      "scores": {
+       "denseRaw": 1.384902,
+       "bm25Raw": 2.269295,
+       "denseNorm": 0.7713,
+       "bm25Norm": 0.6375,
+       "fused": 0.7311
+      }
+     },
+     {
+      "rank": 3,
+      "unitId": "quarterly-report-q3-fy2023-f6e6a3:1.0:c-01",
+      "docId": "quarterly-report-q3-fy2023-f6e6a3",
+      "fileName": "quarterly_report_q3_fy2023.pdf",
+      "unitType": "chunk",
+      "label": "chunk c-01",
+      "chunkLabel": "chunk c-01",
+      "breadcrumb": "",
+      "text": "NewAge Global Fintech\nQuarterly Report · Q3 FY2023\nFor the third quarter of fiscal year 2023\nContents\n1. Overview\n2. Strategy and operations\n3. Results\n4. Outlook\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 1 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2023\n1. Overview\nCustomer research informed changes to the mobile application's statement and document views. Risk\nmanagement reviewed concentration limits across the lending book and found no breaches.\nCard issuing volumes followed the usual seasonal pattern for the period. Regional teams harmonised product\nterms so that customers see one fee schedule in every market.\nTechnology spending shifted from new builds towards reliability work on existing services. Customer\ncomplaints fell compared with the prior quarter after changes to dispute handling.\nThe markets desk continued to serve corporate clients with hedging and short-term funding products. The\ngroup kept its funding mix stable, with customer deposits remaining the primary source of liquidity.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 2 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2023\n1.2 Customers\nCustomer accounts reached 1.5 million at the end of Q3 FY2023, with most new accounts opened through the\nmobile application.\nStaff training covered the revised conduct framework and the new incident reporting procedure. Treasury\nextended the maturity profile of wholesale funding during the period.\nRisk management reviewed concentration limits across the lending book and found no breaches. Investment in\nfraud analytics focused on earlier detection of account takeover patterns.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 3 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2023\nRisk management reviewed concentration limits across the lending book and found no breaches. Data platform",
+      "pages": [
+       1,
+       2,
+       3,
+       4
+      ],
+      "bboxes": [],
+      "fields": [],
+      "piiFlag": "none",
+      "resolvable": false,
+      "scores": {
+       "denseRaw": 1.358368,
+       "bm25Raw": 2.277723,
+       "denseNorm": 0.6544,
+       "bm25Norm": 0.64,
+       "fused": 0.6501
+      }
+     },
+     {
+      "rank": 4,
+      "unitId": "quarterly-report-q3-fy2025-ab5fea:1.0:c-06",
+      "docId": "quarterly-report-q3-fy2025-ab5fea",
+      "fileName": "quarterly_report_q3_fy2025.pdf",
+      "unitType": "chunk",
+      "label": "chunk c-06",
+      "chunkLabel": "chunk c-06",
+      "breadcrumb": "",
+      "text": "every market. The group\nkept its funding mix stable, with customer deposits remaining the primary source of liquidity.\nThe group continued to simplify its legal entity structure where this reduces operating cost. Card issuing\nvolumes followed the usual seasonal pattern for the period.\nData platform work concentrated on lineage, so that every reported figure can be traced to its source.\nCustomer complaints fell compared with the prior quarter after changes to dispute handling.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 11 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2025\n3.2 Revenue by segment\nFigure 2 · Revenue by segment · Q3 FY2025 · USD millions\n2,140\nPayments\n1,610\nLending\n1,140\nMarkets\nThe group continued to simplify its legal entity structure where this reduces operating cost. Customer research\ninformed changes to the mobile application's statement and document views.\nThe lending business tightened underwriting criteria for unsecured products in selected segments. Treasury\nextended the maturity profile of wholesale funding during the period.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 12 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2025\n3.3 Revenue commentary\nRevenue rose in each quarter of FY2025. Management expects modest growth in H2, as pricing changes in\nthe payments business annualise and lending volumes stay selective.\nCustomer complaints fell compared with the prior quarter after changes to dispute handling. Card issuing\nvolumes followed the usual seasonal pattern for the period.\nThe compliance function completed its annual review of sanctions screening controls. The group continued to\nsimplify its legal entity structure where this reduces operating cost.\nThe lending business tightened underwriting criteria for unsecured products in selected segments. The group\nkept its funding mix stable, with customer deposits remaining the primary source of liquidity.",
+      "pages": [
+       11,
+       12,
+       13
+      ],
+      "bboxes": [],
+      "fields": [],
+      "piiFlag": "none",
+      "resolvable": false,
+      "scores": {
+       "denseRaw": 1.353974,
+       "bm25Raw": 0.190656,
+       "denseNorm": 0.635,
+       "bm25Norm": 0.0177,
+       "fused": 0.4498
+      }
+     },
+     {
+      "rank": 5,
+      "unitId": "quarterly-report-q3-fy2025-ab5fea:1.0:c-03",
+      "docId": "quarterly-report-q3-fy2025-ab5fea",
+      "fileName": "quarterly_report_q3_fy2025.pdf",
+      "unitType": "chunk",
+      "label": "chunk c-03",
+      "chunkLabel": "chunk c-03",
+      "breadcrumb": "",
+      "text": "source. Risk\nmanagement reviewed concentration limits across the lending book and found no breaches.\nCustomer research informed changes to the mobile application's statement and document views. The lending\nbusiness tightened underwriting criteria for unsecured products in selected segments.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 5 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2025\nFigure 1 · Digital transactions processed · millions\n2,060\nQ1 FY2025\n2,228\nQ2 FY2025\n2,445\nQ3 FY2025\nTreasury extended the maturity profile of wholesale funding during the period. Operating teams completed the\nmigration of merchant onboarding to the shared identity service.\nCard issuing volumes followed the usual seasonal pattern for the period. The markets desk continued to serve\ncorporate clients with hedging and short-term funding products.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 6 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2025\nOperating teams completed the migration of merchant onboarding to the shared identity service. The\ncompliance function completed its annual review of sanctions screening controls.\nTechnology spending shifted from new builds towards reliability work on existing services. Customer\ncomplaints fell compared with the prior quarter after changes to dispute handling.\nInvestment in fraud analytics focused on earlier detection of account takeover patterns. The markets desk\ncontinued to serve corporate clients with hedging and short-term funding products.\nThe board approved the updated capital plan and the dividend policy remained unchanged. The lending\nbusiness tightened underwriting criteria for unsecured products in selected segments.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 7 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2025\nPartnership agreements with two payroll providers moved from pilot into general availability. Investment in\nfraud analytics focused on earlier detection of account takeover patterns.",
+      "pages": [
+       5,
+       6,
+       7,
+       8
+      ],
+      "bboxes": [],
+      "fields": [],
+      "piiFlag": "none",
+      "resolvable": false,
+      "scores": {
+       "denseRaw": 1.349423,
+       "bm25Raw": 0.13626,
+       "denseNorm": 0.615,
+       "bm25Norm": 0.0015,
+       "fused": 0.4309
+      }
+     }
+    ],
+    "query": {
+     "index": "units-v1-0",
+     "k": 5,
+     "subQueryK": 20,
+     "weights": {
+      "dense": 0.7,
+      "bm25": 0.3
+     },
+     "normalization": "min_max",
+     "filter": {
+      "bool": {
+       "filter": [
+        {
+         "terms": {
+          "allowedPrincipals": [
+           "user:local-dev-owner-0000",
+           "group:lending-analyst"
+          ]
+         }
+        },
+        {
+         "term": {
+          "packageId": "pkg-quarterly-01"
+         }
+        },
+        {
+         "term": {
+          "pipelineVersion": "1.0"
+         }
+        }
+       ],
+       "must_not": [
+        {
+         "term": {
+          "piiFlag": "held"
+         }
+        }
+       ]
+      }
+     },
+     "embedModel": "amazon.titan-embed-text-v2:0"
+    },
+    "latencyMs": 338
+   }
+  }
+ ],
+ "retrieved": [
+  {
+   "rank": 1,
+   "unitId": "quarterly-report-q3-fy2025-ab5fea:1.0:c-01",
+   "docId": "quarterly-report-q3-fy2025-ab5fea",
+   "fileName": "quarterly_report_q3_fy2025.pdf",
+   "unitType": "chunk",
+   "label": "chunk c-01",
+   "chunkLabel": "chunk c-01",
+   "breadcrumb": "",
+   "text": "NewAge Global Fintech\nQuarterly Report · Q3 FY2025\nFor the third quarter of fiscal year 2025\nContents\n1. Overview\n2. Strategy and operations\n3. Results\n4. Outlook\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 1 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2025\n1. Overview\nThe compliance function completed its annual review of sanctions screening controls. Data platform work\nconcentrated on lineage, so that every reported figure can be traced to its source.\nStaff training covered the revised conduct framework and the new incident reporting procedure. Technology\nspending shifted from new builds towards reliability work on existing services.\nCost discipline remained a priority, and discretionary spending was held flat. Regional teams harmonised\nproduct terms so that customers see one fee schedule in every market.\nPartnership agreements with two payroll providers moved from pilot into general availability. The group\ncontinued to simplify its legal entity structure where this reduces operating cost.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 2 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2025\n1.2 Customers\nCustomer accounts reached 2.4 million at the end of Q3 FY2025, with most new accounts opened through the\nmobile application.\nRisk management reviewed concentration limits across the lending book and found no breaches. The markets\ndesk continued to serve corporate clients with hedging and short-term funding products.\nTreasury extended the maturity profile of wholesale funding during the period. Customer complaints fell\ncompared with the prior quarter after changes to dispute handling.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 3 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2025\nCost discipline remained a priority, and discretionary spending was held flat. The markets desk continued to\nserve corporate clients with hedging and short-term funding products.",
+   "pages": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "bboxes": [],
+   "fields": [],
+   "piiFlag": "none",
+   "resolvable": false,
+   "scores": {
+    "denseRaw": 1.791397,
+    "bm25Raw": 2.146002,
+    "denseNorm": 1.0,
+    "bm25Norm": 1.0,
+    "fused": 1.0
+   }
+  },
+  {
+   "rank": 2,
+   "unitId": "quarterly-report-q3-fy2024-ab0f27:1.0:c-01",
+   "docId": "quarterly-report-q3-fy2024-ab0f27",
+   "fileName": "quarterly_report_q3_fy2024.pdf",
+   "unitType": "chunk",
+   "label": "chunk c-01",
+   "chunkLabel": "chunk c-01",
+   "breadcrumb": "",
+   "text": "NewAge Global Fintech\nQuarterly Report · Q3 FY2024\nFor the third quarter of fiscal year 2024\nContents\n1. Overview\n2. Strategy and operations\n3. Results\n4. Outlook\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 1 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2024\n1. Overview\nInvestment in fraud analytics focused on earlier detection of account takeover patterns. Treasury extended the\nmaturity profile of wholesale funding during the period.\nThe quarter continued the programme of consolidating payment rails onto a single settlement platform. The\nmarkets desk continued to serve corporate clients with hedging and short-term funding products.\nPartnership agreements with two payroll providers moved from pilot into general availability. Operating teams\ncompleted the migration of merchant onboarding to the shared identity service.\nThe board approved the updated capital plan and the dividend policy remained unchanged. The group kept its\nfunding mix stable, with customer deposits remaining the primary source of liquidity.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 2 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2024\n1.2 Customers\nCustomer accounts reached 1.6 million at the end of Q3 FY2024, with most new accounts opened through the\nmobile application.\nRegional teams harmonised product terms so that customers see one fee schedule in every market. Customer\ncomplaints fell compared with the prior quarter after changes to dispute handling.\nCost discipline remained a priority, and discretionary spending was held flat. The compliance function\ncompleted its annual review of sanctions screening controls.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 3 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2024\nInvestment in fraud analytics focused on earlier detection of account takeover patterns. Risk management\nreviewed concentration limits across the lending book and found no breaches.",
+   "pages": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "bboxes": [],
+   "fields": [],
+   "piiFlag": "none",
+   "resolvable": false,
+   "scores": {
+    "denseRaw": 1.7529,
+    "bm25Raw": 1.289173,
+    "denseNorm": 0.8386,
+    "bm25Norm": 0.5864,
+    "fused": 0.763
+   }
+  },
+  {
+   "rank": 3,
+   "unitId": "quarterly-report-q3-fy2023-f6e6a3:1.0:c-01",
+   "docId": "quarterly-report-q3-fy2023-f6e6a3",
+   "fileName": "quarterly_report_q3_fy2023.pdf",
+   "unitType": "chunk",
+   "label": "chunk c-01",
+   "chunkLabel": "chunk c-01",
+   "breadcrumb": "",
+   "text": "NewAge Global Fintech\nQuarterly Report · Q3 FY2023\nFor the third quarter of fiscal year 2023\nContents\n1. Overview\n2. Strategy and operations\n3. Results\n4. Outlook\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 1 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2023\n1. Overview\nCustomer research informed changes to the mobile application's statement and document views. Risk\nmanagement reviewed concentration limits across the lending book and found no breaches.\nCard issuing volumes followed the usual seasonal pattern for the period. Regional teams harmonised product\nterms so that customers see one fee schedule in every market.\nTechnology spending shifted from new builds towards reliability work on existing services. Customer\ncomplaints fell compared with the prior quarter after changes to dispute handling.\nThe markets desk continued to serve corporate clients with hedging and short-term funding products. The\ngroup kept its funding mix stable, with customer deposits remaining the primary source of liquidity.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 2 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2023\n1.2 Customers\nCustomer accounts reached 1.5 million at the end of Q3 FY2023, with most new accounts opened through the\nmobile application.\nStaff training covered the revised conduct framework and the new incident reporting procedure. Treasury\nextended the maturity profile of wholesale funding during the period.\nRisk management reviewed concentration limits across the lending book and found no breaches. Investment in\nfraud analytics focused on earlier detection of account takeover patterns.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 3 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2023\nRisk management reviewed concentration limits across the lending book and found no breaches. Data platform",
+   "pages": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "bboxes": [],
+   "fields": [],
+   "piiFlag": "none",
+   "resolvable": false,
+   "scores": {
+    "denseRaw": 1.744309,
+    "bm25Raw": 1.303142,
+    "denseNorm": 0.8026,
+    "bm25Norm": 0.5931,
+    "fused": 0.7398
+   }
+  },
+  {
+   "rank": 4,
+   "unitId": "quarterly-report-q3-fy2025-ab5fea:1.0:c-03",
+   "docId": "quarterly-report-q3-fy2025-ab5fea",
+   "fileName": "quarterly_report_q3_fy2025.pdf",
+   "unitType": "chunk",
+   "label": "chunk c-03",
+   "chunkLabel": "chunk c-03",
+   "breadcrumb": "",
+   "text": "source. Risk\nmanagement reviewed concentration limits across the lending book and found no breaches.\nCustomer research informed changes to the mobile application's statement and document views. The lending\nbusiness tightened underwriting criteria for unsecured products in selected segments.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 5 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2025\nFigure 1 · Digital transactions processed · millions\n2,060\nQ1 FY2025\n2,228\nQ2 FY2025\n2,445\nQ3 FY2025\nTreasury extended the maturity profile of wholesale funding during the period. Operating teams completed the\nmigration of merchant onboarding to the shared identity service.\nCard issuing volumes followed the usual seasonal pattern for the period. The markets desk continued to serve\ncorporate clients with hedging and short-term funding products.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 6 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2025\nOperating teams completed the migration of merchant onboarding to the shared identity service. The\ncompliance function completed its annual review of sanctions screening controls.\nTechnology spending shifted from new builds towards reliability work on existing services. Customer\ncomplaints fell compared with the prior quarter after changes to dispute handling.\nInvestment in fraud analytics focused on earlier detection of account takeover patterns. The markets desk\ncontinued to serve corporate clients with hedging and short-term funding products.\nThe board approved the updated capital plan and the dividend policy remained unchanged. The lending\nbusiness tightened underwriting criteria for unsecured products in selected segments.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 7 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2025\nPartnership agreements with two payroll providers moved from pilot into general availability. Investment in\nfraud analytics focused on earlier detection of account takeover patterns.",
+   "pages": [
+    5,
+    6,
+    7,
+    8
+   ],
+   "bboxes": [],
+   "fields": [],
+   "piiFlag": "none",
+   "resolvable": false,
+   "scores": {
+    "denseRaw": 1.665133,
+    "bm25Raw": 0.971231,
+    "denseNorm": 0.4708,
+    "bm25Norm": 0.4329,
+    "fused": 0.4594
+   }
+  },
+  {
+   "rank": 5,
+   "unitId": "quarterly-report-q3-fy2025-ab5fea:1.0:c-04",
+   "docId": "quarterly-report-q3-fy2025-ab5fea",
+   "fileName": "quarterly_report_q3_fy2025.pdf",
+   "unitType": "chunk",
+   "label": "chunk c-04",
+   "chunkLabel": "chunk c-04",
+   "breadcrumb": "",
+   "text": "remained unchanged. The lending\nbusiness tightened underwriting criteria for unsecured products in selected segments.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 7 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2025\nPartnership agreements with two payroll providers moved from pilot into general availability. Investment in\nfraud analytics focused on earlier detection of account takeover patterns.\nTreasury extended the maturity profile of wholesale funding during the period. Regional teams harmonised\nproduct terms so that customers see one fee schedule in every market.\nData platform work concentrated on lineage, so that every reported figure can be traced to its source. The\nquarter continued the programme of consolidating payment rails onto a single settlement platform.\nTechnology spending shifted from new builds towards reliability work on existing services. Staff training\ncovered the revised conduct framework and the new incident reporting procedure.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 8 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2025\nTechnology spending shifted from new builds towards reliability work on existing services. Customer research\ninformed changes to the mobile application's statement and document views.\nPartnership agreements with two payroll providers moved from pilot into general availability. Treasury extended\nthe maturity profile of wholesale funding during the period.\nData platform work concentrated on lineage, so that every reported figure can be traced to its source. Risk\nmanagement reviewed concentration limits across the lending book and found no breaches.\nThe markets desk continued to serve corporate clients with hedging and short-term funding products.\nInvestment in fraud analytics focused on earlier detection of account takeover patterns.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 9 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2025\n3. Results",
+   "pages": [
+    7,
+    8,
+    9,
+    10
+   ],
+   "bboxes": [],
+   "fields": [],
+   "piiFlag": "none",
+   "resolvable": false,
+   "scores": {
+    "denseRaw": 1.663385,
+    "bm25Raw": 0.836822,
+    "denseNorm": 0.4635,
+    "bm25Norm": 0.368,
+    "fused": 0.4348
+   }
+  },
+  {
+   "rank": 4,
+   "unitId": "quarterly-report-q3-fy2025-ab5fea:1.0:c-06",
+   "docId": "quarterly-report-q3-fy2025-ab5fea",
+   "fileName": "quarterly_report_q3_fy2025.pdf",
+   "unitType": "chunk",
+   "label": "chunk c-06",
+   "chunkLabel": "chunk c-06",
+   "breadcrumb": "",
+   "text": "every market. The group\nkept its funding mix stable, with customer deposits remaining the primary source of liquidity.\nThe group continued to simplify its legal entity structure where this reduces operating cost. Card issuing\nvolumes followed the usual seasonal pattern for the period.\nData platform work concentrated on lineage, so that every reported figure can be traced to its source.\nCustomer complaints fell compared with the prior quarter after changes to dispute handling.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 11 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2025\n3.2 Revenue by segment\nFigure 2 · Revenue by segment · Q3 FY2025 · USD millions\n2,140\nPayments\n1,610\nLending\n1,140\nMarkets\nThe group continued to simplify its legal entity structure where this reduces operating cost. Customer research\ninformed changes to the mobile application's statement and document views.\nThe lending business tightened underwriting criteria for unsecured products in selected segments. Treasury\nextended the maturity profile of wholesale funding during the period.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 12 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2025\n3.3 Revenue commentary\nRevenue rose in each quarter of FY2025. Management expects modest growth in H2, as pricing changes in\nthe payments business annualise and lending volumes stay selective.\nCustomer complaints fell compared with the prior quarter after changes to dispute handling. Card issuing\nvolumes followed the usual seasonal pattern for the period.\nThe compliance function completed its annual review of sanctions screening controls. The group continued to\nsimplify its legal entity structure where this reduces operating cost.\nThe lending business tightened underwriting criteria for unsecured products in selected segments. The group\nkept its funding mix stable, with customer deposits remaining the primary source of liquidity.",
+   "pages": [
+    11,
+    12,
+    13
+   ],
+   "bboxes": [],
+   "fields": [],
+   "piiFlag": "none",
+   "resolvable": false,
+   "scores": {
+    "denseRaw": 1.353974,
+    "bm25Raw": 0.190656,
+    "denseNorm": 0.635,
+    "bm25Norm": 0.0177,
+    "fused": 0.4498
+   }
+  }
+ ],
+ "retrievedText": [
+  "NewAge Global Fintech\nQuarterly Report · Q3 FY2025\nFor the third quarter of fiscal year 2025\nContents\n1. Overview\n2. Strategy and operations\n3. Results\n4. Outlook\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 1 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2025\n1. Overview\nThe compliance function completed its annual review of sanctions screening controls. Data platform work\nconcentrated on lineage, so that every reported figure can be traced to its source.\nStaff training covered the revised conduct framework and the new incident reporting procedure. Technology\nspending shifted from new builds towards reliability work on existing services.\nCost discipline remained a priority, and discretionary spending was held flat. Regional teams harmonised\nproduct terms so that customers see one fee schedule in every market.\nPartnership agreements with two payroll providers moved from pilot into general availability. The group\ncontinued to simplify its legal entity structure where this reduces operating cost.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 2 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2025\n1.2 Customers\nCustomer accounts reached 2.4 million at the end of Q3 FY2025, with most new accounts opened through the\nmobile application.\nRisk management reviewed concentration limits across the lending book and found no breaches. The markets\ndesk continued to serve corporate clients with hedging and short-term funding products.\nTreasury extended the maturity profile of wholesale funding during the period. Customer complaints fell\ncompared with the prior quarter after changes to dispute handling.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 3 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2025\nCost discipline remained a priority, and discretionary spending was held flat. The markets desk continued to\nserve corporate clients with hedging and short-term funding products.",
+  "NewAge Global Fintech\nQuarterly Report · Q3 FY2024\nFor the third quarter of fiscal year 2024\nContents\n1. Overview\n2. Strategy and operations\n3. Results\n4. Outlook\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 1 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2024\n1. Overview\nInvestment in fraud analytics focused on earlier detection of account takeover patterns. Treasury extended the\nmaturity profile of wholesale funding during the period.\nThe quarter continued the programme of consolidating payment rails onto a single settlement platform. The\nmarkets desk continued to serve corporate clients with hedging and short-term funding products.\nPartnership agreements with two payroll providers moved from pilot into general availability. Operating teams\ncompleted the migration of merchant onboarding to the shared identity service.\nThe board approved the updated capital plan and the dividend policy remained unchanged. The group kept its\nfunding mix stable, with customer deposits remaining the primary source of liquidity.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 2 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2024\n1.2 Customers\nCustomer accounts reached 1.6 million at the end of Q3 FY2024, with most new accounts opened through the\nmobile application.\nRegional teams harmonised product terms so that customers see one fee schedule in every market. Customer\ncomplaints fell compared with the prior quarter after changes to dispute handling.\nCost discipline remained a priority, and discretionary spending was held flat. The compliance function\ncompleted its annual review of sanctions screening controls.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 3 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2024\nInvestment in fraud analytics focused on earlier detection of account takeover patterns. Risk management\nreviewed concentration limits across the lending book and found no breaches.",
+  "NewAge Global Fintech\nQuarterly Report · Q3 FY2023\nFor the third quarter of fiscal year 2023\nContents\n1. Overview\n2. Strategy and operations\n3. Results\n4. Outlook\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 1 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2023\n1. Overview\nCustomer research informed changes to the mobile application's statement and document views. Risk\nmanagement reviewed concentration limits across the lending book and found no breaches.\nCard issuing volumes followed the usual seasonal pattern for the period. Regional teams harmonised product\nterms so that customers see one fee schedule in every market.\nTechnology spending shifted from new builds towards reliability work on existing services. Customer\ncomplaints fell compared with the prior quarter after changes to dispute handling.\nThe markets desk continued to serve corporate clients with hedging and short-term funding products. The\ngroup kept its funding mix stable, with customer deposits remaining the primary source of liquidity.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 2 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2023\n1.2 Customers\nCustomer accounts reached 1.5 million at the end of Q3 FY2023, with most new accounts opened through the\nmobile application.\nStaff training covered the revised conduct framework and the new incident reporting procedure. Treasury\nextended the maturity profile of wholesale funding during the period.\nRisk management reviewed concentration limits across the lending book and found no breaches. Investment in\nfraud analytics focused on earlier detection of account takeover patterns.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 3 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2023\nRisk management reviewed concentration limits across the lending book and found no breaches. Data platform",
+  "source. Risk\nmanagement reviewed concentration limits across the lending book and found no breaches.\nCustomer research informed changes to the mobile application's statement and document views. The lending\nbusiness tightened underwriting criteria for unsecured products in selected segments.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 5 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2025\nFigure 1 · Digital transactions processed · millions\n2,060\nQ1 FY2025\n2,228\nQ2 FY2025\n2,445\nQ3 FY2025\nTreasury extended the maturity profile of wholesale funding during the period. Operating teams completed the\nmigration of merchant onboarding to the shared identity service.\nCard issuing volumes followed the usual seasonal pattern for the period. The markets desk continued to serve\ncorporate clients with hedging and short-term funding products.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 6 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2025\nOperating teams completed the migration of merchant onboarding to the shared identity service. The\ncompliance function completed its annual review of sanctions screening controls.\nTechnology spending shifted from new builds towards reliability work on existing services. Customer\ncomplaints fell compared with the prior quarter after changes to dispute handling.\nInvestment in fraud analytics focused on earlier detection of account takeover patterns. The markets desk\ncontinued to serve corporate clients with hedging and short-term funding products.\nThe board approved the updated capital plan and the dividend policy remained unchanged. The lending\nbusiness tightened underwriting criteria for unsecured products in selected segments.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 7 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2025\nPartnership agreements with two payroll providers moved from pilot into general availability. Investment in\nfraud analytics focused on earlier detection of account takeover patterns.",
+  "remained unchanged. The lending\nbusiness tightened underwriting criteria for unsecured products in selected segments.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 7 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2025\nPartnership agreements with two payroll providers moved from pilot into general availability. Investment in\nfraud analytics focused on earlier detection of account takeover patterns.\nTreasury extended the maturity profile of wholesale funding during the period. Regional teams harmonised\nproduct terms so that customers see one fee schedule in every market.\nData platform work concentrated on lineage, so that every reported figure can be traced to its source. The\nquarter continued the programme of consolidating payment rails onto a single settlement platform.\nTechnology spending shifted from new builds towards reliability work on existing services. Staff training\ncovered the revised conduct framework and the new incident reporting procedure.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 8 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2025\nTechnology spending shifted from new builds towards reliability work on existing services. Customer research\ninformed changes to the mobile application's statement and document views.\nPartnership agreements with two payroll providers moved from pilot into general availability. Treasury extended\nthe maturity profile of wholesale funding during the period.\nData platform work concentrated on lineage, so that every reported figure can be traced to its source. Risk\nmanagement reviewed concentration limits across the lending book and found no breaches.\nThe markets desk continued to serve corporate clients with hedging and short-term funding products.\nInvestment in fraud analytics focused on earlier detection of account takeover patterns.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 9 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2025\n3. Results",
+  "every market. The group\nkept its funding mix stable, with customer deposits remaining the primary source of liquidity.\nThe group continued to simplify its legal entity structure where this reduces operating cost. Card issuing\nvolumes followed the usual seasonal pattern for the period.\nData platform work concentrated on lineage, so that every reported figure can be traced to its source.\nCustomer complaints fell compared with the prior quarter after changes to dispute handling.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 11 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2025\n3.2 Revenue by segment\nFigure 2 · Revenue by segment · Q3 FY2025 · USD millions\n2,140\nPayments\n1,610\nLending\n1,140\nMarkets\nThe group continued to simplify its legal entity structure where this reduces operating cost. Customer research\ninformed changes to the mobile application's statement and document views.\nThe lending business tightened underwriting criteria for unsecured products in selected segments. Treasury\nextended the maturity profile of wholesale funding during the period.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 12 of 16\nNewAge Global Fintech · Quarterly Report Q3 FY2025\n3.3 Revenue commentary\nRevenue rose in each quarter of FY2025. Management expects modest growth in H2, as pricing changes in\nthe payments business annualise and lending volumes stay selective.\nCustomer complaints fell compared with the prior quarter after changes to dispute handling. Card issuing\nvolumes followed the usual seasonal pattern for the period.\nThe compliance function completed its annual review of sanctions screening controls. The group continued to\nsimplify its legal entity structure where this reduces operating cost.\nThe lending business tightened underwriting criteria for unsecured products in selected segments. The group\nkept its funding mix stable, with customer deposits remaining the primary source of liquidity."
+ ],
+ "answer": {
+  "answer": "The Q3 FY2025 Quarterly Report (section 1.2 Customers) states that customer accounts reached 2.4 million at the end of Q3 FY2025, with most new accounts opened through the mobile application. However, this figure appears only as prose text in the document with no structured numeric field, so it cannot be formally cited against a field value.",
+  "claims": [],
+  "caveats": [
+   "The customer account count of '2.4 million' appears in prose in unit quarterly-report-q3-fy2025-ab5fea:1.0:c-01 but is not captured in a structured field, so no valid numeric citation can be provided per citation rules.",
+   "This is a fictitious document for demonstration purposes only."
+  ],
+  "citationRetries": 1,
+  "uncitedNumbers": [
+   "1.2",
+   "2.4"
+  ]
+ },
+ "usage": {
+  "inputTokens": 21372,
+  "outputTokens": 778,
+  "totalTokens": 22150
+ },
+ "latencyMs": 19482,
+ "status": "ok",
+ "s3Key": "runs/r-914cb600eb80.json",
+ "provenance": {
+  "mode": "local-run",
+  "label": "local run · Bedrock",
+  "note": "Asked on a developer machine against the local pipeline's outputs; not the deployed AWS stack.",
+  "build": "build/e2e-quarterly",
+  "model": "Amazon Bedrock Converse (real)",
+  "embeddings": "amazon.titan-embed-text-v2:0 (real Bedrock; responses recorded)",
+  "index": "in-memory k-NN (exact inner product) + BM25 (Lucene formula) over the run's units; NOT OpenSearch",
+  "graph": "pyoxigraph in-process (NOT Amazon Neptune)",
+  "stores": "moto (S3, DynamoDB) loaded from the run's world snapshot",
+  "piiGate": "Amazon Comprehend DetectPiiEntities (real; responses recorded) (runs/local/recorded/comprehend.json)",
+  "extraction": "docling 2.145.0 (local, dev mode)",
+  "scanPages": "local Docling OCR shaped as a Textract response (NOT Amazon Textract)",
+  "phaseBEmbeddings": "amazon.titan-embed-text-v2:0 (real Bedrock; responses recorded)",
+  "toolTransport": "tool Lambda handlers in-process (local gateway; identity injected like the interceptor)"
+ }
+}

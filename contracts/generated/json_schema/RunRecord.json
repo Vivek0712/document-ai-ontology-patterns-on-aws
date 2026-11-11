@@ -1,0 +1,869 @@
+{
+  "$defs": {
+    "AnswerPayload": {
+      "properties": {
+        "answer": {
+          "title": "Answer",
+          "type": "string"
+        },
+        "total": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Total"
+        },
+        "currency": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Currency"
+        },
+        "arithmetic": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Arithmetic"
+        },
+        "claims": {
+          "items": {
+            "$ref": "#/$defs/Claim"
+          },
+          "title": "Claims",
+          "type": "array"
+        },
+        "caveats": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Caveats",
+          "type": "array"
+        },
+        "citationRetries": {
+          "default": 0,
+          "title": "Citationretries",
+          "type": "integer"
+        },
+        "uncitedNumbers": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Uncitednumbers",
+          "type": "array"
+        }
+      },
+      "required": [
+        "answer"
+      ],
+      "title": "AnswerPayload",
+      "type": "object"
+    },
+    "BBox": {
+      "properties": {
+        "page": {
+          "minimum": 1,
+          "title": "Page",
+          "type": "integer"
+        },
+        "x0": {
+          "title": "X0",
+          "type": "number"
+        },
+        "y0": {
+          "title": "Y0",
+          "type": "number"
+        },
+        "x1": {
+          "title": "X1",
+          "type": "number"
+        },
+        "y1": {
+          "title": "Y1",
+          "type": "number"
+        }
+      },
+      "required": [
+        "page",
+        "x0",
+        "y0",
+        "x1",
+        "y1"
+      ],
+      "title": "BBox",
+      "type": "object"
+    },
+    "Check": {
+      "description": "Golden-set check (agent code). Emitted only when the question matches a golden qid.",
+      "properties": {
+        "qid": {
+          "title": "Qid",
+          "type": "string"
+        },
+        "expected": {
+          "title": "Expected",
+          "type": "string"
+        },
+        "actual": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Actual"
+        },
+        "match": {
+          "title": "Match",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "qid",
+        "expected",
+        "match"
+      ],
+      "title": "Check",
+      "type": "object"
+    },
+    "Claim": {
+      "description": "One cited figure. The model supplies text/value + {unitId, fieldId}; the\ncitation validator attaches docId/page/bbox from tool results, never from model text.",
+      "properties": {
+        "text": {
+          "title": "Text",
+          "type": "string"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Value"
+        },
+        "unitId": {
+          "title": "Unitid",
+          "type": "string"
+        },
+        "fieldId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Fieldid"
+        },
+        "docId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Docid"
+        },
+        "fileName": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Filename"
+        },
+        "label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Label"
+        },
+        "page": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Page"
+        },
+        "bbox": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/BBox"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "unitBbox": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/BBox"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "resolvable": {
+          "title": "Resolvable",
+          "type": "boolean"
+        },
+        "chunkLabel": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Chunklabel"
+        },
+        "reason": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Reason"
+        }
+      },
+      "required": [
+        "text",
+        "unitId",
+        "resolvable"
+      ],
+      "title": "Claim",
+      "type": "object"
+    },
+    "FieldBrief": {
+      "properties": {
+        "fieldId": {
+          "title": "Fieldid",
+          "type": "string"
+        },
+        "label": {
+          "title": "Label",
+          "type": "string"
+        },
+        "value": {
+          "title": "Value",
+          "type": "string"
+        },
+        "valueNumber": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Valuenumber"
+        },
+        "concept": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Concept"
+        },
+        "period": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Period"
+        },
+        "page": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Page"
+        },
+        "bbox": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/BBox"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "fieldId",
+        "label",
+        "value"
+      ],
+      "title": "FieldBrief",
+      "type": "object"
+    },
+    "PiiFlag": {
+      "description": "Result of the PII gate for one unit.",
+      "enum": [
+        "none",
+        "masked",
+        "held"
+      ],
+      "title": "PiiFlag",
+      "type": "string"
+    },
+    "RetrievedUnit": {
+      "properties": {
+        "rank": {
+          "title": "Rank",
+          "type": "integer"
+        },
+        "unitId": {
+          "title": "Unitid",
+          "type": "string"
+        },
+        "docId": {
+          "title": "Docid",
+          "type": "string"
+        },
+        "fileName": {
+          "title": "Filename",
+          "type": "string"
+        },
+        "unitType": {
+          "$ref": "#/$defs/UnitType"
+        },
+        "label": {
+          "title": "Label",
+          "type": "string"
+        },
+        "chunkLabel": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Chunklabel"
+        },
+        "docType": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Doctype"
+        },
+        "breadcrumb": {
+          "default": "",
+          "title": "Breadcrumb",
+          "type": "string"
+        },
+        "text": {
+          "title": "Text",
+          "type": "string"
+        },
+        "pages": {
+          "items": {
+            "type": "integer"
+          },
+          "title": "Pages",
+          "type": "array"
+        },
+        "pageWidth": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Pagewidth"
+        },
+        "pageHeight": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Pageheight"
+        },
+        "bboxes": {
+          "items": {
+            "$ref": "#/$defs/BBox"
+          },
+          "title": "Bboxes",
+          "type": "array"
+        },
+        "fields": {
+          "items": {
+            "$ref": "#/$defs/FieldBrief"
+          },
+          "title": "Fields",
+          "type": "array"
+        },
+        "period": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Period"
+        },
+        "piiFlag": {
+          "$ref": "#/$defs/PiiFlag",
+          "default": "none"
+        },
+        "resolvable": {
+          "title": "Resolvable",
+          "type": "boolean"
+        },
+        "scores": {
+          "$ref": "#/$defs/UnitScores"
+        }
+      },
+      "required": [
+        "rank",
+        "unitId",
+        "docId",
+        "fileName",
+        "unitType",
+        "label",
+        "text",
+        "pages",
+        "resolvable",
+        "scores"
+      ],
+      "title": "RetrievedUnit",
+      "type": "object"
+    },
+    "ToolCallRecord": {
+      "properties": {
+        "callId": {
+          "title": "Callid",
+          "type": "string"
+        },
+        "tool": {
+          "title": "Tool",
+          "type": "string"
+        },
+        "input": {
+          "additionalProperties": true,
+          "title": "Input",
+          "type": "object"
+        },
+        "injected": {
+          "additionalProperties": true,
+          "title": "Injected",
+          "type": "object"
+        },
+        "startedAt": {
+          "title": "Startedat",
+          "type": "string"
+        },
+        "ms": {
+          "title": "Ms",
+          "type": "integer"
+        },
+        "status": {
+          "enum": [
+            "ok",
+            "error",
+            "denied"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "output": {
+          "additionalProperties": true,
+          "title": "Output",
+          "type": "object"
+        },
+        "error": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Error"
+        }
+      },
+      "required": [
+        "callId",
+        "tool",
+        "input",
+        "injected",
+        "startedAt",
+        "ms",
+        "status",
+        "output"
+      ],
+      "title": "ToolCallRecord",
+      "type": "object"
+    },
+    "UnitScores": {
+      "properties": {
+        "denseRaw": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Denseraw"
+        },
+        "bm25Raw": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Bm25Raw"
+        },
+        "denseNorm": {
+          "title": "Densenorm",
+          "type": "number"
+        },
+        "bm25Norm": {
+          "title": "Bm25Norm",
+          "type": "number"
+        },
+        "fused": {
+          "title": "Fused",
+          "type": "number"
+        }
+      },
+      "required": [
+        "denseNorm",
+        "bm25Norm",
+        "fused"
+      ],
+      "title": "UnitScores",
+      "type": "object"
+    },
+    "UnitType": {
+      "description": "Unit types. v1.0 produces only CHUNK; v2.3.1 produces the evidence-unit types.",
+      "enum": [
+        "chunk",
+        "table_panel",
+        "section_text",
+        "figure_panel",
+        "field_group",
+        "list_block"
+      ],
+      "title": "UnitType",
+      "type": "string"
+    }
+  },
+  "description": "Full record: S3 runs/{runId}.json. DynamoDB rp-runs holds RunSummary + s3Key.",
+  "properties": {
+    "runId": {
+      "title": "Runid",
+      "type": "string"
+    },
+    "createdAt": {
+      "title": "Createdat",
+      "type": "string"
+    },
+    "packageId": {
+      "title": "Packageid",
+      "type": "string"
+    },
+    "pipelineVersion": {
+      "title": "Pipelineversion",
+      "type": "string"
+    },
+    "question": {
+      "title": "Question",
+      "type": "string"
+    },
+    "callerSub": {
+      "title": "Callersub",
+      "type": "string"
+    },
+    "groups": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Groups",
+      "type": "array"
+    },
+    "modelId": {
+      "title": "Modelid",
+      "type": "string"
+    },
+    "promptSha": {
+      "title": "Promptsha",
+      "type": "string"
+    },
+    "configSha": {
+      "title": "Configsha",
+      "type": "string"
+    },
+    "blockShas": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "title": "Blockshas",
+      "type": "object"
+    },
+    "corpusHash": {
+      "title": "Corpushash",
+      "type": "string"
+    },
+    "memoryRecordsInjected": {
+      "default": 0,
+      "title": "Memoryrecordsinjected",
+      "type": "integer"
+    },
+    "toolsEnabled": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Toolsenabled",
+      "type": "array"
+    },
+    "toolCalls": {
+      "items": {
+        "$ref": "#/$defs/ToolCallRecord"
+      },
+      "title": "Toolcalls",
+      "type": "array"
+    },
+    "retrieved": {
+      "items": {
+        "$ref": "#/$defs/RetrievedUnit"
+      },
+      "title": "Retrieved",
+      "type": "array"
+    },
+    "retrievedText": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Retrievedtext",
+      "type": "array"
+    },
+    "answer": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/AnswerPayload"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "check": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Check"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "usage": {
+      "additionalProperties": {
+        "type": "integer"
+      },
+      "title": "Usage",
+      "type": "object"
+    },
+    "latencyMs": {
+      "title": "Latencyms",
+      "type": "integer"
+    },
+    "status": {
+      "enum": [
+        "ok",
+        "error"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "error": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Error"
+    },
+    "runtimeSessionId": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Runtimesessionid"
+    },
+    "s3Key": {
+      "title": "S3Key",
+      "type": "string"
+    },
+    "generationProfile": {
+      "default": "default",
+      "enum": [
+        "default",
+        "frontier",
+        "compact"
+      ],
+      "title": "Generationprofile",
+      "type": "string"
+    },
+    "modelKey": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Modelkey"
+    },
+    "toolSpecSha": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Toolspecsha"
+    }
+  },
+  "required": [
+    "runId",
+    "createdAt",
+    "packageId",
+    "pipelineVersion",
+    "question",
+    "callerSub",
+    "groups",
+    "modelId",
+    "promptSha",
+    "configSha",
+    "blockShas",
+    "corpusHash",
+    "toolsEnabled",
+    "toolCalls",
+    "retrieved",
+    "retrievedText",
+    "latencyMs",
+    "status",
+    "s3Key"
+  ],
+  "title": "RunRecord",
+  "type": "object"
+}

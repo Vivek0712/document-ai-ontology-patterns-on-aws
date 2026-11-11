@@ -1,0 +1,199 @@
+{
+  "$defs": {
+    "DocCtx": {
+      "description": "Per-execution context built by `register`; passed unchanged to every later state.",
+      "properties": {
+        "packageId": {
+          "title": "Packageid",
+          "type": "string"
+        },
+        "docId": {
+          "title": "Docid",
+          "type": "string"
+        },
+        "pipelineVersion": {
+          "title": "Pipelineversion",
+          "type": "string"
+        },
+        "mode": {
+          "enum": [
+            "naive",
+            "evidence_units"
+          ],
+          "title": "Mode",
+          "type": "string"
+        },
+        "ownerSub": {
+          "title": "Ownersub",
+          "type": "string"
+        },
+        "fileName": {
+          "title": "Filename",
+          "type": "string"
+        },
+        "bucket": {
+          "title": "Bucket",
+          "type": "string"
+        },
+        "bronzeKey": {
+          "title": "Bronzekey",
+          "type": "string"
+        },
+        "sourceVersionId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Sourceversionid"
+        },
+        "sourceSha256": {
+          "title": "Sourcesha256",
+          "type": "string"
+        },
+        "sizeBytes": {
+          "title": "Sizebytes",
+          "type": "integer"
+        },
+        "contentType": {
+          "default": "application/pdf",
+          "title": "Contenttype",
+          "type": "string"
+        },
+        "pageCount": {
+          "title": "Pagecount",
+          "type": "integer"
+        },
+        "configKey": {
+          "title": "Configkey",
+          "type": "string"
+        },
+        "configVersionId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Configversionid"
+        },
+        "configSha": {
+          "title": "Configsha",
+          "type": "string"
+        },
+        "promptSha": {
+          "title": "Promptsha",
+          "type": "string"
+        },
+        "ontologyVersion": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Ontologyversion"
+        },
+        "routeEnabled": {
+          "title": "Routeenabled",
+          "type": "boolean"
+        },
+        "classifyEnabled": {
+          "title": "Classifyenabled",
+          "type": "boolean"
+        },
+        "graphEnabled": {
+          "title": "Graphenabled",
+          "type": "boolean"
+        },
+        "allowedPrincipals": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Allowedprincipals",
+          "type": "array"
+        },
+        "executionArn": {
+          "title": "Executionarn",
+          "type": "string"
+        },
+        "laneStartedAt": {
+          "title": "Lanestartedat",
+          "type": "string"
+        },
+        "trigger": {
+          "default": "s3",
+          "enum": [
+            "s3",
+            "reprocess"
+          ],
+          "title": "Trigger",
+          "type": "string"
+        }
+      },
+      "required": [
+        "packageId",
+        "docId",
+        "pipelineVersion",
+        "mode",
+        "ownerSub",
+        "fileName",
+        "bucket",
+        "bronzeKey",
+        "sourceSha256",
+        "sizeBytes",
+        "pageCount",
+        "configKey",
+        "configSha",
+        "promptSha",
+        "routeEnabled",
+        "classifyEnabled",
+        "graphEnabled",
+        "allowedPrincipals",
+        "executionArn",
+        "laneStartedAt"
+      ],
+      "title": "DocCtx",
+      "type": "object"
+    }
+  },
+  "description": "SQS body sent by state DoclingExtract (sqs:sendMessage.waitForTaskToken).",
+  "properties": {
+    "taskToken": {
+      "title": "Tasktoken",
+      "type": "string"
+    },
+    "ctx": {
+      "$ref": "#/$defs/DocCtx"
+    },
+    "pages": {
+      "items": {
+        "type": "integer"
+      },
+      "title": "Pages",
+      "type": "array"
+    },
+    "executionArn": {
+      "title": "Executionarn",
+      "type": "string"
+    }
+  },
+  "required": [
+    "taskToken",
+    "ctx",
+    "pages",
+    "executionArn"
+  ],
+  "title": "DoclingMessage",
+  "type": "object"
+}

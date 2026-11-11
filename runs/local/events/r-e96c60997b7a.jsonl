@@ -1,0 +1,99 @@
+{"type": "run_start", "runId": "r-e96c60997b7a", "packageId": "pkg-tradeconf-01", "pipelineVersion": "1.0", "question": "What is the coupon on XS-2031 at issue?", "modelId": "us.anthropic.claude-sonnet-4-6", "configSha": "1f437eb1624d9df0b867a42d73fe7d27b7de6fb441c90c917f15b23f564748dc", "promptSha": "59984da199bb287de4b76a1d91bc0a5c27fde51028c39ffd04a33c3950a7d302", "tools": ["search_units", "graph_hop", "get_region", "doc_status"], "t": 0.0}
+{"type": "tool_start", "callId": "tooluse_TyaIjWgNfDK80hbZWh3Ti4", "tool": "search_units", "input": {"query": "XS-2031 coupon at issue"}, "t": 4.573}
+{"type": "tool_end", "callId": "tooluse_TyaIjWgNfDK80hbZWh3Ti4", "tool": "search_units", "ms": 1318, "status": "ok", "summary": "3 units", "units": ["trade-confirmation-xs2031-9af5c5:1.0:c-01", "trade-confirmation-xs2032-5f0fa4:1.0:c-01", "trade-confirmation-xs2033-cb595e:1.0:c-01"], "scores": [{"unitId": "trade-confirmation-xs2031-9af5c5:1.0:c-01", "denseNorm": 1.0, "bm25Norm": 1.0, "fused": 1.0}, {"unitId": "trade-confirmation-xs2032-5f0fa4:1.0:c-01", "denseNorm": 0.0, "bm25Norm": 1.0, "fused": 0.3}, {"unitId": "trade-confirmation-xs2033-cb595e:1.0:c-01", "denseNorm": 0.3254, "bm25Norm": 0.0, "fused": 0.2278}], "retrieved": [{"rank": 1, "unitId": "trade-confirmation-xs2031-9af5c5:1.0:c-01", "docId": "trade-confirmation-xs2031-9af5c5", "fileName": "trade_confirmation_xs2031.pdf", "unitType": "chunk", "label": "chunk c-01", "chunkLabel": "chunk c-01", "breadcrumb": "", "text": "NewAge Global Fintech · Markets\nTrade Confirmation\nReference TC-2026-10-0031\nWe confirm the following transaction between the parties named below. All parties, securities and ratings in this\ndocument are fictitious.\nTrade details\nItem\nValue\nTrade date\n12 Oct 2026\nSettlement date\n14 Oct 2026\n2\nBuyer\nFictus Capital Partners\nSeller\nNewAge Global Fintech Markets desk\nPrice (clean)\n99.75\n1\nSecurity terms\nTerm\nValue\nSecurity\nXS-2031\nIssuer\nNewAge Global Fintech\nIssuer rating\nBBB (watch)\nNominal\nUSD 5,000,000.00\nCoupon\n4.25%\n3\nCoupon frequency\nAnnual\nMaturity\n15 Sep 2033\n1\nClean price, percent of nominal.\n2\nSettlement through the fictitious clearing system.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 1 of 2\nTrade Confirmation TC-2026-10-0031 (continued)\nNotes to the security terms\n3\n6.00% from year 3 if rating < BBB-\nThe coupon steps up from the start of the coupon year stated above when the issuer's rating from any agency\nnamed in the offering terms falls below the trigger rating. The step-up applies once and does not reverse if the\nrating later recovers.\nOther terms\nThis confirmation supersedes any prior oral communication about the transaction. Please notify the markets\ndesk within two business days if any detail above is incorrect. This document is generated for demonstration\nonly and creates no obligation.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 2 of 2", "pages": [1, 2], "bboxes": [], "fields": [], "piiFlag": "none", "resolvable": false, "scores": {"denseRaw": 1.252226, "bm25Raw": 0.377051, "denseNorm": 1.0, "bm25Norm": 1.0, "fused": 1.0}}, {"rank": 2, "unitId": "trade-confirmation-xs2032-5f0fa4:1.0:c-01", "docId": "trade-confirmation-xs2032-5f0fa4", "fileName": "trade_confirmation_xs2032.pdf", "unitType": "chunk", "label": "chunk c-01", "chunkLabel": "chunk c-01", "breadcrumb": "", "text": "NewAge Global Fintech · Markets\nTrade Confirmation\nReference TC-2026-10-0032\nWe confirm the following transaction between the parties named below. All parties, securities and ratings in this\ndocument are fictitious.\nTrade details\nItem\nValue\nTrade date\n20 Oct 2026\nSettlement date\n22 Oct 2026\n2\nBuyer\nFictus Capital Partners\nSeller\nNewAge Global Fintech Markets desk\nPrice (clean)\n98.92\n1\nSecurity terms\nTerm\nValue\nSecurity\nXS-2032\nIssuer\nNewAge Global Fintech\nIssuer rating\nBBB (watch)\nNominal\nUSD 7,000,000.00\nCoupon\n4.50%\n3\nCoupon frequency\nAnnual\nMaturity\n15 Sep 2031\n1\nClean price, percent of nominal.\n2\nSettlement through the fictitious clearing system.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 1 of 2\nTrade Confirmation TC-2026-10-0032 (continued)\nNotes to the security terms\n3\n5.75% from year 3 if rating < BBB-\nThe coupon steps up from the start of the coupon year stated above when the issuer's rating from any agency\nnamed in the offering terms falls below the trigger rating. The step-up applies once and does not reverse if the\nrating later recovers.\nOther terms\nThis confirmation supersedes any prior oral communication about the transaction. Please notify the markets\ndesk within two business days if any detail above is incorrect. This document is generated for demonstration\nonly and creates no obligation.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 2 of 2", "pages": [1, 2], "bboxes": [], "fields": [], "piiFlag": "none", "resolvable": false, "scores": {"denseRaw": 1.238863, "bm25Raw": 0.377051, "denseNorm": 0.0, "bm25Norm": 1.0, "fused": 0.3}}, {"rank": 3, "unitId": "trade-confirmation-xs2033-cb595e:1.0:c-01", "docId": "trade-confirmation-xs2033-cb595e", "fileName": "trade_confirmation_xs2033.pdf", "unitType": "chunk", "label": "chunk c-01", "chunkLabel": "chunk c-01", "breadcrumb": "", "text": "NewAge Global Fintech · Markets\nTrade Confirmation\nReference TC-2026-10-0033\nWe confirm the following transaction between the parties named below. All parties, securities and ratings in this\ndocument are fictitious.\nTrade details\nItem\nValue\nTrade date\n16 Oct 2026\nSettlement date\n18 Oct 2026\n2\nBuyer\nFictus Capital Partners\nSeller\nNewAge Global Fintech Markets desk\nPrice (clean)\n99.75\n1\nSecurity terms\nTerm\nValue\nSecurity\nXS-2033\nIssuer\nNewAge Global Fintech\nIssuer rating\nBBB- (watch)\nNominal\nUSD 3,000,000.00\nCoupon\n4.00%\n3\nCoupon frequency\nAnnual\nMaturity\n15 Sep 2032\n1\nClean price, percent of nominal.\n2\nSettlement through the fictitious clearing system.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 1 of 2\nTrade Confirmation TC-2026-10-0033 (continued)\nNotes to the security terms\n3\n5.50% from year 2 if rating < BB+\nThe coupon steps up from the start of the coupon year stated above when the issuer's rating from any agency\nnamed in the offering terms falls below the trigger rating. The step-up applies once and does not reverse if the\nrating later recovers.\nOther terms\nThis confirmation supersedes any prior oral communication about the transaction. Please notify the markets\ndesk within two business days if any detail above is incorrect. This document is generated for demonstration\nonly and creates no obligation.\nFictitious document · NewAge Global Fintech · for demonstration only\nPage 2 of 2", "pages": [1, 2], "bboxes": [], "fields": [], "piiFlag": "none", "resolvable": false, "scores": {"denseRaw": 1.243211, "bm25Raw": 0.163413, "denseNorm": 0.3254, "bm25Norm": 0.0, "fused": 0.2278}}], "rows": [], "t": 4.573}
+{"type": "text", "delta": "```"}
+{"type": "text", "delta": "json\n{\n  \"answer"}
+{"type": "text", "delta": "\": \""}
+{"type": "text", "delta": "The cou"}
+{"type": "text", "delta": "pon on"}
+{"type": "text", "delta": " X"}
+{"type": "text", "delta": "S-2031 at"}
+{"type": "text", "delta": " issue"}
+{"type": "text", "delta": " is"}
+{"type": "text", "delta": " 4.25%"}
+{"type": "text", "delta": " per"}
+{"type": "text", "delta": " an"}
+{"type": "text", "delta": "num, paid"}
+{"type": "text", "delta": " annually"}
+{"type": "text", "delta": "."}
+{"type": "text", "delta": " Note"}
+{"type": "text", "delta": " that the security"}
+{"type": "text", "delta": " terms include"}
+{"type": "text", "delta": " a step"}
+{"type": "text", "delta": "-up provision:"}
+{"type": "text", "delta": " the"}
+{"type": "text", "delta": " coupon rises"}
+{"type": "text", "delta": " to"}
+{"type": "text", "delta": " 6"}
+{"type": "text", "delta": ".00% from year 3 "}
+{"type": "text", "delta": "if the issuer's rating falls"}
+{"type": "text", "delta": " below BB"}
+{"type": "text", "delta": "B-"}
+{"type": "text", "delta": " (the"}
+{"type": "text", "delta": " step"}
+{"type": "text", "delta": "-up applies once and does not reverse"}
+{"type": "text", "delta": ")"}
+{"type": "text", "delta": ".\",\n  \"total"}
+{"type": "text", "delta": "\": null"}
+{"type": "text", "delta": ",\n  \"currency"}
+{"type": "text", "delta": "\": null"}
+{"type": "text", "delta": ",\n  \"arithmetic"}
+{"type": "text", "delta": "\": null"}
+{"type": "text", "delta": ",\n  \"claims"}
+{"type": "text", "delta": "\": [\n    {\n      \""}
+{"type": "text", "delta": "text"}
+{"type": "text", "delta": "\": \"4"}
+{"type": "text", "delta": ".25%"}
+{"type": "text", "delta": "\",\n      \"value"}
+{"type": "text", "delta": "\": \"4.25\","}
+{"type": "text", "delta": "\n      \"unit"}
+{"type": "text", "delta": "Id"}
+{"type": "text", "delta": "\": \"trade-confirmation-xs2"}
+{"type": "text", "delta": "031-9"}
+{"type": "text", "delta": "af"}
+{"type": "text", "delta": "5"}
+{"type": "text", "delta": "c5"}
+{"type": "text", "delta": ":1.0:c-01"}
+{"type": "text", "delta": "\",\n      \"field"}
+{"type": "text", "delta": "Id"}
+{"type": "text", "delta": "\": null"}
+{"type": "text", "delta": "\n    },\n    {\n      \""}
+{"type": "text", "delta": "text\": \"6"}
+{"type": "text", "delta": ".00%\",\n      \"value"}
+{"type": "text", "delta": "\": \"6.00\",\n      "}
+{"type": "text", "delta": "\"unitId\": \"trade-confirmation"}
+{"type": "text", "delta": "-xs2031-9af5"}
+{"type": "text", "delta": "c5:1.0:c"}
+{"type": "text", "delta": "-01\",\n      \"fieldId"}
+{"type": "text", "delta": "\": null\n    }"}
+{"type": "text", "delta": "\n  ],\n  \"c"}
+{"type": "text", "delta": "ave"}
+{"type": "text", "delta": "ats\": [\n    \""}
+{"type": "text", "delta": "The step"}
+{"type": "text", "delta": "-up cou"}
+{"type": "text", "delta": "pon of"}
+{"type": "text", "delta": " 6"}
+{"type": "text", "delta": ".00% is"}
+{"type": "text", "delta": " conting"}
+{"type": "text", "delta": "ent on a"}
+{"type": "text", "delta": " rating down"}
+{"type": "text", "delta": "grade below"}
+{"type": "text", "delta": " BBB-"}
+{"type": "text", "delta": " and"}
+{"type": "text", "delta": " applies"}
+{"type": "text", "delta": " from"}
+{"type": "text", "delta": " year 3 on"}
+{"type": "text", "delta": "ward;"}
+{"type": "text", "delta": " it"}
+{"type": "text", "delta": " is"}
+{"type": "text", "delta": " not the"}
+{"type": "text", "delta": " issue"}
+{"type": "text", "delta": " cou"}
+{"type": "text", "delta": "pon.\",\n    \"All"}
+{"type": "text", "delta": " parties"}
+{"type": "text", "delta": ", securities and ratings in this document are"}
+{"type": "text", "delta": " fictitious.\""}
+{"type": "text", "delta": "\n  ]"}
+{"type": "text", "delta": "\n}\n```"}
+{"answer": "The coupon on XS-2031 at issue is 4.25% per annum, paid annually. Note that the security terms include a step-up provision: the coupon rises to 6.00% from year 3 if the issuer's rating falls below BBB- (the step-up applies once and does not reverse).", "claims": [{"text": "4.25%", "value": "4.25", "unitId": "trade-confirmation-xs2031-9af5c5:1.0:c-01", "docId": "trade-confirmation-xs2031-9af5c5", "fileName": "trade_confirmation_xs2031.pdf", "label": "chunk c-01", "resolvable": false, "chunkLabel": "chunk c-01", "reason": "chunk has no page region"}, {"text": "6.00%", "value": "6.00", "unitId": "trade-confirmation-xs2031-9af5c5:1.0:c-01", "docId": "trade-confirmation-xs2031-9af5c5", "fileName": "trade_confirmation_xs2031.pdf", "label": "chunk c-01", "resolvable": false, "chunkLabel": "chunk c-01", "reason": "chunk has no page region"}], "caveats": ["The step-up coupon of 6.00% is contingent on a rating downgrade below BBB- and applies from year 3 onward; it is not the issue coupon.", "All parties, securities and ratings in this document are fictitious."], "citationRetries": 0, "uncitedNumbers": [], "type": "answer"}
+{"runId": "r-e96c60997b7a", "packageId": "pkg-tradeconf-01", "pipelineVersion": "1.0", "configSha": "1f437eb1624d9df0b867a42d73fe7d27b7de6fb441c90c917f15b23f564748dc", "blockShas": {"preprocessing": "ba267beb165e0af475c323c9f78543f5ee90fc7c201ccbf59f34842e3d4e6114", "retrieval": "3587393d6f0d8c38adfaf6853c1463b54cc1ee872646ff354b3408da63dd586c", "generation": "4731dca541739b7b91e53099ae45acb0f255c753e313bec48702fa79ecad436e", "agent": "5ce789906365b6a0f9d139eba009f17b61d3113720a21c755e3f5be4459551f0"}, "promptSha": "59984da199bb287de4b76a1d91bc0a5c27fde51028c39ffd04a33c3950a7d302", "modelId": "us.anthropic.claude-sonnet-4-6", "corpusHash": "84436b1927bcd4fa33e13a59983a457c6a21bb799ddebff1deb7a3360f4adaa7", "memoryRecordsInjected": 0, "latencyMs": 14118, "usage": {"inputTokens": 5629, "outputTokens": 384, "totalTokens": 6013}, "startedAt": "2026-11-11T00:44:51.075Z", "type": "run", "question": "What is the coupon on XS-2031 at issue?"}

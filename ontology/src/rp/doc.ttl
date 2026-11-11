@@ -1,0 +1,79 @@
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix doco: <http://purl.org/spar/doco/> .
+@prefix doc:  <urn:rp:ont:doc:> .
+@prefix rp:   <urn:rp:ont:rp:> .
+
+# Regionproof document model: documents, evidence units, page regions and the structural
+# predicates graph_write uses (evidence_core/iris.py docstring). No inference is relied on.
+
+<urn:rp:ont:doc> a owl:Ontology ;
+    rdfs:label "Regionproof document model" ;
+    rdfs:comment "Documents, evidence units, page regions and their structural predicates. Fictitious data only." .
+
+# ---------------------------------------------------------------- classes
+
+doc:Package a owl:Class ;
+    rdfs:label "Document package" ;
+    rdfs:comment "A set of documents uploaded together for one case (for example one lending application)." .
+
+doc:Document a owl:Class ;
+    rdfs:label "Document" ;
+    rdfs:subClassOf prov:Entity ;
+    rdfs:comment "One uploaded source file (Bronze object). Document types are subclasses (doctypes.ttl)." .
+
+doc:EvidenceUnit a owl:Class ;
+    rdfs:label "Evidence unit" ;
+    rdfs:subClassOf prov:Entity ;
+    rdfs:comment "One retrievable unit: a table panel, section text, figure panel, field group or list block, carrying its members, fields and page regions. v1.0 chunks are not evidence units and are never written to the graph." .
+
+doc:PageRegion a owl:Class ;
+    rdfs:label "Page region" ;
+    rdfs:subClassOf prov:Entity ;
+    rdfs:comment "A rectangle on one page in PDF points with a top-left origin (rp:page, rp:x0, rp:y0, rp:x1, rp:y1)." .
+
+doc:StageActivity a owl:Class ;
+    rdfs:label "Pipeline stage execution" ;
+    rdfs:subClassOf prov:Activity ;
+    rdfs:comment "One stage of the ingest state machine for one document and pipeline version." .
+
+# ---------------------------------------------------------------- structural predicates
+
+rp:inPackage a owl:ObjectProperty ; rdfs:label "in package" ; rdfs:domain doc:Document ; rdfs:range doc:Package .
+rp:inDocument a owl:ObjectProperty ; rdfs:label "in document" ; rdfs:domain doc:EvidenceUnit ; rdfs:range doc:Document .
+rp:fileName a owl:DatatypeProperty ; rdfs:label "file name" ; rdfs:range xsd:string .
+rp:sha256 a owl:DatatypeProperty ; rdfs:label "SHA-256 of the source object" ; rdfs:range xsd:string .
+rp:sourceKey a owl:DatatypeProperty ; rdfs:label "Bronze object key" ; rdfs:range xsd:string .
+rp:sourceVersionId a owl:DatatypeProperty ; rdfs:label "Bronze object version id" ; rdfs:range xsd:string .
+rp:unitType a owl:DatatypeProperty ; rdfs:label "unit type" ; rdfs:range xsd:string .
+rp:pipelineVersion a owl:DatatypeProperty ; rdfs:label "pipeline version" ; rdfs:range xsd:string .
+rp:breadcrumb a owl:DatatypeProperty ; rdfs:label "breadcrumb" ; rdfs:range xsd:string .
+rp:fieldId a owl:DatatypeProperty ; rdfs:label "field id" ; rdfs:range xsd:string .
+rp:label a owl:DatatypeProperty ; rdfs:label "printed label" ; rdfs:range xsd:string .
+rp:name a owl:DatatypeProperty ; rdfs:label "name" ; rdfs:range xsd:string .
+rp:page a owl:DatatypeProperty ; rdfs:label "page (1-based)" ; rdfs:range xsd:integer .
+rp:x0 a owl:DatatypeProperty ; rdfs:label "left (points)" ; rdfs:range xsd:decimal .
+rp:y0 a owl:DatatypeProperty ; rdfs:label "top (points, top-left origin)" ; rdfs:range xsd:decimal .
+rp:x1 a owl:DatatypeProperty ; rdfs:label "right (points)" ; rdfs:range xsd:decimal .
+rp:y1 a owl:DatatypeProperty ; rdfs:label "bottom (points, top-left origin)" ; rdfs:range xsd:decimal .
+rp:stageId a owl:DatatypeProperty ; rdfs:label "stage id" ; rdfs:range xsd:string .
+rp:marker a owl:DatatypeProperty ; rdfs:label "footnote marker linking a value to its footnote" ; rdfs:range xsd:string .
+
+# ---------------------------------------------------------------- vocabulary annotations
+
+rp:shortLabel a owl:AnnotationProperty ; rdfs:label "short label shown on chips" .
+rp:indicator a owl:AnnotationProperty ; rdfs:label "classification indicator phrase" .
+rp:periodKind a owl:AnnotationProperty ; rdfs:label "period kind (tax_year, pay_period, statement_period, quarter, none)" .
+rp:docType a owl:AnnotationProperty ; rdfs:label "document type a field concept belongs to" .
+rp:datatype a owl:AnnotationProperty ; rdfs:label "value datatype (decimal, string, date)" .
+rp:unitGroup a owl:AnnotationProperty ; rdfs:label "breadcrumb tail of the unit that holds the field" .
+rp:canonicalRole a owl:AnnotationProperty ; rdfs:label "canonical role code" .
+rp:engine a owl:AnnotationProperty ; rdfs:label "extraction engine of a label scheme" .
+rp:derived a owl:AnnotationProperty ; rdfs:label "role derived by the unit builder, not emitted by an engine" .
+rp:computedBy a owl:AnnotationProperty ; rdfs:label "SPARQL template that computes this quantity" .
+rp:ontologyVersion a owl:AnnotationProperty ; rdfs:label "Regionproof ontology version" .
+rp:pinnedSource a owl:AnnotationProperty ; rdfs:label "pinned upstream source of a TBox graph" .

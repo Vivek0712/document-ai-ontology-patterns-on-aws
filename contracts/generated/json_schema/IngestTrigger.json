@@ -1,0 +1,93 @@
+{
+  "description": "Execution input. EventBridge input transformer (trigger=s3) or POST reprocess.",
+  "properties": {
+    "pipelineVersion": {
+      "title": "Pipelineversion",
+      "type": "string"
+    },
+    "bucket": {
+      "title": "Bucket",
+      "type": "string"
+    },
+    "key": {
+      "title": "Key",
+      "type": "string"
+    },
+    "versionId": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Versionid"
+    },
+    "etag": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Etag"
+    },
+    "size": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Size"
+    },
+    "eventTime": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Eventtime"
+    },
+    "trigger": {
+      "default": "s3",
+      "enum": [
+        "s3",
+        "reprocess"
+      ],
+      "title": "Trigger",
+      "type": "string"
+    },
+    "requestedBy": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Requestedby"
+    }
+  },
+  "required": [
+    "pipelineVersion",
+    "bucket",
+    "key"
+  ],
+  "title": "IngestTrigger",
+  "type": "object"
+}

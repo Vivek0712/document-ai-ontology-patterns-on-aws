@@ -1,0 +1,2814 @@
+{
+  "packageId": "pkg-quarterly-01",
+  "name": "Quarterly reports · Q3 FY2023–FY2025",
+  "description": "Quarterly report: Table 3 on page 14, footnote 1 marks Q4 as preliminary, Table 4 split across pages 15–16.",
+  "ownerEmail": "user-a@example.com",
+  "allowedGroups": [
+    "lending-analyst",
+    "markets-analyst"
+  ],
+  "seed": 2025,
+  "generatorVersion": "1.0.0",
+  "footer": "Fictitious document · NewAge Global Fintech · for demonstration only",
+  "bboxFrame": "pdf-points-top-left",
+  "corpusHash": "4f9790b4a360d9ef57a232bb5ffd829704e5e2d07486c54522a00f9f83fd82b9",
+  "expected": {},
+  "questions": [
+    "q-qr25-01",
+    "q-qr25-02",
+    "q-qr25-03",
+    "q-qr25-04",
+    "q-qr25-05",
+    "q-qr25-06",
+    "q-qr25-07",
+    "q-qr25-08",
+    "q-qr24-01",
+    "q-qr24-02",
+    "q-qr24-03",
+    "q-qr24-04",
+    "q-qr24-05",
+    "q-qr24-06",
+    "q-qr24-07",
+    "q-qr23-01",
+    "q-qr23-02",
+    "q-qr23-03",
+    "q-qr23-04",
+    "q-qr23-05",
+    "q-qr23-06",
+    "q-qr23-07"
+  ],
+  "documents": [
+    {
+      "fileName": "quarterly_report_q3_fy2023.pdf",
+      "docId": "quarterly-report-q3-fy2023-f6e6a3",
+      "docType": "doc:QuarterlyReport",
+      "route": "digital",
+      "title": "NewAge Global Fintech Quarterly Report Q3 FY2023",
+      "pageCount": 16,
+      "pageWidth": 612.0,
+      "pageHeight": 792.0,
+      "sha256": "f8247cd9ef2427407af99537084de031b5655601a4ff1f9f3919944922bf21da",
+      "bboxFrame": "pdf-points-top-left",
+      "attributes": {
+        "fiscalYear": 2023,
+        "revenue": [
+          3705,
+          3890,
+          4200,
+          4325
+        ],
+        "segments": {
+          "Payments": 1844,
+          "Lending": 1407,
+          "Markets": 949
+        },
+        "customerAccountsMillions": "1.5",
+        "opex": {
+          "Americas": 853,
+          "EMEA": 853,
+          "APAC": 394,
+          "Corporate": 256
+        },
+        "opexTotal": 2356
+      },
+      "notes": [],
+      "regions": [
+        {
+          "regionId": "qr-title",
+          "kind": "header",
+          "page": 1,
+          "bbox": {
+            "page": 1,
+            "x0": 60.0,
+            "y0": 181.33,
+            "x1": 350.39,
+            "y1": 264.28
+          },
+          "role": "title",
+          "label": "Quarterly Report · Q3 FY2023"
+        },
+        {
+          "regionId": "footer-p1",
+          "kind": "footer",
+          "page": 1,
+          "bbox": {
+            "page": 1,
+            "x0": 190.95,
+            "y0": 762.62,
+            "x1": 421.05,
+            "y1": 769.55
+          },
+          "role": "page_footer",
+          "label": "footer",
+          "value": "Fictitious document · NewAge Global Fintech · for demonstration only"
+        },
+        {
+          "regionId": "qr-sec-p2",
+          "kind": "header",
+          "page": 2,
+          "bbox": {
+            "page": 2,
+            "x0": 60.0,
+            "y0": 73.23,
+            "x1": 143.38,
+            "y1": 87.11
+          },
+          "role": "section_header",
+          "label": "1. Overview"
+        },
+        {
+          "regionId": "footer-p2",
+          "kind": "footer",
+          "page": 2,
+          "bbox": {
+            "page": 2,
+            "x0": 190.95,
+            "y0": 762.62,
+            "x1": 421.05,
+            "y1": 769.55
+          },
+          "role": "page_footer",
+          "label": "footer",
+          "value": "Fictitious document · NewAge Global Fintech · for demonstration only"
+        },
+        {
+          "regionId": "qr-accounts",
+          "kind": "text",
+          "page": 3,
+          "bbox": {
+            "page": 3,
+            "x0": 60.0,
+            "y0": 75.38,
+            "x1": 546.36,
+            "y1": 122.37
+          },
+          "role": "text",
+          "label": "1.2 Customers",
+          "value": "1.5 million",
+          "concept": "fin:CustomerAccountsCount",
+          "period": "Q3 FY2023",
+          "extra": {
+            "sentence": "Customer accounts reached 1.5 million at the end of Q3 FY2023, with most new accounts opened through the mobile application."
+          }
+        },
+        {
+          "regionId": "footer-p3",
+          "kind": "footer",
+          "page": 3,
+          "bbox": {
+            "page": 3,
+            "x0": 190.95,
+            "y0": 762.62,
+            "x1": 421.05,
+            "y1": 769.55
+          },
+          "role": "page_footer",
+          "label": "footer",
+          "value": "Fictitious document · NewAge Global Fintech · for demonstration only"
+        },
+        {
+          "regionId": "footer-p4",
+          "kind": "footer",
+          "page": 4,
+          "bbox": {
+            "page": 4,
+            "x0": 190.95,
+            "y0": 762.62,
+            "x1": 421.05,
+            "y1": 769.55
+          },
+          "role": "page_footer",
+          "label": "footer",
+          "value": "Fictitious document · NewAge Global Fintech · for demonstration only"
+        },
+        {
+          "regionId": "qr-sec-p5",
+          "kind": "header",
+          "page": 5,
+          "bbox": {
+            "page": 5,
+            "x0": 60.0,
+            "y0": 73.23,
+            "x1": 248.39,
+            "y1": 87.11
+          },
+          "role": "section_header",
+          "label": "2. Strategy and operations"
+        },
+        {
+          "regionId": "footer-p5",
+          "kind": "footer",
+          "page": 5,
+          "bbox": {
+            "page": 5,
+            "x0": 190.95,
+            "y0": 762.62,
+            "x1": 421.05,
+            "y1": 769.55
+          },
+          "role": "page_footer",
+          "label": "footer",
+          "value": "Fictitious document · NewAge Global Fintech · for demonstration only"
+        },
+        {
+          "regionId": "qr-figure1",
+          "kind": "figure",
+          "page": 6,
+          "bbox": {
+            "page": 6,
+            "x0": 60.0,
+            "y0": 76.82,
+            "x1": 467.5,
+            "y1": 228.86
+          },
+          "role": "picture",
+          "label": "Figure 1 · Digital transactions processed · millions",
+          "extra": {
+            "unitType": "figure_panel"
+          }
+        },
+        {
+          "regionId": "footer-p6",
+          "kind": "footer",
+          "page": 6,
+          "bbox": {
+            "page": 6,
+            "x0": 190.95,
+            "y0": 762.62,
+            "x1": 421.05,
+            "y1": 769.55
+          },
+          "role": "page_footer",
+          "label": "footer",
+          "value": "Fictitious document · NewAge Global Fintech · for demonstration only"
+        },
+        {
+          "regionId": "footer-p7",
+          "kind": "footer",
+          "page": 7,
+          "bbox": {
+            "page": 7,
+            "x0": 190.95,
+            "y0": 762.62,
+            "x1": 421.05,
+            "y1": 769.55
+          },
+          "role": "page_footer",
+          "label": "footer",
+          "value": "Fictitious document · NewAge Global Fintech · for demonstration only"
+        },
+        {
+          "regionId": "footer-p8",
+          "kind": "footer",
+          "page": 8,
+          "bbox": {
+            "page": 8,
+            "x0": 190.95,
+            "y0": 762.62,
+            "x1": 421.05,
+            "y1": 769.55
+          },
+          "role": "page_footer",
+          "label": "footer",
+          "value": "Fictitious document · NewAge Global Fintech · for demonstration only"
+        },
+        {
+          "regionId": "footer-p9",
+          "kind": "footer",
+          "page": 9,
+          "bbox": {
+            "page": 9,
+            "x0": 190.95,
+            "y0": 762.62,
+            "x1": 421.05,
+            "y1": 769.55
+          },
+          "role": "page_footer",
+          "label": "footer",
+          "value": "Fictitious document · NewAge Global Fintech · for demonstration only"
+        },
+        {
+          "regionId": "qr-sec-p10",
+          "kind": "header",
+          "page": 10,
+          "bbox": {
+            "page": 10,
+            "x0": 60.0,
+            "y0": 73.23,
+            "x1": 130.86,
+            "y1": 87.11
+          },
+          "role": "section_header",
+          "label": "3. Results"
+        },
+        {
+          "regionId": "footer-p10",
+          "kind": "footer",
+          "page": 10,
+          "bbox": {
+            "page": 10,
+            "x0": 190.95,
+            "y0": 762.62,
+            "x1": 421.05,
+            "y1": 769.55
+          },
+          "role": "page_footer",
+          "label": "footer",
+          "value": "Fictitious document · NewAge Global Fintech · for demonstration only"
+        },
+        {
+          "regionId": "footer-p11",
+          "kind": "footer",
+          "page": 11,
+          "bbox": {
+            "page": 11,
+            "x0": 190.95,
+            "y0": 762.62,
+            "x1": 421.05,
+            "y1": 769.55
+          },
+          "role": "page_footer",
+          "label": "footer",
+          "value": "Fictitious document · NewAge Global Fintech · for demonstration only"
+        },
+        {
+          "regionId": "qr-figure2",
+          "kind": "figure",
+          "page": 12,
+          "bbox": {
+            "page": 12,
+            "x0": 60.0,
+            "y0": 99.62,
+            "x1": 467.5,
+            "y1": 283.66
+          },
+          "role": "picture",
+          "label": "Figure 2 · Revenue by segment · Q3 FY2023 · USD millions",
+          "period": "Q3 FY2023",
+          "extra": {
+            "unitType": "figure_panel"
+          }
+        },
+        {
+          "regionId": "qr-figure2-caption",
+          "kind": "caption",
+          "page": 12,
+          "bbox": {
+            "page": 12,
+            "x0": 60.0,
+            "y0": 99.62,
+            "x1": 336.77,
+            "y1": 108.87
+          },
+          "role": "caption",
+          "label": "Figure 2 caption",
+          "unitRef": "qr-figure2"
+        },
+        {
+          "regionId": "qr-fig2-payments",
+          "kind": "field",
+          "page": 12,
+          "bbox": {
+            "page": 12,
+            "x0": 142.5,
+            "y0": 131.34,
+            "x1": 207.5,
+            "y1": 283.66
+          },
+          "role": "text",
+          "label": "Payments revenue",
+          "value": "1,844",
+          "valueNumber": "1844.00",
+          "concept": "fin:SegmentRevenue",
+          "fieldId": "f-payments",
+          "unitRef": "qr-figure2",
+          "period": "Q3 FY2023",
+          "currency": "USD",
+          "labelBbox": {
+            "page": 12,
+            "x0": 154.99,
+            "y0": 275.34,
+            "x1": 195.01,
+            "y1": 283.66
+          },
+          "valueBbox": {
+            "page": 12,
+            "x0": 163.74,
+            "y0": 131.34,
+            "x1": 186.26,
+            "y1": 139.66
+          },
+          "extra": {
+            "scale": "millions"
+          }
+        },
+        {
+          "regionId": "qr-fig2-lending",
+          "kind": "field",
+          "page": 12,
+          "bbox": {
+            "page": 12,
+            "x0": 272.5,
+            "y0": 161.2,
+            "x1": 337.5,
+            "y1": 283.66
+          },
+          "role": "text",
+          "label": "Lending revenue",
+          "value": "1,407",
+          "valueNumber": "1407.00",
+          "concept": "fin:SegmentRevenue",
+          "fieldId": "f-lending",
+          "unitRef": "qr-figure2",
+          "period": "Q3 FY2023",
+          "currency": "USD",
+          "labelBbox": {
+            "page": 12,
+            "x0": 288.99,
+            "y0": 275.34,
+            "x1": 321.01,
+            "y1": 283.66
+          },
+          "valueBbox": {
+            "page": 12,
+            "x0": 293.74,
+            "y0": 161.2,
+            "x1": 316.26,
+            "y1": 169.52
+          },
+          "extra": {
+            "scale": "millions"
+          }
+        },
+        {
+          "regionId": "qr-fig2-markets",
+          "kind": "field",
+          "page": 12,
+          "bbox": {
+            "page": 12,
+            "x0": 402.5,
+            "y0": 192.49,
+            "x1": 467.5,
+            "y1": 283.66
+          },
+          "role": "text",
+          "label": "Markets revenue",
+          "value": "949",
+          "valueNumber": "949.00",
+          "concept": "fin:SegmentRevenue",
+          "fieldId": "f-markets",
+          "unitRef": "qr-figure2",
+          "period": "Q3 FY2023",
+          "currency": "USD",
+          "labelBbox": {
+            "page": 12,
+            "x0": 419.0,
+            "y0": 275.34,
+            "x1": 451.0,
+            "y1": 283.66
+          },
+          "valueBbox": {
+            "page": 12,
+            "x0": 427.49,
+            "y0": 192.49,
+            "x1": 442.51,
+            "y1": 200.82
+          },
+          "extra": {
+            "scale": "millions"
+          }
+        },
+        {
+          "regionId": "footer-p12",
+          "kind": "footer",
+          "page": 12,
+          "bbox": {
+            "page": 12,
+            "x0": 190.95,
+            "y0": 762.62,
+            "x1": 421.05,
+            "y1": 769.55
+          },
+          "role": "page_footer",
+          "label": "footer",
+          "value": "Fictitious document · NewAge Global Fintech · for demonstration only"
+        },
+        {
+          "regionId": "qr-commentary",
+          "kind": "text",
+          "page": 13,
+          "bbox": {
+            "page": 13,
+            "x0": 60.0,
+            "y0": 75.38,
+            "x1": 535.78,
+            "y1": 122.37
+          },
+          "role": "text",
+          "label": "3.3 Revenue commentary",
+          "value": "modest growth in H2",
+          "period": "Q3 FY2023",
+          "extra": {
+            "sentence": "Revenue rose in each quarter of FY2023. Management expects modest growth in H2, as pricing changes in the payments business annualise and lending volumes stay selective."
+          }
+        },
+        {
+          "regionId": "footer-p13",
+          "kind": "footer",
+          "page": 13,
+          "bbox": {
+            "page": 13,
+            "x0": 190.95,
+            "y0": 762.62,
+            "x1": 421.05,
+            "y1": 769.55
+          },
+          "role": "page_footer",
+          "label": "footer",
+          "value": "Fictitious document · NewAge Global Fintech · for demonstration only"
+        },
+        {
+          "regionId": "qr-table3-caption",
+          "kind": "caption",
+          "page": 14,
+          "bbox": {
+            "page": 14,
+            "x0": 60.0,
+            "y0": 125.12,
+            "x1": 237.84,
+            "y1": 134.37
+          },
+          "role": "caption",
+          "label": "Table 3 · Total revenue · USD millions",
+          "unitRef": "qr-table3"
+        },
+        {
+          "regionId": "qr-table3",
+          "kind": "unit",
+          "page": 14,
+          "bbox": {
+            "page": 14,
+            "x0": 54.0,
+            "y0": 125.12,
+            "x1": 552.0,
+            "y1": 261.96
+          },
+          "role": "table",
+          "label": "Table 3 · Total revenue · USD millions",
+          "period": "FY2023",
+          "extra": {
+            "unitType": "table_panel",
+            "breadcrumb": [
+              "3. Results",
+              "3.4 Revenue by quarter"
+            ]
+          }
+        },
+        {
+          "regionId": "qr-table3-q1",
+          "kind": "field",
+          "page": 14,
+          "bbox": {
+            "page": 14,
+            "x0": 54.0,
+            "y0": 162.3,
+            "x1": 552.0,
+            "y1": 182.3
+          },
+          "role": "table_cell",
+          "label": "Q1 FY2023 total revenue",
+          "value": "3,705",
+          "valueNumber": "3705.00",
+          "concept": "fin:TotalRevenue",
+          "fieldId": "f-q1",
+          "unitRef": "qr-table3",
+          "period": "Q1 FY2023",
+          "currency": "USD",
+          "labelBbox": {
+            "page": 14,
+            "x0": 60.0,
+            "y0": 169.48,
+            "x1": 108.58,
+            "y1": 178.27
+          },
+          "valueBbox": {
+            "page": 14,
+            "x0": 276.23,
+            "y0": 169.48,
+            "x1": 300.0,
+            "y1": 178.27
+          },
+          "extra": {
+            "scale": "millions",
+            "preliminary": false
+          }
+        },
+        {
+          "regionId": "qr-table3-q2",
+          "kind": "field",
+          "page": 14,
+          "bbox": {
+            "page": 14,
+            "x0": 54.0,
+            "y0": 182.3,
+            "x1": 552.0,
+            "y1": 202.3
+          },
+          "role": "table_cell",
+          "label": "Q2 FY2023 total revenue",
+          "value": "3,890",
+          "valueNumber": "3890.00",
+          "concept": "fin:TotalRevenue",
+          "fieldId": "f-q2",
+          "unitRef": "qr-table3",
+          "period": "Q2 FY2023",
+          "currency": "USD",
+          "labelBbox": {
+            "page": 14,
+            "x0": 60.0,
+            "y0": 189.48,
+            "x1": 108.58,
+            "y1": 198.27
+          },
+          "valueBbox": {
+            "page": 14,
+            "x0": 276.23,
+            "y0": 189.48,
+            "x1": 300.0,
+            "y1": 198.27
+          },
+          "extra": {
+            "scale": "millions",
+            "preliminary": false
+          }
+        },
+        {
+          "regionId": "qr-table3-q3",
+          "kind": "field",
+          "page": 14,
+          "bbox": {
+            "page": 14,
+            "x0": 54.0,
+            "y0": 202.3,
+            "x1": 552.0,
+            "y1": 222.3
+          },
+          "role": "table_cell",
+          "label": "Q3 FY2023 total revenue",
+          "value": "4,200",
+          "valueNumber": "4200.00",
+          "concept": "fin:TotalRevenue",
+          "fieldId": "f-q3",
+          "unitRef": "qr-table3",
+          "period": "Q3 FY2023",
+          "currency": "USD",
+          "labelBbox": {
+            "page": 14,
+            "x0": 60.0,
+            "y0": 209.48,
+            "x1": 108.58,
+            "y1": 218.27
+          },
+          "valueBbox": {
+            "page": 14,
+            "x0": 276.23,
+            "y0": 209.48,
+            "x1": 300.0,
+            "y1": 218.27
+          },
+          "extra": {
+            "scale": "millions",
+            "preliminary": false
+          }
+        },
+        {
+          "regionId": "qr-table3-q4",
+          "kind": "field",
+          "page": 14,
+          "bbox": {
+            "page": 14,
+            "x0": 54.0,
+            "y0": 222.3,
+            "x1": 552.0,
+            "y1": 242.3
+          },
+          "role": "table_cell",
+          "label": "Q4 FY2023 total revenue",
+          "value": "4,325",
+          "valueNumber": "4325.00",
+          "concept": "fin:TotalRevenue",
+          "fieldId": "f-q4",
+          "unitRef": "qr-table3",
+          "period": "Q4 FY2023",
+          "currency": "USD",
+          "labelBbox": {
+            "page": 14,
+            "x0": 60.0,
+            "y0": 229.48,
+            "x1": 108.58,
+            "y1": 238.27
+          },
+          "valueBbox": {
+            "page": 14,
+            "x0": 276.23,
+            "y0": 227.99,
+            "x1": 304.14,
+            "y1": 238.27
+          },
+          "extra": {
+            "scale": "millions",
+            "preliminary": true
+          }
+        },
+        {
+          "regionId": "qr-table3-marker",
+          "kind": "marker",
+          "page": 14,
+          "bbox": {
+            "page": 14,
+            "x0": 276.23,
+            "y0": 227.99,
+            "x1": 304.14,
+            "y1": 238.27
+          },
+          "role": "marker_link",
+          "label": "footnote marker 1 on Q4",
+          "value": "1",
+          "unitRef": "qr-table3",
+          "extra": {
+            "links": "qr-table3-footnote"
+          }
+        },
+        {
+          "regionId": "qr-table3-footnote",
+          "kind": "footnote",
+          "page": 14,
+          "bbox": {
+            "page": 14,
+            "x0": 60.0,
+            "y0": 251.99,
+            "x1": 159.25,
+            "y1": 261.96
+          },
+          "role": "footnote",
+          "label": "Table 3 footnote 1",
+          "value": "Q4 figures are preliminary.",
+          "unitRef": "qr-table3"
+        },
+        {
+          "regionId": "footer-p14",
+          "kind": "footer",
+          "page": 14,
+          "bbox": {
+            "page": 14,
+            "x0": 190.95,
+            "y0": 762.62,
+            "x1": 421.05,
+            "y1": 769.55
+          },
+          "role": "page_footer",
+          "label": "footer",
+          "value": "Fictitious document · NewAge Global Fintech · for demonstration only"
+        },
+        {
+          "regionId": "qr-table4-part1",
+          "kind": "table",
+          "page": 15,
+          "bbox": {
+            "page": 15,
+            "x0": 54.0,
+            "y0": 208.62,
+            "x1": 552.0,
+            "y1": 301.46
+          },
+          "role": "table",
+          "label": "Table 4 · Operating expenses by region (part 1)",
+          "extra": {
+            "continuesOn": 16
+          }
+        },
+        {
+          "regionId": "footer-p15",
+          "kind": "footer",
+          "page": 15,
+          "bbox": {
+            "page": 15,
+            "x0": 190.95,
+            "y0": 762.62,
+            "x1": 421.05,
+            "y1": 769.55
+          },
+          "role": "page_footer",
+          "label": "footer",
+          "value": "Fictitious document · NewAge Global Fintech · for demonstration only"
+        },
+        {
+          "regionId": "qr-table4-part2",
+          "kind": "table",
+          "page": 16,
+          "bbox": {
+            "page": 16,
+            "x0": 54.0,
+            "y0": 76.82,
+            "x1": 552.0,
+            "y1": 193.66
+          },
+          "role": "table",
+          "label": "Table 4 · Operating expenses by region (part 2)",
+          "extra": {
+            "continuesFrom": 15
+          }
+        },
+        {
+          "regionId": "qr-table4-footnote",
+          "kind": "footnote",
+          "page": 16,
+          "bbox": {
+            "page": 16,
+            "x0": 60.0,
+            "y0": 183.69,
+            "x1": 186.39,
+            "y1": 193.66
+          },
+          "role": "footnote",
+          "label": "Table 4 footnote 2",
+          "value": "Excludes discontinued operations.",
+          "extra": {
+            "marker": "2",
+            "markerRow": "Corporate",
+            "markerPage": 16
+          }
+        },
+        {
+          "regionId": "qr-table4-americas",
+          "kind": "field",
+          "page": 15,
+          "bbox": {
+            "page": 15,
+            "x0": 60.0,
+            "y0": 252.98,
+            "x1": 300.0,
+            "y1": 261.77
+          },
+          "role": "table_cell",
+          "label": "Americas operating expenses",
+          "value": "853",
+          "valueNumber": "853.00",
+          "concept": "fin:OperatingExpense",
+          "fieldId": "f-americas",
+          "period": "Q3 FY2023",
+          "currency": "USD",
+          "extra": {
+            "scale": "millions"
+          }
+        },
+        {
+          "regionId": "qr-table4-emea",
+          "kind": "field",
+          "page": 15,
+          "bbox": {
+            "page": 15,
+            "x0": 60.0,
+            "y0": 272.98,
+            "x1": 300.0,
+            "y1": 281.77
+          },
+          "role": "table_cell",
+          "label": "EMEA operating expenses",
+          "value": "853",
+          "valueNumber": "853.00",
+          "concept": "fin:OperatingExpense",
+          "fieldId": "f-emea",
+          "period": "Q3 FY2023",
+          "currency": "USD",
+          "extra": {
+            "scale": "millions"
+          }
+        },
+        {
+          "regionId": "qr-table4-apac",
+          "kind": "field",
+          "page": 16,
+          "bbox": {
+            "page": 16,
+            "x0": 60.0,
+            "y0": 121.18,
+            "x1": 300.0,
+            "y1": 129.97
+          },
+          "role": "table_cell",
+          "label": "APAC operating expenses",
+          "value": "394",
+          "valueNumber": "394.00",
+          "concept": "fin:OperatingExpense",
+          "fieldId": "f-apac",
+          "period": "Q3 FY2023",
+          "currency": "USD",
+          "extra": {
+            "scale": "millions"
+          }
+        },
+        {
+          "regionId": "qr-table4-corporate",
+          "kind": "field",
+          "page": 16,
+          "bbox": {
+            "page": 16,
+            "x0": 60.0,
+            "y0": 139.69,
+            "x1": 300.0,
+            "y1": 149.97
+          },
+          "role": "table_cell",
+          "label": "Corporate operating expenses",
+          "value": "256",
+          "valueNumber": "256.00",
+          "concept": "fin:OperatingExpense",
+          "fieldId": "f-corporate",
+          "period": "Q3 FY2023",
+          "currency": "USD",
+          "extra": {
+            "scale": "millions"
+          }
+        },
+        {
+          "regionId": "qr-sec-p16",
+          "kind": "header",
+          "page": 16,
+          "bbox": {
+            "page": 16,
+            "x0": 60.0,
+            "y0": 215.23,
+            "x1": 133.35,
+            "y1": 229.1
+          },
+          "role": "section_header",
+          "label": "4. Outlook"
+        },
+        {
+          "regionId": "footer-p16",
+          "kind": "footer",
+          "page": 16,
+          "bbox": {
+            "page": 16,
+            "x0": 190.95,
+            "y0": 762.62,
+            "x1": 421.05,
+            "y1": 769.55
+          },
+          "role": "page_footer",
+          "label": "footer",
+          "value": "Fictitious document · NewAge Global Fintech · for demonstration only"
+        }
+      ]
+    },
+    {
+      "fileName": "quarterly_report_q3_fy2024.pdf",
+      "docId": "quarterly-report-q3-fy2024-ab0f27",
+      "docType": "doc:QuarterlyReport",
+      "route": "digital",
+      "title": "NewAge Global Fintech Quarterly Report Q3 FY2024",
+      "pageCount": 16,
+      "pageWidth": 612.0,
+      "pageHeight": 792.0,
+      "sha256": "6092d6f30699285de3c74ff102bb2344fbb6dcb96c45b35d5afc15182ed69b08",
+      "bboxFrame": "pdf-points-top-left",
+      "attributes": {
+        "fiscalYear": 2024,
+        "revenue": [
+          3705,
+          3815,
+          3970,
+          4090
+        ],
+        "segments": {
+          "Payments": 1797,
+          "Lending": 1279,
+          "Markets": 894
+        },
+        "customerAccountsMillions": "1.6",
+        "opex": {
+          "Americas": 757,
+          "EMEA": 796,
+          "APAC": 557,
+          "Corporate": 268
+        },
+        "opexTotal": 2378
+      },
+      "notes": [],
+      "regions": [
+        {
+          "regionId": "qr-title",
+          "kind": "header",
+          "page": 1,
+          "bbox": {
+            "page": 1,
+            "x0": 60.0,
+            "y0": 181.33,
+            "x1": 350.39,
+            "y1": 264.28
+          },
+          "role": "title",
+          "label": "Quarterly Report · Q3 FY2024"
+        },
+        {
+          "regionId": "footer-p1",
+          "kind": "footer",
+          "page": 1,
+          "bbox": {
+            "page": 1,
+            "x0": 190.95,
+            "y0": 762.62,
+            "x1": 421.05,
+            "y1": 769.55
+          },
+          "role": "page_footer",
+          "label": "footer",
+          "value": "Fictitious document · NewAge Global Fintech · for demonstration only"
+        },
+        {
+          "regionId": "qr-sec-p2",
+          "kind": "header",
+          "page": 2,
+          "bbox": {
+            "page": 2,
+            "x0": 60.0,
+            "y0": 73.23,
+            "x1": 143.38,
+            "y1": 87.11
+          },
+          "role": "section_header",
+          "label": "1. Overview"
+        },
+        {
+          "regionId": "footer-p2",
+          "kind": "footer",
+          "page": 2,
+          "bbox": {
+            "page": 2,
+            "x0": 190.95,
+            "y0": 762.62,
+            "x1": 421.05,
+            "y1": 769.55
+          },
+          "role": "page_footer",
+          "label": "footer",
+          "value": "Fictitious document · NewAge Global Fintech · for demonstration only"
+        },
+        {
+          "regionId": "qr-accounts",
+          "kind": "text",
+          "page": 3,
+          "bbox": {
+            "page": 3,
+            "x0": 60.0,
+            "y0": 75.38,
+            "x1": 546.36,
+            "y1": 122.37
+          },
+          "role": "text",
+          "label": "1.2 Customers",
+          "value": "1.6 million",
+          "concept": "fin:CustomerAccountsCount",
+          "period": "Q3 FY2024",
+          "extra": {
+            "sentence": "Customer accounts reached 1.6 million at the end of Q3 FY2024, with most new accounts opened through the mobile application."
+          }
+        },
+        {
+          "regionId": "footer-p3",
+          "kind": "footer",
+          "page": 3,
+          "bbox": {
+            "page": 3,
+            "x0": 190.95,
+            "y0": 762.62,
+            "x1": 421.05,
+            "y1": 769.55
+          },
+          "role": "page_footer",
+          "label": "footer",
+          "value": "Fictitious document · NewAge Global Fintech · for demonstration only"
+        },
+        {
+          "regionId": "footer-p4",
+          "kind": "footer",
+          "page": 4,
+          "bbox": {
+            "page": 4,
+            "x0": 190.95,
+            "y0": 762.62,
+            "x1": 421.05,
+            "y1": 769.55
+          },
+          "role": "page_footer",
+          "label": "footer",
+          "value": "Fictitious document · NewAge Global Fintech · for demonstration only"
+        },
+        {
+          "regionId": "qr-sec-p5",
+          "kind": "header",
+          "page": 5,
+          "bbox": {
+            "page": 5,
+            "x0": 60.0,
+            "y0": 73.23,
+            "x1": 248.39,
+            "y1": 87.11
+          },
+          "role": "section_header",
+          "label": "2. Strategy and operations"
+        },
+        {
+          "regionId": "footer-p5",
+          "kind": "footer",
+          "page": 5,
+          "bbox": {
+            "page": 5,
+            "x0": 190.95,
+            "y0": 762.62,
+            "x1": 421.05,
+            "y1": 769.55
+          },
+          "role": "page_footer",
+          "label": "footer",
+          "value": "Fictitious document · NewAge Global Fintech · for demonstration only"
+        },
+        {
+          "regionId": "qr-figure1",
+          "kind": "figure",
+          "page": 6,
+          "bbox": {
+            "page": 6,
+            "x0": 60.0,
+            "y0": 76.82,
+            "x1": 467.5,
+            "y1": 228.86
+          },
+          "role": "picture",
+          "label": "Figure 1 · Digital transactions processed · millions",
+          "extra": {
+            "unitType": "figure_panel"
+          }
+        },
+        {
+          "regionId": "footer-p6",
+          "kind": "footer",
+          "page": 6,
+          "bbox": {
+            "page": 6,
+            "x0": 190.95,
+            "y0": 762.62,
+            "x1": 421.05,
+            "y1": 769.55
+          },
+          "role": "page_footer",
+          "label": "footer",
+          "value": "Fictitious document · NewAge Global Fintech · for demonstration only"
+        },
+        {
+          "regionId": "footer-p7",
+          "kind": "footer",
+          "page": 7,
+          "bbox": {
+            "page": 7,
+            "x0": 190.95,
+            "y0": 762.62,
+            "x1": 421.05,
+            "y1": 769.55
+          },
+          "role": "page_footer",
+          "label": "footer",
+          "value": "Fictitious document · NewAge Global Fintech · for demonstration only"
+        },
+        {
+          "regionId": "footer-p8",
+          "kind": "footer",
+          "page": 8,
+          "bbox": {
+            "page": 8,
+            "x0": 190.95,
+            "y0": 762.62,
+            "x1": 421.05,
+            "y1": 769.55
+          },
+          "role": "page_footer",
+          "label": "footer",
+          "value": "Fictitious document · NewAge Global Fintech · for demonstration only"
+        },
+        {
+          "regionId": "footer-p9",
+          "kind": "footer",
+          "page": 9,
+          "bbox": {
+            "page": 9,
+            "x0": 190.95,
+            "y0": 762.62,
+            "x1": 421.05,
+            "y1": 769.55
+          },
+          "role": "page_footer",
+          "label": "footer",
+          "value": "Fictitious document · NewAge Global Fintech · for demonstration only"
+        },
+        {
+          "regionId": "qr-sec-p10",
+          "kind": "header",
+          "page": 10,
+          "bbox": {
+            "page": 10,
+            "x0": 60.0,
+            "y0": 73.23,
+            "x1": 130.86,
+            "y1": 87.11
+          },
+          "role": "section_header",
+          "label": "3. Results"
+        },
+        {
+          "regionId": "footer-p10",
+          "kind": "footer",
+          "page": 10,
+          "bbox": {
+            "page": 10,
+            "x0": 190.95,
+            "y0": 762.62,
+            "x1": 421.05,
+            "y1": 769.55
+          },
+          "role": "page_footer",
+          "label": "footer",
+          "value": "Fictitious document · NewAge Global Fintech · for demonstration only"
+        },
+        {
+          "regionId": "footer-p11",
+          "kind": "footer",
+          "page": 11,
+          "bbox": {
+            "page": 11,
+            "x0": 190.95,
+            "y0": 762.62,
+            "x1": 421.05,
+            "y1": 769.55
+          },
+          "role": "page_footer",
+          "label": "footer",
+          "value": "Fictitious document · NewAge Global Fintech · for demonstration only"
+        },
+        {
+          "regionId": "qr-figure2",
+          "kind": "figure",
+          "page": 12,
+          "bbox": {
+            "page": 12,
+            "x0": 60.0,
+            "y0": 99.62,
+            "x1": 467.5,
+            "y1": 283.66
+          },
+          "role": "picture",
+          "label": "Figure 2 · Revenue by segment · Q3 FY2024 · USD millions",
+          "period": "Q3 FY2024",
+          "extra": {
+            "unitType": "figure_panel"
+          }
+        },
+        {
+          "regionId": "qr-figure2-caption",
+          "kind": "caption",
+          "page": 12,
+          "bbox": {
+            "page": 12,
+            "x0": 60.0,
+            "y0": 99.62,
+            "x1": 336.77,
+            "y1": 108.87
+          },
+          "role": "caption",
+          "label": "Figure 2 caption",
+          "unitRef": "qr-figure2"
+        },
+        {
+          "regionId": "qr-fig2-payments",
+          "kind": "field",
+          "page": 12,
+          "bbox": {
+            "page": 12,
+            "x0": 142.5,
+            "y0": 131.34,
+            "x1": 207.5,
+            "y1": 283.66
+          },
+          "role": "text",
+          "label": "Payments revenue",
+          "value": "1,797",
+          "valueNumber": "1797.00",
+          "concept": "fin:SegmentRevenue",
+          "fieldId": "f-payments",
+          "unitRef": "qr-figure2",
+          "period": "Q3 FY2024",
+          "currency": "USD",
+          "labelBbox": {
+            "page": 12,
+            "x0": 154.99,
+            "y0": 275.34,
+            "x1": 195.01,
+            "y1": 283.66
+          },
+          "valueBbox": {
+            "page": 12,
+            "x0": 163.74,
+            "y0": 131.34,
+            "x1": 186.26,
+            "y1": 139.66
+          },
+          "extra": {
+            "scale": "millions"
+          }
+        },
+        {
+          "regionId": "qr-fig2-lending",
+          "kind": "field",
+          "page": 12,
+          "bbox": {
+            "page": 12,
+            "x0": 272.5,
+            "y0": 167.66,
+            "x1": 337.5,
+            "y1": 283.66
+          },
+          "role": "text",
+          "label": "Lending revenue",
+          "value": "1,279",
+          "valueNumber": "1279.00",
+          "concept": "fin:SegmentRevenue",
+          "fieldId": "f-lending",
+          "unitRef": "qr-figure2",
+          "period": "Q3 FY2024",
+          "currency": "USD",
+          "labelBbox": {
+            "page": 12,
+            "x0": 288.99,
+            "y0": 275.34,
+            "x1": 321.01,
+            "y1": 283.66
+          },
+          "valueBbox": {
+            "page": 12,
+            "x0": 293.74,
+            "y0": 167.66,
+            "x1": 316.26,
+            "y1": 175.98
+          },
+          "extra": {
+            "scale": "millions"
+          }
+        },
+        {
+          "regionId": "qr-fig2-markets",
+          "kind": "field",
+          "page": 12,
+          "bbox": {
+            "page": 12,
+            "x0": 402.5,
+            "y0": 194.65,
+            "x1": 467.5,
+            "y1": 283.66
+          },
+          "role": "text",
+          "label": "Markets revenue",
+          "value": "894",
+          "valueNumber": "894.00",
+          "concept": "fin:SegmentRevenue",
+          "fieldId": "f-markets",
+          "unitRef": "qr-figure2",
+          "period": "Q3 FY2024",
+          "currency": "USD",
+          "labelBbox": {
+            "page": 12,
+            "x0": 419.0,
+            "y0": 275.34,
+            "x1": 451.0,
+            "y1": 283.66
+          },
+          "valueBbox": {
+            "page": 12,
+            "x0": 427.49,
+            "y0": 194.65,
+            "x1": 442.51,
+            "y1": 202.98
+          },
+          "extra": {
+            "scale": "millions"
+          }
+        },
+        {
+          "regionId": "footer-p12",
+          "kind": "footer",
+          "page": 12,
+          "bbox": {
+            "page": 12,
+            "x0": 190.95,
+            "y0": 762.62,
+            "x1": 421.05,
+            "y1": 769.55
+          },
+          "role": "page_footer",
+          "label": "footer",
+          "value": "Fictitious document · NewAge Global Fintech · for demonstration only"
+        },
+        {
+          "regionId": "qr-commentary",
+          "kind": "text",
+          "page": 13,
+          "bbox": {
+            "page": 13,
+            "x0": 60.0,
+            "y0": 75.38,
+            "x1": 535.78,
+            "y1": 122.37
+          },
+          "role": "text",
+          "label": "3.3 Revenue commentary",
+          "value": "modest growth in H2",
+          "period": "Q3 FY2024",
+          "extra": {
+            "sentence": "Revenue rose in each quarter of FY2024. Management expects modest growth in H2, as pricing changes in the payments business annualise and lending volumes stay selective."
+          }
+        },
+        {
+          "regionId": "footer-p13",
+          "kind": "footer",
+          "page": 13,
+          "bbox": {
+            "page": 13,
+            "x0": 190.95,
+            "y0": 762.62,
+            "x1": 421.05,
+            "y1": 769.55
+          },
+          "role": "page_footer",
+          "label": "footer",
+          "value": "Fictitious document · NewAge Global Fintech · for demonstration only"
+        },
+        {
+          "regionId": "qr-table3-caption",
+          "kind": "caption",
+          "page": 14,
+          "bbox": {
+            "page": 14,
+            "x0": 60.0,
+            "y0": 125.12,
+            "x1": 237.84,
+            "y1": 134.37
+          },
+          "role": "caption",
+          "label": "Table 3 · Total revenue · USD millions",
+          "unitRef": "qr-table3"
+        },
+        {
+          "regionId": "qr-table3",
+          "kind": "unit",
+          "page": 14,
+          "bbox": {
+            "page": 14,
+            "x0": 54.0,
+            "y0": 125.12,
+            "x1": 552.0,
+            "y1": 261.96
+          },
+          "role": "table",
+          "label": "Table 3 · Total revenue · USD millions",
+          "period": "FY2024",
+          "extra": {
+            "unitType": "table_panel",
+            "breadcrumb": [
+              "3. Results",
+              "3.4 Revenue by quarter"
+            ]
+          }
+        },
+        {
+          "regionId": "qr-table3-q1",
+          "kind": "field",
+          "page": 14,
+          "bbox": {
+            "page": 14,
+            "x0": 54.0,
+            "y0": 162.3,
+            "x1": 552.0,
+            "y1": 182.3
+          },
+          "role": "table_cell",
+          "label": "Q1 FY2024 total revenue",
+          "value": "3,705",
+          "valueNumber": "3705.00",
+          "concept": "fin:TotalRevenue",
+          "fieldId": "f-q1",
+          "unitRef": "qr-table3",
+          "period": "Q1 FY2024",
+          "currency": "USD",
+          "labelBbox": {
+            "page": 14,
+            "x0": 60.0,
+            "y0": 169.48,
+            "x1": 108.58,
+            "y1": 178.27
+          },
+          "valueBbox": {
+            "page": 14,
+            "x0": 276.23,
+            "y0": 169.48,
+            "x1": 300.0,
+            "y1": 178.27
+          },
+          "extra": {
+            "scale": "millions",
+            "preliminary": false
+          }
+        },
+        {
+          "regionId": "qr-table3-q2",
+          "kind": "field",
+          "page": 14,
+          "bbox": {
+            "page": 14,
+            "x0": 54.0,
+            "y0": 182.3,
+            "x1": 552.0,
+            "y1": 202.3
+          },
+          "role": "table_cell",
+          "label": "Q2 FY2024 total revenue",
+          "value": "3,815",
+          "valueNumber": "3815.00",
+          "concept": "fin:TotalRevenue",
+          "fieldId": "f-q2",
+          "unitRef": "qr-table3",
+          "period": "Q2 FY2024",
+          "currency": "USD",
+          "labelBbox": {
+            "page": 14,
+            "x0": 60.0,
+            "y0": 189.48,
+            "x1": 108.58,
+            "y1": 198.27
+          },
+          "valueBbox": {
+            "page": 14,
+            "x0": 276.23,
+            "y0": 189.48,
+            "x1": 300.0,
+            "y1": 198.27
+          },
+          "extra": {
+            "scale": "millions",
+            "preliminary": false
+          }
+        },
+        {
+          "regionId": "qr-table3-q3",
+          "kind": "field",
+          "page": 14,
+          "bbox": {
+            "page": 14,
+            "x0": 54.0,
+            "y0": 202.3,
+            "x1": 552.0,
+            "y1": 222.3
+          },
+          "role": "table_cell",
+          "label": "Q3 FY2024 total revenue",
+          "value": "3,970",
+          "valueNumber": "3970.00",
+          "concept": "fin:TotalRevenue",
+          "fieldId": "f-q3",
+          "unitRef": "qr-table3",
+          "period": "Q3 FY2024",
+          "currency": "USD",
+          "labelBbox": {
+            "page": 14,
+            "x0": 60.0,
+            "y0": 209.48,
+            "x1": 108.58,
+            "y1": 218.27
+          },
+          "valueBbox": {
+            "page": 14,
+            "x0": 276.23,
+            "y0": 209.48,
+            "x1": 300.0,
+            "y1": 218.27
+          },
+          "extra": {
+            "scale": "millions",
+            "preliminary": false
+          }
+        },
+        {
+          "regionId": "qr-table3-q4",
+          "kind": "field",
+          "page": 14,
+          "bbox": {
+            "page": 14,
+            "x0": 54.0,
+            "y0": 222.3,
+            "x1": 552.0,
+            "y1": 242.3
+          },
+          "role": "table_cell",
+          "label": "Q4 FY2024 total revenue",
+          "value": "4,090",
+          "valueNumber": "4090.00",
+          "concept": "fin:TotalRevenue",
+          "fieldId": "f-q4",
+          "unitRef": "qr-table3",
+          "period": "Q4 FY2024",
+          "currency": "USD",
+          "labelBbox": {
+            "page": 14,
+            "x0": 60.0,
+            "y0": 229.48,
+            "x1": 108.58,
+            "y1": 238.27
+          },
+          "valueBbox": {
+            "page": 14,
+            "x0": 276.23,
+            "y0": 227.99,
+            "x1": 304.14,
+            "y1": 238.27
+          },
+          "extra": {
+            "scale": "millions",
+            "preliminary": true
+          }
+        },
+        {
+          "regionId": "qr-table3-marker",
+          "kind": "marker",
+          "page": 14,
+          "bbox": {
+            "page": 14,
+            "x0": 276.23,
+            "y0": 227.99,
+            "x1": 304.14,
+            "y1": 238.27
+          },
+          "role": "marker_link",
+          "label": "footnote marker 1 on Q4",
+          "value": "1",
+          "unitRef": "qr-table3",
+          "extra": {
+            "links": "qr-table3-footnote"
+          }
+        },
+        {
+          "regionId": "qr-table3-footnote",
+          "kind": "footnote",
+          "page": 14,
+          "bbox": {
+            "page": 14,
+            "x0": 60.0,
+            "y0": 251.99,
+            "x1": 159.25,
+            "y1": 261.96
+          },
+          "role": "footnote",
+          "label": "Table 3 footnote 1",
+          "value": "Q4 figures are preliminary.",
+          "unitRef": "qr-table3"
+        },
+        {
+          "regionId": "footer-p14",
+          "kind": "footer",
+          "page": 14,
+          "bbox": {
+            "page": 14,
+            "x0": 190.95,
+            "y0": 762.62,
+            "x1": 421.05,
+            "y1": 769.55
+          },
+          "role": "page_footer",
+          "label": "footer",
+          "value": "Fictitious document · NewAge Global Fintech · for demonstration only"
+        },
+        {
+          "regionId": "qr-table4-part1",
+          "kind": "table",
+          "page": 15,
+          "bbox": {
+            "page": 15,
+            "x0": 54.0,
+            "y0": 208.62,
+            "x1": 552.0,
+            "y1": 301.46
+          },
+          "role": "table",
+          "label": "Table 4 · Operating expenses by region (part 1)",
+          "extra": {
+            "continuesOn": 16
+          }
+        },
+        {
+          "regionId": "footer-p15",
+          "kind": "footer",
+          "page": 15,
+          "bbox": {
+            "page": 15,
+            "x0": 190.95,
+            "y0": 762.62,
+            "x1": 421.05,
+            "y1": 769.55
+          },
+          "role": "page_footer",
+          "label": "footer",
+          "value": "Fictitious document · NewAge Global Fintech · for demonstration only"
+        },
+        {
+          "regionId": "qr-table4-part2",
+          "kind": "table",
+          "page": 16,
+          "bbox": {
+            "page": 16,
+            "x0": 54.0,
+            "y0": 76.82,
+            "x1": 552.0,
+            "y1": 193.66
+          },
+          "role": "table",
+          "label": "Table 4 · Operating expenses by region (part 2)",
+          "extra": {
+            "continuesFrom": 15
+          }
+        },
+        {
+          "regionId": "qr-table4-footnote",
+          "kind": "footnote",
+          "page": 16,
+          "bbox": {
+            "page": 16,
+            "x0": 60.0,
+            "y0": 183.69,
+            "x1": 186.39,
+            "y1": 193.66
+          },
+          "role": "footnote",
+          "label": "Table 4 footnote 2",
+          "value": "Excludes discontinued operations.",
+          "extra": {
+            "marker": "2",
+            "markerRow": "Corporate",
+            "markerPage": 16
+          }
+        },
+        {
+          "regionId": "qr-table4-americas",
+          "kind": "field",
+          "page": 15,
+          "bbox": {
+            "page": 15,
+            "x0": 60.0,
+            "y0": 252.98,
+            "x1": 300.0,
+            "y1": 261.77
+          },
+          "role": "table_cell",
+          "label": "Americas operating expenses",
+          "value": "757",
+          "valueNumber": "757.00",
+          "concept": "fin:OperatingExpense",
+          "fieldId": "f-americas",
+          "period": "Q3 FY2024",
+          "currency": "USD",
+          "extra": {
+            "scale": "millions"
+          }
+        },
+        {
+          "regionId": "qr-table4-emea",
+          "kind": "field",
+          "page": 15,
+          "bbox": {
+            "page": 15,
+            "x0": 60.0,
+            "y0": 272.98,
+            "x1": 300.0,
+            "y1": 281.77
+          },
+          "role": "table_cell",
+          "label": "EMEA operating expenses",
+          "value": "796",
+          "valueNumber": "796.00",
+          "concept": "fin:OperatingExpense",
+          "fieldId": "f-emea",
+          "period": "Q3 FY2024",
+          "currency": "USD",
+          "extra": {
+            "scale": "millions"
+          }
+        },
+        {
+          "regionId": "qr-table4-apac",
+          "kind": "field",
+          "page": 16,
+          "bbox": {
+            "page": 16,
+            "x0": 60.0,
+            "y0": 121.18,
+            "x1": 300.0,
+            "y1": 129.97
+          },
+          "role": "table_cell",
+          "label": "APAC operating expenses",
+          "value": "557",
+          "valueNumber": "557.00",
+          "concept": "fin:OperatingExpense",
+          "fieldId": "f-apac",
+          "period": "Q3 FY2024",
+          "currency": "USD",
+          "extra": {
+            "scale": "millions"
+          }
+        },
+        {
+          "regionId": "qr-table4-corporate",
+          "kind": "field",
+          "page": 16,
+          "bbox": {
+            "page": 16,
+            "x0": 60.0,
+            "y0": 139.69,
+            "x1": 300.0,
+            "y1": 149.97
+          },
+          "role": "table_cell",
+          "label": "Corporate operating expenses",
+          "value": "268",
+          "valueNumber": "268.00",
+          "concept": "fin:OperatingExpense",
+          "fieldId": "f-corporate",
+          "period": "Q3 FY2024",
+          "currency": "USD",
+          "extra": {
+            "scale": "millions"
+          }
+        },
+        {
+          "regionId": "qr-sec-p16",
+          "kind": "header",
+          "page": 16,
+          "bbox": {
+            "page": 16,
+            "x0": 60.0,
+            "y0": 215.23,
+            "x1": 133.35,
+            "y1": 229.1
+          },
+          "role": "section_header",
+          "label": "4. Outlook"
+        },
+        {
+          "regionId": "footer-p16",
+          "kind": "footer",
+          "page": 16,
+          "bbox": {
+            "page": 16,
+            "x0": 190.95,
+            "y0": 762.62,
+            "x1": 421.05,
+            "y1": 769.55
+          },
+          "role": "page_footer",
+          "label": "footer",
+          "value": "Fictitious document · NewAge Global Fintech · for demonstration only"
+        }
+      ]
+    },
+    {
+      "fileName": "quarterly_report_q3_fy2025.pdf",
+      "docId": "quarterly-report-q3-fy2025-ab5fea",
+      "docType": "doc:QuarterlyReport",
+      "route": "digital",
+      "title": "NewAge Global Fintech Quarterly Report Q3 FY2025",
+      "pageCount": 16,
+      "pageWidth": 612.0,
+      "pageHeight": 792.0,
+      "sha256": "72435b90c227a6404329dfcf2e2c404521bd7c990d4f79c356b151c89659798d",
+      "bboxFrame": "pdf-points-top-left",
+      "attributes": {
+        "fiscalYear": 2025,
+        "revenue": [
+          4120,
+          4455,
+          4890,
+          5010
+        ],
+        "segments": {
+          "Payments": 2140,
+          "Lending": 1610,
+          "Markets": 1140
+        },
+        "customerAccountsMillions": "2.4",
+        "opex": {
+          "Americas": 1180,
+          "EMEA": 960,
+          "APAC": 610,
+          "Corporate": 340
+        },
+        "opexTotal": 3090
+      },
+      "notes": [],
+      "regions": [
+        {
+          "regionId": "qr-title",
+          "kind": "header",
+          "page": 1,
+          "bbox": {
+            "page": 1,
+            "x0": 60.0,
+            "y0": 181.33,
+            "x1": 350.39,
+            "y1": 264.28
+          },
+          "role": "title",
+          "label": "Quarterly Report · Q3 FY2025"
+        },
+        {
+          "regionId": "footer-p1",
+          "kind": "footer",
+          "page": 1,
+          "bbox": {
+            "page": 1,
+            "x0": 190.95,
+            "y0": 762.62,
+            "x1": 421.05,
+            "y1": 769.55
+          },
+          "role": "page_footer",
+          "label": "footer",
+          "value": "Fictitious document · NewAge Global Fintech · for demonstration only"
+        },
+        {
+          "regionId": "qr-sec-p2",
+          "kind": "header",
+          "page": 2,
+          "bbox": {
+            "page": 2,
+            "x0": 60.0,
+            "y0": 73.23,
+            "x1": 143.38,
+            "y1": 87.11
+          },
+          "role": "section_header",
+          "label": "1. Overview"
+        },
+        {
+          "regionId": "footer-p2",
+          "kind": "footer",
+          "page": 2,
+          "bbox": {
+            "page": 2,
+            "x0": 190.95,
+            "y0": 762.62,
+            "x1": 421.05,
+            "y1": 769.55
+          },
+          "role": "page_footer",
+          "label": "footer",
+          "value": "Fictitious document · NewAge Global Fintech · for demonstration only"
+        },
+        {
+          "regionId": "qr-accounts",
+          "kind": "text",
+          "page": 3,
+          "bbox": {
+            "page": 3,
+            "x0": 60.0,
+            "y0": 75.38,
+            "x1": 546.36,
+            "y1": 122.37
+          },
+          "role": "text",
+          "label": "1.2 Customers",
+          "value": "2.4 million",
+          "concept": "fin:CustomerAccountsCount",
+          "period": "Q3 FY2025",
+          "extra": {
+            "sentence": "Customer accounts reached 2.4 million at the end of Q3 FY2025, with most new accounts opened through the mobile application."
+          }
+        },
+        {
+          "regionId": "footer-p3",
+          "kind": "footer",
+          "page": 3,
+          "bbox": {
+            "page": 3,
+            "x0": 190.95,
+            "y0": 762.62,
+            "x1": 421.05,
+            "y1": 769.55
+          },
+          "role": "page_footer",
+          "label": "footer",
+          "value": "Fictitious document · NewAge Global Fintech · for demonstration only"
+        },
+        {
+          "regionId": "footer-p4",
+          "kind": "footer",
+          "page": 4,
+          "bbox": {
+            "page": 4,
+            "x0": 190.95,
+            "y0": 762.62,
+            "x1": 421.05,
+            "y1": 769.55
+          },
+          "role": "page_footer",
+          "label": "footer",
+          "value": "Fictitious document · NewAge Global Fintech · for demonstration only"
+        },
+        {
+          "regionId": "qr-sec-p5",
+          "kind": "header",
+          "page": 5,
+          "bbox": {
+            "page": 5,
+            "x0": 60.0,
+            "y0": 73.23,
+            "x1": 248.39,
+            "y1": 87.11
+          },
+          "role": "section_header",
+          "label": "2. Strategy and operations"
+        },
+        {
+          "regionId": "footer-p5",
+          "kind": "footer",
+          "page": 5,
+          "bbox": {
+            "page": 5,
+            "x0": 190.95,
+            "y0": 762.62,
+            "x1": 421.05,
+            "y1": 769.55
+          },
+          "role": "page_footer",
+          "label": "footer",
+          "value": "Fictitious document · NewAge Global Fintech · for demonstration only"
+        },
+        {
+          "regionId": "qr-figure1",
+          "kind": "figure",
+          "page": 6,
+          "bbox": {
+            "page": 6,
+            "x0": 60.0,
+            "y0": 76.82,
+            "x1": 467.5,
+            "y1": 228.86
+          },
+          "role": "picture",
+          "label": "Figure 1 · Digital transactions processed · millions",
+          "extra": {
+            "unitType": "figure_panel"
+          }
+        },
+        {
+          "regionId": "footer-p6",
+          "kind": "footer",
+          "page": 6,
+          "bbox": {
+            "page": 6,
+            "x0": 190.95,
+            "y0": 762.62,
+            "x1": 421.05,
+            "y1": 769.55
+          },
+          "role": "page_footer",
+          "label": "footer",
+          "value": "Fictitious document · NewAge Global Fintech · for demonstration only"
+        },
+        {
+          "regionId": "footer-p7",
+          "kind": "footer",
+          "page": 7,
+          "bbox": {
+            "page": 7,
+            "x0": 190.95,
+            "y0": 762.62,
+            "x1": 421.05,
+            "y1": 769.55
+          },
+          "role": "page_footer",
+          "label": "footer",
+          "value": "Fictitious document · NewAge Global Fintech · for demonstration only"
+        },
+        {
+          "regionId": "footer-p8",
+          "kind": "footer",
+          "page": 8,
+          "bbox": {
+            "page": 8,
+            "x0": 190.95,
+            "y0": 762.62,
+            "x1": 421.05,
+            "y1": 769.55
+          },
+          "role": "page_footer",
+          "label": "footer",
+          "value": "Fictitious document · NewAge Global Fintech · for demonstration only"
+        },
+        {
+          "regionId": "footer-p9",
+          "kind": "footer",
+          "page": 9,
+          "bbox": {
+            "page": 9,
+            "x0": 190.95,
+            "y0": 762.62,
+            "x1": 421.05,
+            "y1": 769.55
+          },
+          "role": "page_footer",
+          "label": "footer",
+          "value": "Fictitious document · NewAge Global Fintech · for demonstration only"
+        },
+        {
+          "regionId": "qr-sec-p10",
+          "kind": "header",
+          "page": 10,
+          "bbox": {
+            "page": 10,
+            "x0": 60.0,
+            "y0": 73.23,
+            "x1": 130.86,
+            "y1": 87.11
+          },
+          "role": "section_header",
+          "label": "3. Results"
+        },
+        {
+          "regionId": "footer-p10",
+          "kind": "footer",
+          "page": 10,
+          "bbox": {
+            "page": 10,
+            "x0": 190.95,
+            "y0": 762.62,
+            "x1": 421.05,
+            "y1": 769.55
+          },
+          "role": "page_footer",
+          "label": "footer",
+          "value": "Fictitious document · NewAge Global Fintech · for demonstration only"
+        },
+        {
+          "regionId": "footer-p11",
+          "kind": "footer",
+          "page": 11,
+          "bbox": {
+            "page": 11,
+            "x0": 190.95,
+            "y0": 762.62,
+            "x1": 421.05,
+            "y1": 769.55
+          },
+          "role": "page_footer",
+          "label": "footer",
+          "value": "Fictitious document · NewAge Global Fintech · for demonstration only"
+        },
+        {
+          "regionId": "qr-figure2",
+          "kind": "figure",
+          "page": 12,
+          "bbox": {
+            "page": 12,
+            "x0": 60.0,
+            "y0": 99.62,
+            "x1": 467.5,
+            "y1": 283.66
+          },
+          "role": "picture",
+          "label": "Figure 2 · Revenue by segment · Q3 FY2025 · USD millions",
+          "period": "Q3 FY2025",
+          "extra": {
+            "unitType": "figure_panel"
+          }
+        },
+        {
+          "regionId": "qr-figure2-caption",
+          "kind": "caption",
+          "page": 12,
+          "bbox": {
+            "page": 12,
+            "x0": 60.0,
+            "y0": 99.62,
+            "x1": 336.77,
+            "y1": 108.87
+          },
+          "role": "caption",
+          "label": "Figure 2 caption",
+          "unitRef": "qr-figure2"
+        },
+        {
+          "regionId": "qr-fig2-payments",
+          "kind": "field",
+          "page": 12,
+          "bbox": {
+            "page": 12,
+            "x0": 142.5,
+            "y0": 131.34,
+            "x1": 207.5,
+            "y1": 283.66
+          },
+          "role": "text",
+          "label": "Payments revenue",
+          "value": "2,140",
+          "valueNumber": "2140.00",
+          "concept": "fin:SegmentRevenue",
+          "fieldId": "f-payments",
+          "unitRef": "qr-figure2",
+          "period": "Q3 FY2025",
+          "currency": "USD",
+          "labelBbox": {
+            "page": 12,
+            "x0": 154.99,
+            "y0": 275.34,
+            "x1": 195.01,
+            "y1": 283.66
+          },
+          "valueBbox": {
+            "page": 12,
+            "x0": 163.74,
+            "y0": 131.34,
+            "x1": 186.26,
+            "y1": 139.66
+          },
+          "extra": {
+            "scale": "millions"
+          }
+        },
+        {
+          "regionId": "qr-fig2-lending",
+          "kind": "field",
+          "page": 12,
+          "bbox": {
+            "page": 12,
+            "x0": 272.5,
+            "y0": 162.54,
+            "x1": 337.5,
+            "y1": 283.66
+          },
+          "role": "text",
+          "label": "Lending revenue",
+          "value": "1,610",
+          "valueNumber": "1610.00",
+          "concept": "fin:SegmentRevenue",
+          "fieldId": "f-lending",
+          "unitRef": "qr-figure2",
+          "period": "Q3 FY2025",
+          "currency": "USD",
+          "labelBbox": {
+            "page": 12,
+            "x0": 288.99,
+            "y0": 275.34,
+            "x1": 321.01,
+            "y1": 283.66
+          },
+          "valueBbox": {
+            "page": 12,
+            "x0": 293.74,
+            "y0": 162.54,
+            "x1": 316.26,
+            "y1": 170.87
+          },
+          "extra": {
+            "scale": "millions"
+          }
+        },
+        {
+          "regionId": "qr-fig2-markets",
+          "kind": "field",
+          "page": 12,
+          "bbox": {
+            "page": 12,
+            "x0": 402.5,
+            "y0": 190.22,
+            "x1": 467.5,
+            "y1": 283.66
+          },
+          "role": "text",
+          "label": "Markets revenue",
+          "value": "1,140",
+          "valueNumber": "1140.00",
+          "concept": "fin:SegmentRevenue",
+          "fieldId": "f-markets",
+          "unitRef": "qr-figure2",
+          "period": "Q3 FY2025",
+          "currency": "USD",
+          "labelBbox": {
+            "page": 12,
+            "x0": 419.0,
+            "y0": 275.34,
+            "x1": 451.0,
+            "y1": 283.66
+          },
+          "valueBbox": {
+            "page": 12,
+            "x0": 423.74,
+            "y0": 190.22,
+            "x1": 446.26,
+            "y1": 198.54
+          },
+          "extra": {
+            "scale": "millions"
+          }
+        },
+        {
+          "regionId": "footer-p12",
+          "kind": "footer",
+          "page": 12,
+          "bbox": {
+            "page": 12,
+            "x0": 190.95,
+            "y0": 762.62,
+            "x1": 421.05,
+            "y1": 769.55
+          },
+          "role": "page_footer",
+          "label": "footer",
+          "value": "Fictitious document · NewAge Global Fintech · for demonstration only"
+        },
+        {
+          "regionId": "qr-commentary",
+          "kind": "text",
+          "page": 13,
+          "bbox": {
+            "page": 13,
+            "x0": 60.0,
+            "y0": 75.38,
+            "x1": 535.78,
+            "y1": 122.37
+          },
+          "role": "text",
+          "label": "3.3 Revenue commentary",
+          "value": "modest growth in H2",
+          "period": "Q3 FY2025",
+          "extra": {
+            "sentence": "Revenue rose in each quarter of FY2025. Management expects modest growth in H2, as pricing changes in the payments business annualise and lending volumes stay selective."
+          }
+        },
+        {
+          "regionId": "footer-p13",
+          "kind": "footer",
+          "page": 13,
+          "bbox": {
+            "page": 13,
+            "x0": 190.95,
+            "y0": 762.62,
+            "x1": 421.05,
+            "y1": 769.55
+          },
+          "role": "page_footer",
+          "label": "footer",
+          "value": "Fictitious document · NewAge Global Fintech · for demonstration only"
+        },
+        {
+          "regionId": "qr-table3-caption",
+          "kind": "caption",
+          "page": 14,
+          "bbox": {
+            "page": 14,
+            "x0": 60.0,
+            "y0": 125.12,
+            "x1": 237.84,
+            "y1": 134.37
+          },
+          "role": "caption",
+          "label": "Table 3 · Total revenue · USD millions",
+          "unitRef": "qr-table3"
+        },
+        {
+          "regionId": "qr-table3",
+          "kind": "unit",
+          "page": 14,
+          "bbox": {
+            "page": 14,
+            "x0": 54.0,
+            "y0": 125.12,
+            "x1": 552.0,
+            "y1": 261.96
+          },
+          "role": "table",
+          "label": "Table 3 · Total revenue · USD millions",
+          "period": "FY2025",
+          "extra": {
+            "unitType": "table_panel",
+            "breadcrumb": [
+              "3. Results",
+              "3.4 Revenue by quarter"
+            ]
+          }
+        },
+        {
+          "regionId": "qr-table3-q1",
+          "kind": "field",
+          "page": 14,
+          "bbox": {
+            "page": 14,
+            "x0": 54.0,
+            "y0": 162.3,
+            "x1": 552.0,
+            "y1": 182.3
+          },
+          "role": "table_cell",
+          "label": "Q1 FY2025 total revenue",
+          "value": "4,120",
+          "valueNumber": "4120.00",
+          "concept": "fin:TotalRevenue",
+          "fieldId": "f-q1",
+          "unitRef": "qr-table3",
+          "period": "Q1 FY2025",
+          "currency": "USD",
+          "labelBbox": {
+            "page": 14,
+            "x0": 60.0,
+            "y0": 169.48,
+            "x1": 108.58,
+            "y1": 178.27
+          },
+          "valueBbox": {
+            "page": 14,
+            "x0": 276.23,
+            "y0": 169.48,
+            "x1": 300.0,
+            "y1": 178.27
+          },
+          "extra": {
+            "scale": "millions",
+            "preliminary": false
+          }
+        },
+        {
+          "regionId": "qr-table3-q2",
+          "kind": "field",
+          "page": 14,
+          "bbox": {
+            "page": 14,
+            "x0": 54.0,
+            "y0": 182.3,
+            "x1": 552.0,
+            "y1": 202.3
+          },
+          "role": "table_cell",
+          "label": "Q2 FY2025 total revenue",
+          "value": "4,455",
+          "valueNumber": "4455.00",
+          "concept": "fin:TotalRevenue",
+          "fieldId": "f-q2",
+          "unitRef": "qr-table3",
+          "period": "Q2 FY2025",
+          "currency": "USD",
+          "labelBbox": {
+            "page": 14,
+            "x0": 60.0,
+            "y0": 189.48,
+            "x1": 108.58,
+            "y1": 198.27
+          },
+          "valueBbox": {
+            "page": 14,
+            "x0": 276.23,
+            "y0": 189.48,
+            "x1": 300.0,
+            "y1": 198.27
+          },
+          "extra": {
+            "scale": "millions",
+            "preliminary": false
+          }
+        },
+        {
+          "regionId": "qr-table3-q3",
+          "kind": "field",
+          "page": 14,
+          "bbox": {
+            "page": 14,
+            "x0": 54.0,
+            "y0": 202.3,
+            "x1": 552.0,
+            "y1": 222.3
+          },
+          "role": "table_cell",
+          "label": "Q3 FY2025 total revenue",
+          "value": "4,890",
+          "valueNumber": "4890.00",
+          "concept": "fin:TotalRevenue",
+          "fieldId": "f-q3",
+          "unitRef": "qr-table3",
+          "period": "Q3 FY2025",
+          "currency": "USD",
+          "labelBbox": {
+            "page": 14,
+            "x0": 60.0,
+            "y0": 209.48,
+            "x1": 108.58,
+            "y1": 218.27
+          },
+          "valueBbox": {
+            "page": 14,
+            "x0": 276.23,
+            "y0": 209.48,
+            "x1": 300.0,
+            "y1": 218.27
+          },
+          "extra": {
+            "scale": "millions",
+            "preliminary": false
+          }
+        },
+        {
+          "regionId": "qr-table3-q4",
+          "kind": "field",
+          "page": 14,
+          "bbox": {
+            "page": 14,
+            "x0": 54.0,
+            "y0": 222.3,
+            "x1": 552.0,
+            "y1": 242.3
+          },
+          "role": "table_cell",
+          "label": "Q4 FY2025 total revenue",
+          "value": "5,010",
+          "valueNumber": "5010.00",
+          "concept": "fin:TotalRevenue",
+          "fieldId": "f-q4",
+          "unitRef": "qr-table3",
+          "period": "Q4 FY2025",
+          "currency": "USD",
+          "labelBbox": {
+            "page": 14,
+            "x0": 60.0,
+            "y0": 229.48,
+            "x1": 108.58,
+            "y1": 238.27
+          },
+          "valueBbox": {
+            "page": 14,
+            "x0": 276.23,
+            "y0": 227.99,
+            "x1": 304.14,
+            "y1": 238.27
+          },
+          "extra": {
+            "scale": "millions",
+            "preliminary": true
+          }
+        },
+        {
+          "regionId": "qr-table3-marker",
+          "kind": "marker",
+          "page": 14,
+          "bbox": {
+            "page": 14,
+            "x0": 276.23,
+            "y0": 227.99,
+            "x1": 304.14,
+            "y1": 238.27
+          },
+          "role": "marker_link",
+          "label": "footnote marker 1 on Q4",
+          "value": "1",
+          "unitRef": "qr-table3",
+          "extra": {
+            "links": "qr-table3-footnote"
+          }
+        },
+        {
+          "regionId": "qr-table3-footnote",
+          "kind": "footnote",
+          "page": 14,
+          "bbox": {
+            "page": 14,
+            "x0": 60.0,
+            "y0": 251.99,
+            "x1": 159.25,
+            "y1": 261.96
+          },
+          "role": "footnote",
+          "label": "Table 3 footnote 1",
+          "value": "Q4 figures are preliminary.",
+          "unitRef": "qr-table3"
+        },
+        {
+          "regionId": "footer-p14",
+          "kind": "footer",
+          "page": 14,
+          "bbox": {
+            "page": 14,
+            "x0": 190.95,
+            "y0": 762.62,
+            "x1": 421.05,
+            "y1": 769.55
+          },
+          "role": "page_footer",
+          "label": "footer",
+          "value": "Fictitious document · NewAge Global Fintech · for demonstration only"
+        },
+        {
+          "regionId": "qr-table4-part1",
+          "kind": "table",
+          "page": 15,
+          "bbox": {
+            "page": 15,
+            "x0": 54.0,
+            "y0": 208.62,
+            "x1": 552.0,
+            "y1": 301.46
+          },
+          "role": "table",
+          "label": "Table 4 · Operating expenses by region (part 1)",
+          "extra": {
+            "continuesOn": 16
+          }
+        },
+        {
+          "regionId": "footer-p15",
+          "kind": "footer",
+          "page": 15,
+          "bbox": {
+            "page": 15,
+            "x0": 190.95,
+            "y0": 762.62,
+            "x1": 421.05,
+            "y1": 769.55
+          },
+          "role": "page_footer",
+          "label": "footer",
+          "value": "Fictitious document · NewAge Global Fintech · for demonstration only"
+        },
+        {
+          "regionId": "qr-table4-part2",
+          "kind": "table",
+          "page": 16,
+          "bbox": {
+            "page": 16,
+            "x0": 54.0,
+            "y0": 76.82,
+            "x1": 552.0,
+            "y1": 193.66
+          },
+          "role": "table",
+          "label": "Table 4 · Operating expenses by region (part 2)",
+          "extra": {
+            "continuesFrom": 15
+          }
+        },
+        {
+          "regionId": "qr-table4-footnote",
+          "kind": "footnote",
+          "page": 16,
+          "bbox": {
+            "page": 16,
+            "x0": 60.0,
+            "y0": 183.69,
+            "x1": 186.39,
+            "y1": 193.66
+          },
+          "role": "footnote",
+          "label": "Table 4 footnote 2",
+          "value": "Excludes discontinued operations.",
+          "extra": {
+            "marker": "2",
+            "markerRow": "Corporate",
+            "markerPage": 16
+          }
+        },
+        {
+          "regionId": "qr-table4-americas",
+          "kind": "field",
+          "page": 15,
+          "bbox": {
+            "page": 15,
+            "x0": 60.0,
+            "y0": 252.98,
+            "x1": 300.0,
+            "y1": 261.77
+          },
+          "role": "table_cell",
+          "label": "Americas operating expenses",
+          "value": "1,180",
+          "valueNumber": "1180.00",
+          "concept": "fin:OperatingExpense",
+          "fieldId": "f-americas",
+          "period": "Q3 FY2025",
+          "currency": "USD",
+          "extra": {
+            "scale": "millions"
+          }
+        },
+        {
+          "regionId": "qr-table4-emea",
+          "kind": "field",
+          "page": 15,
+          "bbox": {
+            "page": 15,
+            "x0": 60.0,
+            "y0": 272.98,
+            "x1": 300.0,
+            "y1": 281.77
+          },
+          "role": "table_cell",
+          "label": "EMEA operating expenses",
+          "value": "960",
+          "valueNumber": "960.00",
+          "concept": "fin:OperatingExpense",
+          "fieldId": "f-emea",
+          "period": "Q3 FY2025",
+          "currency": "USD",
+          "extra": {
+            "scale": "millions"
+          }
+        },
+        {
+          "regionId": "qr-table4-apac",
+          "kind": "field",
+          "page": 16,
+          "bbox": {
+            "page": 16,
+            "x0": 60.0,
+            "y0": 121.18,
+            "x1": 300.0,
+            "y1": 129.97
+          },
+          "role": "table_cell",
+          "label": "APAC operating expenses",
+          "value": "610",
+          "valueNumber": "610.00",
+          "concept": "fin:OperatingExpense",
+          "fieldId": "f-apac",
+          "period": "Q3 FY2025",
+          "currency": "USD",
+          "extra": {
+            "scale": "millions"
+          }
+        },
+        {
+          "regionId": "qr-table4-corporate",
+          "kind": "field",
+          "page": 16,
+          "bbox": {
+            "page": 16,
+            "x0": 60.0,
+            "y0": 139.69,
+            "x1": 300.0,
+            "y1": 149.97
+          },
+          "role": "table_cell",
+          "label": "Corporate operating expenses",
+          "value": "340",
+          "valueNumber": "340.00",
+          "concept": "fin:OperatingExpense",
+          "fieldId": "f-corporate",
+          "period": "Q3 FY2025",
+          "currency": "USD",
+          "extra": {
+            "scale": "millions"
+          }
+        },
+        {
+          "regionId": "qr-sec-p16",
+          "kind": "header",
+          "page": 16,
+          "bbox": {
+            "page": 16,
+            "x0": 60.0,
+            "y0": 215.23,
+            "x1": 133.35,
+            "y1": 229.1
+          },
+          "role": "section_header",
+          "label": "4. Outlook"
+        },
+        {
+          "regionId": "footer-p16",
+          "kind": "footer",
+          "page": 16,
+          "bbox": {
+            "page": 16,
+            "x0": 190.95,
+            "y0": 762.62,
+            "x1": 421.05,
+            "y1": 769.55
+          },
+          "role": "page_footer",
+          "label": "footer",
+          "value": "Fictitious document · NewAge Global Fintech · for demonstration only"
+        }
+      ]
+    }
+  ]
+}

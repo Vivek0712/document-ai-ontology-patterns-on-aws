@@ -1,0 +1,567 @@
+{
+ "runId": "r-ae7d90b38217",
+ "createdAt": "2026-11-10T22:07:44.961Z",
+ "packageId": "pkg-lending-01",
+ "pipelineVersion": "1.0",
+ "question": "What is the total income across this package?",
+ "callerSub": "local-dev-owner-0000",
+ "groups": [
+  "lending-analyst"
+ ],
+ "modelId": "us.anthropic.claude-sonnet-4-6",
+ "promptSha": "59984da199bb287de4b76a1d91bc0a5c27fde51028c39ffd04a33c3950a7d302",
+ "configSha": "1f437eb1624d9df0b867a42d73fe7d27b7de6fb441c90c917f15b23f564748dc",
+ "blockShas": {
+  "preprocessing": "ba267beb165e0af475c323c9f78543f5ee90fc7c201ccbf59f34842e3d4e6114",
+  "retrieval": "3587393d6f0d8c38adfaf6853c1463b54cc1ee872646ff354b3408da63dd586c",
+  "generation": "4731dca541739b7b91e53099ae45acb0f255c753e313bec48702fa79ecad436e",
+  "agent": "5ce789906365b6a0f9d139eba009f17b61d3113720a21c755e3f5be4459551f0"
+ },
+ "corpusHash": "34856e2c51fa71d6ddc21b4493efde7b9d6ccd1d87ed0f3287908d6612b687e2",
+ "memoryRecordsInjected": 0,
+ "toolsEnabled": [
+  "search_units",
+  "graph_hop",
+  "get_region",
+  "doc_status"
+ ],
+ "toolCalls": [
+  {
+   "callId": "tooluse_TzPCsszu4DI7rRsijYq6ua",
+   "tool": "search_units",
+   "input": {
+    "query": "W-2 Box 1 wages qualifying income",
+    "docType": "doc:W2"
+   },
+   "injected": {
+    "callerSub": "local-",
+    "groups": [
+     "lending-analyst"
+    ],
+    "pipelineVersion": "1.0",
+    "packageId": "pkg-lending-01",
+    "runId": "r-ae7d90b38217",
+    "via": "local-gateway"
+   },
+   "startedAt": "2026-11-10T22:07:51.293Z",
+   "ms": 357,
+   "status": "ok",
+   "output": {
+    "units": [],
+    "query": {
+     "index": "units-v1-0",
+     "k": 5,
+     "subQueryK": 20,
+     "weights": {
+      "dense": 0.7,
+      "bm25": 0.3
+     },
+     "normalization": "min_max",
+     "filter": {
+      "bool": {
+       "filter": [
+        {
+         "terms": {
+          "allowedPrincipals": [
+           "user:local-dev-owner-0000",
+           "group:lending-analyst"
+          ]
+         }
+        },
+        {
+         "term": {
+          "packageId": "pkg-lending-01"
+         }
+        },
+        {
+         "term": {
+          "pipelineVersion": "1.0"
+         }
+        },
+        {
+         "term": {
+          "docType": "doc:W2"
+         }
+        }
+       ],
+       "must_not": [
+        {
+         "term": {
+          "piiFlag": "held"
+         }
+        }
+       ]
+      }
+     },
+     "embedModel": "amazon.titan-embed-text-v2:0"
+    },
+    "latencyMs": 355
+   }
+  },
+  {
+   "callId": "tooluse_oqVCIY4fpBKMl30rN3iHkF",
+   "tool": "graph_hop",
+   "input": {
+    "template": "qi_sum_w2_box1_v1",
+    "params": {}
+   },
+   "injected": {
+    "callerSub": "local-",
+    "groups": [
+     "lending-analyst"
+    ],
+    "pipelineVersion": "1.0",
+    "packageId": "pkg-lending-01",
+    "runId": "r-ae7d90b38217",
+    "via": "local-gateway"
+   },
+   "startedAt": "2026-11-10T22:07:51.294Z",
+   "ms": 4,
+   "status": "ok",
+   "output": {
+    "template": "qi_sum_w2_box1_v1",
+    "sparql": "",
+    "graphs": [],
+    "columns": [],
+    "rows": [],
+    "rowCount": 0,
+    "operands": [],
+    "note": "no ABox for pipelineVersion 1.0 (ontology: none)",
+    "latencyMs": 3
+   }
+  },
+  {
+   "callId": "tooluse_bTLcYiythDXeUDYrzIs5rb",
+   "tool": "search_units",
+   "input": {
+    "query": "W-2 Box 1 wages income tax year"
+   },
+   "injected": {
+    "callerSub": "local-",
+    "groups": [
+     "lending-analyst"
+    ],
+    "pipelineVersion": "1.0",
+    "packageId": "pkg-lending-01",
+    "runId": "r-ae7d90b38217",
+    "via": "local-gateway"
+   },
+   "startedAt": "2026-11-10T22:07:54.995Z",
+   "ms": 1277,
+   "status": "ok",
+   "output": {
+    "units": [
+     {
+      "rank": 1,
+      "unitId": "w2-2025-maya-fictus-827d37:1.0:c-01",
+      "docId": "w2-2025-maya-fictus-827d37",
+      "fileName": "w2_2025_maya_fictus.pdf",
+      "unitType": "chunk",
+      "label": "chunk c-01",
+      "chunkLabel": "chunk c-01",
+      "breadcrumb": "",
+      "text": "Form W-2\nWage and Tax Statement\n2025\nCopy C—For EMPLOYEE'S RECORDS (See Notice to Employee on the back of Copy B.)\nDepartment of the Treasury—Internal Revenue Service (form layout, fictitious data)\na Employee's social security number\nb Employer identification number (EIN)\nc Employer's name, address, and ZIP code\nd Control number\ne Employee's first name and initial   Last name      f Employee's address and ZIP code\n1 Wages, tips, other compensation\n2 Federal income tax withheld\n3 Social security wages\n4 Social security tax withheld\n5 Medicare wages and tips\n6 Medicare tax withheld\n7 Social security tips\n8 Allocated tips\n9\n10 Dependent care benefits\n11 Nonqualified plans\n12a See instructions for box 12\n13 Retirement plan\n12b\n14 Other\n12c\n12d\n15 State\nEmployer's state ID number\n16 State wages, tips, etc.\n17 State income tax\nCode\n6,600.00\nD\n105,000.00\n105,000.00\n98,400.00\n13,776.00\n6,510.00\n1,522.50\nX\nXXX-XX-0417\n00-4417305\nNewAge Global Fintech Services\n400 Market Street\nSeattle, WA 98104\nNGF-25-0417\nMaya Fictus\n18 Harbor Lane\nSeattle, WA 98101\nWA\nFictitious document · NewAge Global Fintech · for demonstration only",
+      "pages": [
+       1
+      ],
+      "bboxes": [],
+      "fields": [],
+      "piiFlag": "none",
+      "resolvable": false,
+      "scores": {
+       "denseRaw": 1.563431,
+       "bm25Raw": 1.391764,
+       "denseNorm": 1.0,
+       "bm25Norm": 1.0,
+       "fused": 1.0
+      }
+     },
+     {
+      "rank": 2,
+      "unitId": "w2-2025-arjun-fictus-546450:1.0:c-01",
+      "docId": "w2-2025-arjun-fictus-546450",
+      "fileName": "w2_2025_arjun_fictus.pdf",
+      "unitType": "chunk",
+      "label": "chunk c-01",
+      "chunkLabel": "chunk c-01",
+      "breadcrumb": "",
+      "text": "Form W-2\nWage and Tax Statement\n2025\nCopy C—For EMPLOYEE'S RECORDS (See Notice to Employee on the back of Copy B.)\nDepartment of the Treasury—Internal Revenue Service (form layout, fictitious data)\na Employee's social security number\nb Employer identification number (EIN)\nc Employer's name, address, and ZIP code\nd Control number\ne Employee's first name and initial   Last name      f Employee's address and ZIP code\n1 Wages, tips, other compensation\n2 Federal income tax withheld\n3 Social security wages\n4 Social security tax withheld\n5 Medicare wages and tips\n6 Medicare tax withheld\n7 Social security tips\n8 Allocated tips\n9\n10 Dependent care benefits\n11 Nonqualified plans\n12a See instructions for box 12\n13 Retirement plan\n12b\n14 Other\n12c\n12d\n15 State\nEmployer's state ID number\n16 State wages, tips, etc.\n17 State income tax\nCode\n3,750.00\nD\n75,000.00\n75,000.00\n71,250.00\n8,550.00\n4,650.00\n1,087.50\nX\nXXX-XX-2290\n00-4417306\nNewAge Global Fintech Payments\n410 Market Street\nSeattle, WA 98104\nNGF-25-2290\nArjun Fictus\n18 Harbor Lane\nSeattle, WA 98101\nWA\nFictitious document · NewAge Global Fintech · for demonstration only",
+      "pages": [
+       1
+      ],
+      "bboxes": [],
+      "fields": [],
+      "piiFlag": "none",
+      "resolvable": false,
+      "scores": {
+       "denseRaw": 1.555819,
+       "bm25Raw": 1.391764,
+       "denseNorm": 0.9845,
+       "bm25Norm": 1.0,
+       "fused": 0.9891
+      }
+     },
+     {
+      "rank": 3,
+      "unitId": "payslip-2026-09-maya-fictus-bd153b:1.0:c-01",
+      "docId": "payslip-2026-09-maya-fictus-bd153b",
+      "fileName": "payslip_2026-09_maya_fictus.pdf",
+      "unitType": "chunk",
+      "label": "chunk c-01",
+      "chunkLabel": "chunk c-01",
+      "breadcrumb": "",
+      "text": "NewAge Global Fintech Services\n400 Market Street, Seattle, WA 98104\nEarnings Statement\nEmployee\nMaya Fictus\nEmployee ID\nE-0417\nPay period\n01–30 Sep 2026\nPay date\n30 Sep 2026\nDescription\nCurrent\nYear to date\nGross pay\n9,000.00\n81,000.00\n401(k) employee deferral\n600.00\n5,400.00\nFederal income tax\n1,170.00\n10,530.00\nSocial Security\n558.00\n5,022.00\nMedicare\n130.50\n1,174.50\nNet pay\n6,541.50\n58,873.50\nYear-to-date figures cover 01 Jan 2026 to 30 Sep 2026.\nFictitious document · NewAge Global Fintech · for demonstration only",
+      "pages": [
+       1
+      ],
+      "bboxes": [],
+      "fields": [],
+      "piiFlag": "none",
+      "resolvable": false,
+      "scores": {
+       "denseRaw": 1.073012,
+       "bm25Raw": 0.854007,
+       "denseNorm": 0.0,
+       "bm25Norm": 0.0,
+       "fused": 0.0
+      }
+     }
+    ],
+    "query": {
+     "index": "units-v1-0",
+     "k": 5,
+     "subQueryK": 20,
+     "weights": {
+      "dense": 0.7,
+      "bm25": 0.3
+     },
+     "normalization": "min_max",
+     "filter": {
+      "bool": {
+       "filter": [
+        {
+         "terms": {
+          "allowedPrincipals": [
+           "user:local-dev-owner-0000",
+           "group:lending-analyst"
+          ]
+         }
+        },
+        {
+         "term": {
+          "packageId": "pkg-lending-01"
+         }
+        },
+        {
+         "term": {
+          "pipelineVersion": "1.0"
+         }
+        }
+       ],
+       "must_not": [
+        {
+         "term": {
+          "piiFlag": "held"
+         }
+        }
+       ]
+      }
+     },
+     "embedModel": "amazon.titan-embed-text-v2:0"
+    },
+    "latencyMs": 1275
+   }
+  },
+  {
+   "callId": "tooluse_TDzrz4ZWNeD5Jm97T0H206",
+   "tool": "search_units",
+   "input": {
+    "query": "qualifying income borrower wages salary"
+   },
+   "injected": {
+    "callerSub": "local-",
+    "groups": [
+     "lending-analyst"
+    ],
+    "pipelineVersion": "1.0",
+    "packageId": "pkg-lending-01",
+    "runId": "r-ae7d90b38217",
+    "via": "local-gateway"
+   },
+   "startedAt": "2026-11-10T22:07:54.995Z",
+   "ms": 370,
+   "status": "ok",
+   "output": {
+    "units": [
+     {
+      "rank": 1,
+      "unitId": "w2-2025-maya-fictus-827d37:1.0:c-01",
+      "docId": "w2-2025-maya-fictus-827d37",
+      "fileName": "w2_2025_maya_fictus.pdf",
+      "unitType": "chunk",
+      "label": "chunk c-01",
+      "chunkLabel": "chunk c-01",
+      "breadcrumb": "",
+      "text": "Form W-2\nWage and Tax Statement\n2025\nCopy C—For EMPLOYEE'S RECORDS (See Notice to Employee on the back of Copy B.)\nDepartment of the Treasury—Internal Revenue Service (form layout, fictitious data)\na Employee's social security number\nb Employer identification number (EIN)\nc Employer's name, address, and ZIP code\nd Control number\ne Employee's first name and initial   Last name      f Employee's address and ZIP code\n1 Wages, tips, other compensation\n2 Federal income tax withheld\n3 Social security wages\n4 Social security tax withheld\n5 Medicare wages and tips\n6 Medicare tax withheld\n7 Social security tips\n8 Allocated tips\n9\n10 Dependent care benefits\n11 Nonqualified plans\n12a See instructions for box 12\n13 Retirement plan\n12b\n14 Other\n12c\n12d\n15 State\nEmployer's state ID number\n16 State wages, tips, etc.\n17 State income tax\nCode\n6,600.00\nD\n105,000.00\n105,000.00\n98,400.00\n13,776.00\n6,510.00\n1,522.50\nX\nXXX-XX-0417\n00-4417305\nNewAge Global Fintech Services\n400 Market Street\nSeattle, WA 98104\nNGF-25-0417\nMaya Fictus\n18 Harbor Lane\nSeattle, WA 98101\nWA\nFictitious document · NewAge Global Fintech · for demonstration only",
+      "pages": [
+       1
+      ],
+      "bboxes": [],
+      "fields": [],
+      "piiFlag": "none",
+      "resolvable": false,
+      "scores": {
+       "denseRaw": 1.083028,
+       "bm25Raw": 0.42604,
+       "denseNorm": 1.0,
+       "bm25Norm": 1.0,
+       "fused": 1.0
+      }
+     },
+     {
+      "rank": 2,
+      "unitId": "w2-2025-arjun-fictus-546450:1.0:c-01",
+      "docId": "w2-2025-arjun-fictus-546450",
+      "fileName": "w2_2025_arjun_fictus.pdf",
+      "unitType": "chunk",
+      "label": "chunk c-01",
+      "chunkLabel": "chunk c-01",
+      "breadcrumb": "",
+      "text": "Form W-2\nWage and Tax Statement\n2025\nCopy C—For EMPLOYEE'S RECORDS (See Notice to Employee on the back of Copy B.)\nDepartment of the Treasury—Internal Revenue Service (form layout, fictitious data)\na Employee's social security number\nb Employer identification number (EIN)\nc Employer's name, address, and ZIP code\nd Control number\ne Employee's first name and initial   Last name      f Employee's address and ZIP code\n1 Wages, tips, other compensation\n2 Federal income tax withheld\n3 Social security wages\n4 Social security tax withheld\n5 Medicare wages and tips\n6 Medicare tax withheld\n7 Social security tips\n8 Allocated tips\n9\n10 Dependent care benefits\n11 Nonqualified plans\n12a See instructions for box 12\n13 Retirement plan\n12b\n14 Other\n12c\n12d\n15 State\nEmployer's state ID number\n16 State wages, tips, etc.\n17 State income tax\nCode\n3,750.00\nD\n75,000.00\n75,000.00\n71,250.00\n8,550.00\n4,650.00\n1,087.50\nX\nXXX-XX-2290\n00-4417306\nNewAge Global Fintech Payments\n410 Market Street\nSeattle, WA 98104\nNGF-25-2290\nArjun Fictus\n18 Harbor Lane\nSeattle, WA 98101\nWA\nFictitious document · NewAge Global Fintech · for demonstration only",
+      "pages": [
+       1
+      ],
+      "bboxes": [],
+      "fields": [],
+      "piiFlag": "none",
+      "resolvable": false,
+      "scores": {
+       "denseRaw": 1.081822,
+       "bm25Raw": 0.42604,
+       "denseNorm": 0.9007,
+       "bm25Norm": 1.0,
+       "fused": 0.9305
+      }
+     },
+     {
+      "rank": 3,
+      "unitId": "payslip-2026-09-maya-fictus-bd153b:1.0:c-01",
+      "docId": "payslip-2026-09-maya-fictus-bd153b",
+      "fileName": "payslip_2026-09_maya_fictus.pdf",
+      "unitType": "chunk",
+      "label": "chunk c-01",
+      "chunkLabel": "chunk c-01",
+      "breadcrumb": "",
+      "text": "NewAge Global Fintech Services\n400 Market Street, Seattle, WA 98104\nEarnings Statement\nEmployee\nMaya Fictus\nEmployee ID\nE-0417\nPay period\n01–30 Sep 2026\nPay date\n30 Sep 2026\nDescription\nCurrent\nYear to date\nGross pay\n9,000.00\n81,000.00\n401(k) employee deferral\n600.00\n5,400.00\nFederal income tax\n1,170.00\n10,530.00\nSocial Security\n558.00\n5,022.00\nMedicare\n130.50\n1,174.50\nNet pay\n6,541.50\n58,873.50\nYear-to-date figures cover 01 Jan 2026 to 30 Sep 2026.\nFictitious document · NewAge Global Fintech · for demonstration only",
+      "pages": [
+       1
+      ],
+      "bboxes": [],
+      "fields": [],
+      "piiFlag": "none",
+      "resolvable": false,
+      "scores": {
+       "denseRaw": 1.070889,
+       "bm25Raw": 0.074811,
+       "denseNorm": 0.0,
+       "bm25Norm": 0.0,
+       "fused": 0.0
+      }
+     }
+    ],
+    "query": {
+     "index": "units-v1-0",
+     "k": 5,
+     "subQueryK": 20,
+     "weights": {
+      "dense": 0.7,
+      "bm25": 0.3
+     },
+     "normalization": "min_max",
+     "filter": {
+      "bool": {
+       "filter": [
+        {
+         "terms": {
+          "allowedPrincipals": [
+           "user:local-dev-owner-0000",
+           "group:lending-analyst"
+          ]
+         }
+        },
+        {
+         "term": {
+          "packageId": "pkg-lending-01"
+         }
+        },
+        {
+         "term": {
+          "pipelineVersion": "1.0"
+         }
+        }
+       ],
+       "must_not": [
+        {
+         "term": {
+          "piiFlag": "held"
+         }
+        }
+       ]
+      }
+     },
+     "embedModel": "amazon.titan-embed-text-v2:0"
+    },
+    "latencyMs": 369
+   }
+  }
+ ],
+ "retrieved": [
+  {
+   "rank": 1,
+   "unitId": "w2-2025-maya-fictus-827d37:1.0:c-01",
+   "docId": "w2-2025-maya-fictus-827d37",
+   "fileName": "w2_2025_maya_fictus.pdf",
+   "unitType": "chunk",
+   "label": "chunk c-01",
+   "chunkLabel": "chunk c-01",
+   "breadcrumb": "",
+   "text": "Form W-2\nWage and Tax Statement\n2025\nCopy C—For EMPLOYEE'S RECORDS (See Notice to Employee on the back of Copy B.)\nDepartment of the Treasury—Internal Revenue Service (form layout, fictitious data)\na Employee's social security number\nb Employer identification number (EIN)\nc Employer's name, address, and ZIP code\nd Control number\ne Employee's first name and initial   Last name      f Employee's address and ZIP code\n1 Wages, tips, other compensation\n2 Federal income tax withheld\n3 Social security wages\n4 Social security tax withheld\n5 Medicare wages and tips\n6 Medicare tax withheld\n7 Social security tips\n8 Allocated tips\n9\n10 Dependent care benefits\n11 Nonqualified plans\n12a See instructions for box 12\n13 Retirement plan\n12b\n14 Other\n12c\n12d\n15 State\nEmployer's state ID number\n16 State wages, tips, etc.\n17 State income tax\nCode\n6,600.00\nD\n105,000.00\n105,000.00\n98,400.00\n13,776.00\n6,510.00\n1,522.50\nX\nXXX-XX-0417\n00-4417305\nNewAge Global Fintech Services\n400 Market Street\nSeattle, WA 98104\nNGF-25-0417\nMaya Fictus\n18 Harbor Lane\nSeattle, WA 98101\nWA\nFictitious document · NewAge Global Fintech · for demonstration only",
+   "pages": [
+    1
+   ],
+   "bboxes": [],
+   "fields": [],
+   "piiFlag": "none",
+   "resolvable": false,
+   "scores": {
+    "denseRaw": 1.563431,
+    "bm25Raw": 1.391764,
+    "denseNorm": 1.0,
+    "bm25Norm": 1.0,
+    "fused": 1.0
+   }
+  },
+  {
+   "rank": 2,
+   "unitId": "w2-2025-arjun-fictus-546450:1.0:c-01",
+   "docId": "w2-2025-arjun-fictus-546450",
+   "fileName": "w2_2025_arjun_fictus.pdf",
+   "unitType": "chunk",
+   "label": "chunk c-01",
+   "chunkLabel": "chunk c-01",
+   "breadcrumb": "",
+   "text": "Form W-2\nWage and Tax Statement\n2025\nCopy C—For EMPLOYEE'S RECORDS (See Notice to Employee on the back of Copy B.)\nDepartment of the Treasury—Internal Revenue Service (form layout, fictitious data)\na Employee's social security number\nb Employer identification number (EIN)\nc Employer's name, address, and ZIP code\nd Control number\ne Employee's first name and initial   Last name      f Employee's address and ZIP code\n1 Wages, tips, other compensation\n2 Federal income tax withheld\n3 Social security wages\n4 Social security tax withheld\n5 Medicare wages and tips\n6 Medicare tax withheld\n7 Social security tips\n8 Allocated tips\n9\n10 Dependent care benefits\n11 Nonqualified plans\n12a See instructions for box 12\n13 Retirement plan\n12b\n14 Other\n12c\n12d\n15 State\nEmployer's state ID number\n16 State wages, tips, etc.\n17 State income tax\nCode\n3,750.00\nD\n75,000.00\n75,000.00\n71,250.00\n8,550.00\n4,650.00\n1,087.50\nX\nXXX-XX-2290\n00-4417306\nNewAge Global Fintech Payments\n410 Market Street\nSeattle, WA 98104\nNGF-25-2290\nArjun Fictus\n18 Harbor Lane\nSeattle, WA 98101\nWA\nFictitious document · NewAge Global Fintech · for demonstration only",
+   "pages": [
+    1
+   ],
+   "bboxes": [],
+   "fields": [],
+   "piiFlag": "none",
+   "resolvable": false,
+   "scores": {
+    "denseRaw": 1.555819,
+    "bm25Raw": 1.391764,
+    "denseNorm": 0.9845,
+    "bm25Norm": 1.0,
+    "fused": 0.9891
+   }
+  },
+  {
+   "rank": 3,
+   "unitId": "payslip-2026-09-maya-fictus-bd153b:1.0:c-01",
+   "docId": "payslip-2026-09-maya-fictus-bd153b",
+   "fileName": "payslip_2026-09_maya_fictus.pdf",
+   "unitType": "chunk",
+   "label": "chunk c-01",
+   "chunkLabel": "chunk c-01",
+   "breadcrumb": "",
+   "text": "NewAge Global Fintech Services\n400 Market Street, Seattle, WA 98104\nEarnings Statement\nEmployee\nMaya Fictus\nEmployee ID\nE-0417\nPay period\n01–30 Sep 2026\nPay date\n30 Sep 2026\nDescription\nCurrent\nYear to date\nGross pay\n9,000.00\n81,000.00\n401(k) employee deferral\n600.00\n5,400.00\nFederal income tax\n1,170.00\n10,530.00\nSocial Security\n558.00\n5,022.00\nMedicare\n130.50\n1,174.50\nNet pay\n6,541.50\n58,873.50\nYear-to-date figures cover 01 Jan 2026 to 30 Sep 2026.\nFictitious document · NewAge Global Fintech · for demonstration only",
+   "pages": [
+    1
+   ],
+   "bboxes": [],
+   "fields": [],
+   "piiFlag": "none",
+   "resolvable": false,
+   "scores": {
+    "denseRaw": 1.073012,
+    "bm25Raw": 0.854007,
+    "denseNorm": 0.0,
+    "bm25Norm": 0.0,
+    "fused": 0.0
+   }
+  }
+ ],
+ "retrievedText": [
+  "Form W-2\nWage and Tax Statement\n2025\nCopy C—For EMPLOYEE'S RECORDS (See Notice to Employee on the back of Copy B.)\nDepartment of the Treasury—Internal Revenue Service (form layout, fictitious data)\na Employee's social security number\nb Employer identification number (EIN)\nc Employer's name, address, and ZIP code\nd Control number\ne Employee's first name and initial   Last name      f Employee's address and ZIP code\n1 Wages, tips, other compensation\n2 Federal income tax withheld\n3 Social security wages\n4 Social security tax withheld\n5 Medicare wages and tips\n6 Medicare tax withheld\n7 Social security tips\n8 Allocated tips\n9\n10 Dependent care benefits\n11 Nonqualified plans\n12a See instructions for box 12\n13 Retirement plan\n12b\n14 Other\n12c\n12d\n15 State\nEmployer's state ID number\n16 State wages, tips, etc.\n17 State income tax\nCode\n6,600.00\nD\n105,000.00\n105,000.00\n98,400.00\n13,776.00\n6,510.00\n1,522.50\nX\nXXX-XX-0417\n00-4417305\nNewAge Global Fintech Services\n400 Market Street\nSeattle, WA 98104\nNGF-25-0417\nMaya Fictus\n18 Harbor Lane\nSeattle, WA 98101\nWA\nFictitious document · NewAge Global Fintech · for demonstration only",
+  "Form W-2\nWage and Tax Statement\n2025\nCopy C—For EMPLOYEE'S RECORDS (See Notice to Employee on the back of Copy B.)\nDepartment of the Treasury—Internal Revenue Service (form layout, fictitious data)\na Employee's social security number\nb Employer identification number (EIN)\nc Employer's name, address, and ZIP code\nd Control number\ne Employee's first name and initial   Last name      f Employee's address and ZIP code\n1 Wages, tips, other compensation\n2 Federal income tax withheld\n3 Social security wages\n4 Social security tax withheld\n5 Medicare wages and tips\n6 Medicare tax withheld\n7 Social security tips\n8 Allocated tips\n9\n10 Dependent care benefits\n11 Nonqualified plans\n12a See instructions for box 12\n13 Retirement plan\n12b\n14 Other\n12c\n12d\n15 State\nEmployer's state ID number\n16 State wages, tips, etc.\n17 State income tax\nCode\n3,750.00\nD\n75,000.00\n75,000.00\n71,250.00\n8,550.00\n4,650.00\n1,087.50\nX\nXXX-XX-2290\n00-4417306\nNewAge Global Fintech Payments\n410 Market Street\nSeattle, WA 98104\nNGF-25-2290\nArjun Fictus\n18 Harbor Lane\nSeattle, WA 98101\nWA\nFictitious document · NewAge Global Fintech · for demonstration only",
+  "NewAge Global Fintech Services\n400 Market Street, Seattle, WA 98104\nEarnings Statement\nEmployee\nMaya Fictus\nEmployee ID\nE-0417\nPay period\n01–30 Sep 2026\nPay date\n30 Sep 2026\nDescription\nCurrent\nYear to date\nGross pay\n9,000.00\n81,000.00\n401(k) employee deferral\n600.00\n5,400.00\nFederal income tax\n1,170.00\n10,530.00\nSocial Security\n558.00\n5,022.00\nMedicare\n130.50\n1,174.50\nNet pay\n6,541.50\n58,873.50\nYear-to-date figures cover 01 Jan 2026 to 30 Sep 2026.\nFictitious document · NewAge Global Fintech · for demonstration only"
+ ],
+ "answer": {
+  "answer": "Total qualifying income for this package is $169,650.00, drawn from the two 2025 W-2 Box 1 figures: Maya Fictus reported $98,400.00 and Arjun Fictus reported $71,250.00. The payslip for Maya Fictus (Sep 2026) is corroborating evidence only and is not added to the total per the package definition.",
+  "total": "169,650.00",
+  "currency": "USD",
+  "arithmetic": "98,400.00 + 71,250.00 = 169,650.00",
+  "claims": [
+   {
+    "text": "$98,400.00",
+    "value": "98400.00",
+    "unitId": "w2-2025-maya-fictus-827d37:1.0:c-01",
+    "docId": "w2-2025-maya-fictus-827d37",
+    "fileName": "w2_2025_maya_fictus.pdf",
+    "label": "chunk c-01",
+    "resolvable": false,
+    "chunkLabel": "chunk c-01",
+    "reason": "chunk has no page region"
+   },
+   {
+    "text": "$71,250.00",
+    "value": "71250.00",
+    "unitId": "w2-2025-arjun-fictus-546450:1.0:c-01",
+    "docId": "w2-2025-arjun-fictus-546450",
+    "fileName": "w2_2025_arjun_fictus.pdf",
+    "label": "chunk c-01",
+    "resolvable": false,
+    "chunkLabel": "chunk c-01",
+    "reason": "chunk has no page region"
+   }
+  ],
+  "caveats": [
+   "Box 1 wages are read from the W-2 chunk text; no structured field tags were present in this pipeline version (1.0).",
+   "The Sep 2026 payslip for Maya Fictus is present in the package but is treated as corroborating evidence only and excluded from the qualifying income total.",
+   "Only tax year 2025 W-2s were found; if prior-year W-2s exist they were not returned by the index."
+  ],
+  "citationRetries": 0,
+  "uncitedNumbers": []
+ },
+ "check": {
+  "qid": "q-lend-01",
+  "expected": "169,650.00",
+  "actual": "169,650.00",
+  "match": true
+ },
+ "usage": {
+  "inputTokens": 9991,
+  "outputTokens": 811,
+  "totalTokens": 10802
+ },
+ "latencyMs": 15678,
+ "status": "ok",
+ "s3Key": "runs/r-ae7d90b38217.json",
+ "provenance": {
+  "mode": "local-run",
+  "label": "local run · Bedrock",
+  "note": "Asked on a developer machine against the local pipeline's outputs; not the deployed AWS stack.",
+  "build": "build/e2e",
+  "model": "Amazon Bedrock Converse (real)",
+  "embeddings": "amazon.titan-embed-text-v2:0 (real Bedrock; responses recorded)",
+  "index": "in-memory k-NN (exact inner product) + BM25 (Lucene formula) over the run's units; NOT OpenSearch",
+  "graph": "pyoxigraph in-process (NOT Amazon Neptune)",
+  "stores": "moto (S3, DynamoDB) loaded from the run's world snapshot",
+  "piiGate": "Amazon Comprehend DetectPiiEntities (real; responses recorded) (runs/local/recorded/comprehend.json)",
+  "extraction": "docling 2.145.0 (local, dev mode)",
+  "scanPages": "local Docling OCR shaped as a Textract response (NOT Amazon Textract)",
+  "phaseBEmbeddings": "local-hash-embedder (NOT Titan; deterministic, not semantic)",
+  "toolTransport": "tool Lambda handlers in-process (local gateway; identity injected like the interceptor)"
+ }
+}

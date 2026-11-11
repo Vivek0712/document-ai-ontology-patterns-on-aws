@@ -1,0 +1,214 @@
+{"type": "run_start", "runId": "r-116947039cb1", "packageId": "pkg-lending-02", "pipelineVersion": "1.0", "question": "What is the total income across this package?", "modelId": "us.anthropic.claude-sonnet-4-6", "configSha": "1f437eb1624d9df0b867a42d73fe7d27b7de6fb441c90c917f15b23f564748dc", "promptSha": "59984da199bb287de4b76a1d91bc0a5c27fde51028c39ffd04a33c3950a7d302", "tools": ["search_units", "graph_hop", "get_region", "doc_status"], "t": 0.0}
+{"type": "text", "delta": "I'll look"}
+{"type": "text", "delta": " up the W"}
+{"type": "text", "delta": "-2 Box 1 qualifying"}
+{"type": "text", "delta": " income figures"}
+{"type": "text", "delta": " across"}
+{"type": "text", "delta": " the"}
+{"type": "text", "delta": " package simultaneously"}
+{"type": "text", "delta": " using"}
+{"type": "text", "delta": " both"}
+{"type": "text", "delta": " search"}
+{"type": "text", "delta": " and"}
+{"type": "text", "delta": " graph tools"}
+{"type": "text", "delta": "."}
+{"type": "tool_start", "callId": "tooluse_AEc5ZC0QjDV8NwpolTuBkn", "tool": "search_units", "input": {"query": "W-2 Box 1 wages qualifying income", "docType": "doc:W2"}, "t": 2.517}
+{"type": "tool_end", "callId": "tooluse_AEc5ZC0QjDV8NwpolTuBkn", "tool": "search_units", "ms": 14, "status": "ok", "summary": "0 units", "units": [], "scores": [], "retrieved": [], "rows": [], "t": 2.517}
+{"type": "tool_start", "callId": "tooluse_OlqcwNIhIVbCuaVjnoRf46", "tool": "graph_hop", "input": {"template": "qi_sum_w2_box1_v1", "params": {}}, "t": 2.517}
+{"type": "tool_end", "callId": "tooluse_OlqcwNIhIVbCuaVjnoRf46", "tool": "graph_hop", "ms": 2, "status": "ok", "summary": "0 rows · no ABox for pipelineVersion 1.0 (ontology: none)", "units": [], "scores": [], "retrieved": [], "rows": [], "template": "qi_sum_w2_box1_v1", "t": 2.517}
+{"type": "text", "delta": "The W"}
+{"type": "text", "delta": "-2 specific"}
+{"type": "text", "delta": " search"}
+{"type": "text", "delta": " returned no results. Let me try a"}
+{"type": "text", "delta": " broader search for income"}
+{"type": "text", "delta": " figures"}
+{"type": "text", "delta": " across all"}
+{"type": "text", "delta": " document"}
+{"type": "text", "delta": " types in"}
+{"type": "text", "delta": " the package."}
+{"type": "tool_start", "callId": "tooluse_RiQ3Kq3g5yDdqqP043UShe", "tool": "search_units", "input": {"query": "W-2 Box 1 wages income tax year"}, "t": 11.084}
+{"type": "tool_end", "callId": "tooluse_RiQ3Kq3g5yDdqqP043UShe", "tool": "search_units", "ms": 2, "status": "ok", "summary": "3 units", "units": ["w2-2025-lena-fictus-5bf98e:1.0:c-01", "w2-2025-omar-fictus-5dc972:1.0:c-01", "payslip-2026-09-lena-fictus-245bbc:1.0:c-01"], "scores": [{"unitId": "w2-2025-lena-fictus-5bf98e:1.0:c-01", "denseNorm": 1.0, "bm25Norm": 1.0, "fused": 1.0}, {"unitId": "w2-2025-omar-fictus-5dc972:1.0:c-01", "denseNorm": 0.9731, "bm25Norm": 1.0, "fused": 0.9811}, {"unitId": "payslip-2026-09-lena-fictus-245bbc:1.0:c-01", "denseNorm": 0.0, "bm25Norm": 0.0, "fused": 0.0}], "retrieved": [{"rank": 1, "unitId": "w2-2025-lena-fictus-5bf98e:1.0:c-01", "docId": "w2-2025-lena-fictus-5bf98e", "fileName": "w2_2025_lena_fictus.pdf", "unitType": "chunk", "label": "chunk c-01", "chunkLabel": "chunk c-01", "breadcrumb": "", "text": "Form W-2\nWage and Tax Statement\n2025\nCopy C—For EMPLOYEE'S RECORDS (See Notice to Employee on the back of Copy B.)\nDepartment of the Treasury—Internal Revenue Service (form layout, fictitious data)\na Employee's social security number\nb Employer identification number (EIN)\nc Employer's name, address, and ZIP code\nd Control number\ne Employee's first name and initial   Last name      f Employee's address and ZIP code\n1 Wages, tips, other compensation\n2 Federal income tax withheld\n3 Social security wages\n4 Social security tax withheld\n5 Medicare wages and tips\n6 Medicare tax withheld\n7 Social security tips\n8 Allocated tips\n9\n10 Dependent care benefits\n11 Nonqualified plans\n12a See instructions for box 12\n13 Retirement plan\n12b\n14 Other\n12c\n12d\n15 State\nEmployer's state ID number\n16 State wages, tips, etc.\n17 State income tax\nCode\n5,150.00\nD\n103,000.00\n103,000.00\n97,850.00\n12,360.00\n6,386.00\n1,493.50\nX\nXXX-XX-4159\n00-4417305\nNewAge Global Fintech Services\n400 Market Street\nSeattle, WA 98104\nNGF-25-4159\nLena Fictus\n7 Orchard Row\nTacoma, WA 98402\nWA\nFictitious document · NewAge Global Fintech · for demonstration only", "pages": [1], "bboxes": [], "fields": [], "piiFlag": "none", "resolvable": false, "scores": {"denseRaw": 1.559045, "bm25Raw": 1.391764, "denseNorm": 1.0, "bm25Norm": 1.0, "fused": 1.0}}, {"rank": 2, "unitId": "w2-2025-omar-fictus-5dc972:1.0:c-01", "docId": "w2-2025-omar-fictus-5dc972", "fileName": "w2_2025_omar_fictus.pdf", "unitType": "chunk", "label": "chunk c-01", "chunkLabel": "chunk c-01", "breadcrumb": "", "text": "Form W-2\nWage and Tax Statement\n2025\nCopy C—For EMPLOYEE'S RECORDS (See Notice to Employee on the back of Copy B.)\nDepartment of the Treasury—Internal Revenue Service (form layout, fictitious data)\na Employee's social security number\nb Employer identification number (EIN)\nc Employer's name, address, and ZIP code\nd Control number\ne Employee's first name and initial   Last name      f Employee's address and ZIP code\n1 Wages, tips, other compensation\n2 Federal income tax withheld\n3 Social security wages\n4 Social security tax withheld\n5 Medicare wages and tips\n6 Medicare tax withheld\n7 Social security tips\n8 Allocated tips\n9\n10 Dependent care benefits\n11 Nonqualified plans\n12a See instructions for box 12\n13 Retirement plan\n12b\n14 Other\n12c\n12d\n15 State\nEmployer's state ID number\n16 State wages, tips, etc.\n17 State income tax\nCode\n5,760.00\nD\n96,000.00\n96,000.00\n90,240.00\n11,520.00\n5,952.00\n1,392.00\nX\nXXX-XX-4081\n00-4417306\nNewAge Global Fintech Payments\n410 Market Street\nSeattle, WA 98104\nNGF-25-4081\nOmar Fictus\n7 Orchard Row\nTacoma, WA 98402\nWA\nFictitious document · NewAge Global Fintech · for demonstration only", "pages": [1], "bboxes": [], "fields": [], "piiFlag": "none", "resolvable": false, "scores": {"denseRaw": 1.545882, "bm25Raw": 1.391764, "denseNorm": 0.9731, "bm25Norm": 1.0, "fused": 0.9811}}, {"rank": 3, "unitId": "payslip-2026-09-lena-fictus-245bbc:1.0:c-01", "docId": "payslip-2026-09-lena-fictus-245bbc", "fileName": "payslip_2026-09_lena_fictus.pdf", "unitType": "chunk", "label": "chunk c-01", "chunkLabel": "chunk c-01", "breadcrumb": "", "text": "NewAge Global Fintech Services\n400 Market Street, Seattle, WA 98104\nEarnings Statement\nEmployee\nLena Fictus\nEmployee ID\nE-4159\nPay period\n01–30 Sep 2026\nPay date\n30 Sep 2026\nDescription\nCurrent\nYear to date\nGross pay\n9,600.00\n86,400.00\n401(k) employee deferral\n480.00\n4,320.00\nFederal income tax\n1,152.00\n10,368.00\nSocial Security\n595.20\n5,356.80\nMedicare\n139.20\n1,252.80\nNet pay\n7,233.60\n65,102.40\nYear-to-date figures cover 01 Jan 2026 to 30 Sep 2026.\nFictitious document · NewAge Global Fintech · for demonstration only", "pages": [1], "bboxes": [], "fields": [], "piiFlag": "masked", "resolvable": false, "scores": {"denseRaw": 1.070585, "bm25Raw": 0.854007, "denseNorm": 0.0, "bm25Norm": 0.0, "fused": 0.0}}], "rows": [], "t": 11.084}
+{"type": "tool_start", "callId": "tooluse_0gnzIEkHwcUxl8HwlR4Usg", "tool": "search_units", "input": {"query": "qualifying income wages salary borrower"}, "t": 11.084}
+{"type": "tool_end", "callId": "tooluse_0gnzIEkHwcUxl8HwlR4Usg", "tool": "search_units", "ms": 1181, "status": "ok", "summary": "3 units", "units": ["w2-2025-omar-fictus-5dc972:1.0:c-01", "w2-2025-lena-fictus-5bf98e:1.0:c-01", "payslip-2026-09-lena-fictus-245bbc:1.0:c-01"], "scores": [{"unitId": "w2-2025-omar-fictus-5dc972:1.0:c-01", "denseNorm": 1.0, "bm25Norm": 1.0, "fused": 1.0}, {"unitId": "w2-2025-lena-fictus-5bf98e:1.0:c-01", "denseNorm": 0.936, "bm25Norm": 1.0, "fused": 0.9552}, {"unitId": "payslip-2026-09-lena-fictus-245bbc:1.0:c-01", "denseNorm": 0.0, "bm25Norm": 0.0, "fused": 0.0}], "retrieved": [{"rank": 1, "unitId": "w2-2025-omar-fictus-5dc972:1.0:c-01", "docId": "w2-2025-omar-fictus-5dc972", "fileName": "w2_2025_omar_fictus.pdf", "unitType": "chunk", "label": "chunk c-01", "chunkLabel": "chunk c-01", "breadcrumb": "", "text": "Form W-2\nWage and Tax Statement\n2025\nCopy C—For EMPLOYEE'S RECORDS (See Notice to Employee on the back of Copy B.)\nDepartment of the Treasury—Internal Revenue Service (form layout, fictitious data)\na Employee's social security number\nb Employer identification number (EIN)\nc Employer's name, address, and ZIP code\nd Control number\ne Employee's first name and initial   Last name      f Employee's address and ZIP code\n1 Wages, tips, other compensation\n2 Federal income tax withheld\n3 Social security wages\n4 Social security tax withheld\n5 Medicare wages and tips\n6 Medicare tax withheld\n7 Social security tips\n8 Allocated tips\n9\n10 Dependent care benefits\n11 Nonqualified plans\n12a See instructions for box 12\n13 Retirement plan\n12b\n14 Other\n12c\n12d\n15 State\nEmployer's state ID number\n16 State wages, tips, etc.\n17 State income tax\nCode\n5,760.00\nD\n96,000.00\n96,000.00\n90,240.00\n11,520.00\n5,952.00\n1,392.00\nX\nXXX-XX-4081\n00-4417306\nNewAge Global Fintech Payments\n410 Market Street\nSeattle, WA 98104\nNGF-25-4081\nOmar Fictus\n7 Orchard Row\nTacoma, WA 98402\nWA\nFictitious document · NewAge Global Fintech · for demonstration only", "pages": [1], "bboxes": [], "fields": [], "piiFlag": "none", "resolvable": false, "scores": {"denseRaw": 1.160503, "bm25Raw": 0.42604, "denseNorm": 1.0, "bm25Norm": 1.0, "fused": 1.0}}, {"rank": 2, "unitId": "w2-2025-lena-fictus-5bf98e:1.0:c-01", "docId": "w2-2025-lena-fictus-5bf98e", "fileName": "w2_2025_lena_fictus.pdf", "unitType": "chunk", "label": "chunk c-01", "chunkLabel": "chunk c-01", "breadcrumb": "", "text": "Form W-2\nWage and Tax Statement\n2025\nCopy C—For EMPLOYEE'S RECORDS (See Notice to Employee on the back of Copy B.)\nDepartment of the Treasury—Internal Revenue Service (form layout, fictitious data)\na Employee's social security number\nb Employer identification number (EIN)\nc Employer's name, address, and ZIP code\nd Control number\ne Employee's first name and initial   Last name      f Employee's address and ZIP code\n1 Wages, tips, other compensation\n2 Federal income tax withheld\n3 Social security wages\n4 Social security tax withheld\n5 Medicare wages and tips\n6 Medicare tax withheld\n7 Social security tips\n8 Allocated tips\n9\n10 Dependent care benefits\n11 Nonqualified plans\n12a See instructions for box 12\n13 Retirement plan\n12b\n14 Other\n12c\n12d\n15 State\nEmployer's state ID number\n16 State wages, tips, etc.\n17 State income tax\nCode\n5,150.00\nD\n103,000.00\n103,000.00\n97,850.00\n12,360.00\n6,386.00\n1,493.50\nX\nXXX-XX-4159\n00-4417305\nNewAge Global Fintech Services\n400 Market Street\nSeattle, WA 98104\nNGF-25-4159\nLena Fictus\n7 Orchard Row\nTacoma, WA 98402\nWA\nFictitious document · NewAge Global Fintech · for demonstration only", "pages": [1], "bboxes": [], "fields": [], "piiFlag": "none", "resolvable": false, "scores": {"denseRaw": 1.15324, "bm25Raw": 0.42604, "denseNorm": 0.936, "bm25Norm": 1.0, "fused": 0.9552}}, {"rank": 3, "unitId": "payslip-2026-09-lena-fictus-245bbc:1.0:c-01", "docId": "payslip-2026-09-lena-fictus-245bbc", "fileName": "payslip_2026-09_lena_fictus.pdf", "unitType": "chunk", "label": "chunk c-01", "chunkLabel": "chunk c-01", "breadcrumb": "", "text": "NewAge Global Fintech Services\n400 Market Street, Seattle, WA 98104\nEarnings Statement\nEmployee\nLena Fictus\nEmployee ID\nE-4159\nPay period\n01–30 Sep 2026\nPay date\n30 Sep 2026\nDescription\nCurrent\nYear to date\nGross pay\n9,600.00\n86,400.00\n401(k) employee deferral\n480.00\n4,320.00\nFederal income tax\n1,152.00\n10,368.00\nSocial Security\n595.20\n5,356.80\nMedicare\n139.20\n1,252.80\nNet pay\n7,233.60\n65,102.40\nYear-to-date figures cover 01 Jan 2026 to 30 Sep 2026.\nFictitious document · NewAge Global Fintech · for demonstration only", "pages": [1], "bboxes": [], "fields": [], "piiFlag": "masked", "resolvable": false, "scores": {"denseRaw": 1.047046, "bm25Raw": 0.074811, "denseNorm": 0.0, "bm25Norm": 0.0, "fused": 0.0}}], "rows": [], "t": 11.084}
+{"type": "text", "delta": "I"}
+{"type": "text", "delta": " have"}
+{"type": "text", "delta": " all"}
+{"type": "text", "delta": " the data I need. Here"}
+{"type": "text", "delta": " is"}
+{"type": "text", "delta": " the result"}
+{"type": "text", "delta": ":\n\nThe"}
+{"type": "text", "delta": " package"}
+{"type": "text", "delta": " contains"}
+{"type": "text", "delta": " two"}
+{"type": "text", "delta": " W"}
+{"type": "text", "delta": "-2s"}
+{"type": "text", "delta": " for"}
+{"type": "text", "delta": " tax"}
+{"type": "text", "delta": " year 2025 "}
+{"type": "text", "delta": "—"}
+{"type": "text", "delta": " one for **"}
+{"type": "text", "delta": "Lena Fictus** (Box"}
+{"type": "text", "delta": " 1:"}
+{"type": "text", "delta": " $"}
+{"type": "text", "delta": "103"}
+{"type": "text", "delta": ",000."}
+{"type": "text", "delta": "00) and one for **Omar"}
+{"type": "text", "delta": " Fictus** (Box 1"}
+{"type": "text", "delta": ": $96,000.00)."}
+{"type": "text", "delta": " Per"}
+{"type": "text", "delta": " the qualifying"}
+{"type": "text", "delta": " income"}
+{"type": "text", "delta": " definition"}
+{"type": "text", "delta": ", total"}
+{"type": "text", "delta": " income"}
+{"type": "text", "delta": " is the"}
+{"type": "text", "delta": " sum of W"}
+{"type": "text", "delta": "-2 Box"}
+{"type": "text", "delta": " 1 wages"}
+{"type": "text", "delta": ";"}
+{"type": "text", "delta": " the"}
+{"type": "text", "delta": " pay"}
+{"type": "text", "delta": "slip for Lena ("}
+{"type": "text", "delta": "a"}
+{"type": "text", "delta": " "}
+{"type": "text", "delta": "2026"}
+{"type": "text", "delta": " cor"}
+{"type": "text", "delta": "ro"}
+{"type": "text", "delta": "borating document"}
+{"type": "text", "delta": ") is"}
+{"type": "text", "delta": " not"}
+{"type": "text", "delta": " added"}
+{"type": "text", "delta": "."}
+{"type": "text", "delta": " The combined"}
+{"type": "text", "delta": " qualifying"}
+{"type": "text", "delta": " income is"}
+{"type": "text", "delta": " **"}
+{"type": "text", "delta": "$199"}
+{"type": "text", "delta": ",000.00**.\n\n```"}
+{"type": "text", "delta": "json\n{\n  \"answer"}
+{"type": "text", "delta": "\": \""}
+{"type": "text", "delta": "The package"}
+{"type": "text", "delta": " contains two "}
+{"type": "text", "delta": "2025 W-2s:"}
+{"type": "text", "delta": " Lena Fictus with"}
+{"type": "text", "delta": " Box"}
+{"type": "text", "delta": " 1 wages"}
+{"type": "text", "delta": " of $103,000.00 "}
+{"type": "text", "delta": "and Omar Fictus with Box "}
+{"type": "text", "delta": "1 wages of $96,000"}
+{"type": "text", "delta": ".00."}
+{"type": "text", "delta": " Sum"}
+{"type": "text", "delta": "ming these per"}
+{"type": "text", "delta": " the qualifying income definition gives"}
+{"type": "text", "delta": " a"}
+{"type": "text", "delta": " total"}
+{"type": "text", "delta": " of $199,000.00."}
+{"type": "text", "delta": " A"}
+{"type": "text", "delta": " "}
+{"type": "text", "delta": "2026 payslip for"}
+{"type": "text", "delta": " Lena is"}
+{"type": "text", "delta": " present"}
+{"type": "text", "delta": " but is"}
+{"type": "text", "delta": " treated"}
+{"type": "text", "delta": " as cor"}
+{"type": "text", "delta": "roborating evidence"}
+{"type": "text", "delta": " only"}
+{"type": "text", "delta": " and is not added to the total"}
+{"type": "text", "delta": ".\","}
+{"type": "text", "delta": "\n  \"total"}
+{"type": "text", "delta": "\":"}
+{"type": "text", "delta": " \""}
+{"type": "text", "delta": "199,"}
+{"type": "text", "delta": "000.00\",\n  \"currency"}
+{"type": "text", "delta": "\": \"USD\",\n  \"arithmetic"}
+{"type": "text", "delta": "\":"}
+{"type": "text", "delta": " \""}
+{"type": "text", "delta": "103"}
+{"type": "text", "delta": ",000.00 + 96"}
+{"type": "text", "delta": ",000.00 = 199"}
+{"type": "text", "delta": ",000.00\",\n  \""}
+{"type": "text", "delta": "claims"}
+{"type": "text", "delta": "\": [\n    {\n      \""}
+{"type": "text", "delta": "text"}
+{"type": "text", "delta": "\": \"$"}
+{"type": "text", "delta": "103,000.00\","}
+{"type": "text", "delta": "\n      \"value"}
+{"type": "text", "delta": "\": \"103000"}
+{"type": "text", "delta": "."}
+{"type": "text", "delta": "00\",\n      \"unit"}
+{"type": "text", "delta": "Id"}
+{"type": "text", "delta": "\": \"w2-2025-"}
+{"type": "text", "delta": "lena-fictus-5bf"}
+{"type": "text", "delta": "98e:"}
+{"type": "text", "delta": "1.0:c-01\","}
+{"type": "text", "delta": "\n      \"field"}
+{"type": "text", "delta": "Id"}
+{"type": "text", "delta": "\": null"}
+{"type": "text", "delta": "\n    },\n    {\n      \""}
+{"type": "text", "delta": "text\": \"$96,000.00"}
+{"type": "text", "delta": "\",\n      \"value\": \"96"}
+{"type": "text", "delta": "000.00\",\n      \"unit"}
+{"type": "text", "delta": "Id\": \"w2-2025"}
+{"type": "text", "delta": "-omar"}
+{"type": "text", "delta": "-fictus-5dc972:"}
+{"type": "text", "delta": "1.0:c-01\","}
+{"type": "text", "delta": "\n      \"fieldId\": null"}
+{"type": "text", "delta": "\n    },"}
+{"type": "text", "delta": "\n    {\n      \"text\":"}
+{"type": "text", "delta": " \"$199,000.00\","}
+{"type": "text", "delta": "\n      \"value\": \"199000."}
+{"type": "text", "delta": "00\",\n      \"unitId\":"}
+{"type": "text", "delta": " \"w2-2025-l"}
+{"type": "text", "delta": "ena-fictus-5bf98"}
+{"type": "text", "delta": "e:1.0:c-"}
+{"type": "text", "delta": "01\",\n      \"fieldId\":"}
+{"type": "text", "delta": " null\n    }\n  ],"}
+{"type": "text", "delta": "\n  \"c"}
+{"type": "text", "delta": "ave"}
+{"type": "text", "delta": "ats\": [\n    \""}
+{"type": "text", "delta": "Both"}
+{"type": "text", "delta": " W-2s"}
+{"type": "text", "delta": " are for tax"}
+{"type": "text", "delta": " year 2025,"}
+{"type": "text", "delta": " which is the latest"}
+{"type": "text", "delta": " year"}
+{"type": "text", "delta": " present"}
+{"type": "text", "delta": " in the package"}
+{"type": "text", "delta": ".\","}
+{"type": "text", "delta": "\n    \"A"}
+{"type": "text", "delta": " September"}
+{"type": "text", "delta": " 2026 payslip for"}
+{"type": "text", "delta": " Lena Fictus is in"}
+{"type": "text", "delta": " the package but is cor"}
+{"type": "text", "delta": "roborating only"}
+{"type": "text", "delta": " and excluded"}
+{"type": "text", "delta": " from the qualifying"}
+{"type": "text", "delta": " income total"}
+{"type": "text", "delta": " per"}
+{"type": "text", "delta": " package"}
+{"type": "text", "delta": " ont"}
+{"type": "text", "delta": "ology rules"}
+{"type": "text", "delta": ".\",\n    \"W"}
+{"type": "text", "delta": "-2 units"}
+{"type": "text", "delta": " have"}
+{"type": "text", "delta": " no"}
+{"type": "text", "delta": " structured"}
+{"type": "text", "delta": " fields in"}
+{"type": "text", "delta": " this"}
+{"type": "text", "delta": " pipeline"}
+{"type": "text", "delta": " version"}
+{"type": "text", "delta": " ("}
+{"type": "text", "delta": "v"}
+{"type": "text", "delta": "1.0);"}
+{"type": "text", "delta": " Box"}
+{"type": "text", "delta": " 1 figures"}
+{"type": "text", "delta": " were"}
+{"type": "text", "delta": " read"}
+{"type": "text", "delta": " directly"}
+{"type": "text", "delta": " from chunk"}
+{"type": "text", "delta": " text"}
+{"type": "text", "delta": ".\""}
+{"type": "text", "delta": "\n  ]\n}\n```"}
+{"answer": "The package contains two 2025 W-2s: Lena Fictus with Box 1 wages of $103,000.00 and Omar Fictus with Box 1 wages of $96,000.00. Summing these per the qualifying income definition gives a total of $199,000.00. A 2026 payslip for Lena is present but is treated as corroborating evidence only and is not added to the total.", "total": "199,000.00", "currency": "USD", "arithmetic": "103,000.00 + 96,000.00 = 199,000.00", "claims": [{"text": "$103,000.00", "value": "103000.00", "unitId": "w2-2025-lena-fictus-5bf98e:1.0:c-01", "docId": "w2-2025-lena-fictus-5bf98e", "fileName": "w2_2025_lena_fictus.pdf", "label": "chunk c-01", "resolvable": false, "chunkLabel": "chunk c-01", "reason": "chunk has no page region"}, {"text": "$96,000.00", "value": "96000.00", "unitId": "w2-2025-omar-fictus-5dc972:1.0:c-01", "docId": "w2-2025-omar-fictus-5dc972", "fileName": "w2_2025_omar_fictus.pdf", "label": "chunk c-01", "resolvable": false, "chunkLabel": "chunk c-01", "reason": "chunk has no page region"}], "caveats": ["Both W-2s are for tax year 2025, which is the latest year present in the package.", "A September 2026 payslip for Lena Fictus is in the package but is corroborating only and excluded from the qualifying income total per package ontology rules.", "W-2 units have no structured fields in this pipeline version (v1.0); Box 1 figures were read directly from chunk text."], "citationRetries": 0, "uncitedNumbers": [], "type": "answer"}
+{"qid": "q-lend2-01", "expected": "188,090.00", "actual": "199,000.00", "match": false, "type": "check"}
+{"runId": "r-116947039cb1", "packageId": "pkg-lending-02", "pipelineVersion": "1.0", "configSha": "1f437eb1624d9df0b867a42d73fe7d27b7de6fb441c90c917f15b23f564748dc", "blockShas": {"preprocessing": "ba267beb165e0af475c323c9f78543f5ee90fc7c201ccbf59f34842e3d4e6114", "retrieval": "3587393d6f0d8c38adfaf6853c1463b54cc1ee872646ff354b3408da63dd586c", "generation": "4731dca541739b7b91e53099ae45acb0f255c753e313bec48702fa79ecad436e", "agent": "5ce789906365b6a0f9d139eba009f17b61d3113720a21c755e3f5be4459551f0"}, "promptSha": "59984da199bb287de4b76a1d91bc0a5c27fde51028c39ffd04a33c3950a7d302", "modelId": "us.anthropic.claude-sonnet-4-6", "corpusHash": "154f70ce2e0dd9db8441c719d2c23ed41a91403d0053125a8a6035ba54ac0c30", "memoryRecordsInjected": 0, "latencyMs": 18596, "usage": {"inputTokens": 10008, "outputTokens": 937, "totalTokens": 10945}, "startedAt": "2026-11-11T00:47:27.889Z", "type": "run", "question": "What is the total income across this package?"}

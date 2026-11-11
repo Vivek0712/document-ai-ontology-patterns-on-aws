@@ -1,0 +1,194 @@
+# gitleaks configuration for the public repository.
+#
+# Pinned and tested against gitleaks v8.21.2. It extends the built-in rule set
+# (AWS keys, private keys, GitHub and Slack tokens, JWTs, generic API keys ...)
+# with rules for the identifiers this project is most likely to leak:
+# account ids, ARNs with a real account, hard-coded CLI profile names,
+# home-directory paths, and deployed endpoint ids (Amazon Cognito,
+# Amazon API Gateway, Amazon CloudFront, Amazon OpenSearch Serverless,
+# Amazon Neptune).
+#
+# This file is public. It must never contain a real account id, profile name,
+# person's name or company name. Those exact strings live in a private
+# denylist outside the repository (see scripts/dev/check-denylist.sh).
+
+title = "Document AI and Ontology Patterns on AWS: secret and identifier scan"
+
+[extend]
+useDefault = true
+
+# ---------------------------------------------------------------------------
+# AWS account ids next to an account-ish key (cdk.json, .env, YAML, JSON, code)
+# ---------------------------------------------------------------------------
+[[rules]]
+id = "aws-account-id-assignment"
+description = "AWS account id assigned to an account-like key"
+# Matches JSON/YAML/TS/Python/shell forms: "account": "…", account: '…', account_id=…, rp:account=…,
+# and cdk.context.json keys such as availability-zones:account=…:region=…
+regex = '''(?i)(?:account[_-]?id|accountid|aws[_-]?account|rp:account|cdk_default_account|expected_account|\baccount)['"]?\s*[:=]\s*['"]?(\d{12})\b'''
+secretGroup = 1
+keywords = ["account"]
+[rules.allowlist]
+regexes = ['''^(000000000000|111111111111|123456789012|999999999999)$''']
+
+# ---------------------------------------------------------------------------
+# Any other standalone 12-digit number (prose such as "AWS account 987…",
+# CLI output pasted into docs, comments). Placeholders are allowed. Digits that
+# are part of a longer token (hex hashes, uuids, decimals, timestamps) are not
+# standalone and do not match.
+# ---------------------------------------------------------------------------
+[[rules]]
+id = "standalone-12-digit-number"
+description = "Standalone 12-digit number (possible AWS account id)"
+regex = '''(?:^|[^0-9A-Za-z._:/#+-])(\d{12})(?:$|[^0-9A-Za-z_-]|\.[^0-9])'''
+secretGroup = 1
+[rules.allowlist]
+regexes = ['''^(000000000000|111111111111|123456789012|999999999999)$''']
+# Generated contract schemas only. Recorded runs and AWS responses (runs/local/) are scanned like
+# everything else: a re-capture is where an account id is most likely to slip into prose or error text.
+paths = ['''(^|/)contracts/generated/''']
+
+# ---------------------------------------------------------------------------
+# ARNs that carry a real-looking account id
+# ---------------------------------------------------------------------------
+[[rules]]
+id = "aws-arn-with-account"
+description = "ARN containing a 12-digit account id that is not a documented placeholder"
+regex = '''arn:aws[a-z-]*:[a-z0-9-]+:[a-z0-9-]*:(\d{12}):'''
+secretGroup = 1
+keywords = ["arn:aws"]
+[rules.allowlist]
+regexes = ['''^(000000000000|111111111111|123456789012|999999999999)$''']
+
+# ---------------------------------------------------------------------------
+# Hard-coded AWS CLI profile names (defaults must come from the environment)
+# ---------------------------------------------------------------------------
+[[rules]]
+id = "hardcoded-aws-profile"
+description = "AWS CLI profile name hard-coded as a default"
+# Also covers getenv/get defaults (os.environ.get("AWS_PROFILE", "x"), process.env.AWS_PROFILE ?? 'x')
+# and object literals ({ profile: 'x' }).
+regex = '''(?:AWS_PROFILE\s*[:?]?=\s*["']?|AWS_PROFILE:-["']?|AWS_PROFILE["']\s*,\s*["']|AWS_PROFILE\s*(?:\?\?|\|\|)\s*["']|--profile[ =]+["']?|profile_name\s*=\s*["']|DEFAULT_PROFILE\s*=\s*["']|\bprofile\s*:\s*["'])([A-Za-z][A-Za-z0-9_.-]{1,63})'''
+secretGroup = 1
+keywords = ["aws_profile", "--profile", "profile_name", "default_profile", "profile"]
+[rules.allowlist]
+regexes = ['''^(default|your-profile|my-profile|example|none|None|only)$''']
+# Unit tests set AWS_PROFILE to made-up names on purpose (the private denylist still scans them).
+paths = ['''(^|/)tests/test_[^/]+\.py$''']
+
+# ---------------------------------------------------------------------------
+# Absolute home-directory paths (leak usernames and machine layout)
+# ---------------------------------------------------------------------------
+[[rules]]
+id = "home-directory-path"
+description = "Absolute path into a user's home directory"
+regex = '''(?:/Users|/home|C:\\\\Users|C:\\Users)[/\\]+([A-Za-z][A-Za-z0-9._-]{1,31})[/\\]'''
+secretGroup = 1
+keywords = ["/users/", "/home/", "c:\\"]
+[rules.allowlist]
+regexes = ['''^(runner|user|username|you|me|ubuntu|ec2-user|node|app)$''']
+
+# ---------------------------------------------------------------------------
+# Deployed endpoint and resource ids
+# ---------------------------------------------------------------------------
+[[rules]]
+id = "cognito-user-pool-id"
+description = "Amazon Cognito user pool id"
+regex = '''\b([a-z]{2}(?:-gov)?-[a-z]+-\d_[A-Za-z0-9]{9})\b'''
+secretGroup = 1
+keywords = ["-1_", "-2_", "-3_"]
+[rules.allowlist]
+regexes = ['''_X{9}$''', '''_EXAMPLE\w*$''']
+
+[[rules]]
+id = "cognito-identity-pool-id"
+description = "Amazon Cognito identity pool id"
+regex = '''\b([a-z]{2}(?:-gov)?-[a-z]+-\d:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})\b'''
+secretGroup = 1
+keywords = ["-1:", "-2:"]
+
+[[rules]]
+id = "api-gateway-endpoint"
+description = "Amazon API Gateway invoke URL with a real API id"
+regex = '''\b([a-z0-9]{10})\.execute-api\.[a-z0-9-]+\.amazonaws\.com'''
+secretGroup = 1
+keywords = ["execute-api"]
+
+[[rules]]
+id = "cloudfront-distribution-domain"
+description = "Amazon CloudFront distribution domain"
+regex = '''\b(d[a-z0-9]{12,13})\.cloudfront\.net'''
+secretGroup = 1
+keywords = ["cloudfront.net"]
+[rules.allowlist]
+regexes = ['''^d111111abcdef8$''']
+
+[[rules]]
+id = "opensearch-serverless-endpoint"
+description = "Amazon OpenSearch Serverless collection endpoint"
+regex = '''\b([a-z0-9]{20})\.[a-z0-9-]+\.aoss\.amazonaws\.com'''
+secretGroup = 1
+keywords = ["aoss.amazonaws.com"]
+
+[[rules]]
+id = "neptune-cluster-endpoint"
+description = "Amazon Neptune cluster endpoint"
+regex = '''[a-z0-9-]+\.cluster-(?:ro-)?([a-z0-9]{12})\.[a-z0-9-]+\.neptune\.amazonaws\.com'''
+secretGroup = 1
+keywords = ["neptune.amazonaws.com"]
+
+# ---------------------------------------------------------------------------
+# E-mail addresses outside the documentation-reserved domains
+# ---------------------------------------------------------------------------
+[[rules]]
+id = "non-example-email"
+description = "E-mail address outside example.com/.org/.net and other public, non-personal domains"
+regex = '''\b[A-Za-z0-9._%+-]+@((?:[A-Za-z0-9-]+\.)+[A-Za-z]{2,})\b'''
+secretGroup = 1
+keywords = ["@"]
+[rules.allowlist]
+regexes = [
+  '''^example\.(com|org|net)$''',
+  '''^(.+\.)?example\.(com|org|net)$''',
+  '''^w3\.org$''',
+  '''^users\.noreply\.github\.com$''',
+  '''^anthropic\.com$''',
+  '''^2x\.png$''',
+  '''^3x\.png$''',
+]
+
+# ---------------------------------------------------------------------------
+# Built-in generic-api-key rule, extended with one narrow exemption: the
+# idempotency tokens the client chose in the recorded COA session. Both the
+# path AND the token shape must match, so the same shape anywhere else (a
+# profile name, an app client name) is still reported.
+# ---------------------------------------------------------------------------
+[[rules]]
+id = "generic-api-key"
+[[rules.allowlists]]
+description = "Client-chosen idempotency tokens in the recorded COA session (not credentials)"
+condition = "AND"
+paths = ['''(^|/)runs/local/coa/''']
+regexes = ['''^[a-z]+[0-9]*(-[a-z]+)+-[0-9]+$''']
+
+# ---------------------------------------------------------------------------
+# Global allowlist: placeholders, recorded tool-use ids and generated vendor content
+# ---------------------------------------------------------------------------
+[allowlist]
+description = "Documented placeholders, recorded tool-use ids and vendored data"
+regexes = [
+  # Amazon Bedrock Converse tool-use ids in recorded runs (random, not credentials)
+  '''^tooluse_[A-Za-z0-9_-]{16,32}$''',
+  # Fake credentials used by moto and unit tests
+  '''^(testing|local|dummy|fake|placeholder)$''',
+]
+paths = [
+  '''(^|/)package-lock\.json$''',
+  '''(^|/)uv\.lock$''',
+  '''\.(pdf|png|jpg|jpeg|gif|webp|woff2?|ttf|otf|ico)$''',
+  # Vendored third-party ontologies (FIBO, DoCO, PROV-O, SKOS) and their build output
+  '''(^|/)ontology/src/(fibo|doco|w3c|skos)/''',
+  # Recorded embedding responses keyed by sha256(request); vectors only. The recorded
+  # Amazon Comprehend responses (comprehend.json) are scanned like everything else.
+  '''(^|/)runs/local/recorded/titan-v2\.json$''',
+]

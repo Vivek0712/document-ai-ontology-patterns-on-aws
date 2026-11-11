@@ -1,0 +1,114 @@
+{"type": "run_start", "runId": "r-7853443dadef", "packageId": "pkg-lending-01", "pipelineVersion": "2.3.1", "question": "What is the total income across this package?", "modelId": "us.amazon.nova-2-lite-v1:0", "configSha": "a42731845bd93c07fb4e21644d86495b8349e4aa6e75014b90f547815ec35447", "promptSha": "59984da199bb287de4b76a1d91bc0a5c27fde51028c39ffd04a33c3950a7d302", "tools": ["search_units", "graph_hop", "get_region", "doc_status"], "t": 0.0}
+{"type": "tool_start", "callId": "tooluse_JAbt8777XVFC0R9fM2fcVV", "tool": "search_units", "input": {"query": "total income qualifying income W-2 Box 1"}, "t": 1.313}
+{"type": "tool_end", "callId": "tooluse_JAbt8777XVFC0R9fM2fcVV", "tool": "search_units", "ms": 8, "status": "ok", "summary": "5 units", "units": ["w2-2025-arjun-fictus-546450:2.3.1:eu-02", "w2-2025-maya-fictus-827d37:2.3.1:eu-02", "w2-2025-arjun-fictus-546450:2.3.1:eu-01", "w2-2025-maya-fictus-827d37:2.3.1:eu-01", "bank-statement-2026-09-7c2e0d:2.3.1:eu-05"], "scores": [{"unitId": "w2-2025-arjun-fictus-546450:2.3.1:eu-02", "denseNorm": 1.0, "bm25Norm": 1.0, "fused": 1.0}, {"unitId": "w2-2025-maya-fictus-827d37:2.3.1:eu-02", "denseNorm": 0.8766, "bm25Norm": 1.0, "fused": 0.9137}, {"unitId": "w2-2025-arjun-fictus-546450:2.3.1:eu-01", "denseNorm": 0.993, "bm25Norm": 0.3564, "fused": 0.802}, {"unitId": "w2-2025-maya-fictus-827d37:2.3.1:eu-01", "denseNorm": 0.9728, "bm25Norm": 0.3564, "fused": 0.7879}, {"unitId": "bank-statement-2026-09-7c2e0d:2.3.1:eu-05", "denseNorm": 0.3539, "bm25Norm": 0.0, "fused": 0.2477}], "retrieved": [{"rank": 1, "unitId": "w2-2025-arjun-fictus-546450:2.3.1:eu-02", "docId": "w2-2025-arjun-fictus-546450", "fileName": "w2_2025_arjun_fictus.pdf", "unitType": "field_group", "label": "W-2 · Arjun Fictus · Wages (Boxes 1–6)", "docType": "doc:W2", "breadcrumb": "W-2 2025 › Arjun Fictus › Wages (Boxes 1–6)", "text": "c Employer's name, address, and ZIP code\nNewAge Global Fintech Payments 410 Market Street Seattle, WA 98104\ne Employee's first name and initial Last name f Employee's address and ZIP code\nArjun Fictus 18 Harbor Lane Seattle, WA 98101\n3 Social security wages\n1 Wages, tips, other compensation\n2 Federal income tax withheld\n71,250.00\n8,550.00\n4 Social security tax withheld\n75,000.00\n4,650.00\n5 Medicare wages and tips\n6 Medicare tax withheld\n75,000.00\n12a See instructions for box 12 Code\n3,750.00\n1,087.50", "pages": [1], "pageWidth": 612.0, "pageHeight": 792.0, "bboxes": [{"page": 1, "x0": 39.0, "y0": 100.33, "x1": 568.0, "y1": 365.4}], "fields": [{"fieldId": "f-box12a", "label": "12a See instructions for box 12", "value": "3,750.00", "valueNumber": "3750.00", "concept": "fin:W2Box12Amount", "period": "TY2025", "page": 1, "bbox": {"page": 1, "x0": 444.71, "y0": 280.27, "x1": 566.88, "y1": 305.45}}, {"fieldId": "f-box3", "label": "3 Social security wages", "value": "75,000.00", "valueNumber": "75000.00", "concept": "fin:W2SocialSecurityWagesBox3", "period": "TY2025", "page": 1, "bbox": {"page": 1, "x0": 309.27, "y0": 136.27, "x1": 431.88, "y1": 161.45}}, {"fieldId": "f-box5", "label": "5 Medicare wages and tips", "value": "75,000.00", "valueNumber": "75000.00", "concept": "fin:W2MedicareWagesBox5", "period": "TY2025", "page": 1, "bbox": {"page": 1, "x0": 309.27, "y0": 172.35, "x1": 431.88, "y1": 197.45}}, {"fieldId": "f-box1", "label": "1 Wages, tips, other compensation", "value": "71,250.00", "valueNumber": "71250.00", "concept": "fin:W2WagesBox1", "period": "TY2025", "page": 1, "bbox": {"page": 1, "x0": 309.71, "y0": 100.33, "x1": 431.88, "y1": 125.45}}, {"fieldId": "f-box2", "label": "2 Federal income tax withheld", "value": "8,550.00", "valueNumber": "8550.00", "concept": "fin:W2FederalIncomeTaxWithheldBox2", "period": "TY2025", "page": 1, "bbox": {"page": 1, "x0": 444.19, "y0": 100.33, "x1": 566.88, "y1": 125.45}}, {"fieldId": "f-box4", "label": "4 Social security tax withheld", "value": "4,650.00", "valueNumber": "4650.00", "concept": "fin:W2SocialSecurityTaxWithheldBox4", "period": "TY2025", "page": 1, "bbox": {"page": 1, "x0": 444.08, "y0": 136.27, "x1": 566.88, "y1": 161.45}}, {"fieldId": "f-box6", "label": "6 Medicare tax withheld", "value": "1,087.50", "valueNumber": "1087.50", "concept": "fin:W2MedicareTaxWithheldBox6", "period": "TY2025", "page": 1, "bbox": {"page": 1, "x0": 444.25, "y0": 172.33, "x1": 566.88, "y1": 197.45}}, {"fieldId": "f-boxc", "label": "c Employer's name, address, and ZIP code", "value": "NewAge Global Fintech Payments", "concept": "fin:W2EmployerName", "period": "TY2025", "page": 1, "bbox": {"page": 1, "x0": 39.25, "y0": 172.35, "x1": 222.99, "y1": 195.87}}, {"fieldId": "f-boxe", "label": "e Employee's first name and initial Last name f Employee's address and ZIP code", "value": "Arjun Fictus", "concept": "fin:W2EmployeeName", "period": "TY2025", "page": 1, "bbox": {"page": 1, "x0": 39.24, "y0": 316.27, "x1": 286.16, "y1": 339.87}}], "period": "TY2025", "piiFlag": "none", "resolvable": true, "scores": {"denseRaw": 1.309527, "bm25Raw": 3.13771, "denseNorm": 1.0, "bm25Norm": 1.0, "fused": 1.0}}, {"rank": 2, "unitId": "w2-2025-maya-fictus-827d37:2.3.1:eu-02", "docId": "w2-2025-maya-fictus-827d37", "fileName": "w2_2025_maya_fictus.pdf", "unitType": "field_group", "label": "W-2 · Maya Fictus · Wages (Boxes 1–6)", "docType": "doc:W2", "breadcrumb": "W-2 2025 › Maya Fictus › Wages (Boxes 1–6)", "text": "c Employer's name, address, and ZIP code\nNewAge Global Fintech Services 400 Market Street Seattle, WA 98104\ne Employee's first name and initial Last name f Employee's address and ZIP code\nMaya Fictus 18 Harbor Lane Seattle, WA 98101\n3 Social security wages\n1 Wages, tips, other compensation\n2 Federal income tax withheld\n98,400.00\n13,776.00\n4 Social security tax withheld\n105,000.00\n5 Medicare wages and tips\n6 Medicare tax withheld\n105,000.00\n12a See instructions for box 12 Code\n6,600.00\n6,510.00\n1,522.50", "pages": [1], "pageWidth": 612.0, "pageHeight": 792.0, "bboxes": [{"page": 1, "x0": 39.0, "y0": 100.33, "x1": 568.0, "y1": 365.4}], "fields": [{"fieldId": "f-box12a", "label": "12a See instructions for box 12", "value": "6,600.00", "valueNumber": "6600.00", "concept": "fin:W2Box12Amount", "period": "TY2025", "page": 1, "bbox": {"page": 1, "x0": 444.71, "y0": 280.27, "x1": 566.88, "y1": 305.45}}, {"fieldId": "f-box3", "label": "3 Social security wages", "value": "105,000.00", "valueNumber": "105000.00", "concept": "fin:W2SocialSecurityWagesBox3", "period": "TY2025", "page": 1, "bbox": {"page": 1, "x0": 309.27, "y0": 136.27, "x1": 431.88, "y1": 161.45}}, {"fieldId": "f-box5", "label": "5 Medicare wages and tips", "value": "105,000.00", "valueNumber": "105000.00", "concept": "fin:W2MedicareWagesBox5", "period": "TY2025", "page": 1, "bbox": {"page": 1, "x0": 309.27, "y0": 172.35, "x1": 431.88, "y1": 197.45}}, {"fieldId": "f-box1", "label": "1 Wages, tips, other compensation", "value": "98,400.00", "valueNumber": "98400.00", "concept": "fin:W2WagesBox1", "period": "TY2025", "page": 1, "bbox": {"page": 1, "x0": 309.71, "y0": 100.33, "x1": 431.88, "y1": 125.45}}, {"fieldId": "f-box2", "label": "2 Federal income tax withheld", "value": "13,776.00", "valueNumber": "13776.00", "concept": "fin:W2FederalIncomeTaxWithheldBox2", "period": "TY2025", "page": 1, "bbox": {"page": 1, "x0": 444.19, "y0": 100.33, "x1": 566.88, "y1": 125.45}}, {"fieldId": "f-box4", "label": "4 Social security tax withheld", "value": "6,510.00", "valueNumber": "6510.00", "concept": "fin:W2SocialSecurityTaxWithheldBox4", "period": "TY2025", "page": 1, "bbox": {"page": 1, "x0": 444.08, "y0": 136.27, "x1": 566.88, "y1": 161.45}}, {"fieldId": "f-box6", "label": "6 Medicare tax withheld", "value": "1,522.50", "valueNumber": "1522.50", "concept": "fin:W2MedicareTaxWithheldBox6", "period": "TY2025", "page": 1, "bbox": {"page": 1, "x0": 444.25, "y0": 172.33, "x1": 566.88, "y1": 197.45}}, {"fieldId": "f-boxc", "label": "c Employer's name, address, and ZIP code", "value": "NewAge Global Fintech Services", "concept": "fin:W2EmployerName", "period": "TY2025", "page": 1, "bbox": {"page": 1, "x0": 39.25, "y0": 172.35, "x1": 222.99, "y1": 195.87}}, {"fieldId": "f-boxe", "label": "e Employee's first name and initial Last name f Employee's address and ZIP code", "value": "Maya Fictus", "concept": "fin:W2EmployeeName", "period": "TY2025", "page": 1, "bbox": {"page": 1, "x0": 39.24, "y0": 316.27, "x1": 286.16, "y1": 339.87}}], "period": "TY2025", "piiFlag": "none", "resolvable": true, "scores": {"denseRaw": 1.267691, "bm25Raw": 3.13771, "denseNorm": 0.8766, "bm25Norm": 1.0, "fused": 0.9137}}, {"rank": 3, "unitId": "w2-2025-arjun-fictus-546450:2.3.1:eu-01", "docId": "w2-2025-arjun-fictus-546450", "fileName": "w2_2025_arjun_fictus.pdf", "unitType": "section_text", "label": "W-2 · Arjun Fictus · 2025", "docType": "doc:W2", "breadcrumb": "W-2 2025 › Arjun Fictus › 2025", "text": "Form W-2 Wage and Tax Statement\n2025\nCopy C-For EMPLOYEE'S RECORDS (See Notice to Employee on the back of Copy B.) Department of the Treasury-Internal Revenue Service (form layout, fictitious data)\na Employee's social security number\nXXX-XX-2290\nb Employer identification number (EIN)\n00-4417306\nd Control number\nNGF-25-2290\n15 State\nEmployer's state ID number\n7 Social security tips\n8 Allocated tips\n9\n10 Dependent care benefits\n11 Nonqualified plans\n13 Retirement plan\nD\n12b\nX\n14 Other\n12c\n16 State wages, tips, etc.\n12d\n17 State income tax\nWA", "pages": [1], "pageWidth": 612.0, "pageHeight": 792.0, "bboxes": [{"page": 1, "x0": 36.0, "y0": 40.51, "x1": 576.0, "y1": 449.4}], "fields": [], "period": "TY2025", "piiFlag": "none", "resolvable": true, "scores": {"denseRaw": 1.307157, "bm25Raw": 1.727548, "denseNorm": 0.993, "bm25Norm": 0.3564, "fused": 0.802}}, {"rank": 4, "unitId": "w2-2025-maya-fictus-827d37:2.3.1:eu-01", "docId": "w2-2025-maya-fictus-827d37", "fileName": "w2_2025_maya_fictus.pdf", "unitType": "section_text", "label": "W-2 · Maya Fictus · 2025", "docType": "doc:W2", "breadcrumb": "W-2 2025 › Maya Fictus › 2025", "text": "Form W-2 Wage and Tax Statement\n2025\nCopy C-For EMPLOYEE'S RECORDS (See Notice to Employee on the back of Copy B.) Department of the Treasury-Internal Revenue Service (form layout, fictitious data)\na Employee's social security number\nXXX-XX-0417\nb Employer identification number (EIN)\n00-4417305\nd Control number\nNGF-25-0417\n15 State\nEmployer's state ID number\n7 Social security tips\n8 Allocated tips\n9\n10 Dependent care benefits\n11 Nonqualified plans\n13 Retirement plan\nD\n12b\nX\n14 Other\n12c\n16 State wages, tips, etc.\n12d\n17 State income tax\nWA", "pages": [1], "pageWidth": 612.0, "pageHeight": 792.0, "bboxes": [{"page": 1, "x0": 36.0, "y0": 40.51, "x1": 576.0, "y1": 449.4}], "fields": [], "period": "TY2025", "piiFlag": "none", "resolvable": true, "scores": {"denseRaw": 1.300305, "bm25Raw": 1.727548, "denseNorm": 0.9728, "bm25Norm": 0.3564, "fused": 0.7879}}, {"rank": 5, "unitId": "bank-statement-2026-09-7c2e0d:2.3.1:eu-05", "docId": "bank-statement-2026-09-7c2e0d", "fileName": "bank_statement_2026-09.pdf", "unitType": "table_panel", "label": "Bank statement · Maya Fictus · Other transactions", "docType": "doc:BankStatement", "breadcrumb": "Bank statement Sep 2026 › Maya Fictus › Other transactions", "text": "Date │ Description │ Amount (USD)\n2026-09-01 │ Rent payment │ -2,450.00\n2026-09-03 │ Utilities │ -186.40\n2026-09-07 │ Card payment │ -1,212.35\n2026-09-12 │ Groceries │ -264.80\n2026-09-18 │ Insurance premium │ -310.00\n2026-09-22 │ Transfer to savings │ -1,500.00\n2026-09-26 │ Mobile phone │ -85.00", "pages": [2], "pageWidth": 612.0, "pageHeight": 792.0, "bboxes": [{"page": 2, "x0": 46.69, "y0": 106.71, "x1": 564.86, "y1": 268.53}], "fields": [{"fieldId": "f-2026-09-01-rent-payment-amount-usd", "label": "2026-09-01 Rent payment · Amount (USD)", "value": "-2,450.00", "valueNumber": "-2450.00", "period": "2026-09", "page": 2, "bbox": {"page": 2, "x0": 60.0, "y0": 135.17, "x1": 551.54, "y1": 143.97}}, {"fieldId": "f-2026-09-03-utilities-amount-usd", "label": "2026-09-03 Utilities · Amount (USD)", "value": "-186.40", "valueNumber": "-186.40", "period": "2026-09", "page": 2, "bbox": {"page": 2, "x0": 60.0, "y0": 155.17, "x1": 551.54, "y1": 163.97}}, {"fieldId": "f-2026-09-07-card-payment-amount-usd", "label": "2026-09-07 Card payment · Amount (USD)", "value": "-1,212.35", "valueNumber": "-1212.35", "period": "2026-09", "page": 2, "bbox": {"page": 2, "x0": 60.0, "y0": 175.17, "x1": 551.62, "y1": 183.97}}, {"fieldId": "f-2026-09-12-groceries-amount-usd", "label": "2026-09-12 Groceries · Amount (USD)", "value": "-264.80", "valueNumber": "-264.80", "period": "2026-09", "page": 2, "bbox": {"page": 2, "x0": 60.0, "y0": 195.17, "x1": 551.54, "y1": 203.97}}, {"fieldId": "f-2026-09-18-insurance-premium-amount-usd", "label": "2026-09-18 Insurance premium · Amount (USD)", "value": "-310.00", "valueNumber": "-310.00", "period": "2026-09", "page": 2, "bbox": {"page": 2, "x0": 60.0, "y0": 215.17, "x1": 551.54, "y1": 223.97}}, {"fieldId": "f-2026-09-22-transfer-to-savings-amount-us", "label": "2026-09-22 Transfer to savings · Amount (USD)", "value": "-1,500.00", "valueNumber": "-1500.00", "period": "2026-09", "page": 2, "bbox": {"page": 2, "x0": 60.0, "y0": 235.17, "x1": 551.54, "y1": 243.97}}, {"fieldId": "f-2026-09-26-mobile-phone-amount-usd", "label": "2026-09-26 Mobile phone · Amount (USD)", "value": "-85.00", "valueNumber": "-85.00", "period": "2026-09", "page": 2, "bbox": {"page": 2, "x0": 60.0, "y0": 255.17, "x1": 551.54, "y1": 263.97}}], "period": "2026-09", "piiFlag": "none", "resolvable": true, "scores": {"denseRaw": 1.090394, "denseNorm": 0.3539, "bm25Norm": 0.0, "fused": 0.2477}}], "rows": [], "t": 1.313}
+{"type": "tool_start", "callId": "tooluse_y64KqcIxmkvTOPtPcZX4wD", "tool": "graph_hop", "input": {"template": "qi_sum_w2_box1_v1", "params": {}}, "t": 2.372}
+{"type": "tool_end", "callId": "tooluse_y64KqcIxmkvTOPtPcZX4wD", "tool": "graph_hop", "ms": 5, "status": "ok", "summary": "2 rows · total 169,650.00", "units": [], "scores": [], "retrieved": [], "rows": [{"borrower": "Arjun Fictus", "taxYear": "2025", "wagesBox1": "71250", "unit": "urn:rp:unit:w2-2025-arjun-fictus-546450:2.3.1:eu-02", "field": "urn:rp:field:w2-2025-arjun-fictus-546450:2.3.1:eu-02/f-box1"}, {"borrower": "Maya Fictus", "taxYear": "2025", "wagesBox1": "98400", "unit": "urn:rp:unit:w2-2025-maya-fictus-827d37:2.3.1:eu-02", "field": "urn:rp:field:w2-2025-maya-fictus-827d37:2.3.1:eu-02/f-box1"}], "total": "169650.00", "template": "qi_sum_w2_box1_v1", "t": 2.372}
+{"type": "tool_start", "callId": "tooluse_dK4UQiKFxCZsNFOgVXucaW", "tool": "get_region", "input": {"unitId": "w2-2025-arjun-fictus-546450:2.3.1:eu-02", "fieldId": "f-box1"}, "t": 3.549}
+{"type": "tool_end", "callId": "tooluse_dK4UQiKFxCZsNFOgVXucaW", "tool": "get_region", "ms": 10, "status": "ok", "summary": "p.1 1 Wages, tips, other compensation", "units": [], "scores": [], "retrieved": [], "rows": [], "t": 3.549}
+{"type": "tool_start", "callId": "tooluse_5PWa99o9JtasE6xZWKOXug", "tool": "get_region", "input": {"unitId": "w2-2025-maya-fictus-827d37:2.3.1:eu-02", "fieldId": "f-box1"}, "t": 4.425}
+{"type": "tool_end", "callId": "tooluse_5PWa99o9JtasE6xZWKOXug", "tool": "get_region", "ms": 15, "status": "ok", "summary": "p.1 1 Wages, tips, other compensation", "units": [], "scores": [], "retrieved": [], "rows": [], "t": 4.426}
+{"type": "tool_start", "callId": "tooluse_ffWcLdISda6hw556H15aOP", "tool": "doc_status", "input": {"docId": "w2-2025-arjun-fictus-546450"}, "t": 5.311}
+{"type": "tool_end", "callId": "tooluse_ffWcLdISda6hw556H15aOP", "tool": "doc_status", "ms": 60, "status": "ok", "summary": "1 docs · ready", "units": [], "scores": [], "retrieved": [], "rows": [], "t": 5.311}
+{"type": "tool_start", "callId": "tooluse_kEnVMbDDjs1iTAXryZqxMg", "tool": "doc_status", "input": {"docId": "w2-2025-maya-fictus-827d37"}, "t": 6.561}
+{"type": "tool_end", "callId": "tooluse_kEnVMbDDjs1iTAXryZqxMg", "tool": "doc_status", "ms": 60, "status": "ok", "summary": "1 docs · ready", "units": [], "scores": [], "retrieved": [], "rows": [], "t": 6.561}
+{"type": "text", "delta": "```"}
+{"type": "text", "delta": "json\n{\n  \""}
+{"type": "text", "delta": "answer"}
+{"type": "text", "delta": "\": \""}
+{"type": "text", "delta": "The total income across"}
+{"type": "text", "delta": " this"}
+{"type": "text", "delta": " package is $"}
+{"type": "text", "delta": "169"}
+{"type": "text", "delta": ",650.00,"}
+{"type": "text", "delta": " calculated"}
+{"type": "text", "delta": " as"}
+{"type": "text", "delta": " the sum"}
+{"type": "text", "delta": " of qualifying income ("}
+{"type": "text", "delta": "W-2 Box"}
+{"type": "text", "delta": " 1 wages) for"}
+{"type": "text", "delta": " both"}
+{"type": "text", "delta": " borrowers"}
+{"type": "text", "delta": ":"}
+{"type": "text", "delta": " Arjun"}
+{"type": "text", "delta": " Fictus ($"}
+{"type": "text", "delta": "71,250"}
+{"type": "text", "delta": ".00) and Maya F"}
+{"type": "text", "delta": "ictus ($98,400"}
+{"type": "text", "delta": ".00).\",\n  \""}
+{"type": "text", "delta": "total\": \""}
+{"type": "text", "delta": "169650.00\",\n "}
+{"type": "text", "delta": " \"currency\": \""}
+{"type": "text", "delta": "USD\",\n  \"arithmetic"}
+{"type": "text", "delta": "\": \""}
+{"type": "text", "delta": "71,"}
+{"type": "text", "delta": "250.00 +"}
+{"type": "text", "delta": " 98,400.00"}
+{"type": "text", "delta": " = 169"}
+{"type": "text", "delta": ",650.00\",\n "}
+{"type": "text", "delta": " \"claims"}
+{"type": "text", "delta": "\": [\n    {\n"}
+{"type": "text", "delta": "      \"text"}
+{"type": "text", "delta": "\": \"Ar"}
+{"type": "text", "delta": "jun Fictus W"}
+{"type": "text", "delta": "-2 Box"}
+{"type": "text", "delta": " 1 wages\",\n      \""}
+{"type": "text", "delta": "value\": \""}
+{"type": "text", "delta": "71250."}
+{"type": "text", "delta": "00\",\n      \"unitId"}
+{"type": "text", "delta": "\": \"w"}
+{"type": "text", "delta": "2-2025-ar"}
+{"type": "text", "delta": "jun-fictus-546"}
+{"type": "text", "delta": "450:2."}
+{"type": "text", "delta": "3.1:eu-"}
+{"type": "text", "delta": "02\",\n      \"fieldId"}
+{"type": "text", "delta": "\": \"f"}
+{"type": "text", "delta": "-box1\"\n    },\n   "}
+{"type": "text", "delta": " {\n      \"text\": \""}
+{"type": "text", "delta": "Maya Fictus W"}
+{"type": "text", "delta": "-2 Box"}
+{"type": "text", "delta": " 1 wages\",\n      \""}
+{"type": "text", "delta": "value\": \"98"}
+{"type": "text", "delta": "400.00\",\n      \""}
+{"type": "text", "delta": "unitId\": \"w"}
+{"type": "text", "delta": "2-2025"}
+{"type": "text", "delta": "-maya-fictus-827"}
+{"type": "text", "delta": "d37:2"}
+{"type": "text", "delta": ".3.1"}
+{"type": "text", "delta": ":e"}
+{"type": "text", "delta": "u-02\",\n      \""}
+{"type": "text", "delta": "fieldId\": \"f-box"}
+{"type": "text", "delta": "1\"\n    }\n"}
+{"type": "text", "delta": "  ],\n  \""}
+{"type": "text", "delta": "cave"}
+{"type": "text", "delta": "ats"}
+{"type": "text", "delta": "\": [\n    \"Only"}
+{"type": "text", "delta": " W"}
+{"type": "text", "delta": "-2 Box"}
+{"type": "text", "delta": " 1 wages are"}
+{"type": "text", "delta": " included;"}
+{"type": "text", "delta": " other"}
+{"type": "text", "delta": " income sources"}
+{"type": "text", "delta": " (e.g.,"}
+{"type": "text", "delta": " pays"}
+{"type": "text", "delta": "lips"}
+{"type": "text", "delta": ", bank"}
+{"type": "text", "delta": " deposits) are"}
+{"type": "text", "delta": " not added"}
+{"type": "text", "delta": " per"}
+{"type": "text", "delta": " the"}
+{"type": "text", "delta": " definition of"}
+{"type": "text", "delta": " qualifying income"}
+{"type": "text", "delta": ".\",\n    \"All"}
+{"type": "text", "delta": " figures"}
+{"type": "text", "delta": " are for"}
+{"type": "text", "delta": " tax"}
+{"type": "text", "delta": " year 2025,"}
+{"type": "text", "delta": " the"}
+{"type": "text", "delta": " latest available"}
+{"type": "text", "delta": " in"}
+{"type": "text", "delta": " this"}
+{"type": "text", "delta": " package.\"\n  ]\n"}
+{"type": "text", "delta": "}\n```"}
+{"answer": "The total income across this package is $169,650.00, calculated as the sum of qualifying income (W-2 Box 1 wages) for both borrowers: Arjun Fictus ($71,250.00) and Maya Fictus ($98,400.00).", "total": "169650.00", "currency": "USD", "arithmetic": "71,250.00 + 98,400.00 = 169,650.00", "claims": [{"text": "Arjun Fictus W-2 Box 1 wages", "value": "71250.00", "unitId": "w2-2025-arjun-fictus-546450:2.3.1:eu-02", "fieldId": "f-box1", "docId": "w2-2025-arjun-fictus-546450", "fileName": "w2_2025_arjun_fictus.pdf", "label": "W-2 · Arjun Fictus · Wages (Boxes 1–6) · Box 1 · p.1", "page": 1, "bbox": {"page": 1, "x0": 309.71, "y0": 100.33, "x1": 431.88, "y1": 125.45}, "unitBbox": {"page": 1, "x0": 39.0, "y0": 100.33, "x1": 568.0, "y1": 365.4}, "resolvable": true}, {"text": "Maya Fictus W-2 Box 1 wages", "value": "98400.00", "unitId": "w2-2025-maya-fictus-827d37:2.3.1:eu-02", "fieldId": "f-box1", "docId": "w2-2025-maya-fictus-827d37", "fileName": "w2_2025_maya_fictus.pdf", "label": "W-2 · Maya Fictus · Wages (Boxes 1–6) · Box 1 · p.1", "page": 1, "bbox": {"page": 1, "x0": 309.71, "y0": 100.33, "x1": 431.88, "y1": 125.45}, "unitBbox": {"page": 1, "x0": 39.0, "y0": 100.33, "x1": 568.0, "y1": 365.4}, "resolvable": true}], "caveats": ["Only W-2 Box 1 wages are included; other income sources (e.g., payslips, bank deposits) are not added per the definition of qualifying income.", "All figures are for tax year 2025, the latest available in this package."], "citationRetries": 0, "uncitedNumbers": [], "type": "answer"}
+{"qid": "q-lend-01", "expected": "169,650.00", "actual": "169650.00", "match": true, "type": "check"}
+{"runId": "r-7853443dadef", "packageId": "pkg-lending-01", "pipelineVersion": "2.3.1", "configSha": "a42731845bd93c07fb4e21644d86495b8349e4aa6e75014b90f547815ec35447", "blockShas": {"preprocessing": "40e8c03f17781382dcbcc29f7a0a84a8b1e9642cf92500d3980254a0cbd69a07", "retrieval": "3587393d6f0d8c38adfaf6853c1463b54cc1ee872646ff354b3408da63dd586c", "generation": "4731dca541739b7b91e53099ae45acb0f255c753e313bec48702fa79ecad436e", "agent": "5ce789906365b6a0f9d139eba009f17b61d3113720a21c755e3f5be4459551f0"}, "promptSha": "59984da199bb287de4b76a1d91bc0a5c27fde51028c39ffd04a33c3950a7d302", "modelId": "us.amazon.nova-2-lite-v1:0", "corpusHash": "34856e2c51fa71d6ddc21b4493efde7b9d6ccd1d87ed0f3287908d6612b687e2", "memoryRecordsInjected": 0, "latencyMs": 9263, "usage": {"inputTokens": 54522, "outputTokens": 598, "totalTokens": 55120}, "startedAt": "2026-11-11T03:30:23.689Z", "type": "run", "question": "What is the total income across this package?"}

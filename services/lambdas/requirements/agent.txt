@@ -1,0 +1,4 @@
+# Lambda layer "agent": tools, interceptor, get_region_http, neptune_load, graph_admin, vocab_export.
+# Built by scripts/build_lambdas.sh with --platform manylinux2014_x86_64 --only-binary=:all: --python-version 3.12.
+# boto3/botocore come from the Lambda runtime; pydantic/PyYAML from the "core" layer.
+PyJWT[crypto]==2.15.1

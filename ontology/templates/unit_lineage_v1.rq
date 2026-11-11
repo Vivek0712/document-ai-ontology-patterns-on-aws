@@ -1,0 +1,36 @@
+# template: unit_lineage_v1
+# purpose:  one evidence unit -> its page regions -> source document (key, sha256) -> package, and the
+#           stage activity that generated it (PROV-O).
+# params:   unitId  required  e.g. "w2-2025-maya-fictus-3fa2c1:2.3.1:eu-01"
+# columns:  unit, unitType, label, breadcrumb, pipelineVersion, region, page, x0, y0, x1, y1, doc,
+#           fileName, sha256, sourceKey, docType, package, activity, stageId
+# graphs:   FROM clause = TBox graphs + the caller-readable ABox graph
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX fin: <urn:rp:ont:fin:>
+PREFIX doc: <urn:rp:ont:doc:>
+PREFIX rp: <urn:rp:ont:rp:>
+SELECT ?unit ?unitType ?label ?breadcrumb ?pipelineVersion ?region ?page ?x0 ?y0 ?x1 ?y1 ?doc ?fileName
+       ?sha256 ?sourceKey ?docType ?package ?activity ?stageId
+{{FROM}}
+WHERE {
+  BIND(IRI(CONCAT("urn:rp:unit:", {{unitId}})) AS ?unit)
+  ?unit a doc:EvidenceUnit ;
+        rp:inDocument ?doc ;
+        prov:wasDerivedFrom ?region .
+  ?region a doc:PageRegion ; rp:page ?page ; rp:x0 ?x0 ; rp:y0 ?y0 ; rp:x1 ?x1 ; rp:y1 ?y1 .
+  ?doc rp:fileName ?fileName ; a ?docType .
+  ?docType rdfs:subClassOf doc:Document .
+  OPTIONAL { ?unit rp:unitType ?unitType }
+  OPTIONAL { ?unit rp:label ?label }
+  OPTIONAL { ?unit rp:breadcrumb ?breadcrumb }
+  OPTIONAL { ?unit rp:pipelineVersion ?pipelineVersion }
+  OPTIONAL { ?doc rp:sha256 ?sha256 }
+  OPTIONAL { ?doc rp:sourceKey ?sourceKey }
+  OPTIONAL { ?doc rp:inPackage ?package }
+  OPTIONAL { ?unit prov:wasGeneratedBy ?activity . OPTIONAL { ?activity rp:stageId ?stageId } }
+}
+ORDER BY ?page ?region

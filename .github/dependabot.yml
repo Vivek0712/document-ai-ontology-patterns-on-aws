@@ -1,0 +1,18 @@
+# Weekly dependency updates. Review licenses (THIRD_PARTY_LICENSES.md) before merging,
+# and keep pins exact. Pipeline outputs must stay byte-identical unless intended.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+  - package-ecosystem: npm
+    directories: ["/infra", "/usecases/provenant/ui"]
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+  - package-ecosystem: pip
+    directories: ["/", "/services/agent", "/services/lambdas/requirements", "/services/local_pipeline", "/data", "/eval", "/ontology"]
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5

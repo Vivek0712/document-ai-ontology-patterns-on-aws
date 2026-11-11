@@ -1,0 +1,698 @@
+{
+  "Comment": "Regionproof ingest: one execution per (object, pipelineVersion).",
+  "StartAt": "Register",
+  "TimeoutSeconds": 3600,
+  "States": {
+    "Register": {
+      "Type": "Task",
+      "Comment": "Validate the Bronze object, build DocCtx, write PENDING/SKIPPED stage records",
+      "Resource": "arn:aws:lambda:us-east-1:000000000000:function:rp-register",
+      "Parameters": {
+        "trigger.$": "$",
+        "executionArn.$": "$$.Execution.Id"
+      },
+      "ResultPath": "$",
+      "Retry": [
+        {
+          "ErrorEquals": [
+            "Lambda.ServiceException",
+            "Lambda.AWSLambdaException",
+            "Lambda.SdkClientException",
+            "Lambda.TooManyRequestsException"
+          ],
+          "IntervalSeconds": 2,
+          "MaxAttempts": 3,
+          "BackoffRate": 2
+        }
+      ],
+      "Catch": [
+        {
+          "ErrorEquals": [
+            "States.ALL"
+          ],
+          "ResultPath": "$.error",
+          "Next": "RegisterFailed"
+        }
+      ],
+      "Next": "ModeChoice"
+    },
+    "ModeChoice": {
+      "Type": "Choice",
+      "Choices": [
+        {
+          "Variable": "$.stages.register.output.validation",
+          "StringEquals": "skipped",
+          "Next": "Done"
+        },
+        {
+          "Variable": "$.stages.register.output.validation",
+          "StringEquals": "quarantined",
+          "Next": "Rejected"
+        },
+        {
+          "Variable": "$.ctx.mode",
+          "StringEquals": "naive",
+          "Next": "TextLayer"
+        },
+        {
+          "Variable": "$.ctx.mode",
+          "StringEquals": "evidence_units",
+          "Next": "Route"
+        }
+      ],
+      "Default": "UnknownMode"
+    },
+    "TextLayer": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:us-east-1:000000000000:function:rp-text-layer",
+      "Parameters": {
+        "ctx.$": "$.ctx",
+        "stages.$": "$.stages",
+        "executionArn.$": "$$.Execution.Id",
+        "stateName.$": "$$.State.Name",
+        "attempt.$": "$$.State.RetryCount"
+      },
+      "ResultPath": "$.stages.extract",
+      "Next": "NaiveChunk",
+      "Catch": [
+        {
+          "ErrorEquals": [
+            "States.ALL"
+          ],
+          "ResultPath": "$.error",
+          "Next": "LaneFailed"
+        }
+      ],
+      "Retry": [
+        {
+          "ErrorEquals": [
+            "Lambda.ServiceException",
+            "Lambda.AWSLambdaException",
+            "Lambda.SdkClientException",
+            "Lambda.TooManyRequestsException"
+          ],
+          "IntervalSeconds": 2,
+          "MaxAttempts": 3,
+          "BackoffRate": 2
+        }
+      ]
+    },
+    "NaiveChunk": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:us-east-1:000000000000:function:rp-naive-chunk",
+      "Parameters": {
+        "ctx.$": "$.ctx",
+        "stages.$": "$.stages",
+        "executionArn.$": "$$.Execution.Id",
+        "stateName.$": "$$.State.Name",
+        "attempt.$": "$$.State.RetryCount"
+      },
+      "ResultPath": "$.stages.units",
+      "Next": "PiiGate",
+      "Catch": [
+        {
+          "ErrorEquals": [
+            "States.ALL"
+          ],
+          "ResultPath": "$.error",
+          "Next": "LaneFailed"
+        }
+      ],
+      "Retry": [
+        {
+          "ErrorEquals": [
+            "Lambda.ServiceException",
+            "Lambda.AWSLambdaException",
+            "Lambda.SdkClientException",
+            "Lambda.TooManyRequestsException"
+          ],
+          "IntervalSeconds": 2,
+          "MaxAttempts": 3,
+          "BackoffRate": 2
+        }
+      ]
+    },
+    "Route": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:us-east-1:000000000000:function:rp-route",
+      "Parameters": {
+        "ctx.$": "$.ctx",
+        "stages.$": "$.stages",
+        "executionArn.$": "$$.Execution.Id",
+        "stateName.$": "$$.State.Name",
+        "attempt.$": "$$.State.RetryCount"
+      },
+      "ResultPath": "$.stages.route",
+      "Next": "ExtractOpen",
+      "Catch": [
+        {
+          "ErrorEquals": [
+            "States.ALL"
+          ],
+          "ResultPath": "$.error",
+          "Next": "LaneFailed"
+        }
+      ],
+      "Retry": [
+        {
+          "ErrorEquals": [
+            "Lambda.ServiceException",
+            "Lambda.AWSLambdaException",
+            "Lambda.SdkClientException",
+            "Lambda.TooManyRequestsException"
+          ],
+          "IntervalSeconds": 2,
+          "MaxAttempts": 3,
+          "BackoffRate": 2
+        }
+      ]
+    },
+    "ExtractOpen": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:us-east-1:000000000000:function:rp-stage-status",
+      "Parameters": {
+        "ctx.$": "$.ctx",
+        "stages.$": "$.stages",
+        "executionArn.$": "$$.Execution.Id",
+        "stateName.$": "$$.State.Name",
+        "attempt.$": "$$.State.RetryCount",
+        "op": "start",
+        "stageId": "extract"
+      },
+      "ResultPath": "$.stages.extractOpen",
+      "Next": "Extract",
+      "Catch": [
+        {
+          "ErrorEquals": [
+            "States.ALL"
+          ],
+          "ResultPath": "$.error",
+          "Next": "LaneFailed"
+        }
+      ],
+      "Retry": [
+        {
+          "ErrorEquals": [
+            "Lambda.ServiceException",
+            "Lambda.AWSLambdaException",
+            "Lambda.SdkClientException",
+            "Lambda.TooManyRequestsException"
+          ],
+          "IntervalSeconds": 2,
+          "MaxAttempts": 3,
+          "BackoffRate": 2
+        }
+      ]
+    },
+    "Extract": {
+      "Type": "Parallel",
+      "Comment": "Digital pages -> docling-serve on Fargate via SQS task token; scanned pages -> Textract Map",
+      "ResultPath": "$.extractParts",
+      "Next": "ExtractClose",
+      "Catch": [
+        {
+          "ErrorEquals": [
+            "States.ALL"
+          ],
+          "ResultPath": "$.error",
+          "Next": "LaneFailed"
+        }
+      ],
+      "Branches": [
+        {
+          "StartAt": "HasDigital",
+          "States": {
+            "HasDigital": {
+              "Type": "Choice",
+              "Choices": [
+                {
+                  "Variable": "$.stages.route.output.digitalPages[0]",
+                  "IsPresent": true,
+                  "Next": "DoclingExtract"
+                }
+              ],
+              "Default": "NoDigitalPages"
+            },
+            "NoDigitalPages": {
+              "Type": "Pass",
+              "Result": {},
+              "End": true
+            },
+            "DoclingExtract": {
+              "Type": "Task",
+              "Resource": "arn:aws:states:::sqs:sendMessage.waitForTaskToken",
+              "Parameters": {
+                "QueueUrl": "https://sqs.us-east-1.amazonaws.com/000000000000/rp-docling",
+                "MessageBody": {
+                  "taskToken.$": "$$.Task.Token",
+                  "ctx.$": "$.ctx",
+                  "pages.$": "$.stages.route.output.digitalPages",
+                  "executionArn.$": "$$.Execution.Id"
+                }
+              },
+              "HeartbeatSeconds": 600,
+              "TimeoutSeconds": 2700,
+              "End": true
+            }
+          }
+        },
+        {
+          "StartAt": "HasScan",
+          "States": {
+            "HasScan": {
+              "Type": "Choice",
+              "Choices": [
+                {
+                  "Variable": "$.stages.route.output.scanPages[0]",
+                  "IsPresent": true,
+                  "Next": "TextractPages"
+                }
+              ],
+              "Default": "NoScanPages"
+            },
+            "NoScanPages": {
+              "Type": "Pass",
+              "Result": [],
+              "End": true
+            },
+            "TextractPages": {
+              "Type": "Map",
+              "ItemsPath": "$.stages.route.output.scanPages",
+              "ItemSelector": {
+                "ctx.$": "$.ctx",
+                "page.$": "$$.Map.Item.Value",
+                "executionArn.$": "$$.Execution.Id"
+              },
+              "MaxConcurrency": 4,
+              "ItemProcessor": {
+                "ProcessorConfig": {
+                  "Mode": "INLINE"
+                },
+                "StartAt": "TextractPage",
+                "States": {
+                  "TextractPage": {
+                    "Type": "Task",
+                    "Resource": "arn:aws:lambda:us-east-1:000000000000:function:rp-textract-page",
+                    "Retry": [
+                      {
+                        "ErrorEquals": [
+                          "Lambda.ServiceException",
+                          "Lambda.AWSLambdaException",
+                          "Lambda.SdkClientException",
+                          "Lambda.TooManyRequestsException"
+                        ],
+                        "IntervalSeconds": 2,
+                        "MaxAttempts": 3,
+                        "BackoffRate": 2
+                      },
+                      {
+                        "ErrorEquals": [
+                          "ThrottlingException",
+                          "ProvisionedThroughputExceededException"
+                        ],
+                        "IntervalSeconds": 2,
+                        "MaxAttempts": 5,
+                        "BackoffRate": 2,
+                        "JitterStrategy": "FULL"
+                      }
+                    ],
+                    "End": true
+                  }
+                }
+              },
+              "End": true
+            }
+          }
+        }
+      ]
+    },
+    "ExtractClose": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:us-east-1:000000000000:function:rp-stage-status",
+      "Parameters": {
+        "ctx.$": "$.ctx",
+        "stages.$": "$.stages",
+        "executionArn.$": "$$.Execution.Id",
+        "stateName.$": "$$.State.Name",
+        "attempt.$": "$$.State.RetryCount",
+        "op": "close_extract",
+        "extractParts.$": "$.extractParts"
+      },
+      "ResultPath": "$.stages.extract",
+      "Next": "Classify",
+      "Catch": [
+        {
+          "ErrorEquals": [
+            "States.ALL"
+          ],
+          "ResultPath": "$.error",
+          "Next": "LaneFailed"
+        }
+      ],
+      "Retry": [
+        {
+          "ErrorEquals": [
+            "Lambda.ServiceException",
+            "Lambda.AWSLambdaException",
+            "Lambda.SdkClientException",
+            "Lambda.TooManyRequestsException"
+          ],
+          "IntervalSeconds": 2,
+          "MaxAttempts": 3,
+          "BackoffRate": 2
+        }
+      ]
+    },
+    "Classify": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:us-east-1:000000000000:function:rp-classify",
+      "Parameters": {
+        "ctx.$": "$.ctx",
+        "stages.$": "$.stages",
+        "executionArn.$": "$$.Execution.Id",
+        "stateName.$": "$$.State.Name",
+        "attempt.$": "$$.State.RetryCount"
+      },
+      "ResultPath": "$.stages.classify",
+      "Next": "BuildUnits",
+      "Catch": [
+        {
+          "ErrorEquals": [
+            "States.ALL"
+          ],
+          "ResultPath": "$.error",
+          "Next": "LaneFailed"
+        }
+      ],
+      "Retry": [
+        {
+          "ErrorEquals": [
+            "Lambda.ServiceException",
+            "Lambda.AWSLambdaException",
+            "Lambda.SdkClientException",
+            "Lambda.TooManyRequestsException"
+          ],
+          "IntervalSeconds": 2,
+          "MaxAttempts": 3,
+          "BackoffRate": 2
+        }
+      ]
+    },
+    "BuildUnits": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:us-east-1:000000000000:function:rp-eu-builder",
+      "Parameters": {
+        "ctx.$": "$.ctx",
+        "stages.$": "$.stages",
+        "executionArn.$": "$$.Execution.Id",
+        "stateName.$": "$$.State.Name",
+        "attempt.$": "$$.State.RetryCount"
+      },
+      "ResultPath": "$.stages.units",
+      "Next": "PiiGate",
+      "Catch": [
+        {
+          "ErrorEquals": [
+            "States.ALL"
+          ],
+          "ResultPath": "$.error",
+          "Next": "LaneFailed"
+        }
+      ],
+      "Retry": [
+        {
+          "ErrorEquals": [
+            "Lambda.ServiceException",
+            "Lambda.AWSLambdaException",
+            "Lambda.SdkClientException",
+            "Lambda.TooManyRequestsException"
+          ],
+          "IntervalSeconds": 2,
+          "MaxAttempts": 3,
+          "BackoffRate": 2
+        }
+      ]
+    },
+    "PiiGate": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:us-east-1:000000000000:function:rp-pii-gate",
+      "Parameters": {
+        "ctx.$": "$.ctx",
+        "stages.$": "$.stages",
+        "executionArn.$": "$$.Execution.Id",
+        "stateName.$": "$$.State.Name",
+        "attempt.$": "$$.State.RetryCount"
+      },
+      "ResultPath": "$.stages.pii_gate",
+      "Next": "Promote",
+      "Catch": [
+        {
+          "ErrorEquals": [
+            "States.ALL"
+          ],
+          "ResultPath": "$.error",
+          "Next": "LaneFailed"
+        }
+      ],
+      "Retry": [
+        {
+          "ErrorEquals": [
+            "Lambda.ServiceException",
+            "Lambda.AWSLambdaException",
+            "Lambda.SdkClientException",
+            "Lambda.TooManyRequestsException"
+          ],
+          "IntervalSeconds": 2,
+          "MaxAttempts": 3,
+          "BackoffRate": 2
+        }
+      ]
+    },
+    "Promote": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:us-east-1:000000000000:function:rp-promote",
+      "Parameters": {
+        "ctx.$": "$.ctx",
+        "stages.$": "$.stages",
+        "executionArn.$": "$$.Execution.Id",
+        "stateName.$": "$$.State.Name",
+        "attempt.$": "$$.State.RetryCount"
+      },
+      "ResultPath": "$.stages.promote",
+      "Next": "IndexAndGraph",
+      "Catch": [
+        {
+          "ErrorEquals": [
+            "States.ALL"
+          ],
+          "ResultPath": "$.error",
+          "Next": "LaneFailed"
+        }
+      ],
+      "Retry": [
+        {
+          "ErrorEquals": [
+            "Lambda.ServiceException",
+            "Lambda.AWSLambdaException",
+            "Lambda.SdkClientException",
+            "Lambda.TooManyRequestsException"
+          ],
+          "IntervalSeconds": 2,
+          "MaxAttempts": 3,
+          "BackoffRate": 2
+        }
+      ]
+    },
+    "IndexAndGraph": {
+      "Type": "Parallel",
+      "ResultPath": "$.indexAndGraph",
+      "ResultSelector": {
+        "index.$": "$[0]",
+        "graph.$": "$[1]"
+      },
+      "Next": "MergeIndexGraph",
+      "Catch": [
+        {
+          "ErrorEquals": [
+            "States.ALL"
+          ],
+          "ResultPath": "$.error",
+          "Next": "LaneFailed"
+        }
+      ],
+      "Branches": [
+        {
+          "StartAt": "EmbedIndex",
+          "States": {
+            "EmbedIndex": {
+              "Type": "Task",
+              "Resource": "arn:aws:lambda:us-east-1:000000000000:function:rp-embed-index",
+              "Parameters": {
+                "ctx.$": "$.ctx",
+                "stages.$": "$.stages",
+                "executionArn.$": "$$.Execution.Id",
+                "stateName.$": "$$.State.Name",
+                "attempt.$": "$$.State.RetryCount"
+              },
+              "End": true
+            }
+          }
+        },
+        {
+          "StartAt": "GraphChoice",
+          "States": {
+            "GraphChoice": {
+              "Type": "Choice",
+              "Choices": [
+                {
+                  "Variable": "$.ctx.graphEnabled",
+                  "BooleanEquals": true,
+                  "Next": "GraphWrite"
+                }
+              ],
+              "Default": "GraphSkipped"
+            },
+            "GraphWrite": {
+              "Type": "Task",
+              "Resource": "arn:aws:lambda:us-east-1:000000000000:function:rp-graph-write",
+              "Parameters": {
+                "ctx.$": "$.ctx",
+                "stages.$": "$.stages",
+                "executionArn.$": "$$.Execution.Id",
+                "stateName.$": "$$.State.Name",
+                "attempt.$": "$$.State.RetryCount"
+              },
+              "Retry": [
+                {
+                  "ErrorEquals": [
+                    "Lambda.ServiceException",
+                    "Lambda.AWSLambdaException",
+                    "Lambda.SdkClientException",
+                    "Lambda.TooManyRequestsException"
+                  ],
+                  "IntervalSeconds": 2,
+                  "MaxAttempts": 3,
+                  "BackoffRate": 2
+                }
+              ],
+              "End": true
+            },
+            "GraphSkipped": {
+              "Type": "Pass",
+              "Result": {
+                "stageId": "graph",
+                "state": "SKIPPED"
+              },
+              "End": true
+            }
+          }
+        }
+      ]
+    },
+    "MergeIndexGraph": {
+      "Type": "Pass",
+      "Comment": "Copy [0] -> $.stages.index and [1] -> $.stages.graph",
+      "Parameters": {
+        "ctx.$": "$.ctx",
+        "stages.$": "States.JsonMerge($.stages, $.indexAndGraph, false)"
+      },
+      "ResultPath": "$",
+      "Next": "MarkReady"
+    },
+    "MarkReady": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:us-east-1:000000000000:function:rp-mark-ready",
+      "Parameters": {
+        "ctx.$": "$.ctx",
+        "stages.$": "$.stages",
+        "executionArn.$": "$$.Execution.Id",
+        "stateName.$": "$$.State.Name",
+        "attempt.$": "$$.State.RetryCount"
+      },
+      "ResultPath": "$.stages.ready",
+      "Next": "Done",
+      "Catch": [
+        {
+          "ErrorEquals": [
+            "States.ALL"
+          ],
+          "ResultPath": "$.error",
+          "Next": "LaneFailed"
+        }
+      ],
+      "Retry": [
+        {
+          "ErrorEquals": [
+            "Lambda.ServiceException",
+            "Lambda.AWSLambdaException",
+            "Lambda.SdkClientException",
+            "Lambda.TooManyRequestsException"
+          ],
+          "IntervalSeconds": 2,
+          "MaxAttempts": 3,
+          "BackoffRate": 2
+        }
+      ]
+    },
+    "Done": {
+      "Type": "Succeed"
+    },
+    "LaneFailed": {
+      "Type": "Task",
+      "Comment": "Fail the open stage and the lane in DynamoDB, then fail the execution",
+      "Resource": "arn:aws:lambda:us-east-1:000000000000:function:rp-stage-status",
+      "Parameters": {
+        "op": "lane_failed",
+        "ctx.$": "$.ctx",
+        "stages.$": "$.stages",
+        "error.$": "$.error",
+        "executionArn.$": "$$.Execution.Id",
+        "stateName.$": "$$.State.Name"
+      },
+      "ResultPath": null,
+      "Retry": [
+        {
+          "ErrorEquals": [
+            "Lambda.ServiceException",
+            "Lambda.AWSLambdaException",
+            "Lambda.SdkClientException",
+            "Lambda.TooManyRequestsException"
+          ],
+          "IntervalSeconds": 2,
+          "MaxAttempts": 3,
+          "BackoffRate": 2
+        }
+      ],
+      "Catch": [
+        {
+          "ErrorEquals": [
+            "States.ALL"
+          ],
+          "ResultPath": null,
+          "Next": "Failed"
+        }
+      ],
+      "Next": "Failed"
+    },
+    "Failed": {
+      "Type": "Fail",
+      "Error": "LaneFailed",
+      "Cause": "A stage failed; see the stage record in rp-doc-status"
+    },
+    "RegisterFailed": {
+      "Type": "Fail",
+      "Error": "RegisterFailed",
+      "Cause": "rp-register failed before a DocCtx existed"
+    },
+    "Rejected": {
+      "Type": "Fail",
+      "Error": "Rejected",
+      "Cause": "Upload rejected by register and moved to quarantine/"
+    },
+    "UnknownMode": {
+      "Type": "Fail",
+      "Error": "UnknownMode",
+      "Cause": "ctx.mode is neither naive nor evidence_units"
+    }
+  }
+}

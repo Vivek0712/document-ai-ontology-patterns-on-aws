@@ -1,0 +1,36 @@
+name: Feature request
+description: Propose an improvement, a new pattern variant, an extraction engine or a new use case.
+title: "[feature] "
+labels: ["enhancement", "triage"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: The problem
+      description: What are you trying to do, and what stops you today? Describe the documents and the questions if it helps.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+      description: What would you add or change? Which pattern or plane (ingestion, knowledge, agent) does it touch?
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives you considered
+  - type: textarea
+    id: impact
+    attributes:
+      label: Impact
+      description: |
+        Does this change pipeline outputs, AWS resources (construct ids, resource names), costs, or the
+        security model (who can see which documents)? New AWS services or models: which Regions support them?
+  - type: checkboxes
+    id: contribute
+    attributes:
+      label: Contribution
+      options:
+        - label: I am willing to open a pull request for this.

@@ -1,0 +1,115 @@
+# pre-commit hooks for this repository.
+#
+#   pip install pre-commit          # or: pipx install pre-commit
+#   pre-commit install              # once per clone (commit-time hooks)
+#   pre-commit install -t pre-push  # optional: TypeScript type check before push
+#   pre-commit run --all-files      # run everything now
+#
+# What runs:
+#   - hygiene checks (large files, private keys, AWS credentials, merge markers, JSON/YAML)
+#   - gitleaks with the project rules in .gitleaks.toml
+#   - ruff (lint, config in pyproject.toml) and ShellCheck
+#   - a private denylist of exact strings kept OUTSIDE the repository
+#     (see scripts/dev/check-denylist.sh); skipped locally when no denylist is configured
+#     (CI on main fails instead when the PRIVATE_DENYLIST secret is missing)
+#   - a block on generated or local-only paths (cdk.out, build, .env, ...)
+#   - a metadata check on PDF and image files (author, creator, paths)
+#   - codespell on the docs, with the British-to-US spelling dictionary
+#   - pre-push only: tsc --noEmit for the UI and the CDK app
+#
+# The UI and the CDK app have no ESLint or Prettier configuration; `tsc --noEmit`
+# is their lint step. Add those hooks here if you add the tools.
+
+minimum_pre_commit_version: "3.5.0"
+default_install_hook_types: [pre-commit]
+
+# No global `exclude` on purpose. pre-commit applies a global exclude before any hook sees a file, so
+# it would hide force-added cdk.out/, build/ or mock-public/ files from forbid-generated-paths and the
+# private denylist, which are exactly the hooks that must see them. Content hooks that should skip
+# vendored or generated folders carry their own `exclude` (VENDORED below).
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: check-added-large-files
+        args: ["--maxkb=1024"]
+      - id: detect-private-key
+      - id: detect-aws-credentials
+        args: ["--allow-missing-credentials"]
+      - id: check-merge-conflict
+      - id: check-case-conflict
+      - id: check-json
+        exclude: '(^|/)(node_modules|\.venv|build|cdk\.out|dist|mock-public)/|(^|/)(tsconfig[^/]*\.json|package-lock\.json)$'
+      - id: check-yaml
+        args: ["--allow-multiple-documents"]
+        exclude: '(^|/)(node_modules|\.venv|build|cdk\.out|dist|mock-public)/'
+      - id: check-toml
+        exclude: '(^|/)(node_modules|\.venv|build|cdk\.out|dist|mock-public)/'
+      # No whitespace fixers on purpose: prompts, configs and ontology files are
+      # hashed into run records (promptSha, configSha) and recorded responses are
+      # keyed by sha256(request). Rewriting whitespace would change those hashes.
+      - id: forbid-new-submodules
+
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.21.2
+    hooks:
+      - id: gitleaks
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.17.4 # same ruff as requirements-dev.txt
+    hooks:
+      - id: ruff
+        args: ["--no-fix"]
+        exclude: '(^|/)(node_modules|\.venv|build|cdk\.out|dist|mock-public)/'
+
+  - repo: https://github.com/shellcheck-py/shellcheck-py
+    rev: v0.11.0.1
+    hooks:
+      - id: shellcheck
+        args: ["-x", "-P", "SCRIPTDIR"]
+        exclude: '(^|/)(node_modules|\.venv|build|cdk\.out|dist|mock-public)/'
+
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.4.1
+    hooks:
+      - id: codespell
+        name: codespell (docs, US spelling)
+        # Docs only. The en-GB_to_en-US dictionary keeps the public docs in US English (AWS style).
+        # CODE_OF_CONDUCT.md and NOTICE quote third-party text verbatim.
+        files: '\.md$'
+        exclude: '(^|/)(node_modules|\.venv|build|cdk\.out|dist|mock-public)/|(^|/)(CODE_OF_CONDUCT\.md|NOTICE)$|(^|/)ontology/src/'
+        args: ["--builtin", "clear,rare,en-GB_to_en-US", "--ignore-words-list", "neighbourhood,bu,te,fo,ser,nd,ans"]
+
+  - repo: local
+    hooks:
+      - id: private-denylist
+        name: private denylist (strings kept outside the repo)
+        entry: scripts/dev/check-denylist.sh
+        language: script
+        pass_filenames: true
+        types: [text]
+
+      - id: forbid-generated-paths
+        name: forbid generated or local-only paths
+        language: fail
+        entry: "generated or local-only file; it must not be committed (see .gitignore)"
+        files: '(^|/)(cdk\.out|cdk\.context\.json|build|node_modules|\.venv|internal|private|audit|\.bedrock_agentcore(\.yaml)?|[^/]*\.egg-info|mock-public)(/|$)|(^|/)ui/dist/|^runs/(?!local/)|(^|/)\.env$|(^|/)\.env\.(?!example$|mock$|replay$)[^/]+$|(^|/)public/config\.json$|\.DS_Store$'
+
+      - id: binary-metadata
+        name: PDF and image metadata (no names, paths, e-mails or account ids)
+        entry: python3 scripts/dev/check-binary-metadata.py
+        language: system
+        files: '\.(pdf|png|jpe?g)$'
+        types: [binary]
+
+      - id: tsc-noemit
+        name: TypeScript type check (UI and CDK app)
+        language: system
+        pass_filenames: false
+        files: '\.(ts|tsx)$'
+        stages: [pre-push]
+        entry: >-
+          bash -c 'set -e; for d in usecases/provenant/ui infra; do
+          if [ -f "$d/tsconfig.json" ] && [ -d "$d/node_modules" ]; then
+          (cd "$d" && npx --no-install tsc --noEmit -p tsconfig.json); fi; done'

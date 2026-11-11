@@ -1,0 +1,3 @@
+# Optional (about 1.4 GB with torch): local Docling for `make units` (dev mode only).
+# Without it, make units uses a clearly labelled pypdfium2 text-run fallback and scanned pages fail.
+docling==2.145.0

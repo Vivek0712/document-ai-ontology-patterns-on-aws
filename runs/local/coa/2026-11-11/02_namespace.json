@@ -1,0 +1,32 @@
+{
+  "request": {
+    "method": "POST",
+    "path": "/namespaces",
+    "body": {
+      "name": "com305-lending",
+      "displayName": "COM305 Lending (Provenant demo)",
+      "description": "COM305 demo: governed fin: vocabulary and qualifying_income metric over fictitious W-2 data",
+      "owner": "<EMAIL>",
+      "language": "en",
+      "clientToken": "com305-lending-ns-1"
+    }
+  },
+  "status": 201,
+  "latency_ms": 3588.7,
+  "response": {
+    "namespace": {
+      "namespaceId": "<NAMESPACE_ID>",
+      "name": "com305-lending",
+      "displayName": "COM305 Lending (Provenant demo)",
+      "description": "COM305 demo: governed fin: vocabulary and qualifying_income metric over fictitious W-2 data",
+      "owner": "<EMAIL>",
+      "status": "ACTIVE",
+      "language": "en",
+      "dataZoneProjectId": "<DATAZONE_PROJECT_ID>",
+      "sourceCount": 0,
+      "createdAt": "2026-11-11T05:27:32.678118+00:00",
+      "updatedAt": "2026-11-11T05:27:32.678118+00:00",
+      "athenaWorkgroupName": "coa-dev-<NAMESPACE_ID>"
+    }
+  }
+}

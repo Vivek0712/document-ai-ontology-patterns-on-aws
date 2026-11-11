@@ -1,0 +1,130 @@
+{
+ "runId": "r-2d7bcf364e73",
+ "createdAt": "2026-11-11T03:28:18.501Z",
+ "packageId": "pkg-lending-01",
+ "pipelineVersion": "2.3.1",
+ "question": "What is the total income across this package?",
+ "callerSub": "b5d09f13-0000-4000-8000-00000000000b",
+ "groups": [
+  "markets-analyst"
+ ],
+ "modelId": "us.anthropic.claude-sonnet-4-6",
+ "promptSha": "59984da199bb287de4b76a1d91bc0a5c27fde51028c39ffd04a33c3950a7d302",
+ "configSha": "a42731845bd93c07fb4e21644d86495b8349e4aa6e75014b90f547815ec35447",
+ "blockShas": {
+  "preprocessing": "40e8c03f17781382dcbcc29f7a0a84a8b1e9642cf92500d3980254a0cbd69a07",
+  "retrieval": "3587393d6f0d8c38adfaf6853c1463b54cc1ee872646ff354b3408da63dd586c",
+  "generation": "4731dca541739b7b91e53099ae45acb0f255c753e313bec48702fa79ecad436e",
+  "agent": "5ce789906365b6a0f9d139eba009f17b61d3113720a21c755e3f5be4459551f0"
+ },
+ "corpusHash": "34856e2c51fa71d6ddc21b4493efde7b9d6ccd1d87ed0f3287908d6612b687e2",
+ "memoryRecordsInjected": 0,
+ "toolsEnabled": [
+  "search_units",
+  "graph_hop",
+  "get_region",
+  "doc_status"
+ ],
+ "toolCalls": [
+  {
+   "callId": "tooluse_NWAQb6xNGiX9usbyJgAtoa",
+   "tool": "search_units",
+   "input": {
+    "query": "W-2 Box 1 wages qualifying income",
+    "docType": "doc:W2"
+   },
+   "injected": {
+    "callerSub": "b5d09f",
+    "groups": [
+     "markets-analyst"
+    ],
+    "pipelineVersion": "2.3.1",
+    "packageId": "pkg-lending-01",
+    "runId": "r-2d7bcf364e73",
+    "via": "local-gateway"
+   },
+   "startedAt": "2026-11-11T03:28:20.805Z",
+   "ms": 2,
+   "status": "denied",
+   "output": {
+    "error": {
+     "code": "forbidden",
+     "message": "You don't have access to this package."
+    }
+   },
+   "error": "You don't have access to this package."
+  },
+  {
+   "callId": "tooluse_6lhwvVZDUEG0yMqi8SeJDi",
+   "tool": "graph_hop",
+   "input": {
+    "template": "qi_sum_w2_box1_v1",
+    "params": {}
+   },
+   "injected": {
+    "callerSub": "b5d09f",
+    "groups": [
+     "markets-analyst"
+    ],
+    "pipelineVersion": "2.3.1",
+    "packageId": "pkg-lending-01",
+    "runId": "r-2d7bcf364e73",
+    "via": "local-gateway"
+   },
+   "startedAt": "2026-11-11T03:28:20.806Z",
+   "ms": 1,
+   "status": "denied",
+   "output": {
+    "error": {
+     "code": "forbidden",
+     "message": "You don't have access to this package."
+    }
+   },
+   "error": "You don't have access to this package."
+  }
+ ],
+ "retrieved": [],
+ "retrievedText": [],
+ "answer": {
+  "answer": "Neither the document units nor the knowledge graph could be accessed — both tools returned a 'forbidden' error. Total qualifying income cannot be determined from this package.",
+  "claims": [],
+  "caveats": [
+   "Access to this package is forbidden; no data was retrievable from any tool."
+  ],
+  "citationRetries": 0,
+  "uncitedNumbers": []
+ },
+ "check": {
+  "qid": "q-lend-01",
+  "expected": "169,650.00",
+  "match": false
+ },
+ "usage": {
+  "inputTokens": 3633,
+  "outputTokens": 322,
+  "totalTokens": 3955
+ },
+ "latencyMs": 4758,
+ "status": "ok",
+ "s3Key": "runs/r-2d7bcf364e73.json",
+ "generationProfile": "default",
+ "modelKey": "MODEL_ANSWER",
+ "toolSpecSha": "ba677bd6f99a21e360462cb80044caea9b343c8d5757f78dd2e018413f8f12f9",
+ "provenance": {
+  "mode": "local-run",
+  "label": "local run · Bedrock",
+  "note": "Asked on a developer machine against the local pipeline's outputs; not the deployed AWS stack.",
+  "build": "build/e2e",
+  "model": "Amazon Bedrock Converse (real)",
+  "embeddings": "amazon.titan-embed-text-v2:0 (real Bedrock; responses recorded)",
+  "index": "in-memory k-NN (exact inner product) + BM25 (Lucene formula) over the run's units; NOT OpenSearch",
+  "graph": "pyoxigraph in-process (NOT Amazon Neptune)",
+  "stores": "moto (S3, DynamoDB) loaded from the run's world snapshot",
+  "piiGate": "Amazon Comprehend DetectPiiEntities (real; responses recorded) (runs/local/recorded/comprehend.json)",
+  "extraction": "docling 2.145.0 (local, dev mode)",
+  "scanPages": "local Docling OCR shaped as a Textract response (NOT Amazon Textract)",
+  "phaseBEmbeddings": "local-hash-embedder (NOT Titan; deterministic, not semantic)",
+  "toolTransport": "tool Lambda handlers in-process (local gateway; identity injected like the interceptor)",
+  "identity": "agent runtime invoked directly as User B (bypasses the API's package check; tools still scoped)"
+ }
+}

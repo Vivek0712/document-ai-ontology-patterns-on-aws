@@ -1,0 +1,115 @@
+from __future__ import annotations
+
+import json
+from typing import Any
+
+import pytest
+
+from lambdas.api.ask import handler as ask_mod
+from lambdas.api.tests.support import SUB_B, make_event
+
+ARN = "arn:aws:bedrock-agentcore:us-east-1:000000000000:runtime/rp_agent-abc"
+
+
+class _Resp:
+    def __init__(self, status: int, body: str, ctype: str = "text/event-stream") -> None:
+        self.status = status
+        self.data = body.encode()
+        self.headers = {"Content-Type": ctype}
+
+
+@pytest.fixture
+def upstream(monkeypatch: pytest.MonkeyPatch) -> list[dict[str, Any]]:
+    calls: list[dict[str, Any]] = []
+    frames = 'data: {"type":"run_start","runId":"r-1"}\n\ndata: {"type":"answer","answer":"ok"}\n\n'
+
+    def fake_request(method: str, url: str, **kw: Any) -> _Resp:
+        calls.append({"method": method, "url": url, **kw})
+        return _Resp(200, frames)
+
+    monkeypatch.setattr(ask_mod._http, "request", fake_request)
+    monkeypatch.setenv("RP_AGENT_RUNTIME_ARN", ARN)
+    return calls
+
+
+def _ask(body: dict[str, Any], **kw: Any) -> dict[str, Any]:
+    from lambdas.api.routes import router  # noqa: F401 - ensure routes import cleanly alongside ask
+
+    return ask_mod.handler(make_event("POST", "/ask", body=body, **kw), None)
+
+
+def test_ask_proxies_with_user_token(env, seeded, upstream) -> None:
+    env.deps.settings = type(env.deps.settings).from_env()
+    resp = _ask({"question": "What is the total income?", "packageId": seeded.package_id, "pipelineVersion": "2.3.1"})
+    assert resp["statusCode"] == 200 and resp["headers"]["Content-Type"] == "text/event-stream"
+    assert '"type":"answer"' in resp["body"]
+    call = upstream[0]
+    assert call["url"].startswith("https://bedrock-agentcore.us-east-1.amazonaws.com/runtimes/arn%3Aaws%3A")
+    assert call["url"].endswith("/invocations?qualifier=DEFAULT")
+    assert call["headers"]["Authorization"] == "Bearer test-token"
+    assert len(call["headers"]["X-Amzn-Bedrock-AgentCore-Runtime-Session-Id"]) >= 33
+    assert json.loads(call["body"])["pipelineVersion"] == "2.3.1"
+
+
+def test_ask_acl_and_validation(env, seeded, upstream) -> None:
+    env.deps.settings = type(env.deps.settings).from_env()
+    resp = _ask({"question": "q", "packageId": seeded.package_id, "pipelineVersion": "2.3.1"}, sub=SUB_B,
+                groups=["markets-analyst"])
+    assert resp["statusCode"] == 403
+    resp = _ask({"question": "", "packageId": seeded.package_id, "pipelineVersion": "2.3.1"})
+    assert resp["statusCode"] == 400
+    resp = _ask({"question": "q", "packageId": seeded.package_id, "pipelineVersion": "3.0"})
+    assert resp["statusCode"] == 400
+    assert upstream == []
+
+
+def test_ask_not_ready_without_runtime(env, seeded) -> None:
+    resp = _ask({"question": "q", "packageId": seeded.package_id, "pipelineVersion": "1.0"})
+    assert resp["statusCode"] == 503 and '"not_ready"' in resp["body"]
+
+
+def test_ask_runtime_arn_from_ssm(env, seeded, monkeypatch) -> None:
+    env.deps.ssm.put_parameter(Name="/rp/agent/runtime-arn", Value=ARN, Type="String")
+    ask_mod._runtime_arn_cache.clear()
+    assert ask_mod.runtime_arn(env.deps) == ARN
+
+
+def test_ask_upstream_error_becomes_sse_error(env, seeded, monkeypatch) -> None:
+    monkeypatch.setenv("RP_AGENT_RUNTIME_ARN", ARN)
+    env.deps.settings = type(env.deps.settings).from_env()
+    monkeypatch.setattr(ask_mod._http, "request", lambda *a, **k: _Resp(500, '{"message":"boom"}', "application/json"))
+    resp = _ask({"question": "q", "packageId": seeded.package_id, "pipelineVersion": "2.3.1"})
+    assert resp["statusCode"] == 200
+    frame = json.loads(resp["body"].removeprefix("data: ").strip())
+    assert frame == {"type": "error", "code": "agent_error", "message": "Agent runtime error 500: boom"}
+
+
+def test_ask_wraps_plain_json_entrypoint(env, seeded, monkeypatch) -> None:
+    monkeypatch.setenv("RP_AGENT_RUNTIME_ARN", ARN)
+    env.deps.settings = type(env.deps.settings).from_env()
+    events = [{"type": "run_start", "runId": "r-1"}, {"type": "answer", "answer": "x"}]
+    monkeypatch.setattr(ask_mod._http, "request", lambda *a, **k: _Resp(200, json.dumps(events), "application/json"))
+    resp = _ask({"question": "q", "packageId": seeded.package_id, "pipelineVersion": "2.3.1"})
+    assert resp["body"].count("data: ") == 2
+
+
+def test_ask_read_timeout_stays_under_api_gateway(monkeypatch) -> None:
+    """The upstream read budget ends before API Gateway's 29 s clock, so the UI gets an SSE timeout frame."""
+    import time
+
+    from lambdas.api.ask import handler as ask
+
+    class Ctx:
+        def __init__(self, ms: int) -> None:
+            self.ms = ms
+
+        def get_remaining_time_in_millis(self) -> int:
+            return self.ms
+
+    monkeypatch.delenv("RP_ASK_TIMEOUT_SECONDS", raising=False)
+    now = time.monotonic()
+    assert ask.read_timeout(None, now) == pytest.approx(25.0, abs=0.1)
+    monkeypatch.setenv("RP_ASK_TIMEOUT_SECONDS", "25")
+    assert ask.read_timeout(Ctx(60_000), now - 3) == pytest.approx(22.0, abs=0.1)  # 3 s spent before the call
+    assert ask.read_timeout(Ctx(10_000), now) == pytest.approx(9.0, abs=0.1)  # Lambda remaining time wins
+    assert ask.read_timeout(Ctx(60_000), now - 40) == 1.0

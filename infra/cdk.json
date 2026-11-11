@@ -1,0 +1,26 @@
+{
+  "app": "npx ts-node --prefer-ts-exts bin/app.ts",
+  "watch": { "include": ["bin/**", "lib/**"], "exclude": ["cdk.out", "node_modules", "test"] },
+  "context": {
+    "rp:region": "us-east-1",
+    "rp:doclingImage": "quay.io/docling-project/docling-serve-cpu@sha256:7a480a1604fa3b42efeddc7db9527690d9f9bc903226136013e2bfe6b1a4dfb0",
+    "rp:doclingImageLabel": "docling-serve-cpu v1.38.2",
+    "rp:neptuneEngineVersion": "1.4.8.1",
+    "rp:devOrigins": ["http://localhost:5188", "http://localhost:5173"],
+    "rp:askTimeoutMs": 29000,
+    "@aws-cdk/aws-lambda:recognizeLayerVersion": true,
+    "@aws-cdk/core:checkSecretUsage": true,
+    "@aws-cdk/core:target-partitions": ["aws"],
+    "@aws-cdk/aws-iam:minimizePolicies": true,
+    "@aws-cdk/core:validateSnapshotRemovalPolicy": true,
+    "@aws-cdk/aws-s3:createDefaultLoggingPolicy": true,
+    "@aws-cdk/aws-s3:serverAccessLogsUseBucketPolicy": true,
+    "@aws-cdk/aws-apigateway:disableCloudWatchRole": true,
+    "@aws-cdk/aws-ecs:arnFormatIncludesClusterName": true,
+    "@aws-cdk/aws-ec2:restrictDefaultSecurityGroup": true,
+    "@aws-cdk/aws-kms:aliasNameRef": true,
+    "@aws-cdk/aws-cloudfront:defaultSecurityPolicyTLSv1.2_2021": true,
+    "@aws-cdk/aws-stepfunctions-tasks:useNewS3UriParametersForBedrockInvokeModelTask": true,
+    "@aws-cdk/core:enablePartitionLiterals": true
+  }
+}

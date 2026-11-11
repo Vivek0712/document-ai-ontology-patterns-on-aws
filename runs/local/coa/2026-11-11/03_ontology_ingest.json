@@ -1,0 +1,74 @@
+{
+  "upload_url": {
+    "request": {
+      "method": "POST",
+      "path": "/namespaces/<NAMESPACE_ID>/ontologies/upload-url",
+      "body": {
+        "filename": "fin.ttl",
+        "contentType": "text/turtle",
+        "ontologyId": "urn:rp:ont:fin",
+        "title": "Regionproof fin: extension (sha256 a3c6901e45f4)"
+      }
+    },
+    "status": 200,
+    "latency_ms": 2347.3,
+    "response": {
+      "uploadUrl": "<PRESIGNED_S3_URL>",
+      "s3Key": "<S3_KEY>",
+      "ontologyId": "urn:rp:ont:fin"
+    }
+  },
+  "ingest": {
+    "request": {
+      "method": "POST",
+      "path": "/namespaces/<NAMESPACE_ID>/ontologies/urn%3Arp%3Aont%3Afin/ingest-from-s3",
+      "body": {
+        "s3Key": "ontology-uploads/<NAMESPACE_ID>/3f423c35485c/fin.ttl",
+        "format": "turtle",
+        "title": "Regionproof fin: extension (sha256 a3c6901e45f4)",
+        "ontologyType": "user_uploaded",
+        "clientToken": "com305-fin-ingest-1"
+      }
+    },
+    "status": 202,
+    "latency_ms": 2050.1,
+    "response": {
+      "result": {
+        "jobId": "99bea2f4-03da-4e13-9ee5-a219c6e74a76",
+        "ontologyId": "urn:rp:ont:fin",
+        "status": "pending",
+        "error": null,
+        "result": null
+      }
+    }
+  },
+  "final_status": {
+    "request": {
+      "method": "GET",
+      "path": "/namespaces/<NAMESPACE_ID>/ontologies/urn%3Arp%3Aont%3Afin/ingest-status/99bea2f4-03da-4e13-9ee5-a219c6e74a76",
+      "body": null
+    },
+    "status": 200,
+    "latency_ms": 743.6,
+    "response": {
+      "result": {
+        "jobId": "99bea2f4-03da-4e13-9ee5-a219c6e74a76",
+        "ontologyId": "urn:rp:ont:fin",
+        "status": "completed",
+        "error": null,
+        "result": {
+          "ontologyId": "urn:rp:ont:fin",
+          "classCount": 4.0,
+          "embeddingCount": 19.0
+        }
+      }
+    }
+  },
+  "source_file": {
+    "path": "regionproof/ontology/src/rp/fin.ttl",
+    "sha256": "a3c6901e45f451079baa3b9b8729106a5165f3349c767e91dcdce0d6480a0b5b",
+    "bytes": 15262,
+    "named_owl_classes": 4,
+    "triples": 359
+  }
+}

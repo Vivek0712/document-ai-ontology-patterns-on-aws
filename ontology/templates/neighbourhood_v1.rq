@@ -1,0 +1,32 @@
+# template: neighbourhood_v1
+# purpose:  the triples around one IRI in the TBox and the caller-readable ABox: what it points to and what points
+#           at it (depth 1), and with depth "2" the triples of the IRIs it points to. For the ontology explorer and
+#           the graph screen (W-09, W-11). API-only: rp-api runs it; it is not in the agent's graph_hop schema.
+# params:   iri    required  the focus as a full IRI (rp-api expands CURIEs before it calls), e.g. "urn:rp:ont:fin:W2WagesBox1"
+#           depth  optional  "2" adds the second hop; anything else ("" included) is depth 1
+# columns:  s, p, o, sLabel, oLabel, pLabel, oIsLiteral, hop
+# graphs:   FROM clause = TBox graphs + the caller-readable ABox graph
+# notes:    blank nodes (OWL restrictions, RDF lists) are left out; rp-api caps the result at 150 nodes.
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+SELECT DISTINCT ?s ?p ?o ?sLabel ?oLabel ?pLabel ?oIsLiteral ?hop
+{{FROM}}
+WHERE {
+  # each branch binds the focus itself: a BIND in the outer group is not in scope inside a UNION branch
+  {
+    BIND(IRI({{iri}}) AS ?s) ?s ?p ?o . BIND(1 AS ?hop)
+  } UNION {
+    BIND(IRI({{iri}}) AS ?o) ?s ?p ?o . BIND(1 AS ?hop)
+  } UNION {
+    BIND(IRI({{iri}}) AS ?focus) FILTER({{depth}} = "2")
+    ?focus ?p0 ?s . FILTER(isIRI(?s) && ?s != ?focus)
+    ?s ?p ?o . BIND(2 AS ?hop)
+  }
+  FILTER(!isBlank(?s) && !isBlank(?o))
+  OPTIONAL { ?s skos:prefLabel|rdfs:label ?sLabel }
+  OPTIONAL { ?o skos:prefLabel|rdfs:label ?oLabel }
+  OPTIONAL { ?p rdfs:label ?pLabel }
+  BIND(isLiteral(?o) AS ?oIsLiteral)
+}
+ORDER BY ?hop ?p ?s ?o
+LIMIT 600

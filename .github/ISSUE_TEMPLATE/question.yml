@@ -1,0 +1,32 @@
+name: Question / pattern adoption
+description: Ask how to apply the patterns to your own documents or architecture.
+title: "[question] "
+labels: ["question"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Questions about applying the patterns are welcome. Describe your documents in general terms.
+        Please do not paste real documents, customer data or account details.
+  - type: textarea
+    id: context
+    attributes:
+      label: Your use case
+      description: Document types, volume, languages, the questions users ask, and any access rules.
+    validations:
+      required: true
+  - type: textarea
+    id: question
+    attributes:
+      label: Your question
+    validations:
+      required: true
+  - type: dropdown
+    id: stage
+    attributes:
+      label: Where are you?
+      options:
+        - Reading the docs
+        - Ran the local quickstart
+        - Deployed to AWS
+        - Adapting it to my own documents

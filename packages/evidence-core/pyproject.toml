@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=77"]  # SPDX license string (PEP 639)
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "evidence-core"
+version = "0.1.0"
+license = "Apache-2.0"
+description = "Shared contracts for evidence-unit pipelines (models, stage registry, S3 keys, status writer, config)."
+requires-python = ">=3.12"
+dependencies = [
+  "pydantic>=2.9,<3",
+  "PyYAML>=6.0",
+]
+
+[tool.setuptools]
+packages = ["evidence_core", "evidence_core.models"]

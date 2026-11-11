@@ -1,0 +1,38 @@
+{
+  "ontologyVersion": "1.2.0",
+  "releaseDate": "2026-11-03T00:00:00Z",
+  "graphs": {
+    "fibo": {
+      "label": "FIBO subset (EDM Council), pinned release master_2026Q3",
+      "pinnedSource": "https://github.com/edmcouncil/fibo/tree/2d73435a4419b66b7c9f44cb9763e35fe8ac7890",
+      "license": "MIT (src/fibo/LICENSE)",
+      "files": [
+        "fibo/FND/Agreements/Contracts.rdf",
+        "fibo/FND/AgentsAndPeople/People.rdf",
+        "fibo/BE/LegalEntities/LegalPersons.rdf",
+        "fibo/FBC/DebtAndEquities/Debt.rdf",
+        "fibo/SEC/Debt/DebtInstruments.rdf",
+        "fibo/SEC/Debt/Bonds.rdf"
+      ]
+    },
+    "doco": {
+      "label": "DoCO, the Document Components Ontology (SPAR), version 1.4.0",
+      "pinnedSource": "http://purl.org/spar/doco/2026-06-25",
+      "license": "CC BY 4.0",
+      "files": ["doco/doco.ttl"]
+    },
+    "rp": {
+      "label": "Regionproof fin:, doc: and rp: vocabularies with SKOS and PROV-O references",
+      "pinnedSource": "ontology/src/rp (this repository); SKOS 2009-08 and PROV-O 2013-04-30 (W3C)",
+      "license": "Regionproof files: repository license; SKOS and PROV-O: W3C Software and Document License",
+      "files": [
+        "rp/doc.ttl",
+        "rp/doctypes.ttl",
+        "rp/roles.ttl",
+        "rp/fin.ttl",
+        "w3c/skos.rdf",
+        "w3c/prov-o.ttl"
+      ]
+    }
+  }
+}

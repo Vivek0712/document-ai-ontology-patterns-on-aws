@@ -1,0 +1,119 @@
+{
+  "version": 1,
+  "tools": [
+    {
+      "name": "search_units",
+      "target": "search-units",
+      "description": "Hybrid (dense + BM25) search over the package's units for the active pipeline version. Returns the top K units with normalised scores, fields and page regions when available.",
+      "inputSchema": {
+        "properties": {
+          "query": {
+            "description": "Natural-language search query.",
+            "maxLength": 1000,
+            "minLength": 1,
+            "type": "string"
+          },
+          "k": {
+            "maximum": 10,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Results to return; default from config (5)."
+          },
+          "docType": {
+            "type": "string",
+            "description": "Optional docType filter, e.g. doc:W2."
+          },
+          "unitTypes": {
+            "items": {
+              "description": "Unit types. v1.0 produces only CHUNK; v2.3.1 produces the evidence-unit types.",
+              "enum": [
+                "chunk",
+                "table_panel",
+                "section_text",
+                "figure_panel",
+                "field_group",
+                "list_block"
+              ],
+              "type": "string"
+            },
+            "type": "array",
+            "description": "Optional unit type filter."
+          }
+        },
+        "required": [
+          "query"
+        ],
+        "type": "object"
+      }
+    },
+    {
+      "name": "graph_hop",
+      "target": "graph-hop",
+      "description": "Run an approved SPARQL template over the package's knowledge graph (FIBO subset, DoCO, SKOS, PROV-O, fin:). Returns rows, a computed total when the template has one, and operand lineage.",
+      "inputSchema": {
+        "properties": {
+          "template": {
+            "enum": [
+              "qi_sum_w2_box1_v1",
+              "field_lookup_v1",
+              "concept_by_label_v1",
+              "unit_lineage_v1",
+              "coupon_terms_v1"
+            ],
+            "type": "string"
+          },
+          "params": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Template parameters: field_lookup_v1 {concept, borrower?}; concept_by_label_v1 {label}; unit_lineage_v1 {unitId}; qi_sum_w2_box1_v1 {} (taxYear optional); coupon_terms_v1 {security} (a security identifier such as XS-2031).",
+            "type": "object"
+          }
+        },
+        "required": [
+          "template"
+        ],
+        "type": "object"
+      }
+    },
+    {
+      "name": "get_region",
+      "target": "get-region",
+      "description": "Resolve the page region for a unit or one of its fields: page, bbox in PDF points (top-left origin), page size.",
+      "inputSchema": {
+        "properties": {
+          "unitId": {
+            "type": "string"
+          },
+          "fieldId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "unitId"
+        ],
+        "type": "object"
+      }
+    },
+    {
+      "name": "doc_status",
+      "target": "doc-status",
+      "description": "Ingestion status of the package's documents for the active pipeline version.",
+      "inputSchema": {
+        "properties": {
+          "docId": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      }
+    }
+  ],
+  "injectedFields": [
+    "callerSub",
+    "groups",
+    "pipelineVersion",
+    "packageId",
+    "runId"
+  ]
+}

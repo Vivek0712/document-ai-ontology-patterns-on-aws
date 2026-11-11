@@ -1,0 +1,894 @@
+{
+ "runId": "r-48e1a435538e",
+ "createdAt": "2026-11-11T00:38:52.433Z",
+ "packageId": "pkg-quarterly-01",
+ "pipelineVersion": "2.3.1",
+ "question": "What was total revenue in Q3 FY2025?",
+ "callerSub": "local-dev-owner-0000",
+ "groups": [
+  "lending-analyst"
+ ],
+ "modelId": "us.anthropic.claude-sonnet-4-6",
+ "promptSha": "59984da199bb287de4b76a1d91bc0a5c27fde51028c39ffd04a33c3950a7d302",
+ "configSha": "a42731845bd93c07fb4e21644d86495b8349e4aa6e75014b90f547815ec35447",
+ "blockShas": {
+  "preprocessing": "40e8c03f17781382dcbcc29f7a0a84a8b1e9642cf92500d3980254a0cbd69a07",
+  "retrieval": "3587393d6f0d8c38adfaf6853c1463b54cc1ee872646ff354b3408da63dd586c",
+  "generation": "4731dca541739b7b91e53099ae45acb0f255c753e313bec48702fa79ecad436e",
+  "agent": "5ce789906365b6a0f9d139eba009f17b61d3113720a21c755e3f5be4459551f0"
+ },
+ "corpusHash": "4f9790b4a360d9ef57a232bb5ffd829704e5e2d07486c54522a00f9f83fd82b9",
+ "memoryRecordsInjected": 0,
+ "toolsEnabled": [
+  "search_units",
+  "graph_hop",
+  "get_region",
+  "doc_status"
+ ],
+ "toolCalls": [
+  {
+   "callId": "tooluse_UnAn8wTYps4MUJiyNm9CJ6",
+   "tool": "search_units",
+   "input": {
+    "query": "total revenue Q3 FY2025"
+   },
+   "injected": {
+    "callerSub": "local-",
+    "groups": [
+     "lending-analyst"
+    ],
+    "pipelineVersion": "2.3.1",
+    "packageId": "pkg-quarterly-01",
+    "runId": "r-48e1a435538e",
+    "via": "local-gateway"
+   },
+   "startedAt": "2026-11-11T00:38:54.142Z",
+   "ms": 19,
+   "status": "ok",
+   "output": {
+    "units": [
+     {
+      "rank": 1,
+      "unitId": "quarterly-report-q3-fy2025-ab5fea:2.3.1:eu-13",
+      "docId": "quarterly-report-q3-fy2025-ab5fea",
+      "fileName": "quarterly_report_q3_fy2025.pdf",
+      "unitType": "table_panel",
+      "label": "Quarterly report · 3.4 Revenue by quarter",
+      "docType": "doc:QuarterlyReport",
+      "breadcrumb": "Quarterly report Q3 FY2025 › 3.4 Revenue by quarter",
+      "text": "The table below sets out total revenue for each quarter of the fiscal year.\nQuarter │ Total revenue\nQ1 FY2025 │ 4,120\nQ2 FY2025 │ 4,455\nQ3 FY2025 │ 4,890\nQ4 FY2025 │ 5,010 1\nTable 3 · Total revenue · USD millions\n1 Q4 figures are preliminary.",
+      "pages": [
+       14
+      ],
+      "pageWidth": 612.0,
+      "pageHeight": 792.0,
+      "bboxes": [
+       {
+        "page": 14,
+        "x0": 52.97,
+        "y0": 99.62,
+        "x1": 553.01,
+        "y1": 261.96
+       }
+      ],
+      "fields": [
+       {
+        "fieldId": "f-q1-fy2025-total-revenue",
+        "label": "Q1 FY2025 · Total revenue",
+        "value": "4,120",
+        "valueNumber": "4120.00",
+        "period": "FY2025-Q3",
+        "page": 14,
+        "bbox": {
+         "page": 14,
+         "x0": 60.0,
+         "y0": 169.47,
+         "x1": 299.54,
+         "y1": 178.27
+        }
+       },
+       {
+        "fieldId": "f-q2-fy2025-total-revenue",
+        "label": "Q2 FY2025 · Total revenue",
+        "value": "4,455",
+        "valueNumber": "4455.00",
+        "period": "FY2025-Q3",
+        "page": 14,
+        "bbox": {
+         "page": 14,
+         "x0": 60.0,
+         "y0": 189.48,
+         "x1": 299.62,
+         "y1": 198.27
+        }
+       },
+       {
+        "fieldId": "f-q3-fy2025-total-revenue",
+        "label": "Q3 FY2025 · Total revenue",
+        "value": "4,890",
+        "valueNumber": "4890.00",
+        "period": "FY2025-Q3",
+        "page": 14,
+        "bbox": {
+         "page": 14,
+         "x0": 60.0,
+         "y0": 209.47,
+         "x1": 299.54,
+         "y1": 218.27
+        }
+       },
+       {
+        "fieldId": "f-q4-fy2025-total-revenue",
+        "label": "Q4 FY2025 · Total revenue",
+        "value": "5,010",
+        "valueNumber": "5010.00",
+        "period": "FY2025-Q3",
+        "page": 14,
+        "bbox": {
+         "page": 14,
+         "x0": 60.0,
+         "y0": 229.47,
+         "x1": 299.54,
+         "y1": 238.27
+        }
+       }
+      ],
+      "period": "FY2025-Q3",
+      "piiFlag": "none",
+      "resolvable": true,
+      "scores": {
+       "denseRaw": 1.695373,
+       "bm25Raw": 3.616022,
+       "denseNorm": 1.0,
+       "bm25Norm": 1.0,
+       "fused": 1.0
+      }
+     },
+     {
+      "rank": 2,
+      "unitId": "quarterly-report-q3-fy2024-ab0f27:2.3.1:eu-13",
+      "docId": "quarterly-report-q3-fy2024-ab0f27",
+      "fileName": "quarterly_report_q3_fy2024.pdf",
+      "unitType": "table_panel",
+      "label": "Quarterly report · 3.4 Revenue by quarter",
+      "docType": "doc:QuarterlyReport",
+      "breadcrumb": "Quarterly report Q3 FY2024 › 3.4 Revenue by quarter",
+      "text": "The table below sets out total revenue for each quarter of the fiscal year.\nQuarter │ Total revenue\nQ1 FY2024 │ 3,705\nQ2 FY2024 │ 3,815\nQ3 FY2024 │ 3,970\nQ4 FY2024 │ 4,090 1\nTable 3 · Total revenue · USD millions\n1 Q4 figures are preliminary.",
+      "pages": [
+       14
+      ],
+      "pageWidth": 612.0,
+      "pageHeight": 792.0,
+      "bboxes": [
+       {
+        "page": 14,
+        "x0": 52.94,
+        "y0": 99.62,
+        "x1": 553.03,
+        "y1": 261.96
+       }
+      ],
+      "fields": [
+       {
+        "fieldId": "f-q1-fy2024-total-revenue",
+        "label": "Q1 FY2024 · Total revenue",
+        "value": "3,705",
+        "valueNumber": "3705.00",
+        "period": "FY2024-Q3",
+        "page": 14,
+        "bbox": {
+         "page": 14,
+         "x0": 60.0,
+         "y0": 169.47,
+         "x1": 299.62,
+         "y1": 178.27
+        }
+       },
+       {
+        "fieldId": "f-q2-fy2024-total-revenue",
+        "label": "Q2 FY2024 · Total revenue",
+        "value": "3,815",
+        "valueNumber": "3815.00",
+        "period": "FY2024-Q3",
+        "page": 14,
+        "bbox": {
+         "page": 14,
+         "x0": 60.0,
+         "y0": 189.47,
+         "x1": 299.62,
+         "y1": 198.27
+        }
+       },
+       {
+        "fieldId": "f-q3-fy2024-total-revenue",
+        "label": "Q3 FY2024 · Total revenue",
+        "value": "3,970",
+        "valueNumber": "3970.00",
+        "period": "FY2024-Q3",
+        "page": 14,
+        "bbox": {
+         "page": 14,
+         "x0": 60.0,
+         "y0": 209.47,
+         "x1": 299.54,
+         "y1": 218.27
+        }
+       },
+       {
+        "fieldId": "f-q4-fy2024-total-revenue",
+        "label": "Q4 FY2024 · Total revenue",
+        "value": "4,090",
+        "valueNumber": "4090.00",
+        "period": "FY2024-Q3",
+        "page": 14,
+        "bbox": {
+         "page": 14,
+         "x0": 60.0,
+         "y0": 229.47,
+         "x1": 299.54,
+         "y1": 238.27
+        }
+       }
+      ],
+      "period": "FY2024-Q3",
+      "piiFlag": "none",
+      "resolvable": true,
+      "scores": {
+       "denseRaw": 1.60685,
+       "bm25Raw": 2.673192,
+       "denseNorm": 0.6748,
+       "bm25Norm": 0.6625,
+       "fused": 0.6711
+      }
+     },
+     {
+      "rank": 3,
+      "unitId": "quarterly-report-q3-fy2023-f6e6a3:2.3.1:eu-13",
+      "docId": "quarterly-report-q3-fy2023-f6e6a3",
+      "fileName": "quarterly_report_q3_fy2023.pdf",
+      "unitType": "table_panel",
+      "label": "Quarterly report · 3.4 Revenue by quarter",
+      "docType": "doc:QuarterlyReport",
+      "breadcrumb": "Quarterly report Q3 FY2023 › 3.4 Revenue by quarter",
+      "text": "The table below sets out total revenue for each quarter of the fiscal year.\nQuarter │ Total revenue\nQ1 FY2023 │ 3,705\nQ2 FY2023 │ 3,890\nQ3 FY2023 │ 4,200\nQ4 FY2023 │ 4,325 1\nTable 3 · Total revenue · USD millions\n1 Q4 figures are preliminary.",
+      "pages": [
+       14
+      ],
+      "pageWidth": 612.0,
+      "pageHeight": 792.0,
+      "bboxes": [
+       {
+        "page": 14,
+        "x0": 52.92,
+        "y0": 99.62,
+        "x1": 553.04,
+        "y1": 261.96
+       }
+      ],
+      "fields": [
+       {
+        "fieldId": "f-q1-fy2023-total-revenue",
+        "label": "Q1 FY2023 · Total revenue",
+        "value": "3,705",
+        "valueNumber": "3705.00",
+        "period": "FY2023-Q3",
+        "page": 14,
+        "bbox": {
+         "page": 14,
+         "x0": 60.0,
+         "y0": 169.47,
+         "x1": 299.62,
+         "y1": 178.27
+        }
+       },
+       {
+        "fieldId": "f-q2-fy2023-total-revenue",
+        "label": "Q2 FY2023 · Total revenue",
+        "value": "3,890",
+        "valueNumber": "3890.00",
+        "period": "FY2023-Q3",
+        "page": 14,
+        "bbox": {
+         "page": 14,
+         "x0": 60.0,
+         "y0": 189.47,
+         "x1": 299.54,
+         "y1": 198.27
+        }
+       },
+       {
+        "fieldId": "f-q3-fy2023-total-revenue",
+        "label": "Q3 FY2023 · Total revenue",
+        "value": "4,200",
+        "valueNumber": "4200.00",
+        "period": "FY2023-Q3",
+        "page": 14,
+        "bbox": {
+         "page": 14,
+         "x0": 60.0,
+         "y0": 209.47,
+         "x1": 299.54,
+         "y1": 218.27
+        }
+       },
+       {
+        "fieldId": "f-q4-fy2023-total-revenue",
+        "label": "Q4 FY2023 · Total revenue",
+        "value": "4,325",
+        "valueNumber": "4325.00",
+        "period": "FY2023-Q3",
+        "page": 14,
+        "bbox": {
+         "page": 14,
+         "x0": 60.0,
+         "y0": 229.47,
+         "x1": 299.62,
+         "y1": 238.27
+        }
+       }
+      ],
+      "period": "FY2023-Q3",
+      "piiFlag": "none",
+      "resolvable": true,
+      "scores": {
+       "denseRaw": 1.595857,
+       "bm25Raw": 2.673192,
+       "denseNorm": 0.6344,
+       "bm25Norm": 0.6625,
+       "fused": 0.6428
+      }
+     },
+     {
+      "rank": 4,
+      "unitId": "quarterly-report-q3-fy2025-ab5fea:2.3.1:eu-10",
+      "docId": "quarterly-report-q3-fy2025-ab5fea",
+      "fileName": "quarterly_report_q3_fy2025.pdf",
+      "unitType": "figure_panel",
+      "label": "Quarterly report · 3.2 Revenue by segment",
+      "docType": "doc:QuarterlyReport",
+      "breadcrumb": "Quarterly report Q3 FY2025 › 3.2 Revenue by segment",
+      "text": "Figure 2 · Revenue by segment · Q3 FY2025 · USD millions",
+      "pages": [
+       12
+      ],
+      "pageWidth": 612.0,
+      "pageHeight": 792.0,
+      "bboxes": [
+       {
+        "page": 12,
+        "x0": 60.0,
+        "y0": 99.62,
+        "x1": 509.54,
+        "y1": 284.82
+       }
+      ],
+      "fields": [],
+      "period": "FY2025-Q3",
+      "piiFlag": "none",
+      "resolvable": true,
+      "scores": {
+       "denseRaw": 1.6105,
+       "bm25Raw": 1.873567,
+       "denseNorm": 0.6882,
+       "bm25Norm": 0.3762,
+       "fused": 0.5946
+      }
+     },
+     {
+      "rank": 5,
+      "unitId": "quarterly-report-q3-fy2025-ab5fea:2.3.1:eu-12",
+      "docId": "quarterly-report-q3-fy2025-ab5fea",
+      "fileName": "quarterly_report_q3_fy2025.pdf",
+      "unitType": "section_text",
+      "label": "Quarterly report · 3.4 Revenue by quarter",
+      "docType": "doc:QuarterlyReport",
+      "breadcrumb": "Quarterly report Q3 FY2025 › 3.4 Revenue by quarter",
+      "text": "3.4 Revenue by quarter\nOperating teams completed the migration of merchant onboarding to the shared identity service. The compliance function completed its annual review of sanctions screening controls.\nTreasury extended the maturity profile of wholesale funding during the period. Cost discipline remained a priority, and discretionary spending was held flat.",
+      "pages": [
+       14
+      ],
+      "pageWidth": 612.0,
+      "pageHeight": 792.0,
+      "bboxes": [
+       {
+        "page": 14,
+        "x0": 60.0,
+        "y0": 75.38,
+        "x1": 522.98,
+        "y1": 336.87
+       }
+      ],
+      "fields": [],
+      "period": "FY2025-Q3",
+      "piiFlag": "none",
+      "resolvable": true,
+      "scores": {
+       "denseRaw": 1.568197,
+       "bm25Raw": 1.435474,
+       "denseNorm": 0.5328,
+       "bm25Norm": 0.2193,
+       "fused": 0.4387
+      }
+     }
+    ],
+    "query": {
+     "index": "units-v2-3-1",
+     "k": 5,
+     "subQueryK": 20,
+     "weights": {
+      "dense": 0.7,
+      "bm25": 0.3
+     },
+     "normalization": "min_max",
+     "filter": {
+      "bool": {
+       "filter": [
+        {
+         "terms": {
+          "allowedPrincipals": [
+           "user:local-dev-owner-0000",
+           "group:lending-analyst"
+          ]
+         }
+        },
+        {
+         "term": {
+          "packageId": "pkg-quarterly-01"
+         }
+        },
+        {
+         "term": {
+          "pipelineVersion": "2.3.1"
+         }
+        }
+       ],
+       "must_not": [
+        {
+         "term": {
+          "piiFlag": "held"
+         }
+        }
+       ]
+      }
+     },
+     "embedModel": "amazon.titan-embed-text-v2:0"
+    },
+    "latencyMs": 18
+   }
+  }
+ ],
+ "retrieved": [
+  {
+   "rank": 1,
+   "unitId": "quarterly-report-q3-fy2025-ab5fea:2.3.1:eu-13",
+   "docId": "quarterly-report-q3-fy2025-ab5fea",
+   "fileName": "quarterly_report_q3_fy2025.pdf",
+   "unitType": "table_panel",
+   "label": "Quarterly report · 3.4 Revenue by quarter",
+   "docType": "doc:QuarterlyReport",
+   "breadcrumb": "Quarterly report Q3 FY2025 › 3.4 Revenue by quarter",
+   "text": "The table below sets out total revenue for each quarter of the fiscal year.\nQuarter │ Total revenue\nQ1 FY2025 │ 4,120\nQ2 FY2025 │ 4,455\nQ3 FY2025 │ 4,890\nQ4 FY2025 │ 5,010 1\nTable 3 · Total revenue · USD millions\n1 Q4 figures are preliminary.",
+   "pages": [
+    14
+   ],
+   "pageWidth": 612.0,
+   "pageHeight": 792.0,
+   "bboxes": [
+    {
+     "page": 14,
+     "x0": 52.97,
+     "y0": 99.62,
+     "x1": 553.01,
+     "y1": 261.96
+    }
+   ],
+   "fields": [
+    {
+     "fieldId": "f-q1-fy2025-total-revenue",
+     "label": "Q1 FY2025 · Total revenue",
+     "value": "4,120",
+     "valueNumber": "4120.00",
+     "period": "FY2025-Q3",
+     "page": 14,
+     "bbox": {
+      "page": 14,
+      "x0": 60.0,
+      "y0": 169.47,
+      "x1": 299.54,
+      "y1": 178.27
+     }
+    },
+    {
+     "fieldId": "f-q2-fy2025-total-revenue",
+     "label": "Q2 FY2025 · Total revenue",
+     "value": "4,455",
+     "valueNumber": "4455.00",
+     "period": "FY2025-Q3",
+     "page": 14,
+     "bbox": {
+      "page": 14,
+      "x0": 60.0,
+      "y0": 189.48,
+      "x1": 299.62,
+      "y1": 198.27
+     }
+    },
+    {
+     "fieldId": "f-q3-fy2025-total-revenue",
+     "label": "Q3 FY2025 · Total revenue",
+     "value": "4,890",
+     "valueNumber": "4890.00",
+     "period": "FY2025-Q3",
+     "page": 14,
+     "bbox": {
+      "page": 14,
+      "x0": 60.0,
+      "y0": 209.47,
+      "x1": 299.54,
+      "y1": 218.27
+     }
+    },
+    {
+     "fieldId": "f-q4-fy2025-total-revenue",
+     "label": "Q4 FY2025 · Total revenue",
+     "value": "5,010",
+     "valueNumber": "5010.00",
+     "period": "FY2025-Q3",
+     "page": 14,
+     "bbox": {
+      "page": 14,
+      "x0": 60.0,
+      "y0": 229.47,
+      "x1": 299.54,
+      "y1": 238.27
+     }
+    }
+   ],
+   "period": "FY2025-Q3",
+   "piiFlag": "none",
+   "resolvable": true,
+   "scores": {
+    "denseRaw": 1.695373,
+    "bm25Raw": 3.616022,
+    "denseNorm": 1.0,
+    "bm25Norm": 1.0,
+    "fused": 1.0
+   }
+  },
+  {
+   "rank": 2,
+   "unitId": "quarterly-report-q3-fy2024-ab0f27:2.3.1:eu-13",
+   "docId": "quarterly-report-q3-fy2024-ab0f27",
+   "fileName": "quarterly_report_q3_fy2024.pdf",
+   "unitType": "table_panel",
+   "label": "Quarterly report · 3.4 Revenue by quarter",
+   "docType": "doc:QuarterlyReport",
+   "breadcrumb": "Quarterly report Q3 FY2024 › 3.4 Revenue by quarter",
+   "text": "The table below sets out total revenue for each quarter of the fiscal year.\nQuarter │ Total revenue\nQ1 FY2024 │ 3,705\nQ2 FY2024 │ 3,815\nQ3 FY2024 │ 3,970\nQ4 FY2024 │ 4,090 1\nTable 3 · Total revenue · USD millions\n1 Q4 figures are preliminary.",
+   "pages": [
+    14
+   ],
+   "pageWidth": 612.0,
+   "pageHeight": 792.0,
+   "bboxes": [
+    {
+     "page": 14,
+     "x0": 52.94,
+     "y0": 99.62,
+     "x1": 553.03,
+     "y1": 261.96
+    }
+   ],
+   "fields": [
+    {
+     "fieldId": "f-q1-fy2024-total-revenue",
+     "label": "Q1 FY2024 · Total revenue",
+     "value": "3,705",
+     "valueNumber": "3705.00",
+     "period": "FY2024-Q3",
+     "page": 14,
+     "bbox": {
+      "page": 14,
+      "x0": 60.0,
+      "y0": 169.47,
+      "x1": 299.62,
+      "y1": 178.27
+     }
+    },
+    {
+     "fieldId": "f-q2-fy2024-total-revenue",
+     "label": "Q2 FY2024 · Total revenue",
+     "value": "3,815",
+     "valueNumber": "3815.00",
+     "period": "FY2024-Q3",
+     "page": 14,
+     "bbox": {
+      "page": 14,
+      "x0": 60.0,
+      "y0": 189.47,
+      "x1": 299.62,
+      "y1": 198.27
+     }
+    },
+    {
+     "fieldId": "f-q3-fy2024-total-revenue",
+     "label": "Q3 FY2024 · Total revenue",
+     "value": "3,970",
+     "valueNumber": "3970.00",
+     "period": "FY2024-Q3",
+     "page": 14,
+     "bbox": {
+      "page": 14,
+      "x0": 60.0,
+      "y0": 209.47,
+      "x1": 299.54,
+      "y1": 218.27
+     }
+    },
+    {
+     "fieldId": "f-q4-fy2024-total-revenue",
+     "label": "Q4 FY2024 · Total revenue",
+     "value": "4,090",
+     "valueNumber": "4090.00",
+     "period": "FY2024-Q3",
+     "page": 14,
+     "bbox": {
+      "page": 14,
+      "x0": 60.0,
+      "y0": 229.47,
+      "x1": 299.54,
+      "y1": 238.27
+     }
+    }
+   ],
+   "period": "FY2024-Q3",
+   "piiFlag": "none",
+   "resolvable": true,
+   "scores": {
+    "denseRaw": 1.60685,
+    "bm25Raw": 2.673192,
+    "denseNorm": 0.6748,
+    "bm25Norm": 0.6625,
+    "fused": 0.6711
+   }
+  },
+  {
+   "rank": 3,
+   "unitId": "quarterly-report-q3-fy2023-f6e6a3:2.3.1:eu-13",
+   "docId": "quarterly-report-q3-fy2023-f6e6a3",
+   "fileName": "quarterly_report_q3_fy2023.pdf",
+   "unitType": "table_panel",
+   "label": "Quarterly report · 3.4 Revenue by quarter",
+   "docType": "doc:QuarterlyReport",
+   "breadcrumb": "Quarterly report Q3 FY2023 › 3.4 Revenue by quarter",
+   "text": "The table below sets out total revenue for each quarter of the fiscal year.\nQuarter │ Total revenue\nQ1 FY2023 │ 3,705\nQ2 FY2023 │ 3,890\nQ3 FY2023 │ 4,200\nQ4 FY2023 │ 4,325 1\nTable 3 · Total revenue · USD millions\n1 Q4 figures are preliminary.",
+   "pages": [
+    14
+   ],
+   "pageWidth": 612.0,
+   "pageHeight": 792.0,
+   "bboxes": [
+    {
+     "page": 14,
+     "x0": 52.92,
+     "y0": 99.62,
+     "x1": 553.04,
+     "y1": 261.96
+    }
+   ],
+   "fields": [
+    {
+     "fieldId": "f-q1-fy2023-total-revenue",
+     "label": "Q1 FY2023 · Total revenue",
+     "value": "3,705",
+     "valueNumber": "3705.00",
+     "period": "FY2023-Q3",
+     "page": 14,
+     "bbox": {
+      "page": 14,
+      "x0": 60.0,
+      "y0": 169.47,
+      "x1": 299.62,
+      "y1": 178.27
+     }
+    },
+    {
+     "fieldId": "f-q2-fy2023-total-revenue",
+     "label": "Q2 FY2023 · Total revenue",
+     "value": "3,890",
+     "valueNumber": "3890.00",
+     "period": "FY2023-Q3",
+     "page": 14,
+     "bbox": {
+      "page": 14,
+      "x0": 60.0,
+      "y0": 189.47,
+      "x1": 299.54,
+      "y1": 198.27
+     }
+    },
+    {
+     "fieldId": "f-q3-fy2023-total-revenue",
+     "label": "Q3 FY2023 · Total revenue",
+     "value": "4,200",
+     "valueNumber": "4200.00",
+     "period": "FY2023-Q3",
+     "page": 14,
+     "bbox": {
+      "page": 14,
+      "x0": 60.0,
+      "y0": 209.47,
+      "x1": 299.54,
+      "y1": 218.27
+     }
+    },
+    {
+     "fieldId": "f-q4-fy2023-total-revenue",
+     "label": "Q4 FY2023 · Total revenue",
+     "value": "4,325",
+     "valueNumber": "4325.00",
+     "period": "FY2023-Q3",
+     "page": 14,
+     "bbox": {
+      "page": 14,
+      "x0": 60.0,
+      "y0": 229.47,
+      "x1": 299.62,
+      "y1": 238.27
+     }
+    }
+   ],
+   "period": "FY2023-Q3",
+   "piiFlag": "none",
+   "resolvable": true,
+   "scores": {
+    "denseRaw": 1.595857,
+    "bm25Raw": 2.673192,
+    "denseNorm": 0.6344,
+    "bm25Norm": 0.6625,
+    "fused": 0.6428
+   }
+  },
+  {
+   "rank": 4,
+   "unitId": "quarterly-report-q3-fy2025-ab5fea:2.3.1:eu-10",
+   "docId": "quarterly-report-q3-fy2025-ab5fea",
+   "fileName": "quarterly_report_q3_fy2025.pdf",
+   "unitType": "figure_panel",
+   "label": "Quarterly report · 3.2 Revenue by segment",
+   "docType": "doc:QuarterlyReport",
+   "breadcrumb": "Quarterly report Q3 FY2025 › 3.2 Revenue by segment",
+   "text": "Figure 2 · Revenue by segment · Q3 FY2025 · USD millions",
+   "pages": [
+    12
+   ],
+   "pageWidth": 612.0,
+   "pageHeight": 792.0,
+   "bboxes": [
+    {
+     "page": 12,
+     "x0": 60.0,
+     "y0": 99.62,
+     "x1": 509.54,
+     "y1": 284.82
+    }
+   ],
+   "fields": [],
+   "period": "FY2025-Q3",
+   "piiFlag": "none",
+   "resolvable": true,
+   "scores": {
+    "denseRaw": 1.6105,
+    "bm25Raw": 1.873567,
+    "denseNorm": 0.6882,
+    "bm25Norm": 0.3762,
+    "fused": 0.5946
+   }
+  },
+  {
+   "rank": 5,
+   "unitId": "quarterly-report-q3-fy2025-ab5fea:2.3.1:eu-12",
+   "docId": "quarterly-report-q3-fy2025-ab5fea",
+   "fileName": "quarterly_report_q3_fy2025.pdf",
+   "unitType": "section_text",
+   "label": "Quarterly report · 3.4 Revenue by quarter",
+   "docType": "doc:QuarterlyReport",
+   "breadcrumb": "Quarterly report Q3 FY2025 › 3.4 Revenue by quarter",
+   "text": "3.4 Revenue by quarter\nOperating teams completed the migration of merchant onboarding to the shared identity service. The compliance function completed its annual review of sanctions screening controls.\nTreasury extended the maturity profile of wholesale funding during the period. Cost discipline remained a priority, and discretionary spending was held flat.",
+   "pages": [
+    14
+   ],
+   "pageWidth": 612.0,
+   "pageHeight": 792.0,
+   "bboxes": [
+    {
+     "page": 14,
+     "x0": 60.0,
+     "y0": 75.38,
+     "x1": 522.98,
+     "y1": 336.87
+    }
+   ],
+   "fields": [],
+   "period": "FY2025-Q3",
+   "piiFlag": "none",
+   "resolvable": true,
+   "scores": {
+    "denseRaw": 1.568197,
+    "bm25Raw": 1.435474,
+    "denseNorm": 0.5328,
+    "bm25Norm": 0.2193,
+    "fused": 0.4387
+   }
+  }
+ ],
+ "retrievedText": [
+  "The table below sets out total revenue for each quarter of the fiscal year.\nQuarter │ Total revenue\nQ1 FY2025 │ 4,120\nQ2 FY2025 │ 4,455\nQ3 FY2025 │ 4,890\nQ4 FY2025 │ 5,010 1\nTable 3 · Total revenue · USD millions\n1 Q4 figures are preliminary.",
+  "The table below sets out total revenue for each quarter of the fiscal year.\nQuarter │ Total revenue\nQ1 FY2024 │ 3,705\nQ2 FY2024 │ 3,815\nQ3 FY2024 │ 3,970\nQ4 FY2024 │ 4,090 1\nTable 3 · Total revenue · USD millions\n1 Q4 figures are preliminary.",
+  "The table below sets out total revenue for each quarter of the fiscal year.\nQuarter │ Total revenue\nQ1 FY2023 │ 3,705\nQ2 FY2023 │ 3,890\nQ3 FY2023 │ 4,200\nQ4 FY2023 │ 4,325 1\nTable 3 · Total revenue · USD millions\n1 Q4 figures are preliminary.",
+  "Figure 2 · Revenue by segment · Q3 FY2025 · USD millions",
+  "3.4 Revenue by quarter\nOperating teams completed the migration of merchant onboarding to the shared identity service. The compliance function completed its annual review of sanctions screening controls.\nTreasury extended the maturity profile of wholesale funding during the period. Cost discipline remained a priority, and discretionary spending was held flat."
+ ],
+ "answer": {
+  "answer": "Total revenue in Q3 FY2025 was USD 4,890 million, as reported in the Q3 FY2025 quarterly report's 'Revenue by quarter' table (Table 3, page 14).",
+  "total": "4,890.00",
+  "currency": "USD",
+  "claims": [
+   {
+    "text": "USD 4,890 million",
+    "value": "4890.00",
+    "unitId": "quarterly-report-q3-fy2025-ab5fea:2.3.1:eu-13",
+    "fieldId": "f-q3-fy2025-total-revenue",
+    "docId": "quarterly-report-q3-fy2025-ab5fea",
+    "fileName": "quarterly_report_q3_fy2025.pdf",
+    "label": "Quarterly report · 3.4 Revenue by quarter · Q3 FY2025 · Total revenue · p.14",
+    "page": 14,
+    "bbox": {
+     "page": 14,
+     "x0": 60.0,
+     "y0": 209.47,
+     "x1": 299.54,
+     "y1": 218.27
+    },
+    "unitBbox": {
+     "page": 14,
+     "x0": 52.97,
+     "y0": 99.62,
+     "x1": 553.01,
+     "y1": 261.96
+    },
+    "resolvable": true
+   }
+  ],
+  "caveats": [
+   "Figure is expressed in USD millions per the table header.",
+   "Q4 FY2025 figures in the same table are noted as preliminary; Q3 figures carry no such qualifier."
+  ],
+  "citationRetries": 0,
+  "uncitedNumbers": []
+ },
+ "usage": {
+  "inputTokens": 7130,
+  "outputTokens": 308,
+  "totalTokens": 7438
+ },
+ "latencyMs": 4745,
+ "status": "ok",
+ "s3Key": "runs/r-48e1a435538e.json",
+ "provenance": {
+  "mode": "local-run",
+  "label": "local run · Bedrock",
+  "note": "Asked on a developer machine against the local pipeline's outputs; not the deployed AWS stack.",
+  "build": "build/e2e-quarterly",
+  "model": "Amazon Bedrock Converse (real)",
+  "embeddings": "amazon.titan-embed-text-v2:0 (real Bedrock; responses recorded)",
+  "index": "in-memory k-NN (exact inner product) + BM25 (Lucene formula) over the run's units; NOT OpenSearch",
+  "graph": "pyoxigraph in-process (NOT Amazon Neptune)",
+  "stores": "moto (S3, DynamoDB) loaded from the run's world snapshot",
+  "piiGate": "Amazon Comprehend DetectPiiEntities (real; responses recorded) (runs/local/recorded/comprehend.json)",
+  "extraction": "docling 2.145.0 (local, dev mode)",
+  "scanPages": "local Docling OCR shaped as a Textract response (NOT Amazon Textract)",
+  "phaseBEmbeddings": "amazon.titan-embed-text-v2:0 (real Bedrock; responses recorded)",
+  "toolTransport": "tool Lambda handlers in-process (local gateway; identity injected like the interceptor)"
+ }
+}

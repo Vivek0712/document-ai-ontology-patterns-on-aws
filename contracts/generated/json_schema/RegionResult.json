@@ -1,0 +1,252 @@
+{
+  "$defs": {
+    "BBox": {
+      "properties": {
+        "page": {
+          "minimum": 1,
+          "title": "Page",
+          "type": "integer"
+        },
+        "x0": {
+          "title": "X0",
+          "type": "number"
+        },
+        "y0": {
+          "title": "Y0",
+          "type": "number"
+        },
+        "x1": {
+          "title": "X1",
+          "type": "number"
+        },
+        "y1": {
+          "title": "Y1",
+          "type": "number"
+        }
+      },
+      "required": [
+        "page",
+        "x0",
+        "y0",
+        "x1",
+        "y1"
+      ],
+      "title": "BBox",
+      "type": "object"
+    },
+    "PiiFlag": {
+      "description": "Result of the PII gate for one unit.",
+      "enum": [
+        "none",
+        "masked",
+        "held"
+      ],
+      "title": "PiiFlag",
+      "type": "string"
+    },
+    "UnitType": {
+      "description": "Unit types. v1.0 produces only CHUNK; v2.3.1 produces the evidence-unit types.",
+      "enum": [
+        "chunk",
+        "table_panel",
+        "section_text",
+        "figure_panel",
+        "field_group",
+        "list_block"
+      ],
+      "title": "UnitType",
+      "type": "string"
+    }
+  },
+  "description": "Shared shape of the get_region tool result and GET /region/{unitId} (HTTP adds url).",
+  "properties": {
+    "unitId": {
+      "title": "Unitid",
+      "type": "string"
+    },
+    "fieldId": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Fieldid"
+    },
+    "docId": {
+      "title": "Docid",
+      "type": "string"
+    },
+    "fileName": {
+      "title": "Filename",
+      "type": "string"
+    },
+    "label": {
+      "title": "Label",
+      "type": "string"
+    },
+    "page": {
+      "title": "Page",
+      "type": "integer"
+    },
+    "bbox": {
+      "$ref": "#/$defs/BBox"
+    },
+    "fieldBbox": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/BBox"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "unitBboxes": {
+      "items": {
+        "$ref": "#/$defs/BBox"
+      },
+      "title": "Unitbboxes",
+      "type": "array"
+    },
+    "pageWidth": {
+      "title": "Pagewidth",
+      "type": "number"
+    },
+    "pageHeight": {
+      "title": "Pageheight",
+      "type": "number"
+    },
+    "pageImageKey": {
+      "title": "Pageimagekey",
+      "type": "string"
+    },
+    "heldRegions": {
+      "items": {
+        "$ref": "#/$defs/BBox"
+      },
+      "title": "Heldregions",
+      "type": "array"
+    },
+    "value": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Value"
+    },
+    "fieldLabel": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Fieldlabel"
+    },
+    "concept": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Concept"
+    },
+    "unitType": {
+      "$ref": "#/$defs/UnitType"
+    },
+    "breadcrumb": {
+      "default": "",
+      "title": "Breadcrumb",
+      "type": "string"
+    },
+    "engine": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Engine"
+    },
+    "piiFlag": {
+      "$ref": "#/$defs/PiiFlag",
+      "default": "none"
+    },
+    "pipelineVersion": {
+      "title": "Pipelineversion",
+      "type": "string"
+    },
+    "ontologyVersion": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Ontologyversion"
+    },
+    "url": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Url"
+    },
+    "expiresIn": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Expiresin"
+    }
+  },
+  "required": [
+    "unitId",
+    "docId",
+    "fileName",
+    "label",
+    "page",
+    "bbox",
+    "unitBboxes",
+    "pageWidth",
+    "pageHeight",
+    "pageImageKey",
+    "unitType",
+    "pipelineVersion"
+  ],
+  "title": "RegionResult",
+  "type": "object"
+}

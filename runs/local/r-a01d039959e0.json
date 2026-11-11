@@ -1,0 +1,1245 @@
+{
+ "runId": "r-a01d039959e0",
+ "createdAt": "2026-11-10T22:14:02.661Z",
+ "packageId": "pkg-lending-01",
+ "pipelineVersion": "2.3.1",
+ "question": "What is Maya Fictus's year-to-date gross pay on the September 2026 payslip?",
+ "callerSub": "local-dev-owner-0000",
+ "groups": [
+  "lending-analyst"
+ ],
+ "modelId": "us.anthropic.claude-sonnet-4-6",
+ "promptSha": "59984da199bb287de4b76a1d91bc0a5c27fde51028c39ffd04a33c3950a7d302",
+ "configSha": "a42731845bd93c07fb4e21644d86495b8349e4aa6e75014b90f547815ec35447",
+ "blockShas": {
+  "preprocessing": "40e8c03f17781382dcbcc29f7a0a84a8b1e9642cf92500d3980254a0cbd69a07",
+  "retrieval": "3587393d6f0d8c38adfaf6853c1463b54cc1ee872646ff354b3408da63dd586c",
+  "generation": "4731dca541739b7b91e53099ae45acb0f255c753e313bec48702fa79ecad436e",
+  "agent": "5ce789906365b6a0f9d139eba009f17b61d3113720a21c755e3f5be4459551f0"
+ },
+ "corpusHash": "34856e2c51fa71d6ddc21b4493efde7b9d6ccd1d87ed0f3287908d6612b687e2",
+ "memoryRecordsInjected": 0,
+ "toolsEnabled": [
+  "search_units",
+  "graph_hop",
+  "get_region",
+  "doc_status"
+ ],
+ "toolCalls": [
+  {
+   "callId": "tooluse_DBE4P4UhvQo8rjQWdpwo7u",
+   "tool": "search_units",
+   "input": {
+    "query": "Maya Fictus September 2026 payslip year-to-date gross pay"
+   },
+   "injected": {
+    "callerSub": "local-",
+    "groups": [
+     "lending-analyst"
+    ],
+    "pipelineVersion": "2.3.1",
+    "packageId": "pkg-lending-01",
+    "runId": "r-a01d039959e0",
+    "via": "local-gateway"
+   },
+   "startedAt": "2026-11-10T22:14:05.930Z",
+   "ms": 8,
+   "status": "ok",
+   "output": {
+    "units": [
+     {
+      "rank": 1,
+      "unitId": "payslip-2026-09-maya-fictus-bd153b:2.3.1:eu-03",
+      "docId": "payslip-2026-09-maya-fictus-bd153b",
+      "fileName": "payslip_2026-09_maya_fictus.pdf",
+      "unitType": "table_panel",
+      "label": "Payslip · Maya Fictus · Earnings and deductions",
+      "docType": "doc:Payslip",
+      "breadcrumb": "Payslip Sep 2026 › Maya Fictus › Earnings and deductions",
+      "text": "Description │ Current │ Year to date\nGross pay │ 9,000.00 │ 81,000.00\n401(k) employee deferral │ 600.00 │ 5,400.00\nFederal income tax │ 1,170.00 │ 10,530.00\nSocial Security │ 558.00 │ 5,022.00\nMedicare │ 130.50 │ 1,174.50\nNet pay │ 6,541.50 │ 58,873.50",
+      "pages": [
+       1
+      ],
+      "pageWidth": 612.0,
+      "pageHeight": 792.0,
+      "bboxes": [
+       {
+        "page": 1,
+        "x0": 46.7,
+        "y0": 202.48,
+        "x1": 564.84,
+        "y1": 358.4
+       }
+      ],
+      "fields": [
+       {
+        "fieldId": "f-payslip-gross-pay-for-the-period",
+        "label": "Gross pay · Current",
+        "value": "9,000.00",
+        "valueNumber": "9000.00",
+        "concept": "fin:PayslipGrossPay",
+        "period": "2026-09",
+        "page": 1,
+        "bbox": {
+         "page": 1,
+         "x0": 60.0,
+         "y0": 233.81,
+         "x1": 399.51,
+         "y1": 243.07
+        }
+       },
+       {
+        "fieldId": "f-payslip-gross-pay-year-to-date",
+        "label": "Gross pay · Year to date",
+        "value": "81,000.00",
+        "valueNumber": "81000.00",
+        "concept": "fin:PayslipGrossPayYtd",
+        "period": "2026-09",
+        "page": 1,
+        "bbox": {
+         "page": 1,
+         "x0": 60.0,
+         "y0": 233.81,
+         "x1": 551.51,
+         "y1": 243.07
+        }
+       },
+       {
+        "fieldId": "f-payslip-401-k-deferral-for-the-period",
+        "label": "401(k) employee deferral · Current",
+        "value": "600.00",
+        "valueNumber": "600.00",
+        "concept": "fin:Payslip401kDeferral",
+        "period": "2026-09",
+        "page": 1,
+        "bbox": {
+         "page": 1,
+         "x0": 60.0,
+         "y0": 255.81,
+         "x1": 399.52,
+         "y1": 265.07
+        }
+       },
+       {
+        "fieldId": "f-federal-income-tax-current",
+        "label": "Federal income tax · Current",
+        "value": "1,170.00",
+        "valueNumber": "1170.00",
+        "period": "2026-09",
+        "page": 1,
+        "bbox": {
+         "page": 1,
+         "x0": 60.0,
+         "y0": 277.81,
+         "x1": 399.52,
+         "y1": 287.07
+        }
+       },
+       {
+        "fieldId": "f-federal-income-tax-year-to-date",
+        "label": "Federal income tax · Year to date",
+        "value": "10,530.00",
+        "valueNumber": "10530.00",
+        "period": "2026-09",
+        "page": 1,
+        "bbox": {
+         "page": 1,
+         "x0": 60.0,
+         "y0": 277.81,
+         "x1": 551.52,
+         "y1": 287.07
+        }
+       },
+       {
+        "fieldId": "f-social-security-current",
+        "label": "Social Security · Current",
+        "value": "558.00",
+        "valueNumber": "558.00",
+        "period": "2026-09",
+        "page": 1,
+        "bbox": {
+         "page": 1,
+         "x0": 60.0,
+         "y0": 299.81,
+         "x1": 399.52,
+         "y1": 309.07
+        }
+       },
+       {
+        "fieldId": "f-social-security-year-to-date",
+        "label": "Social Security · Year to date",
+        "value": "5,022.00",
+        "valueNumber": "5022.00",
+        "period": "2026-09",
+        "page": 1,
+        "bbox": {
+         "page": 1,
+         "x0": 60.0,
+         "y0": 299.81,
+         "x1": 551.52,
+         "y1": 309.07
+        }
+       },
+       {
+        "fieldId": "f-medicare-current",
+        "label": "Medicare · Current",
+        "value": "130.50",
+        "valueNumber": "130.50",
+        "period": "2026-09",
+        "page": 1,
+        "bbox": {
+         "page": 1,
+         "x0": 60.0,
+         "y0": 321.81,
+         "x1": 399.52,
+         "y1": 331.07
+        }
+       },
+       {
+        "fieldId": "f-medicare-year-to-date",
+        "label": "Medicare · Year to date",
+        "value": "1,174.50",
+        "valueNumber": "1174.50",
+        "period": "2026-09",
+        "page": 1,
+        "bbox": {
+         "page": 1,
+         "x0": 60.0,
+         "y0": 321.81,
+         "x1": 551.52,
+         "y1": 331.07
+        }
+       },
+       {
+        "fieldId": "f-payslip-net-pay-for-the-period",
+        "label": "Net pay · Current",
+        "value": "6,541.50",
+        "valueNumber": "6541.50",
+        "concept": "fin:PayslipNetPay",
+        "period": "2026-09",
+        "page": 1,
+        "bbox": {
+         "page": 1,
+         "x0": 60.0,
+         "y0": 343.81,
+         "x1": 399.51,
+         "y1": 353.07
+        }
+       },
+       {
+        "fieldId": "f-net-pay-year-to-date",
+        "label": "Net pay · Year to date",
+        "value": "58,873.50",
+        "valueNumber": "58873.50",
+        "period": "2026-09",
+        "page": 1,
+        "bbox": {
+         "page": 1,
+         "x0": 60.0,
+         "y0": 343.81,
+         "x1": 551.51,
+         "y1": 353.07
+        }
+       }
+      ],
+      "period": "2026-09",
+      "piiFlag": "none",
+      "resolvable": true,
+      "scores": {
+       "denseRaw": 1.838212,
+       "bm25Raw": 4.355524,
+       "denseNorm": 1.0,
+       "bm25Norm": 1.0,
+       "fused": 1.0
+      }
+     },
+     {
+      "rank": 2,
+      "unitId": "payslip-2026-09-maya-fictus-bd153b:2.3.1:eu-02",
+      "docId": "payslip-2026-09-maya-fictus-bd153b",
+      "fileName": "payslip_2026-09_maya_fictus.pdf",
+      "unitType": "table_panel",
+      "label": "Payslip · Maya Fictus · NewAge Global Fintech Services",
+      "docType": "doc:Payslip",
+      "breadcrumb": "Payslip Sep 2026 › Maya Fictus › NewAge Global Fintech Services",
+      "text": "Employee Maya Fictus Pay period 01-30 Sep │ Employee ID E-0417 Pay date 30 Sep\n2026 │ 2026",
+      "pages": [
+       1
+      ],
+      "pageWidth": 612.0,
+      "pageHeight": 792.0,
+      "bboxes": [
+       {
+        "page": 1,
+        "x0": 46.91,
+        "y0": 98.6,
+        "x1": 564.57,
+        "y1": 176.55
+       }
+      ],
+      "fields": [],
+      "period": "2026-09",
+      "piiFlag": "none",
+      "resolvable": true,
+      "scores": {
+       "denseRaw": 1.640011,
+       "bm25Raw": 2.499784,
+       "denseNorm": 0.7206,
+       "bm25Norm": 0.5721,
+       "fused": 0.6761
+      }
+     },
+     {
+      "rank": 3,
+      "unitId": "w2-2025-maya-fictus-827d37:2.3.1:eu-02",
+      "docId": "w2-2025-maya-fictus-827d37",
+      "fileName": "w2_2025_maya_fictus.pdf",
+      "unitType": "field_group",
+      "label": "W-2 · Maya Fictus · Wages (Boxes 1–6)",
+      "docType": "doc:W2",
+      "breadcrumb": "W-2 2025 › Maya Fictus › Wages (Boxes 1–6)",
+      "text": "c Employer's name, address, and ZIP code\nNewAge Global Fintech Services 400 Market Street Seattle, WA 98104\ne Employee's first name and initial Last name f Employee's address and ZIP code\nMaya Fictus 18 Harbor Lane Seattle, WA 98101\n3 Social security wages\n1 Wages, tips, other compensation\n2 Federal income tax withheld\n98,400.00\n13,776.00\n4 Social security tax withheld\n105,000.00\n5 Medicare wages and tips\n6 Medicare tax withheld\n105,000.00\n12a See instructions for box 12 Code\n6,600.00\n6,510.00\n1,522.50",
+      "pages": [
+       1
+      ],
+      "pageWidth": 612.0,
+      "pageHeight": 792.0,
+      "bboxes": [
+       {
+        "page": 1,
+        "x0": 39.0,
+        "y0": 100.33,
+        "x1": 568.0,
+        "y1": 365.4
+       }
+      ],
+      "fields": [
+       {
+        "fieldId": "f-box12a",
+        "label": "12a See instructions for box 12",
+        "value": "6,600.00",
+        "valueNumber": "6600.00",
+        "concept": "fin:W2Box12Amount",
+        "period": "TY2025",
+        "page": 1,
+        "bbox": {
+         "page": 1,
+         "x0": 444.71,
+         "y0": 280.27,
+         "x1": 566.88,
+         "y1": 305.45
+        }
+       },
+       {
+        "fieldId": "f-box3",
+        "label": "3 Social security wages",
+        "value": "105,000.00",
+        "valueNumber": "105000.00",
+        "concept": "fin:W2SocialSecurityWagesBox3",
+        "period": "TY2025",
+        "page": 1,
+        "bbox": {
+         "page": 1,
+         "x0": 309.27,
+         "y0": 136.27,
+         "x1": 431.88,
+         "y1": 161.45
+        }
+       },
+       {
+        "fieldId": "f-box5",
+        "label": "5 Medicare wages and tips",
+        "value": "105,000.00",
+        "valueNumber": "105000.00",
+        "concept": "fin:W2MedicareWagesBox5",
+        "period": "TY2025",
+        "page": 1,
+        "bbox": {
+         "page": 1,
+         "x0": 309.27,
+         "y0": 172.35,
+         "x1": 431.88,
+         "y1": 197.45
+        }
+       },
+       {
+        "fieldId": "f-box1",
+        "label": "1 Wages, tips, other compensation",
+        "value": "98,400.00",
+        "valueNumber": "98400.00",
+        "concept": "fin:W2WagesBox1",
+        "period": "TY2025",
+        "page": 1,
+        "bbox": {
+         "page": 1,
+         "x0": 309.71,
+         "y0": 100.33,
+         "x1": 431.88,
+         "y1": 125.45
+        }
+       },
+       {
+        "fieldId": "f-box2",
+        "label": "2 Federal income tax withheld",
+        "value": "13,776.00",
+        "valueNumber": "13776.00",
+        "concept": "fin:W2FederalIncomeTaxWithheldBox2",
+        "period": "TY2025",
+        "page": 1,
+        "bbox": {
+         "page": 1,
+         "x0": 444.19,
+         "y0": 100.33,
+         "x1": 566.88,
+         "y1": 125.45
+        }
+       },
+       {
+        "fieldId": "f-box4",
+        "label": "4 Social security tax withheld",
+        "value": "6,510.00",
+        "valueNumber": "6510.00",
+        "concept": "fin:W2SocialSecurityTaxWithheldBox4",
+        "period": "TY2025",
+        "page": 1,
+        "bbox": {
+         "page": 1,
+         "x0": 444.08,
+         "y0": 136.27,
+         "x1": 566.88,
+         "y1": 161.45
+        }
+       },
+       {
+        "fieldId": "f-box6",
+        "label": "6 Medicare tax withheld",
+        "value": "1,522.50",
+        "valueNumber": "1522.50",
+        "concept": "fin:W2MedicareTaxWithheldBox6",
+        "period": "TY2025",
+        "page": 1,
+        "bbox": {
+         "page": 1,
+         "x0": 444.25,
+         "y0": 172.33,
+         "x1": 566.88,
+         "y1": 197.45
+        }
+       },
+       {
+        "fieldId": "f-boxc",
+        "label": "c Employer's name, address, and ZIP code",
+        "value": "NewAge Global Fintech Services",
+        "concept": "fin:W2EmployerName",
+        "period": "TY2025",
+        "page": 1,
+        "bbox": {
+         "page": 1,
+         "x0": 39.25,
+         "y0": 172.35,
+         "x1": 222.99,
+         "y1": 195.87
+        }
+       },
+       {
+        "fieldId": "f-boxe",
+        "label": "e Employee's first name and initial Last name f Employee's address and ZIP code",
+        "value": "Maya Fictus",
+        "concept": "fin:W2EmployeeName",
+        "period": "TY2025",
+        "page": 1,
+        "bbox": {
+         "page": 1,
+         "x0": 39.24,
+         "y0": 316.27,
+         "x1": 286.16,
+         "y1": 339.87
+        }
+       }
+      ],
+      "period": "TY2025",
+      "piiFlag": "none",
+      "resolvable": true,
+      "scores": {
+       "denseRaw": 1.624948,
+       "bm25Raw": 0.220021,
+       "denseNorm": 0.6994,
+       "bm25Norm": 0.0464,
+       "fused": 0.5035
+      }
+     },
+     {
+      "rank": 4,
+      "unitId": "payslip-2026-09-arjun-fictus-scan-8ff645:2.3.1:eu-02",
+      "docId": "payslip-2026-09-arjun-fictus-scan-8ff645",
+      "fileName": "payslip_2026-09_arjun_fictus_scan.pdf",
+      "unitType": "table_panel",
+      "label": "Payslip · Arjun Fictus · NewAge Global Fintech Payments",
+      "docType": "doc:Payslip",
+      "breadcrumb": "Payslip Sep 2026 › Arjun Fictus › NewAge Global Fintech Payments",
+      "text": "Employee Arjun Fictus Pay period 01-30 Sep 2026 Employee ID E-2290 Pay date 30 Sep 2026",
+      "pages": [
+       1
+      ],
+      "pageWidth": 612.0,
+      "pageHeight": 792.0,
+      "bboxes": [
+       {
+        "page": 1,
+        "x0": 42.55,
+        "y0": 95.2,
+        "x1": 561.76,
+        "y1": 175.04
+       }
+      ],
+      "fields": [],
+      "period": "2026-09",
+      "piiFlag": "none",
+      "resolvable": true,
+      "scores": {
+       "denseRaw": 1.450012,
+       "bm25Raw": 2.219466,
+       "denseNorm": 0.4528,
+       "bm25Norm": 0.5074,
+       "fused": 0.4692
+      }
+     },
+     {
+      "rank": 5,
+      "unitId": "bank-statement-2026-09-7c2e0d:2.3.1:eu-04",
+      "docId": "bank-statement-2026-09-7c2e0d",
+      "fileName": "bank_statement_2026-09.pdf",
+      "unitType": "table_panel",
+      "label": "Bank statement · Maya Fictus · Deposits",
+      "docType": "doc:BankStatement",
+      "breadcrumb": "Bank statement Sep 2026 › Maya Fictus › Deposits",
+      "text": "Date │ Description │ Amount (USD)\n2026-09-30 │ Payroll NewAge Global Fintech Services │ 6,541.50\n2026-09-30 │ Payroll NewAge Global Fintech Payments │ 4,962.75\n2026-09-30 │ Interest credit │ 4.18",
+      "pages": [
+       1
+      ],
+      "pageWidth": 612.0,
+      "pageHeight": 792.0,
+      "bboxes": [
+       {
+        "page": 1,
+        "x0": 46.86,
+        "y0": 328.55,
+        "x1": 564.85,
+        "y1": 410.51
+       }
+      ],
+      "fields": [
+       {
+        "fieldId": "f-2026-09-30-payroll-newage-global-fintech",
+        "label": "2026-09-30 Payroll NewAge Global Fintech Services · Amount (USD)",
+        "value": "6,541.50",
+        "valueNumber": "6541.50",
+        "period": "2026-09",
+        "page": 1,
+        "bbox": {
+         "page": 1,
+         "x0": 60.0,
+         "y0": 357.17,
+         "x1": 551.54,
+         "y1": 365.97
+        }
+       },
+       {
+        "fieldId": "f-2026-09-30-payroll-newage-global-fi-2",
+        "label": "2026-09-30 Payroll NewAge Global Fintech Payments · Amount (USD)",
+        "value": "4,962.75",
+        "valueNumber": "4962.75",
+        "period": "2026-09",
+        "page": 1,
+        "bbox": {
+         "page": 1,
+         "x0": 60.0,
+         "y0": 377.17,
+         "x1": 551.62,
+         "y1": 385.97
+        }
+       },
+       {
+        "fieldId": "f-2026-09-30-interest-credit-amount-usd",
+        "label": "2026-09-30 Interest credit · Amount (USD)",
+        "value": "4.18",
+        "valueNumber": "4.18",
+        "period": "2026-09",
+        "page": 1,
+        "bbox": {
+         "page": 1,
+         "x0": 60.0,
+         "y0": 397.17,
+         "x1": 551.58,
+         "y1": 405.97
+        }
+       }
+      ],
+      "period": "2026-09",
+      "piiFlag": "none",
+      "resolvable": true,
+      "scores": {
+       "denseRaw": 1.46002,
+       "bm25Raw": 0.866547,
+       "denseNorm": 0.4669,
+       "bm25Norm": 0.1955,
+       "fused": 0.3855
+      }
+     }
+    ],
+    "query": {
+     "index": "units-v2-3-1",
+     "k": 5,
+     "subQueryK": 20,
+     "weights": {
+      "dense": 0.7,
+      "bm25": 0.3
+     },
+     "normalization": "min_max",
+     "filter": {
+      "bool": {
+       "filter": [
+        {
+         "terms": {
+          "allowedPrincipals": [
+           "user:local-dev-owner-0000",
+           "group:lending-analyst"
+          ]
+         }
+        },
+        {
+         "term": {
+          "packageId": "pkg-lending-01"
+         }
+        },
+        {
+         "term": {
+          "pipelineVersion": "2.3.1"
+         }
+        }
+       ],
+       "must_not": [
+        {
+         "term": {
+          "piiFlag": "held"
+         }
+        }
+       ]
+      }
+     },
+     "embedModel": "amazon.titan-embed-text-v2:0"
+    },
+    "latencyMs": 7
+   }
+  }
+ ],
+ "retrieved": [
+  {
+   "rank": 1,
+   "unitId": "payslip-2026-09-maya-fictus-bd153b:2.3.1:eu-03",
+   "docId": "payslip-2026-09-maya-fictus-bd153b",
+   "fileName": "payslip_2026-09_maya_fictus.pdf",
+   "unitType": "table_panel",
+   "label": "Payslip · Maya Fictus · Earnings and deductions",
+   "docType": "doc:Payslip",
+   "breadcrumb": "Payslip Sep 2026 › Maya Fictus › Earnings and deductions",
+   "text": "Description │ Current │ Year to date\nGross pay │ 9,000.00 │ 81,000.00\n401(k) employee deferral │ 600.00 │ 5,400.00\nFederal income tax │ 1,170.00 │ 10,530.00\nSocial Security │ 558.00 │ 5,022.00\nMedicare │ 130.50 │ 1,174.50\nNet pay │ 6,541.50 │ 58,873.50",
+   "pages": [
+    1
+   ],
+   "pageWidth": 612.0,
+   "pageHeight": 792.0,
+   "bboxes": [
+    {
+     "page": 1,
+     "x0": 46.7,
+     "y0": 202.48,
+     "x1": 564.84,
+     "y1": 358.4
+    }
+   ],
+   "fields": [
+    {
+     "fieldId": "f-payslip-gross-pay-for-the-period",
+     "label": "Gross pay · Current",
+     "value": "9,000.00",
+     "valueNumber": "9000.00",
+     "concept": "fin:PayslipGrossPay",
+     "period": "2026-09",
+     "page": 1,
+     "bbox": {
+      "page": 1,
+      "x0": 60.0,
+      "y0": 233.81,
+      "x1": 399.51,
+      "y1": 243.07
+     }
+    },
+    {
+     "fieldId": "f-payslip-gross-pay-year-to-date",
+     "label": "Gross pay · Year to date",
+     "value": "81,000.00",
+     "valueNumber": "81000.00",
+     "concept": "fin:PayslipGrossPayYtd",
+     "period": "2026-09",
+     "page": 1,
+     "bbox": {
+      "page": 1,
+      "x0": 60.0,
+      "y0": 233.81,
+      "x1": 551.51,
+      "y1": 243.07
+     }
+    },
+    {
+     "fieldId": "f-payslip-401-k-deferral-for-the-period",
+     "label": "401(k) employee deferral · Current",
+     "value": "600.00",
+     "valueNumber": "600.00",
+     "concept": "fin:Payslip401kDeferral",
+     "period": "2026-09",
+     "page": 1,
+     "bbox": {
+      "page": 1,
+      "x0": 60.0,
+      "y0": 255.81,
+      "x1": 399.52,
+      "y1": 265.07
+     }
+    },
+    {
+     "fieldId": "f-federal-income-tax-current",
+     "label": "Federal income tax · Current",
+     "value": "1,170.00",
+     "valueNumber": "1170.00",
+     "period": "2026-09",
+     "page": 1,
+     "bbox": {
+      "page": 1,
+      "x0": 60.0,
+      "y0": 277.81,
+      "x1": 399.52,
+      "y1": 287.07
+     }
+    },
+    {
+     "fieldId": "f-federal-income-tax-year-to-date",
+     "label": "Federal income tax · Year to date",
+     "value": "10,530.00",
+     "valueNumber": "10530.00",
+     "period": "2026-09",
+     "page": 1,
+     "bbox": {
+      "page": 1,
+      "x0": 60.0,
+      "y0": 277.81,
+      "x1": 551.52,
+      "y1": 287.07
+     }
+    },
+    {
+     "fieldId": "f-social-security-current",
+     "label": "Social Security · Current",
+     "value": "558.00",
+     "valueNumber": "558.00",
+     "period": "2026-09",
+     "page": 1,
+     "bbox": {
+      "page": 1,
+      "x0": 60.0,
+      "y0": 299.81,
+      "x1": 399.52,
+      "y1": 309.07
+     }
+    },
+    {
+     "fieldId": "f-social-security-year-to-date",
+     "label": "Social Security · Year to date",
+     "value": "5,022.00",
+     "valueNumber": "5022.00",
+     "period": "2026-09",
+     "page": 1,
+     "bbox": {
+      "page": 1,
+      "x0": 60.0,
+      "y0": 299.81,
+      "x1": 551.52,
+      "y1": 309.07
+     }
+    },
+    {
+     "fieldId": "f-medicare-current",
+     "label": "Medicare · Current",
+     "value": "130.50",
+     "valueNumber": "130.50",
+     "period": "2026-09",
+     "page": 1,
+     "bbox": {
+      "page": 1,
+      "x0": 60.0,
+      "y0": 321.81,
+      "x1": 399.52,
+      "y1": 331.07
+     }
+    },
+    {
+     "fieldId": "f-medicare-year-to-date",
+     "label": "Medicare · Year to date",
+     "value": "1,174.50",
+     "valueNumber": "1174.50",
+     "period": "2026-09",
+     "page": 1,
+     "bbox": {
+      "page": 1,
+      "x0": 60.0,
+      "y0": 321.81,
+      "x1": 551.52,
+      "y1": 331.07
+     }
+    },
+    {
+     "fieldId": "f-payslip-net-pay-for-the-period",
+     "label": "Net pay · Current",
+     "value": "6,541.50",
+     "valueNumber": "6541.50",
+     "concept": "fin:PayslipNetPay",
+     "period": "2026-09",
+     "page": 1,
+     "bbox": {
+      "page": 1,
+      "x0": 60.0,
+      "y0": 343.81,
+      "x1": 399.51,
+      "y1": 353.07
+     }
+    },
+    {
+     "fieldId": "f-net-pay-year-to-date",
+     "label": "Net pay · Year to date",
+     "value": "58,873.50",
+     "valueNumber": "58873.50",
+     "period": "2026-09",
+     "page": 1,
+     "bbox": {
+      "page": 1,
+      "x0": 60.0,
+      "y0": 343.81,
+      "x1": 551.51,
+      "y1": 353.07
+     }
+    }
+   ],
+   "period": "2026-09",
+   "piiFlag": "none",
+   "resolvable": true,
+   "scores": {
+    "denseRaw": 1.838212,
+    "bm25Raw": 4.355524,
+    "denseNorm": 1.0,
+    "bm25Norm": 1.0,
+    "fused": 1.0
+   }
+  },
+  {
+   "rank": 2,
+   "unitId": "payslip-2026-09-maya-fictus-bd153b:2.3.1:eu-02",
+   "docId": "payslip-2026-09-maya-fictus-bd153b",
+   "fileName": "payslip_2026-09_maya_fictus.pdf",
+   "unitType": "table_panel",
+   "label": "Payslip · Maya Fictus · NewAge Global Fintech Services",
+   "docType": "doc:Payslip",
+   "breadcrumb": "Payslip Sep 2026 › Maya Fictus › NewAge Global Fintech Services",
+   "text": "Employee Maya Fictus Pay period 01-30 Sep │ Employee ID E-0417 Pay date 30 Sep\n2026 │ 2026",
+   "pages": [
+    1
+   ],
+   "pageWidth": 612.0,
+   "pageHeight": 792.0,
+   "bboxes": [
+    {
+     "page": 1,
+     "x0": 46.91,
+     "y0": 98.6,
+     "x1": 564.57,
+     "y1": 176.55
+    }
+   ],
+   "fields": [],
+   "period": "2026-09",
+   "piiFlag": "none",
+   "resolvable": true,
+   "scores": {
+    "denseRaw": 1.640011,
+    "bm25Raw": 2.499784,
+    "denseNorm": 0.7206,
+    "bm25Norm": 0.5721,
+    "fused": 0.6761
+   }
+  },
+  {
+   "rank": 3,
+   "unitId": "w2-2025-maya-fictus-827d37:2.3.1:eu-02",
+   "docId": "w2-2025-maya-fictus-827d37",
+   "fileName": "w2_2025_maya_fictus.pdf",
+   "unitType": "field_group",
+   "label": "W-2 · Maya Fictus · Wages (Boxes 1–6)",
+   "docType": "doc:W2",
+   "breadcrumb": "W-2 2025 › Maya Fictus › Wages (Boxes 1–6)",
+   "text": "c Employer's name, address, and ZIP code\nNewAge Global Fintech Services 400 Market Street Seattle, WA 98104\ne Employee's first name and initial Last name f Employee's address and ZIP code\nMaya Fictus 18 Harbor Lane Seattle, WA 98101\n3 Social security wages\n1 Wages, tips, other compensation\n2 Federal income tax withheld\n98,400.00\n13,776.00\n4 Social security tax withheld\n105,000.00\n5 Medicare wages and tips\n6 Medicare tax withheld\n105,000.00\n12a See instructions for box 12 Code\n6,600.00\n6,510.00\n1,522.50",
+   "pages": [
+    1
+   ],
+   "pageWidth": 612.0,
+   "pageHeight": 792.0,
+   "bboxes": [
+    {
+     "page": 1,
+     "x0": 39.0,
+     "y0": 100.33,
+     "x1": 568.0,
+     "y1": 365.4
+    }
+   ],
+   "fields": [
+    {
+     "fieldId": "f-box12a",
+     "label": "12a See instructions for box 12",
+     "value": "6,600.00",
+     "valueNumber": "6600.00",
+     "concept": "fin:W2Box12Amount",
+     "period": "TY2025",
+     "page": 1,
+     "bbox": {
+      "page": 1,
+      "x0": 444.71,
+      "y0": 280.27,
+      "x1": 566.88,
+      "y1": 305.45
+     }
+    },
+    {
+     "fieldId": "f-box3",
+     "label": "3 Social security wages",
+     "value": "105,000.00",
+     "valueNumber": "105000.00",
+     "concept": "fin:W2SocialSecurityWagesBox3",
+     "period": "TY2025",
+     "page": 1,
+     "bbox": {
+      "page": 1,
+      "x0": 309.27,
+      "y0": 136.27,
+      "x1": 431.88,
+      "y1": 161.45
+     }
+    },
+    {
+     "fieldId": "f-box5",
+     "label": "5 Medicare wages and tips",
+     "value": "105,000.00",
+     "valueNumber": "105000.00",
+     "concept": "fin:W2MedicareWagesBox5",
+     "period": "TY2025",
+     "page": 1,
+     "bbox": {
+      "page": 1,
+      "x0": 309.27,
+      "y0": 172.35,
+      "x1": 431.88,
+      "y1": 197.45
+     }
+    },
+    {
+     "fieldId": "f-box1",
+     "label": "1 Wages, tips, other compensation",
+     "value": "98,400.00",
+     "valueNumber": "98400.00",
+     "concept": "fin:W2WagesBox1",
+     "period": "TY2025",
+     "page": 1,
+     "bbox": {
+      "page": 1,
+      "x0": 309.71,
+      "y0": 100.33,
+      "x1": 431.88,
+      "y1": 125.45
+     }
+    },
+    {
+     "fieldId": "f-box2",
+     "label": "2 Federal income tax withheld",
+     "value": "13,776.00",
+     "valueNumber": "13776.00",
+     "concept": "fin:W2FederalIncomeTaxWithheldBox2",
+     "period": "TY2025",
+     "page": 1,
+     "bbox": {
+      "page": 1,
+      "x0": 444.19,
+      "y0": 100.33,
+      "x1": 566.88,
+      "y1": 125.45
+     }
+    },
+    {
+     "fieldId": "f-box4",
+     "label": "4 Social security tax withheld",
+     "value": "6,510.00",
+     "valueNumber": "6510.00",
+     "concept": "fin:W2SocialSecurityTaxWithheldBox4",
+     "period": "TY2025",
+     "page": 1,
+     "bbox": {
+      "page": 1,
+      "x0": 444.08,
+      "y0": 136.27,
+      "x1": 566.88,
+      "y1": 161.45
+     }
+    },
+    {
+     "fieldId": "f-box6",
+     "label": "6 Medicare tax withheld",
+     "value": "1,522.50",
+     "valueNumber": "1522.50",
+     "concept": "fin:W2MedicareTaxWithheldBox6",
+     "period": "TY2025",
+     "page": 1,
+     "bbox": {
+      "page": 1,
+      "x0": 444.25,
+      "y0": 172.33,
+      "x1": 566.88,
+      "y1": 197.45
+     }
+    },
+    {
+     "fieldId": "f-boxc",
+     "label": "c Employer's name, address, and ZIP code",
+     "value": "NewAge Global Fintech Services",
+     "concept": "fin:W2EmployerName",
+     "period": "TY2025",
+     "page": 1,
+     "bbox": {
+      "page": 1,
+      "x0": 39.25,
+      "y0": 172.35,
+      "x1": 222.99,
+      "y1": 195.87
+     }
+    },
+    {
+     "fieldId": "f-boxe",
+     "label": "e Employee's first name and initial Last name f Employee's address and ZIP code",
+     "value": "Maya Fictus",
+     "concept": "fin:W2EmployeeName",
+     "period": "TY2025",
+     "page": 1,
+     "bbox": {
+      "page": 1,
+      "x0": 39.24,
+      "y0": 316.27,
+      "x1": 286.16,
+      "y1": 339.87
+     }
+    }
+   ],
+   "period": "TY2025",
+   "piiFlag": "none",
+   "resolvable": true,
+   "scores": {
+    "denseRaw": 1.624948,
+    "bm25Raw": 0.220021,
+    "denseNorm": 0.6994,
+    "bm25Norm": 0.0464,
+    "fused": 0.5035
+   }
+  },
+  {
+   "rank": 4,
+   "unitId": "payslip-2026-09-arjun-fictus-scan-8ff645:2.3.1:eu-02",
+   "docId": "payslip-2026-09-arjun-fictus-scan-8ff645",
+   "fileName": "payslip_2026-09_arjun_fictus_scan.pdf",
+   "unitType": "table_panel",
+   "label": "Payslip · Arjun Fictus · NewAge Global Fintech Payments",
+   "docType": "doc:Payslip",
+   "breadcrumb": "Payslip Sep 2026 › Arjun Fictus › NewAge Global Fintech Payments",
+   "text": "Employee Arjun Fictus Pay period 01-30 Sep 2026 Employee ID E-2290 Pay date 30 Sep 2026",
+   "pages": [
+    1
+   ],
+   "pageWidth": 612.0,
+   "pageHeight": 792.0,
+   "bboxes": [
+    {
+     "page": 1,
+     "x0": 42.55,
+     "y0": 95.2,
+     "x1": 561.76,
+     "y1": 175.04
+    }
+   ],
+   "fields": [],
+   "period": "2026-09",
+   "piiFlag": "none",
+   "resolvable": true,
+   "scores": {
+    "denseRaw": 1.450012,
+    "bm25Raw": 2.219466,
+    "denseNorm": 0.4528,
+    "bm25Norm": 0.5074,
+    "fused": 0.4692
+   }
+  },
+  {
+   "rank": 5,
+   "unitId": "bank-statement-2026-09-7c2e0d:2.3.1:eu-04",
+   "docId": "bank-statement-2026-09-7c2e0d",
+   "fileName": "bank_statement_2026-09.pdf",
+   "unitType": "table_panel",
+   "label": "Bank statement · Maya Fictus · Deposits",
+   "docType": "doc:BankStatement",
+   "breadcrumb": "Bank statement Sep 2026 › Maya Fictus › Deposits",
+   "text": "Date │ Description │ Amount (USD)\n2026-09-30 │ Payroll NewAge Global Fintech Services │ 6,541.50\n2026-09-30 │ Payroll NewAge Global Fintech Payments │ 4,962.75\n2026-09-30 │ Interest credit │ 4.18",
+   "pages": [
+    1
+   ],
+   "pageWidth": 612.0,
+   "pageHeight": 792.0,
+   "bboxes": [
+    {
+     "page": 1,
+     "x0": 46.86,
+     "y0": 328.55,
+     "x1": 564.85,
+     "y1": 410.51
+    }
+   ],
+   "fields": [
+    {
+     "fieldId": "f-2026-09-30-payroll-newage-global-fintech",
+     "label": "2026-09-30 Payroll NewAge Global Fintech Services · Amount (USD)",
+     "value": "6,541.50",
+     "valueNumber": "6541.50",
+     "period": "2026-09",
+     "page": 1,
+     "bbox": {
+      "page": 1,
+      "x0": 60.0,
+      "y0": 357.17,
+      "x1": 551.54,
+      "y1": 365.97
+     }
+    },
+    {
+     "fieldId": "f-2026-09-30-payroll-newage-global-fi-2",
+     "label": "2026-09-30 Payroll NewAge Global Fintech Payments · Amount (USD)",
+     "value": "4,962.75",
+     "valueNumber": "4962.75",
+     "period": "2026-09",
+     "page": 1,
+     "bbox": {
+      "page": 1,
+      "x0": 60.0,
+      "y0": 377.17,
+      "x1": 551.62,
+      "y1": 385.97
+     }
+    },
+    {
+     "fieldId": "f-2026-09-30-interest-credit-amount-usd",
+     "label": "2026-09-30 Interest credit · Amount (USD)",
+     "value": "4.18",
+     "valueNumber": "4.18",
+     "period": "2026-09",
+     "page": 1,
+     "bbox": {
+      "page": 1,
+      "x0": 60.0,
+      "y0": 397.17,
+      "x1": 551.58,
+      "y1": 405.97
+     }
+    }
+   ],
+   "period": "2026-09",
+   "piiFlag": "none",
+   "resolvable": true,
+   "scores": {
+    "denseRaw": 1.46002,
+    "bm25Raw": 0.866547,
+    "denseNorm": 0.4669,
+    "bm25Norm": 0.1955,
+    "fused": 0.3855
+   }
+  }
+ ],
+ "retrievedText": [
+  "Description │ Current │ Year to date\nGross pay │ 9,000.00 │ 81,000.00\n401(k) employee deferral │ 600.00 │ 5,400.00\nFederal income tax │ 1,170.00 │ 10,530.00\nSocial Security │ 558.00 │ 5,022.00\nMedicare │ 130.50 │ 1,174.50\nNet pay │ 6,541.50 │ 58,873.50",
+  "Employee Maya Fictus Pay period 01-30 Sep │ Employee ID E-0417 Pay date 30 Sep\n2026 │ 2026",
+  "c Employer's name, address, and ZIP code\nNewAge Global Fintech Services 400 Market Street Seattle, WA 98104\ne Employee's first name and initial Last name f Employee's address and ZIP code\nMaya Fictus 18 Harbor Lane Seattle, WA 98101\n3 Social security wages\n1 Wages, tips, other compensation\n2 Federal income tax withheld\n98,400.00\n13,776.00\n4 Social security tax withheld\n105,000.00\n5 Medicare wages and tips\n6 Medicare tax withheld\n105,000.00\n12a See instructions for box 12 Code\n6,600.00\n6,510.00\n1,522.50",
+  "Employee Arjun Fictus Pay period 01-30 Sep 2026 Employee ID E-2290 Pay date 30 Sep 2026",
+  "Date │ Description │ Amount (USD)\n2026-09-30 │ Payroll NewAge Global Fintech Services │ 6,541.50\n2026-09-30 │ Payroll NewAge Global Fintech Payments │ 4,962.75\n2026-09-30 │ Interest credit │ 4.18"
+ ],
+ "answer": {
+  "answer": "On Maya Fictus's September 2026 payslip, the year-to-date gross pay is $81,000.00, covering the pay period 01–30 September 2026 at NewAge Global Fintech Services.",
+  "total": "81,000.00",
+  "currency": "USD",
+  "claims": [
+   {
+    "text": "$81,000.00",
+    "value": "81000.00",
+    "unitId": "payslip-2026-09-maya-fictus-bd153b:2.3.1:eu-03",
+    "fieldId": "f-payslip-gross-pay-year-to-date",
+    "docId": "payslip-2026-09-maya-fictus-bd153b",
+    "fileName": "payslip_2026-09_maya_fictus.pdf",
+    "label": "Payslip · Maya Fictus · Earnings and deductions · Gross pay · Year to date · p.1",
+    "page": 1,
+    "bbox": {
+     "page": 1,
+     "x0": 60.0,
+     "y0": 233.81,
+     "x1": 551.51,
+     "y1": 243.07
+    },
+    "unitBbox": {
+     "page": 1,
+     "x0": 46.7,
+     "y0": 202.48,
+     "x1": 564.84,
+     "y1": 358.4
+    },
+    "resolvable": true
+   }
+  ],
+  "caveats": [
+   "Per package definitions, payslip YTD figures corroborate income but are not used to calculate qualifying income; W-2 Box 1 wages are the authoritative source for total qualifying income."
+  ],
+  "citationRetries": 0,
+  "uncitedNumbers": []
+ },
+ "usage": {
+  "inputTokens": 8615,
+  "outputTokens": 352,
+  "totalTokens": 8967
+ },
+ "latencyMs": 11899,
+ "status": "ok",
+ "s3Key": "runs/r-a01d039959e0.json",
+ "provenance": {
+  "mode": "local-run",
+  "label": "local run · Bedrock",
+  "note": "Asked on a developer machine against the local pipeline's outputs; not the deployed AWS stack.",
+  "build": "build/e2e",
+  "model": "Amazon Bedrock Converse (real)",
+  "embeddings": "amazon.titan-embed-text-v2:0 (real Bedrock; responses recorded)",
+  "index": "in-memory k-NN (exact inner product) + BM25 (Lucene formula) over the run's units; NOT OpenSearch",
+  "graph": "pyoxigraph in-process (NOT Amazon Neptune)",
+  "stores": "moto (S3, DynamoDB) loaded from the run's world snapshot",
+  "piiGate": "Amazon Comprehend DetectPiiEntities (real; responses recorded) (runs/local/recorded/comprehend.json)",
+  "extraction": "docling 2.145.0 (local, dev mode)",
+  "scanPages": "local Docling OCR shaped as a Textract response (NOT Amazon Textract)",
+  "phaseBEmbeddings": "local-hash-embedder (NOT Titan; deterministic, not semantic)",
+  "toolTransport": "tool Lambda handlers in-process (local gateway; identity injected like the interceptor)"
+ }
+}

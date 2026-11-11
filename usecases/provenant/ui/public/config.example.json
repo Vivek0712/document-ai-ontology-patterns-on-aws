@@ -1,0 +1,7 @@
+{
+  "region": "us-east-1",
+  "apiUrl": "https://<rest-api-id>.execute-api.us-east-1.amazonaws.com/v1",
+  "userPoolId": "us-east-1_XXXXXXXXX",
+  "userPoolClientId": "<rp-web app client id>",
+  "demoUsers": false
+}
